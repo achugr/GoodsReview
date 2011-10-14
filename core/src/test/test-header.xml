@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="test-js-1.xsl"?>
+<page xmlns:x="http://xfresh.sf.net/ext">
+    <!--<x:js src="common-functions.js"/>-->
+    <x:js src="test-header.js"/>
+</page>
