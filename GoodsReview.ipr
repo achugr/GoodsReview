@@ -233,6 +233,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoodsReview.iml" filepath="$PROJECT_DIR$/GoodsReview.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/src/core.iml" filepath="$PROJECT_DIR$/core/src/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extractor/extractor.iml" filepath="$PROJECT_DIR$/extractor/extractor.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/miner/miner.iml" filepath="$PROJECT_DIR$/miner/miner.iml" />
       <module fileurl="file://$PROJECT_DIR$/storage/storage.iml" filepath="$PROJECT_DIR$/storage/storage.iml" />
