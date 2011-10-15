@@ -11,25 +11,33 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class FrequencyAnalyzer {
-    private Comments comments;
+    private ListOfReviews listOfReviews;
 	private HashMap<String,Integer> words;
 
     public HashMap<String,Integer> getWords() {
 		return this.words;
 	}
 
-    public FrequencyAnalyzer(Comments comments) {
-		this.comments = comments;
+    public FrequencyAnalyzer(ListOfReviews listOfReviews) {
+		this.listOfReviews = listOfReviews;
 	}
+
+    public void printFrequencyDictionary(){
+        Iterator iterator = words.entrySet().iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+    }
 
     public void makeFrequencyDictionary () {
 		this.words = new HashMap<String,Integer>();
-		List<String> commentsList = this.comments.getComments();
-		for (Iterator<String> it = commentsList.iterator(); it.hasNext();) {
-			String currentComment = it.next();
-			StringTokenizer st = new StringTokenizer(currentComment," ,");
+		List<String> listOfReviews = this.listOfReviews.getListOfComments();
+		for (Iterator<String> it = listOfReviews.iterator(); it.hasNext();) {
+			String currentCitilinkReview = it.next();
+			StringTokenizer st = new StringTokenizer(currentCitilinkReview," ,");
 			int i = 0;
-			String[] listWords = new String[currentComment.length()];
+			String[] listWords = new String[currentCitilinkReview.length()];
 			while (st.hasMoreTokens()) {
 				listWords[i++] = st.nextToken();
 			}

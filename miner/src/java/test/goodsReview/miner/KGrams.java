@@ -9,10 +9,7 @@ package test.goodsReview.miner;
  */
 
 import java.lang.*;
-import java.lang.reflect.Array;
 import java.util.*;
-import java.io.*;
-import java.util.List;
 
 //this class implements k-grams method
 public class KGrams {
@@ -22,10 +19,10 @@ public class KGrams {
     private int tokensNum = 0;
 
     //constructor
-    public KGrams(Comments comments) {
-        this.kGramTableColumnsNum = comments.getCommentsNum();
+    public KGrams(ListOfReviews citilinkReviews) {
+        this.kGramTableColumnsNum = citilinkReviews.getCitilinkReviewsNum();
         this.kGramsTable = new HashMap<String, Boolean[]>();
-        this.kGramsTable = extractTokens(comments);
+        this.kGramsTable = extractTokens(citilinkReviews);
     }
 
     //return matrix of tokens and contains
@@ -33,54 +30,54 @@ public class KGrams {
         return this.kGramsTable;
     }
 
-    public Map<String, Boolean[]> extractTokens(Comments comments) {
+    public Map<String, Boolean[]> extractTokens(ListOfReviews citilinkReviews) {
         char[] text;
         int i, j, k, n;
         int counter;
         String tokenS;
         char[] token = new char[KGrams.tokenSize];
-        Boolean[] tokenInComments;
+        Boolean[] tokenIncitilinkReviews;
         // token must be realised as QUEUE ???
-        for (n = 0; n < comments.getCommentsNum(); n++) {
-            text = comments.getCommentChars(n);
+        for (n = 0; n < citilinkReviews.getCitilinkReviewsNum(); n++) {
+            text = citilinkReviews.getCitilinkReviewChars(n);
             for (i = 0; i < text.length - KGrams.tokenSize + 1; i++) {
                 for (j = i, k = 0; j < i + KGrams.tokenSize; j++, k++) {
                     token[k] = text[j];
                 }
                 tokenS = new String(token);
                 if (this.kGramsTable.containsKey(tokenS)) {
-                    tokenInComments = this.kGramsTable.get(tokenS);
-                    tokenInComments[n] = true;
+                    tokenIncitilinkReviews = this.kGramsTable.get(tokenS);
+                    tokenIncitilinkReviews[n] = true;
                     System.out.print("\nthis token is already in map: " + tokenS + " ");
                     for (int m = 0; m < this.kGramTableColumnsNum; m++) {
-                        System.out.print(tokenInComments[m] + " -- ");
+                        System.out.print(tokenIncitilinkReviews[m] + " -- ");
                     }
 
-                    this.kGramsTable.put(tokenS, tokenInComments);
+                    this.kGramsTable.put(tokenS, tokenIncitilinkReviews);
 
                 } else {
-                    tokenInComments = new Boolean[this.kGramTableColumnsNum];
-                    tokenInComments[n] = true;
+                    tokenIncitilinkReviews = new Boolean[this.kGramTableColumnsNum];
+                    tokenIncitilinkReviews[n] = true;
                     System.out.print("\n" + tokenS + " ");
                     for (int m = 0; m < this.kGramTableColumnsNum; m++) {
-                        System.out.print(tokenInComments[m] + " -- ");
+                        System.out.print(tokenIncitilinkReviews[m] + " -- ");
                     }
-                    this.kGramsTable.put(tokenS, tokenInComments);
+                    this.kGramsTable.put(tokenS, tokenIncitilinkReviews);
                 }
 
             }
         }
         Iterator tokens = this.kGramsTable.keySet().iterator();
-        Boolean[] isTokenInComment;
+        Boolean[] isTokenIncitilinkReview;
         while (tokens.hasNext()) {
             this.tokensNum++;
             tokenS = tokens.next().toString();
-            isTokenInComment = this.kGramsTable.get(tokenS);
+            isTokenIncitilinkReview = this.kGramsTable.get(tokenS);
             for (i = 0; i < this.kGramTableColumnsNum; i++) {
-                if (isTokenInComment[i] == null) {
-                    isTokenInComment[i] = false;
+                if (isTokenIncitilinkReview[i] == null) {
+                    isTokenIncitilinkReview[i] = false;
                 }
-                this.kGramsTable.put(tokenS, isTokenInComment);
+                this.kGramsTable.put(tokenS, isTokenIncitilinkReview);
             }
         }
         return this.kGramsTable;
@@ -102,7 +99,7 @@ public class KGrams {
     }
 
 
-    public double compareComments() {
+    public double comparecitilinkReviews() {
         double similarity = 0;
         int i, numOfTests = this.tokensNum;
         int[][] signatureMatrix = new int[numOfTests][numOfTests];
@@ -187,40 +184,16 @@ public class KGrams {
     public void printKGramsTable() {
         int i;
         String tokenS;
-        Boolean[] isTokenInComment;
+        Boolean[] isTokenIncitilinkReview;
         Iterator token = this.kGramsTable.keySet().iterator();
         while (token.hasNext()) {
             tokenS = token.next().toString();
             System.out.print("\ntoken: " + tokenS + " ");
-            isTokenInComment = this.kGramsTable.get(tokenS);
+            isTokenIncitilinkReview = this.kGramsTable.get(tokenS);
             for (i = 0; i < this.kGramTableColumnsNum; i++) {
-                System.out.print(isTokenInComment[i] + " ");
+                System.out.print(isTokenIncitilinkReview[i] + " ");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        List<String> comm = new ArrayList<String>();
-        /*comm.add("оборона");
-        comm.add("корона");
-        comm.add("ворона");
-        comm.add("корова");
-        comm.add("оборонана");
-        comm.add("мама мыла раму");
-        comm.add("мама раму мыла");
-        comm.add("раму мама мыла");
-        comm.add("папа мыл раму");      */
-       /* comm.add("я согласен с Сашей, моя программа действительно бесполезно");
-        comm.add("саша сегодня пришел на пару с опозданием");  */
-        comm.add("Шла Саша по шоссе");
-        comm.add("Саша живет в соседнем дворе");
-        comm.add("Саша живет в другом дворе");
-        comm.add("Маша живет в соседнем дворе");
-        Comments comments = new Comments(comm);
-        comments.printComments();
-        KGrams kGrams = new KGrams(comments);
-        kGrams.printKGramsTable();
-        kGrams.compareComments();
     }
 }
 
