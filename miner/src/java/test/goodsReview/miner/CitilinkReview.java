@@ -7,6 +7,7 @@ package test.goodsReview.miner;
  * Time: 19:11
  * To change this template use File | Settings | File Templates.
  */
+//class for review from citilink
 public class CitilinkReview {
     private int rate;
     private String description;
