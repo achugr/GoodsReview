@@ -1,1 +1,5 @@
-GoodsReview project
+write in your terminal:
+
+1. ant all - to build project
+2. ant run_frontend - to run frontend. to stop frontend press Ctrl+C in your terminal
+3. ant run_miner - to run miner
