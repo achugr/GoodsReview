@@ -20,7 +20,7 @@ public class KGrams {
 
     //constructor
     public KGrams(ListOfReviews citilinkReviews) {
-        this.kGramTableColumnsNum = citilinkReviews.getCitilinkReviewsNum();
+        this.kGramTableColumnsNum = citilinkReviews.getReviewsNum();
         this.kGramsTable = new HashMap<String, Boolean[]>();
         this.kGramsTable = extractTokens(citilinkReviews);
     }
@@ -38,7 +38,7 @@ public class KGrams {
         char[] token = new char[KGrams.tokenSize];
         Boolean[] tokenIncitilinkReviews;
         // token must be realised as QUEUE ???
-        for (n = 0; n < citilinkReviews.getCitilinkReviewsNum(); n++) {
+        for (n = 0; n < citilinkReviews.getReviewsNum(); n++) {
             text = citilinkReviews.getCitilinkReviewChars(n);
             for (i = 0; i < text.length - KGrams.tokenSize + 1; i++) {
                 for (j = i, k = 0; j < i + KGrams.tokenSize; j++, k++) {

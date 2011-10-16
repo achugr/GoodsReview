@@ -14,33 +14,32 @@ import java.util.ListIterator;
  */
 
 //class for citilinkReviews on a product
-//TODO here we must realize interface class, or container, because CitilinkReview is for cpecific store
 
 public class ListOfReviews {
-    private List<CitilinkReview> reviewsList = new ArrayList<CitilinkReview>();
+    private List<Review> reviewsList = new ArrayList<Review>();
 
-    public ListOfReviews(List<CitilinkReview> citilinkReviews) {
-        this.reviewsList = citilinkReviews;
+    public ListOfReviews(List<Review> reviews) {
+        this.reviewsList = reviews;
     }
 
     public ListOfReviews(){}
 
-    public List<CitilinkReview> getcitilinkReviews() {
+    public List<Review> getReviews() {
         return this.reviewsList;
     }
 
-    public void setReviewsList(List<CitilinkReview> reviewsList) {
+    public void setReviewsList(List<Review> reviewsList) {
         this.reviewsList = reviewsList;
     }
 
-    public int getCitilinkReviewsNum() {
+    public int getReviewsNum() {
         return this.reviewsList.size();
     }
 
     public List<String> getListOfComments(){
         List<String> listOfComments = new ArrayList<String>();
-        for(CitilinkReview citilinkReview : this.reviewsList){
-            listOfComments.add(citilinkReview.getComment());
+        for(Review review : this.reviewsList){
+            listOfComments.add(review.getComment());
         }
         return listOfComments;
     }
@@ -53,10 +52,7 @@ public class ListOfReviews {
         this.reviewsList.add(citilinkReview);
     }
     public void printCitilinkReviews() {
-        /*for (CitilinkReview citilinkReview : this.reviewsList) {
-            System.out.println("comment :" + citilinkReview);
-        } */
-        Iterator <CitilinkReview> iterator = this.reviewsList.iterator();
+        Iterator <Review> iterator = this.reviewsList.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next().getComment());
         }

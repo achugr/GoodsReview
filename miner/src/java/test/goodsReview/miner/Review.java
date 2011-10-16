@@ -14,6 +14,8 @@ public abstract class Review {
         this.comment = comment;
     }
 
+    protected Review(){}
+
     public void setComment(String comment) {
         this.comment = comment;
     }

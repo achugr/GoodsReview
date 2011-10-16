@@ -1,5 +1,7 @@
 package test.goodsReview.miner;
 
+import org.apache.regexp.RE;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Artemij
@@ -7,22 +9,19 @@ package test.goodsReview.miner;
  * Time: 19:11
  * To change this template use File | Settings | File Templates.
  */
-public class CitilinkReview {
+public class CitilinkReview extends Review {
     private int rate;
     private String description;
     private String goodAspect;
     private String badAspect;
-    private String comment;
     private int helpfulnessYes;
     private int helpfulnessNo;
 
-    public CitilinkReview(){}
-
     public CitilinkReview(int rate, String description, String goodAspect, String badAspect, String comment, int helpfulnessYes, int helpfulnessNo) {
+        super(comment);
         this.rate = rate;
         this.description = description;
         this.goodAspect = goodAspect;
-        this.comment = comment;
         this.badAspect = badAspect;
         this.helpfulnessYes = helpfulnessYes;
         this.helpfulnessNo = helpfulnessNo;
@@ -36,8 +35,8 @@ public class CitilinkReview {
         return description;
     }
 
-    public String getComment(){
-        return comment;
+    public String getComment() {
+        return super.getComment();
     }
 
     public String getGoodAspect() {
