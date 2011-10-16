@@ -45,7 +45,7 @@ import java.util.Map;
  * Date: 20.04.2007
  * Time: 18:31:03
  * <p/>
- * Reused from different yalets.
+ * Reused from different test.goodsReview.frontend.test.goodsReview.frontend.yalets.
  *
  * @author Nikolay Malevanny nmalevanny@yandex-team.ru
  */

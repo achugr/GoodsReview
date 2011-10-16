@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" afterPath="$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/yalets/SimpleRequestYalet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GoodsReview.iws" afterPath="$PROJECT_DIR$/GoodsReview.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/net/sf/xfresh/core/impl/SimpleInternalResponse.java" afterPath="$PROJECT_DIR$/core/src/java/net/sf/xfresh/core/impl/SimpleInternalResponse.java" />
     </list>
     <ignored path="BrandAnalytics.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,9 +80,9 @@
         </entry>
       </file>
       <file leaf-file-name="SimpleRequestYalet.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java">
+        <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/yalets/SimpleRequestYalet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="4" selection-start="239" selection-end="239" vertical-scroll-proportion="0.37362638">
+            <state line="1" column="0" selection-start="42" selection-end="42" vertical-scroll-proportion="0.046703298">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,7 +104,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/searcher/src/ru/brandanalyst/searcher/Searcher.java" />
         <option value="$PROJECT_DIR$/miner/src/java/ru/brandanalyst/miner/GrabberYandex.java" />
         <option value="$PROJECT_DIR$/start.sh" />
         <option value="$PROJECT_DIR$/BrandAnalytics.ipr" />
@@ -118,6 +119,7 @@
         <option value="$PROJECT_DIR$/extractor/src/test/goodsReview/extractor/XMLParser.java" />
         <option value="$PROJECT_DIR$/frontend/src/web/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" />
         <option value="$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" />
+        <option value="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/yalets/SimpleRequestYalet.java" />
       </list>
     </option>
   </component>
@@ -719,6 +721,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40443686" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.043247346" sideWeight="0.656051" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38853502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -732,7 +735,6 @@
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32935154" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40443686" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30257186" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -877,9 +879,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/yalets/SimpleRequestYalet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="239" selection-end="239" vertical-scroll-proportion="0.37362638">
+        <state line="1" column="0" selection-start="42" selection-end="42" vertical-scroll-proportion="0.046703298">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
