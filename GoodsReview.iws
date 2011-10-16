@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GoodsReview.iws" afterPath="$PROJECT_DIR$/GoodsReview.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" afterPath="$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java" />
     </list>
     <ignored path="BrandAnalytics.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,7 +80,7 @@
       <file leaf-file-name="SimpleRequestYalet.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="8" selection-start="320" selection-end="320" vertical-scroll-proportion="0.46703297">
+            <state line="8" column="4" selection-start="239" selection-end="239" vertical-scroll-proportion="0.37362638">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -880,7 +879,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/java/test/GoodsReview/frontend/yalets/SimpleRequestYalet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="8" selection-start="320" selection-end="320" vertical-scroll-proportion="0.46703297">
+        <state line="8" column="4" selection-start="239" selection-end="239" vertical-scroll-proportion="0.37362638">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
