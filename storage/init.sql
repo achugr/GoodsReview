@@ -1,6 +1,6 @@
 /*
 Created: 04.10.2011
-Modified: 11.10.2011
+Modified: 17.10.2011
 Project: review_permanent
 Model: GoodsReviews
 Author: Sergey Serebryakov
@@ -29,14 +29,14 @@ DROP TABLE IF EXISTS specification_value
 ;
 DROP TABLE IF EXISTS specification_name
 ;
-DROP TABLE IF EXISTS article
+DROP TABLE IF EXISTS product
 ;
 
 -- Create tables section -------------------------------------------------
 
--- Table article
+-- Table product
 
-CREATE TABLE article
+CREATE TABLE product
 (
   id Int NOT NULL AUTO_INCREMENT,
   category_id Int,
@@ -173,10 +173,10 @@ CREATE TABLE vote
 
 -- Create relationships section ------------------------------------------------- 
 
-ALTER TABLE shop_link ADD CONSTRAINT has link to FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE shop_link ADD CONSTRAINT has link to FOREIGN KEY (article_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE specification_value ADD CONSTRAINT has spec FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE specification_value ADD CONSTRAINT has spec FOREIGN KEY (article_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 ALTER TABLE specification_value ADD CONSTRAINT is value of FOREIGN KEY (spec_name_id) REFERENCES specification_name (id) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -185,7 +185,7 @@ ALTER TABLE specification_value ADD CONSTRAINT is value of FOREIGN KEY (spec_nam
 ALTER TABLE shop_link ADD CONSTRAINT hosts FOREIGN KEY (shop_id) REFERENCES shop (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE review ADD CONSTRAINT has review FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE review ADD CONSTRAINT has review FOREIGN KEY (article_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 ALTER TABLE review ADD CONSTRAINT provides FOREIGN KEY (source_id) REFERENCES source (id) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -194,7 +194,7 @@ ALTER TABLE review ADD CONSTRAINT provides FOREIGN KEY (source_id) REFERENCES so
 ALTER TABLE thesis ADD CONSTRAINT extracted from FOREIGN KEY (review_id) REFERENCES review (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE article ADD CONSTRAINT belongs to FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE product ADD CONSTRAINT belongs to FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 ALTER TABLE category ADD CONSTRAINT has parent FOREIGN KEY (parent_category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
