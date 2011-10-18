@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/script/beans.xml" />
-      <change type="DELETED" beforePath="D:\GoodsReview\frontend\src\java\test\goodsReview\frontend\yalets\SimpleRequestYalet.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GoodsReview.iws" afterPath="$PROJECT_DIR$/GoodsReview.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/frontend.iml" afterPath="$PROJECT_DIR$/frontend/frontend.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" afterPath="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
     </list>
     <ignored path="GoodsReview.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -132,7 +127,7 @@
       <file leaf-file-name="FrontendModuleTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="918" selection-end="918" vertical-scroll-proportion="0.512894">
+            <state line="37" column="6" selection-start="1282" selection-end="1282" vertical-scroll-proportion="-7.3782234">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,8 +181,8 @@
         <option value="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java" />
         <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/SimpleRequestYalet.java" />
         <option value="$PROJECT_DIR$/frontend/src/script/beans.xml" />
-        <option value="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
         <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java" />
+        <option value="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
       </list>
     </option>
   </component>
@@ -1152,7 +1147,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="918" selection-end="918" vertical-scroll-proportion="0.512894">
+        <state line="37" column="6" selection-start="1282" selection-end="1282" vertical-scroll-proportion="-7.3782234">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
