@@ -1,6 +1,4 @@
-package test.goodsReview.miner;
-
-import org.apache.regexp.RE;
+package ru.goodsReview.core.model;
 
 /**
  * Created by IntelliJ IDEA.

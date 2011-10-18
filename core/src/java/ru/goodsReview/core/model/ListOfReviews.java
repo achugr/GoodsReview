@@ -1,9 +1,8 @@
-package test.goodsReview.miner;
+package ru.goodsReview.core.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by IntelliJ IDEA.

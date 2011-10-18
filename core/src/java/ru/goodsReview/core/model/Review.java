@@ -1,4 +1,4 @@
-package test.goodsReview.miner;
+package ru.goodsReview.core.model;
 
 /**
  * Created by IntelliJ IDEA.

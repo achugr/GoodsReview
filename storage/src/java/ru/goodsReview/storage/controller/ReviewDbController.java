@@ -1,11 +1,11 @@
-package ru.goodsReview.storage.model;
+package ru.goodsReview.storage.controller;
 
 /**
  * Created by IntelliJ IDEA.
  * User: Artemij
- * Date: 18.10.11
- * Time: 23:27
+ * Date: 19.10.11
+ * Time: 1:20
  * To change this template use File | Settings | File Templates.
  */
-public class Product {
+public class ReviewDbController {
 }
