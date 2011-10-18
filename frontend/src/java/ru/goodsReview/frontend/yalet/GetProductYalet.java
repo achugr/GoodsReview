@@ -1,11 +1,11 @@
-package ru.goodsReview.frontend.model;
+package ru.goodsReview.frontend.yalet;
 
 /**
  * Created by IntelliJ IDEA.
  * User: Artemij
- * Date: 18.10.11
- * Time: 23:02
+ * Date: 19.10.11
+ * Time: 3:35
  * To change this template use File | Settings | File Templates.
  */
-public class BaseRequest {
+public class GetProductYalet {
 }
