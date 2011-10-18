@@ -107,8 +107,8 @@
 
         <copy file="start.sh" todir="${build.dir}"/>
 
-        <copy todir="${build.dir}/scripts">
-            <fileset dir="${project.dir}/frontend/src/scripts" includes="**/*.*"/>
+        <copy todir="${build.dir}/script">
+            <fileset dir="${project.dir}/frontend/src/script" includes="**/*.*"/>
         </copy>
     </target>
 
