@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    
+    <!-- List of products names -->
+    <file action="write" path="yandexProductsList.xml" charset="UTF-8">
+    	<loop item="link" index="j">
+            <list>
+            	<xpath expression='//h3[@class="b-offers__title"]/a/text()'>
+           				 <html-to-xml>
+            			    <http url="http://market.yandex.ru/guru.xml?hid=91013%CMD=-RR=9,0,0,0-VIS=201E2-CAT_ID=432460-BPOS=0-EXC=1-PG=10;greed_mode=false"/>
+           				 </html-to-xml>
+        			</xpath>
+        	</list>
+   			<body>
+   				<text>
+                <var name="link"/>
+                </text>
+   			</body>	
+   		</loop>
+    <while condition="true"  index="i"   maxloops="511">
+   		<loop item="link" index="j">
+            <list>
+            	<xpath expression='//h3[@class="b-offers__title"]/a/text()'>
+           				 <html-to-xml>
+            			    <http url="http://market.yandex.ru/guru.xml?hid=91013%CMD=-RR=9,0,0,0-VIS=201E2-CAT_ID=432460-BPOS=${i}0-EXC=1-PG=10;greed_mode=false"/>
+           				 </html-to-xml>
+        			</xpath>
+        	</list>
+   			<body>
+   				<text>
+                <var name="link"/>
+                </text>
+   			</body>	
+   		</loop>
+		</while>
+    </file>
+    
+    
+    
+    
+     <file action="write" path="yandexReviews.xml" charset="UTF-8">
+     	<![CDATA[ <catalog> ]]>
+     		
+     	
+     	<!-- First page downloader -->
+     	<loop item="link" index="j">
+            <list>
+            	<xpath expression='//ul[@class="b-model-actioins"]/li[3]/a/@href'>
+           				 <html-to-xml>
+            			    <http url="http://market.yandex.ru/guru.xml?hid=91013%CMD=-RR=9,0,0,0-VIS=201E2-CAT_ID=432460-BPOS=0-EXC=1-PG=10;greed_mode=false"/>
+           				 </html-to-xml>
+        		</xpath>
+        	</list>
+   			<body>
+   				
+   				<![CDATA[ <product> ]]>
+            		<xpath expression='//head/title/text()'>
+           				   <html-to-xml outputtype="pretty">
+            			  	  <http url="http://market.yandex.ru${link}"/>
+            			  </html-to-xml>
+        			</xpath>    			
+             				
+   				<loop item="review" index="j">
+            	<list>
+            		<xpath expression='//div[@class="b-grade comment left0"]'>
+           				 <html-to-xml>
+            			    <http url="http://market.yandex.ru${link}"/>
+           				 </html-to-xml>
+        			</xpath>
+				</list>
+            	<body>
+                	<xquery>
+                 	   <xq-param name="review" type="node()"><var name="review"/></xq-param>
+                 	   <xq-expression><![CDATA[
+                    	        declare variable $review as node() external;
+ 								
+                        	    let $rev_time := data($review//*[@class='date']/text())
+                        	    let $rate := data($review//*[@class='grade-label']/text())
+                            	let $expir_time := data($review//*[@class='right']/text())
+                            	let $good := data($review//*[@class='data']/p[1])
+                            	let $bad := data($review//*[@class='data']/p[2])
+                            	let $comment := data($review//*[@class='data']/p[3])
+                            	let $vote := data($review//*[@class='b-grade__toolbar']/tbody/tr/td[last()])
+                            	
+                                	
+                                	return
+                                    	<review>
+                                        	<rev_time>{normalize-space($rev_time)}</rev_time>
+                                        	<rate>{normalize-space($rate)}</rate>
+                                        	<expir_time>{normalize-space($expir_time)}</expir_time>
+                                        	<good>{normalize-space($good)}</good>
+                                        	<bad>{normalize-space($bad)}</bad>
+                                        	<comment>{normalize-space($comment)}</comment>
+                                        	<vote>{normalize-space($vote)}</vote>
+                                        	
+                                       	</review>
+                    	]]></xq-expression>
+                	</xquery>             	   	 	
+                </body>
+                </loop>
+				<![CDATA[ </product> ]]>
+				
+   			</body>	
+   		</loop>
+     	
+     	
+     	
+     <!-- Other pages -->		
+     <while condition="true"  index="i"   maxloops="511">    	
+     	
+   		<loop item="link" index="j">
+            <list>
+            	<xpath expression='//ul[@class="b-model-actioins"]/li[3]/a/@href'>
+           				 <html-to-xml>
+            			    <http url="http://market.yandex.ru/guru.xml?hid=91013%CMD=-RR=9,0,0,0-VIS=201E2-CAT_ID=432460-BPOS=${i}0-EXC=1-PG=10;greed_mode=false"/>
+           				 </html-to-xml>
+        		</xpath>
+        	</list>
+   			<body>
+   				
+   				<![CDATA[ <product> ]]>
+            		<xpath expression='//head/title/text()'>
+           				   <html-to-xml outputtype="pretty">
+            			  	  <http url="http://market.yandex.ru${link}"/>
+            			  </html-to-xml>
+        			</xpath>    			
+             				
+   				<loop item="review" index="j">
+            	<list>
+            		<xpath expression='//div[@class="b-grade comment left0"]'>
+           				 <html-to-xml>
+            			    <http url="http://market.yandex.ru${link}"/>
+           				 </html-to-xml>
+        			</xpath>
+				</list>
+            	<body>
+                	<xquery>
+                 	   <xq-param name="review" type="node()"><var name="review"/></xq-param>
+                 	   <xq-expression><![CDATA[
+                    	        declare variable $review as node() external;
+ 								
+                        	    let $rev_time := data($review//*[@class='date']/text())
+                        	    let $rate := data($review//*[@class='grade-label']/text())
+                            	let $expir_time := data($review//*[@class='right']/text())
+                            	let $good := data($review//*[@class='data']/p[1])
+                            	let $bad := data($review//*[@class='data']/p[2])
+                            	let $comment := data($review//*[@class='data']/p[3])
+                            	let $vote := data($review//*[@class='b-grade__toolbar']/tbody/tr/td[last()])
+                            	
+                                	
+                                	return
+                                    	<review>
+                                        	<rev_time>{normalize-space($rev_time)}</rev_time>
+                                        	<rate>{normalize-space($rate)}</rate>
+                                        	<expir_time>{normalize-space($expir_time)}</expir_time>
+                                        	<good>{normalize-space($good)}</good>
+                                        	<bad>{normalize-space($bad)}</bad>
+                                        	<comment>{normalize-space($comment)}</comment>
+                                        	<vote>{normalize-space($vote)}</vote>
+                                        	
+                                       	</review>
+                    	]]></xq-expression>
+                	</xquery>
+                	
+                	
+                	
+                	
+                </body>
+                </loop>
+				<![CDATA[ </product> ]]>
+				
+   			</body>	
+   		</loop>
+   		</while>
+   		<![CDATA[ </catalog> ]]>
+    </file>
+ </config>   
+    
