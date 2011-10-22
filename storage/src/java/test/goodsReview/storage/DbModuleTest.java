@@ -2,12 +2,10 @@ package test.goodsReview.storage;
 
 
 import java.sql.*;
-import java.util.List;
 
-import net.sf.xfresh.db.Cell;
-import net.sf.xfresh.db.Record;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.controller.ProductDbController;
 //import ru.goodsReview.storage.mappers.*;
 
@@ -27,12 +25,10 @@ public class DbModuleTest {
             DataSource dataSource = null;
             dataSource = (DataSource) context.getBean("dataSource");
             ProductDbController baseController = new  ProductDbController(new SimpleJdbcTemplate(dataSource));
-            Record record;
-            record = baseController.getProductByName("iphone");
-            List<Cell> row;
-            for(int i=0; i<record.getCells().size(); i++ )  {
-                row = record.getCells();
-                System.out.println(row.get(i).getValue());
-            }
+            Product product;
+            product = baseController.getProductByName("iphone");
+            System.out.print("name" +  product.getName());
+            Product product2 = new Product(2, 2, "motorola", "bad phone", 10);
+            baseController.setProduct(product2);
         }
 }

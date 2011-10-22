@@ -13,10 +13,11 @@ public class GetReviewOnProductYalet implements Yalet {
     public void process(InternalRequest req, InternalResponse res)
     {
         String request = req.getParameter("request");
-
+        System.out.print("hey!");
         if (request.isEmpty()) {
                   Xmler.Tag ans = Xmler.tag("response", "hello, world!");
                   res.add(ans);
+                  System.out.print("FUCK YEAH\n");
                   return;
         }
     }

@@ -1,5 +1,7 @@
 package test.goodsReview.miner;
 
+import ru.goodsReview.core.model.ListOfReviews;
+
 import java.util.*;
 
 
