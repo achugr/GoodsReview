@@ -1,0 +1,1010 @@
+main 2011-10-18 13:10:10,297 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d]; startup date [Tue Oct 18 13:10:10 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:10:10,517 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 13:10:10,766 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d]: org.springframework.beans.factory.support.DefaultListableBeanFactory@2550036c IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:10:10,915 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:10:10,929 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2550036c: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 13:10:11,522 INFO Server started: 173 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:10:11,646 INFO Server started: 1318929011646 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:11:10,384 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7aaf1eb7: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7aaf1eb7]; startup date [Tue Oct 18 13:11:10 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:11:10,605 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 13:11:10,815 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7aaf1eb7]: org.springframework.beans.factory.support.DefaultListableBeanFactory@718503e4 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:11:10,979 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:11:10,993 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@718503e4: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 13:11:11,766 INFO Server started: 216 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:11:11,903 INFO Server started: 1318929071903 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:18:30,377 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d]; startup date [Tue Oct 18 13:18:30 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:18:30,602 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 13:18:30,817 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d]: org.springframework.beans.factory.support.DefaultListableBeanFactory@52f0684e IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:18:31,003 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:18:31,025 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@52f0684e: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 13:18:31,709 INFO Server started: 234 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:18:31,846 INFO Server started: 1318929511846 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+816888631@qtp-2110704934-2 2011-10-18 13:19:50,705 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+816888631@qtp-2110704934-2 2011-10-18 13:19:50,706 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+816888631@qtp-2110704934-2 2011-10-18 13:19:50,778 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,656 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,732 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,968 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,968 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,973 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,981 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+816888631@qtp-2110704934-2 2011-10-18 13:19:51,982 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+1627492046@qtp-2110704934-3 2011-10-18 13:19:55,767 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1627492046@qtp-2110704934-3 2011-10-18 13:19:55,767 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1627492046@qtp-2110704934-3 2011-10-18 13:19:55,771 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1627492046@qtp-2110704934-3 2011-10-18 13:19:55,777 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+1627492046@qtp-2110704934-3 2011-10-18 13:19:55,778 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+1587466980@qtp-2110704934-4 2011-10-18 13:19:56,824 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1587466980@qtp-2110704934-4 2011-10-18 13:19:56,824 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1587466980@qtp-2110704934-4 2011-10-18 13:19:56,827 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1587466980@qtp-2110704934-4 2011-10-18 13:19:56,832 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+1587466980@qtp-2110704934-4 2011-10-18 13:19:56,833 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-18 13:20:04,568 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7aaf1eb7: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7aaf1eb7]; startup date [Tue Oct 18 13:20:04 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:20:04,805 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 13:20:05,039 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7aaf1eb7]: org.springframework.beans.factory.support.DefaultListableBeanFactory@53c2a7f5 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:20:05,184 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:20:05,205 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@53c2a7f5: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 13:20:05,918 INFO Server started: 190 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:20:06,069 INFO Server started: 1318929606069 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:22:54,593 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d]; startup date [Tue Oct 18 13:22:54 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:22:54,822 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 13:22:55,024 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7f09bf4d]: org.springframework.beans.factory.support.DefaultListableBeanFactory@cfed7c IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:22:55,171 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 13:22:55,186 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@cfed7c: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 13:22:55,811 INFO Server started: 194 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 13:22:55,955 INFO Server started: 1318929775955 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+481497204@qtp-2110704934-2 2011-10-18 13:55:24,049 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+481497204@qtp-2110704934-2 2011-10-18 13:55:24,050 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+481497204@qtp-2110704934-2 2011-10-18 13:55:24,099 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+481497204@qtp-2110704934-2 2011-10-18 13:55:24,386 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+481497204@qtp-2110704934-2 2011-10-18 13:55:24,441 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2003163664@qtp-2110704934-3 2011-10-18 13:55:26,556 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+2003163664@qtp-2110704934-3 2011-10-18 13:55:26,556 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+2003163664@qtp-2110704934-3 2011-10-18 13:55:26,560 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+2003163664@qtp-2110704934-3 2011-10-18 13:55:26,565 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+2003163664@qtp-2110704934-3 2011-10-18 13:55:26,566 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-18 14:12:52,148 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-18 14:12:52,286 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@74e551a4: display name [org.springframework.context.support.FileSystemXmlApplicationContext@74e551a4]; startup date [Tue Oct 18 14:12:52 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:12:52,518 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 14:13:19,671 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@f75e354: display name [org.springframework.context.support.FileSystemXmlApplicationContext@f75e354]; startup date [Tue Oct 18 14:13:19 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:13:19,904 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 14:13:20,178 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@f75e354]: org.springframework.beans.factory.support.DefaultListableBeanFactory@19e185b9 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:13:20,314 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:13:20,329 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@19e185b9: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 14:13:20,940 INFO Server started: 168 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-18 14:13:21,058 INFO Server started: 1318932801058 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1707418198@qtp-1444144499-0 2011-10-18 14:13:27,293 DEBUG handle url => {./view/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1707418198@qtp-1444144499-0 2011-10-18 14:13:27,294 INFO Start process user request => {./view/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1707418198@qtp-1444144499-0 2011-10-18 14:13:27,359 DEBUG needTransform for ./view/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1707418198@qtp-1444144499-0 2011-10-18 14:13:27,669 INFO Can't create transformer: Failed while looking for xml-stylesheet PI IN net.sf.xfresh.core.YaletProcessor
+1707418198@qtp-1444144499-0 2011-10-18 14:13:27,708 ERROR Can't process file ./view/index.xml IN net.sf.xfresh.core.YaletProcessor
+java.io.FileNotFoundException: D:\GoodsReview\view\index.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-18 14:14:09,885 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-18 14:14:10,015 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1: display name [org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1]; startup date [Tue Oct 18 14:14:09 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:14:10,225 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 14:15:37,689 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-18 14:15:37,823 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]; startup date [Tue Oct 18 14:15:37 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:15:38,062 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 14:15:38,292 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@60e5d9d2 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:15:38,414 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 14:15:38,428 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@60e5d9d2: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 14:15:39,036 INFO Server started: 166 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+432200264@qtp-42338637-0 2011-10-18 14:15:44,237 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+432200264@qtp-42338637-0 2011-10-18 14:15:44,238 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+432200264@qtp-42338637-0 2011-10-18 14:15:44,286 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+432200264@qtp-42338637-0 2011-10-18 14:15:45,588 INFO Can't create transformer: Failed to compile stylesheet. 1 error detected. IN net.sf.xfresh.core.YaletProcessor
+432200264@qtp-42338637-0 2011-10-18 14:15:45,715 INFO Processing time for user request => {./frontend/src/web/index.xml} is 1477 ms IN net.sf.xfresh.core.YaletProcessor
+516048560@qtp-42338637-2 2011-10-18 14:17:14,827 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+516048560@qtp-42338637-2 2011-10-18 14:17:14,828 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+516048560@qtp-42338637-2 2011-10-18 14:17:14,835 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+516048560@qtp-42338637-2 2011-10-18 14:17:15,386 INFO Processing time for user request => {./frontend/src/web/index.xml} is 558 ms IN net.sf.xfresh.core.YaletProcessor
+993991169@qtp-42338637-5 2011-10-18 14:43:22,736 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+993991169@qtp-42338637-5 2011-10-18 14:43:22,737 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+993991169@qtp-42338637-5 2011-10-18 14:43:22,742 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+993991169@qtp-42338637-5 2011-10-18 14:43:22,776 INFO Processing time for user request => {./frontend/src/web/index.xml} is 39 ms IN net.sf.xfresh.core.YaletProcessor
+993991169@qtp-42338637-5 2011-10-18 14:46:37,688 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+993991169@qtp-42338637-5 2011-10-18 14:46:37,689 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+993991169@qtp-42338637-5 2011-10-18 14:46:37,694 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+993991169@qtp-42338637-5 2011-10-18 14:46:37,716 INFO Processing time for user request => {./frontend/src/web/index.xml} is 27 ms IN net.sf.xfresh.core.YaletProcessor
+main 2011-10-18 19:30:28,639 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-18 19:30:28,787 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]; startup date [Tue Oct 18 19:30:28 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 19:30:28,986 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 19:30:29,269 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@31506701 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 19:30:29,454 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 19:30:29,467 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@31506701: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 19:30:31,598 INFO Server started: 258 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1143653756@qtp-608583837-0 2011-10-18 19:32:12,326 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1143653756@qtp-608583837-0 2011-10-18 19:32:12,327 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1143653756@qtp-608583837-0 2011-10-18 19:32:12,408 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1143653756@qtp-608583837-0 2011-10-18 19:32:14,407 INFO Processing time for user request => {./frontend/src/web/index.xml} is 2080 ms IN net.sf.xfresh.core.YaletProcessor
+main 2011-10-18 19:34:20,635 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@6483f3a0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@6483f3a0]; startup date [Tue Oct 18 19:34:20 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 19:34:20,828 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-18 19:34:21,063 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@6483f3a0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@6b2f5733 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 19:34:21,238 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-18 19:34:21,255 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6b2f5733: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-18 19:34:21,923 ERROR Could not initialize server:  IN net.sf.xfresh.jetty.JettyServerInitializer
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:344)
+	at sun.nio.ch.Net.bind(Net.java:336)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.Server.doStart(Server.java:235)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at net.sf.xfresh.jetty.JettyServerInitializer.init(JettyServerInitializer.java:63)
+	at net.sf.xfresh.jetty.JettyServerInitializer.afterPropertiesSet(JettyServerInitializer.java:41)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1145)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:427)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:251)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:144)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:248)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:279)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:360)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:93)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:77)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:67)
+	at test.goodsReview.storage.DbModuleTest.main(DbModuleTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+main 2011-10-19 00:04:19,210 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@1815a349: display name [org.springframework.context.support.FileSystemXmlApplicationContext@1815a349]; startup date [Wed Oct 19 00:04:19 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:04:19,417 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:04:19,623 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@1815a349]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1540de0 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:04:19,801 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:04:19,817 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1540de0: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 00:04:20,728 INFO Server started: 358 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-19 00:09:40,555 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7edd14d9: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7edd14d9]; startup date [Wed Oct 19 00:09:40 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:09:40,760 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:09:41,010 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7edd14d9]: org.springframework.beans.factory.support.DefaultListableBeanFactory@386cbe05 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:09:41,157 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:09:41,172 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@386cbe05: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 00:09:41,811 ERROR Could not initialize server:  IN net.sf.xfresh.jetty.JettyServerInitializer
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:344)
+	at sun.nio.ch.Net.bind(Net.java:336)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.Server.doStart(Server.java:235)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at net.sf.xfresh.jetty.JettyServerInitializer.init(JettyServerInitializer.java:63)
+	at net.sf.xfresh.jetty.JettyServerInitializer.afterPropertiesSet(JettyServerInitializer.java:41)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1145)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:427)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:251)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:144)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:248)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:279)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:360)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:93)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:77)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:67)
+	at test.goodsReview.storage.DbModuleTest.main(DbModuleTest.java:27)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+main 2011-10-19 00:09:42,966 INFO Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:09:43,174 INFO SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase] IN org.springframework.jdbc.support.SQLErrorCodesFactory
+main 2011-10-19 00:10:22,447 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@3a6352f8: display name [org.springframework.context.support.FileSystemXmlApplicationContext@3a6352f8]; startup date [Wed Oct 19 00:10:22 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:10:22,673 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:10:22,896 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@3a6352f8]: org.springframework.beans.factory.support.DefaultListableBeanFactory@440df46a IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:10:23,041 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:10:23,056 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@440df46a: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 00:10:23,773 ERROR Could not initialize server:  IN net.sf.xfresh.jetty.JettyServerInitializer
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:344)
+	at sun.nio.ch.Net.bind(Net.java:336)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.Server.doStart(Server.java:235)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at net.sf.xfresh.jetty.JettyServerInitializer.init(JettyServerInitializer.java:63)
+	at net.sf.xfresh.jetty.JettyServerInitializer.afterPropertiesSet(JettyServerInitializer.java:41)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1145)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:427)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:251)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:144)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:248)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:279)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:360)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:93)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:77)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:67)
+	at test.goodsReview.storage.DbModuleTest.main(DbModuleTest.java:27)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+main 2011-10-19 00:10:24,995 INFO Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:10:25,130 INFO SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase] IN org.springframework.jdbc.support.SQLErrorCodesFactory
+main 2011-10-19 00:18:37,254 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@1f6e3ecd: display name [org.springframework.context.support.FileSystemXmlApplicationContext@1f6e3ecd]; startup date [Wed Oct 19 00:18:37 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:18:37,565 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:18:37,848 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@1f6e3ecd]: org.springframework.beans.factory.support.DefaultListableBeanFactory@386cbe05 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:18:38,012 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:18:38,027 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@386cbe05: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 00:18:38,799 INFO Server started: 249 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-19 00:18:40,114 INFO Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:18:40,277 INFO SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase] IN org.springframework.jdbc.support.SQLErrorCodesFactory
+main 2011-10-19 00:19:13,522 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@3a6352f8: display name [org.springframework.context.support.FileSystemXmlApplicationContext@3a6352f8]; startup date [Wed Oct 19 00:19:13 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:19:13,720 INFO Loading XML bean definitions from file [D:\GoodsReview\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 00:19:13,927 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@3a6352f8]: org.springframework.beans.factory.support.DefaultListableBeanFactory@440df46a IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:19:14,094 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 00:19:14,115 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@440df46a: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,queryYalet,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 00:19:14,808 INFO Server started: 213 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-19 02:26:21,738 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 02:26:21,894 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5dcc1ef4: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5dcc1ef4]; startup date [Wed Oct 19 02:26:21 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 02:26:22,133 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 02:26:22,385 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5dcc1ef4]: org.springframework.beans.factory.support.DefaultListableBeanFactory@303f7944 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 02:26:22,550 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 02:26:22,564 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@303f7944: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 02:26:23,172 INFO Server started: 188 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+425089689@qtp-1439429624-3 2011-10-19 02:26:39,256 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+425089689@qtp-1439429624-3 2011-10-19 02:26:39,257 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+425089689@qtp-1439429624-3 2011-10-19 02:26:39,319 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+425089689@qtp-1439429624-3 2011-10-19 02:26:41,802 INFO Processing time for user request => {./frontend/src/web/index.xml} is 2545 ms IN net.sf.xfresh.core.YaletProcessor
+1417532940@qtp-1439429624-0 2011-10-19 02:43:13,847 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1417532940@qtp-1439429624-0 2011-10-19 02:43:13,848 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1417532940@qtp-1439429624-0 2011-10-19 02:43:13,883 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1417532940@qtp-1439429624-0 2011-10-19 02:43:13,902 INFO Processing time for user request => {./frontend/src/web/index.xml} is 54 ms IN net.sf.xfresh.core.YaletProcessor
+444095097@qtp-1439429624-5 2011-10-19 03:03:55,413 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+444095097@qtp-1439429624-5 2011-10-19 03:03:55,413 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+444095097@qtp-1439429624-5 2011-10-19 03:03:55,418 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+444095097@qtp-1439429624-5 2011-10-19 03:03:55,441 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'ru.goodsReview.frontend.yalet.GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+444095097@qtp-1439429624-5 2011-10-19 03:03:58,021 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+444095097@qtp-1439429624-5 2011-10-19 03:03:58,021 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+444095097@qtp-1439429624-5 2011-10-19 03:03:58,025 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+444095097@qtp-1439429624-5 2011-10-19 03:03:58,043 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'ru.goodsReview.frontend.yalet.GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-19 03:05:23,952 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:05:24,124 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]; startup date [Wed Oct 19 03:05:24 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:05:24,428 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:05:24,714 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@123f9bb1 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:05:24,833 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:05:24,848 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@123f9bb1: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:05:25,504 INFO Server started: 194 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1635206834@qtp-1425878503-0 2011-10-19 03:05:52,856 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1635206834@qtp-1425878503-0 2011-10-19 03:05:52,857 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1635206834@qtp-1425878503-0 2011-10-19 03:05:52,990 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1635206834@qtp-1425878503-0 2011-10-19 03:05:53,957 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'ru.goodsReview.frontend.yalet.GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-19 03:11:21,976 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:11:22,159 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1: display name [org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1]; startup date [Wed Oct 19 03:11:22 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:11:22,422 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:11:22,649 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1]: org.springframework.beans.factory.support.DefaultListableBeanFactory@e068ad3 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:11:22,789 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:11:22,804 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e068ad3: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:11:23,465 ERROR Could not initialize server:  IN net.sf.xfresh.jetty.JettyServerInitializer
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:344)
+	at sun.nio.ch.Net.bind(Net.java:336)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.Server.doStart(Server.java:235)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at net.sf.xfresh.jetty.JettyServerInitializer.init(JettyServerInitializer.java:63)
+	at net.sf.xfresh.jetty.JettyServerInitializer.afterPropertiesSet(JettyServerInitializer.java:41)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1145)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:427)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:251)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:144)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:248)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:279)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:360)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:93)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:77)
+	at net.sf.xfresh.util.Starter.main(Starter.java:17)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+main 2011-10-19 03:20:27,824 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:20:27,953 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7e7ee722: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7e7ee722]; startup date [Wed Oct 19 03:20:27 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:20:28,181 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:20:28,351 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7e7ee722]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1574409e IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:20:28,472 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:20:28,488 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1574409e: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:20:29,107 INFO Server started: 177 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1462264745@qtp-1136976529-0 2011-10-19 03:20:42,554 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1462264745@qtp-1136976529-0 2011-10-19 03:20:42,555 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1462264745@qtp-1136976529-0 2011-10-19 03:20:42,618 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1462264745@qtp-1136976529-0 2011-10-19 03:20:43,670 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'ru.goodsReview.frontend.yalet.GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+1462264745@qtp-1136976529-0 2011-10-19 03:20:46,494 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1462264745@qtp-1136976529-0 2011-10-19 03:20:46,495 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1462264745@qtp-1136976529-0 2011-10-19 03:20:46,510 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1462264745@qtp-1136976529-0 2011-10-19 03:20:46,525 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'ru.goodsReview.frontend.yalet.GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-19 03:21:42,134 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:21:42,250 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]; startup date [Wed Oct 19 03:21:42 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:21:42,454 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:21:42,701 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@6dd6c962 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:21:42,852 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:21:42,865 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6dd6c962: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:21:43,503 INFO Server started: 206 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1417532940@qtp-1439429624-0 2011-10-19 03:21:52,968 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1417532940@qtp-1439429624-0 2011-10-19 03:21:52,969 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1417532940@qtp-1439429624-0 2011-10-19 03:21:53,027 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1417532940@qtp-1439429624-0 2011-10-19 03:21:53,947 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+1417532940@qtp-1439429624-0 2011-10-19 03:22:51,848 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1417532940@qtp-1439429624-0 2011-10-19 03:22:51,848 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1417532940@qtp-1439429624-0 2011-10-19 03:22:51,864 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1417532940@qtp-1439429624-0 2011-10-19 03:22:52,164 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-19 03:22:58,872 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:22:58,992 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]; startup date [Wed Oct 19 03:22:58 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:22:59,259 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:22:59,434 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@e068ad3 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:22:59,559 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:22:59,573 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e068ad3: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:23:00,222 INFO Server started: 196 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1417532940@qtp-1439429624-0 2011-10-19 03:23:07,143 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1417532940@qtp-1439429624-0 2011-10-19 03:23:07,144 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1417532940@qtp-1439429624-0 2011-10-19 03:23:07,223 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1417532940@qtp-1439429624-0 2011-10-19 03:23:08,263 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-19 03:23:43,886 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:23:44,093 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0: display name [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]; startup date [Wed Oct 19 03:23:44 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:23:44,360 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:23:44,606 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@7b5321f0]: org.springframework.beans.factory.support.DefaultListableBeanFactory@303f7944 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:23:44,742 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:23:44,762 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@303f7944: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:23:45,516 INFO Server started: 210 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+292542762@qtp-1090407113-0 2011-10-19 03:23:57,243 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+292542762@qtp-1090407113-0 2011-10-19 03:23:57,244 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+292542762@qtp-1090407113-0 2011-10-19 03:23:57,328 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+292542762@qtp-1090407113-0 2011-10-19 03:23:58,242 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+main 2011-10-19 03:24:48,732 INFO App started IN net.sf.xfresh.util.Starter
+main 2011-10-19 03:24:48,856 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1: display name [org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1]; startup date [Wed Oct 19 03:24:48 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:24:49,064 INFO Loading XML bean definitions from file [D:\GoodsReview\frontend\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-19 03:24:49,309 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@ed952d1]: org.springframework.beans.factory.support.DefaultListableBeanFactory@303f7944 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:24:49,499 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-19 03:24:49,523 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@303f7944: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,GetReviewOnProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-19 03:24:50,318 INFO Server started: 190 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1176132951@qtp-1994388340-0 2011-10-19 03:25:17,649 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1176132951@qtp-1994388340-0 2011-10-19 03:25:17,650 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1176132951@qtp-1994388340-0 2011-10-19 03:25:17,708 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1176132951@qtp-1994388340-0 2011-10-19 03:25:18,728 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.saxon.event.Sender.sendSAXSource(Sender.java:404)
+	at net.sf.saxon.event.Sender.send(Sender.java:193)
+	at net.sf.saxon.event.Sender.send(Sender.java:50)
+	at net.sf.saxon.Controller.transform(Controller.java:1611)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:97)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+1176132951@qtp-1994388340-0 2011-10-19 03:25:42,772 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1176132951@qtp-1994388340-0 2011-10-19 03:25:42,773 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1176132951@qtp-1994388340-0 2011-10-19 03:25:42,777 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1176132951@qtp-1994388340-0 2011-10-19 03:25:42,875 INFO Processing time for user request => {./frontend/src/web/index.xml} is 101 ms IN net.sf.xfresh.core.YaletProcessor
+1176132951@qtp-1994388340-0 2011-10-19 03:28:13,137 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1176132951@qtp-1994388340-0 2011-10-19 03:28:13,137 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1176132951@qtp-1994388340-0 2011-10-19 03:28:13,145 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1176132951@qtp-1994388340-0 2011-10-19 03:28:13,151 INFO Can't create transformer: No matching <?xml-stylesheet?> processing instruction found IN net.sf.xfresh.core.YaletProcessor
+1176132951@qtp-1994388340-0 2011-10-19 03:28:13,254 ERROR Can't process file ./frontend/src/web/index.xml IN net.sf.xfresh.core.YaletProcessor
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'GetReviewOnProductYaletYalet' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:345)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(AbstractBeanFactory.java:894)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:243)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:703)
+	at net.sf.xfresh.core.spring.SpringYaletResolver.findYalet(SpringYaletResolver.java:54)
+	at net.sf.xfresh.core.impl.DefaultSingleYaletProcessor.processYalet(DefaultSingleYaletProcessor.java:42)
+	at net.sf.xfresh.core.YaletFilter.processYalet(YaletFilter.java:86)
+	at net.sf.xfresh.core.YaletFilter.endElement(YaletFilter.java:78)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at org.apache.xerces.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at org.apache.xerces.xinclude.XIncludeHandler.emptyElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.xml.sax.helpers.XMLFilterImpl.parse(XMLFilterImpl.java:357)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:101)
+	at net.sf.xfresh.core.YaletProcessor.process(YaletProcessor.java:72)
+	at net.sf.xfresh.jetty.YaletXmlPageHandler.handle(YaletXmlPageHandler.java:51)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:923)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:547)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)

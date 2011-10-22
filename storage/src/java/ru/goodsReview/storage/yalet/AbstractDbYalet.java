@@ -14,11 +14,11 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class AbstractDbYalet implements Yalet {
-    protected SimpleJdbcTemplate jdbcTemplate;
+    protected SimpleJdbcTemplate simpleJdbcTemplate;
 
     @Required
     public void setJdbcTemplate(final SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+        this.simpleJdbcTemplate = jdbcTemplate;
     }
 
     public abstract void process(InternalRequest req, InternalResponse res);

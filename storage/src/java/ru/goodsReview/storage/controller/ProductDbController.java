@@ -1,7 +1,7 @@
 package ru.goodsReview.storage.controller;
 
-import net.sf.xfresh.db.Record;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.mappers.*;
 
 import java.util.List;
@@ -15,26 +15,35 @@ import java.util.List;
  */
 public class ProductDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
-    private RecordMapper recordMapper;
+    private ProductMapper productMapper;
 
     public ProductDbController(SimpleJdbcTemplate simpleJdbcTemplate){
         this.simpleJdbcTemplate = simpleJdbcTemplate;
-        this.recordMapper = new RecordMapper();
+        this.productMapper = new ProductMapper();
 
     }
 
-    public Record getProductById(long product_id){
-        List<Record> record = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE id = " + Long.toString(product_id), recordMapper);
-        return record.get(0);
+    public void setProduct(Product product){
+        try{
+            simpleJdbcTemplate.update("INSERT INTO Product (id, category_id, name, description, popularity) VALUES(?,?,?,?, ?);", product.getId(),
+               product.getCategoryId(), product.getName(), product.getDescription(), product.getPopularity());
+        } catch (Exception e) {
+            //simpleJdbcTemplate.update("INSERT INTO Product (id, name) VALUES (?,?)", product.getid(), product.getname());
+            e.printStackTrace();
+        }
+    }
+    public Product getProductById(long product_id){
+        List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE id = " + Long.toString(product_id), productMapper);
+        return products.get(0);
     }
 
-    public Record getProductByName(String product_name){
-        List<Record>  record = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE name = ?", new Object[]{product_name}, recordMapper);
-        return record.get(0);
+    public Product getProductByName(String product_name){
+        List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE name = ?", new Object[]{product_name}, productMapper);
+        return products.get(0);
     }
 
-    public List<Record> getProductListByCategory(long category_id){
-        List<Record> record = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE category_id = " + Long.toString(category_id), recordMapper);
-        return record;
+    public List<Product> getProductListByCategory(long category_id){
+        List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE category_id = " + Long.toString(category_id), productMapper);
+        return products;
     }
 }

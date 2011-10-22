@@ -10,6 +10,7 @@ package test.goodsReview.miner;
 
 import java.lang.*;
 import java.util.*;
+import ru.goodsReview.core.model.*;
 
 //this class implements k-grams method
 public class KGrams {

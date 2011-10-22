@@ -2,7 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/service/GetProductInfo.java" />
+      <change type="DELETED" beforePath="D:\GoodsReview\frontend\src\java\ru\goodsReview\frontend\controller\GetProductInfo.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/GoodsReviewMiner.jar" afterPath="$PROJECT_DIR$/build/GoodsReviewMiner.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/GoodsReview_core.jar" afterPath="$PROJECT_DIR$/build/GoodsReview_core.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GoodsReview.iws" afterPath="$PROJECT_DIR$/GoodsReview.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/core.iml" afterPath="$PROJECT_DIR$/core/src/core.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/frontend.iml" afterPath="$PROJECT_DIR$/frontend/frontend.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java" afterPath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java" afterPath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" afterPath="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/web/index.html" afterPath="$PROJECT_DIR$/frontend/src/web/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/web/index.xml" afterPath="$PROJECT_DIR$/frontend/src/web/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/web/index.xsl" afterPath="$PROJECT_DIR$/frontend/src/web/index.xsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainlog.log" afterPath="$PROJECT_DIR$/mainlog.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/miner/miner.iml" afterPath="$PROJECT_DIR$/miner/miner.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/FrequencyAnalyzer.java" afterPath="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/FrequencyAnalyzer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/KGrams.java" afterPath="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/KGrams.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/Test.java" afterPath="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ProductMapper.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ProductMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ReviewMapper.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ReviewMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java" afterPath="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java" />
     </list>
     <ignored path="GoodsReview.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,13 +90,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DbModuleTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java">
+      <file leaf-file-name="Product.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="59" selection-start="663" selection-end="773" vertical-scroll-proportion="-7.56">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="23" column="79" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StorageProduct.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/model/StorageProduct.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dbscript.sql" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dbscript.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="19" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,55 +120,17 @@
       <file leaf-file-name="GetReviewOnProductYalet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="11" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
+            <state line="24" column="11" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Starter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/java/net/sf/xfresh/util/Starter.java">
+      <file leaf-file-name="GetProductYalet.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="16" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0">
+            <state line="24" column="14" selection-start="843" selection-end="843" vertical-scroll-proportion="0.6014898">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JettyServerInitializer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/java/net/sf/xfresh/jetty/JettyServerInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="558" selection-end="558" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SingleYaletHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/java/net/sf/xfresh/jetty/SingleYaletHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="beans.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/script/beans.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="44" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FrontendModuleTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="6" selection-start="1282" selection-end="1282" vertical-scroll-proportion="-7.3782234">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -138,16 +138,43 @@
       <file leaf-file-name="ProductDbController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1423" selection-end="1423" vertical-scroll-proportion="0.0">
+            <state line="15" column="13" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueryYalet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/QueryYalet.java">
+      <file leaf-file-name="ProductForView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/model/ProductForView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
+            <state line="18" column="29" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="beans.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/scripts/beans.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="34" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.xsl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/web/index.xsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="6" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/web/index.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -167,22 +194,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage.mappers/RecordMapper.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage.mappers/Cell.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage.mappers/QueryYalet.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage.mappers/Record.java" />
-        <option value="$PROJECT_DIR$/miner/src/script/beans.xml" />
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controllers/BaseController.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/beans.xml" />
-        <option value="$PROJECT_DIR$/storage/src/script/beans.xml" />
-        <option value="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/MainTest.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controllers/ProductDbController.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/ProductDbController.java" />
-        <option value="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java" />
-        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/SimpleRequestYalet.java" />
-        <option value="$PROJECT_DIR$/frontend/src/script/beans.xml" />
-        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/model/Review.java" />
+        <option value="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/KGrams.java" />
+        <option value="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/FrequencyAnalyzer.java" />
+        <option value="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/Test.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ReviewMapper.java" />
         <option value="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
+        <option value="$PROJECT_DIR$/frontend/src/web/index.xsl" />
+        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java" />
+        <option value="$PROJECT_DIR$/frontend/src/web/index.xml" />
+        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/model/BaseRequest.java" />
+        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/model/Product.java" />
+        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/controller/GetProductInfo.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java" />
+        <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/model/StorageProduct.java" />
       </list>
     </option>
   </component>
@@ -266,6 +293,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GoodsReview" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GoodsReview" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -285,28 +326,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="script" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -329,10 +348,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,135 +407,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xfresh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xfresh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jetty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xfresh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Favorites" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -535,87 +425,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="searcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="searcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ru.goodsReview.searcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="indexer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="indexer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ru.goodsReview.indexer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ru.goodsReview.core.model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="139" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="157" />
     <property name="project.structure.proportion" value="0.15" />
@@ -642,7 +461,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="Errors" />
+    <property name="options.lastSelected" value="fileTemplates" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="dynamic.classpath" value="false" />
@@ -655,7 +474,7 @@
       <recent name="ru.goodsReview.storage.provider" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FrontendModuleTest">
+  <component name="RunManager" selected="Application.FrontendStarter">
     <configuration default="false" name="KGrams" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="test.goodsReview.miner.KGrams" />
       <option name="VM_PARAMETERS" value="" />
@@ -892,12 +711,12 @@
     <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Application.KGrams" />
       <item index="1" class="java.lang.String" itemvalue="Application.XMLParser" />
-      <item index="2" class="java.lang.String" itemvalue="Application.FrontendStarter" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MinerStarter" />
-      <item index="4" class="java.lang.String" itemvalue="Application.IndexerStarter" />
-      <item index="5" class="java.lang.String" itemvalue="Application.MainTest" />
-      <item index="6" class="java.lang.String" itemvalue="Application.DbModuleTest" />
-      <item index="7" class="java.lang.String" itemvalue="Application.FrontendModuleTest" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MainTest" />
+      <item index="3" class="java.lang.String" itemvalue="Application.DbModuleTest" />
+      <item index="4" class="java.lang.String" itemvalue="Application.FrontendModuleTest" />
+      <item index="5" class="java.lang.String" itemvalue="Application.FrontendStarter" />
+      <item index="6" class="java.lang.String" itemvalue="Application.MinerStarter" />
+      <item index="7" class="java.lang.String" itemvalue="Application.IndexerStarter" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -920,7 +739,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
-    <configuration useDefault="true">C:\Documents and Settings\Ярик\Application Data\Subversion</configuration>
+    <configuration useDefault="true">C:\Users\Artemij\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -957,20 +776,20 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40443686" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.04255319" sideWeight="0.5955631" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38853502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3020478" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280255" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.04255319" sideWeight="0.5955631" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.67235494" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39908952" sideWeight="0.6544586" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32826748" sideWeight="0.67918086" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.67235494" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3208191" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21504559" sideWeight="0.67064846" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5455927" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38853502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40443686" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38054606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1038,119 +857,89 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/spring/spring-jdbc.jar!/org/springframework/jdbc/core/JdbcOperations.class">
+    <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ReviewMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="19" selection-start="949" selection-end="949" vertical-scroll-proportion="0.3557423">
-          <folding />
-        </state>
+        <state line="16" column="30" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/src/script/beans.xml">
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="10" selection-start="2105" selection-end="2105" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="25" column="6" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/KGrams.java">
+    <entry file="file://$PROJECT_DIR$/frontend/frontend.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="32" selection-start="7037" selection-end="7042" vertical-scroll-proportion="-2.8461537">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GoodsReview.ipr">
+    <entry file="jar://$PROJECT_DIR$/lib/jetty/jetty-6.1.22.jar!/org/mortbay/jetty/HttpConnection.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="59" selection-start="13968" selection-end="13968" vertical-scroll-proportion="-5.923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/storage.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="139" column="0" selection-start="6314" selection-end="6314" vertical-scroll-proportion="0.748366" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="20" column="17" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/QueryYalet.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/service/GetProductInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="23" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="79" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/model/StorageProduct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1423" selection-end="1423" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="15" column="13" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/java/net/sf/xfresh/jetty/JettyServerInitializer.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/model/ProductForView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="558" selection-end="558" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="29" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/java/net/sf/xfresh/jetty/SingleYaletHandler.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/scripts/beans.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="43" column="34" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/web/index.xsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="59" selection-start="663" selection-end="773" vertical-scroll-proportion="-7.56">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="5" column="6" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/java/net/sf/xfresh/util/Starter.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/web/index.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="16" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/script/beans.xml">
+    <entry file="file://$PROJECT_DIR$/dbscript.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="44" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainlog.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="46" column="19" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="11" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
+        <state line="24" column="11" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java">
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="6" selection-start="1282" selection-end="1282" vertical-scroll-proportion="-7.3782234">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="24" column="14" selection-start="843" selection-end="843" vertical-scroll-proportion="0.6014898">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1206,7 +995,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>storage</last-edited>
+          <last-edited>miner</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
