@@ -24,7 +24,7 @@ CREATE TABLE product
 (
   id Int NOT NULL AUTO_INCREMENT,
   category_id Int,
-  name Varchar(100),
+  name Varchar(100) NOT NULL,
   description Text,
   popularity Int UNSIGNED NOT NULL
   COMMENT 'Сколько раз смотрели товар',
