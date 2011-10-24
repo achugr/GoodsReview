@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config charset="ISO-8859-1">
+    
+    <include path="functionsUlmart.xml"/>
+                
+    <!-- collects all tables for individual products -->
+    <var-def name="products">    
+        <call name="download-multipage-list">
+            <call-param name="pageUrl">http://www.ulmart.ru/notebooks/#</call-param>
+            <call-param name="nextXPath">(//div[@class="goods_list"]/table[last()]/tbody/tr/td[@class="pages_nums"]/span/text()) +1</call-param>
+            <call-param name="itemXPath">//table[@class="catalogItem"]</call-param>
+            <call-param name="maxloops">30</call-param>
+        </call>
+    </var-def>
+    
+    <!-- iterates over all collected products and extract desired data -->
+    <file action="write" path="Ulmart/UlmartTestCatalog.xml" charset="UTF-8">
+        <![CDATA[ <catalog> ]]>
+        <loop item="item" index="i">
+            <list><var name="products"/></list>
+            <body>
+                <xquery>
+                    <xq-param name="item" type="node()"><var name="item"/></xq-param>
+                    <xq-expression><![CDATA[
+                            declare variable $item as node() external;
+
+                            let $name := data($item//*[@class='ciTopTitle'])
+                            let $desc := data($item//*[@class='ciNameLink'])
+                            let $price := data($item//*[@class='craField1'])
+                                return
+                                    <product>
+                                        <name>{normalize-space($name)}</name>
+                                        <desc>{normalize-space($desc)}</desc>
+                                        <price>{normalize-space($price)}</price>
+                                    </product>
+                    ]]></xq-expression>
+                </xquery>
+            </body>
+        </loop>
+        <![CDATA[ </catalog> ]]>
+    </file>
+
+</config>

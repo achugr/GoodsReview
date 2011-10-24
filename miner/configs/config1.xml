@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+<!-- http://search.twitter.com/search.json?q=%40twitterapi -->
+<!-- http://news.yandex.ru/computers.rss -->
+<var-def name="NewsYandexComputers">
+
+    <http url="http://news.yandex.ru/computers.rss" />
+	
+</var-def>
+
+<var-def name="NewsListYandexComputers">
+	<xpath expression="/rss/channel/item">
+		<var name="NewsYandexComputers" />
+	</xpath>
+</var-def>
+
+<var-def name="temp">
+	<loop item="onenew" index="i">
+		<list>
+			<var name="NewsListYandexComputers" />
+		</list>
+		<body>
+			<empty>
+			<var-def name="onenew_url">
+				<xpath expression="//link/text()">
+					<var name="onenew" />
+				</xpath>
+			</var-def>
+			
+			<var-def name="fulltext_onenew">
+				<xpath expression='//p[@class="text"]'>
+					<html-to-xml>
+						<http url="${onenew_url}" />
+					</html-to-xml>
+				</xpath>		
+			</var-def>
+			</empty>
+			
+				
+			<xquery>
+  				<xq-param name="doc">
+  				  	<var name="onenew"/>
+        	    </xq-param>
+        	    <xq-param name="text" >
+        	    	<html-to-xml>
+  				  	<var name="fulltext_onenew"/>
+        	   		</html-to-xml>
+        	    </xq-param>
+    			<xq-expression><![CDATA[
+        			declare variable $doc as node() external;
+        			declare variable $text as node() external;
+        			let $title := data($doc//title)
+        			let $ttext := data($text//p)
+     				let $link := data($doc//link)
+     				let $date := data($doc//pubDate)
+     				return
+     				 	<item>
+                    		<title>{$title}</title>
+                    		<text>{$ttext}</text>
+                    		<date>{$date}</date>                   		
+                    		<link>{$link}</link>
+               			</item>
+    			]]></xq-expression>
+			</xquery>
+
+		</body>
+	</loop>
+</var-def>
+
+</config>
