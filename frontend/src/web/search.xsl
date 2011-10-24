@@ -19,11 +19,9 @@
         </html>
     </xsl:template>
 
-    <xsl:template match="product">
-        <hr />
-        Name:
-        <xsl:value-of select="name"/><br/>
-        Description:
-        <xsl:value-of select="description"/><br/>
+    <xsl:template match="product-for-view">
+        <xsl:call-template name="product"/>
     </xsl:template>
+
+
 </xsl:stylesheet>

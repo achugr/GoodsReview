@@ -14,16 +14,13 @@
                     <xsl:call-template name="find"/>
                 </tr>
                 <xsl:apply-templates/>
-                <hr />
+                <hr/>
             </body>
         </html>
     </xsl:template>
 
-    <xsl:template match="product">
-        <hr />
-        Name:
-        <xsl:value-of select="name"/><br/>
-        Description:
-        <xsl:value-of select="description"/><br/>
+    <xsl:template match="citilink-review">
+        <hr/>
+        <xsl:call-template name="citilink-review"/>
     </xsl:template>
 </xsl:stylesheet>

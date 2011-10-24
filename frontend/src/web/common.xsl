@@ -36,18 +36,60 @@
     </xsl:template>
 
     <xsl:template name="greeting">
-        <h1><a href="/">Goods Review</a></h1>
+        <h1>
+            <a href="/">Goods Review</a>
+        </h1>
+    </xsl:template>
+
+    <xsl:template name="product">
+        <hr/>
+        Name:
+        <xsl:value-of select="name"/>
+        <br/>
+        Description:
+        <xsl:value-of select="description"/>
+        <br/>
+        Category:
+        <xsl:value-of select="category"/>
+        <br/>
+        Popularity:
+        <xsl:value-of select="popularity"/>
+        <br/>
+        Id:
+        <xsl:value-of select="@id"/>
+        <br/>
+        <a>
+            <xsl:attribute name="href">review.xml?id=<xsl:value-of select="id"/>
+            </xsl:attribute>
+            Reviews on
+            <xsl:value-of select="name"/>
+        </a>
+        <br/>
     </xsl:template>
 
     <xsl:template name="popular">
         <h4>Popular queries</h4>
         <xsl:for-each select="//product">
-            <hr/>
-            Name:
-            <xsl:value-of select="name"/><br/>
-            Description:
-            <xsl:value-of select="description"/><br/>
+            <xsl:call-template name="product"/>
         </xsl:for-each>
         <hr/>
+    </xsl:template>
+
+    <xsl:template name="citilink-review">
+        Comment:
+        <xsl:value-of select="comment"/>
+        <br/>
+        Description:
+        <xsl:value-of select="description"/>
+        <br/>
+        Helpfulness-yes:
+        <xsl:value-of select="@helpfulness-yes"/>
+        <br/>
+        Helpfulness-no:
+        <xsl:value-of select="@helpfulness-no"/>
+        <br/>
+        Rate:
+        <xsl:value-of select="@rate"/>
+        <br/>
     </xsl:template>
 </xsl:stylesheet>

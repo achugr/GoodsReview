@@ -15,7 +15,7 @@
                 </tr>
                 <xsl:call-template name="popular"/>
 
-                <!--<xsl:apply-templates/>-->
+                <xsl:apply-templates/>
             </body>
         </html>
     </xsl:template>
