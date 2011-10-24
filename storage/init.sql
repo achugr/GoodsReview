@@ -15,7 +15,7 @@ DROP DATABASE IF EXISTS goodsreview_permanent;
 
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
 
-USE goodsreview_permanent
+USE goodsreview_permanent;
 -- Create tables section -------------------------------------------------
 
 -- Table product
