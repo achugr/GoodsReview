@@ -13,11 +13,17 @@
                 <tr>
                     <xsl:call-template name="find"/>
                 </tr>
-                <xsl:call-template name="popular"/>
-
-                <!--<xsl:apply-templates/>-->
+                <xsl:apply-templates/>
+                <hr />
             </body>
         </html>
     </xsl:template>
 
+    <xsl:template match="product">
+        <hr />
+        Name:
+        <xsl:value-of select="name"/><br/>
+        Description:
+        <xsl:value-of select="description"/><br/>
+    </xsl:template>
 </xsl:stylesheet>
