@@ -34,4 +34,20 @@
             <xsl:text>Goods Review</xsl:text>
         </title>
     </xsl:template>
+
+    <xsl:template name="greeting">
+        <h1><a href="/">Goods Review</a></h1>
+    </xsl:template>
+
+    <xsl:template name="popular">
+        <h4>Popular queries</h4>
+        <xsl:for-each select="//product">
+            <hr/>
+            Name:
+            <xsl:value-of select="name"/><br/>
+            Description:
+            <xsl:value-of select="description"/><br/>
+        </xsl:for-each>
+        <hr/>
+    </xsl:template>
 </xsl:stylesheet>
