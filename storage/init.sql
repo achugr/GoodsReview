@@ -15,7 +15,11 @@ DROP DATABASE IF EXISTS goodsreview_permanent;
 
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
 
+<<<<<<< HEAD
 USE goodsreview_permanent;
+=======
+USE goodsreview_permanent
+>>>>>>> 5eedfd06b43c17ff9042864afd3578b6adb492de
 -- Create tables section -------------------------------------------------
 
 -- Table product
@@ -24,7 +28,11 @@ CREATE TABLE product
 (
   id Int NOT NULL AUTO_INCREMENT,
   category_id Int,
+<<<<<<< HEAD
   name Varchar(100) NOT NULL,
+=======
+  name Varchar(100),
+>>>>>>> 5eedfd06b43c17ff9042864afd3578b6adb492de
   description Text,
   popularity Int UNSIGNED NOT NULL
   COMMENT 'Сколько раз смотрели товар',
