@@ -5,10 +5,10 @@
 <beans default-autowire="byName">
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
-
     <!--Jetty beans-->
     <bean id="serverInitializer" class="net.sf.xfresh.jetty.JettyServerInitializer">
         <property name="port" value="8080"/>
+        <!--property's value for nerds =)-->
         <property name="maxThreads" value="10"/>
         <property name="handlers">
             <list>
@@ -36,8 +36,9 @@
     <bean id="singleYaletProcessor" class="net.sf.xfresh.core.impl.DefaultSingleYaletProcessor"/>
 
     <!--Yalets-->
-    <bean id="GetReviewOnProductYalet" class="ru.goodsReview.frontend.yalet.GetReviewOnProductYalet"/>
 
+    <!--Yalets-->
+    <bean id="getReviewOnProductYalet" class="ru.goodsReview.frontend.yalet.GetReviewOnProductYalet"/>
 
 
 </beans>

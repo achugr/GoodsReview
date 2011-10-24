@@ -15,6 +15,7 @@ DROP DATABASE IF EXISTS goodsreview_permanent;
 
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
 
+USE goodsreview_permanent
 -- Create tables section -------------------------------------------------
 
 -- Table product
@@ -165,29 +166,31 @@ CREATE TABLE vote
 
 -- Create relationships section -------------------------------------------------
 
-ALTER TABLE shop_link ADD CONSTRAINT has link to FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE shop_link ADD CONSTRAINT has_link_to FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE specification_value ADD CONSTRAINT has spec FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+
+
+ALTER TABLE specification_value ADD CONSTRAINT has_spec FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE specification_value ADD CONSTRAINT is value of FOREIGN KEY (spec_name_id) REFERENCES specification_name (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE specification_value ADD CONSTRAINT is_value_of FOREIGN KEY (spec_name_id) REFERENCES specification_name (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 ALTER TABLE shop_link ADD CONSTRAINT hosts FOREIGN KEY (shop_id) REFERENCES shop (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE review ADD CONSTRAINT has review FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE review ADD CONSTRAINT has_review FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 ALTER TABLE review ADD CONSTRAINT provides FOREIGN KEY (source_id) REFERENCES source (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE thesis ADD CONSTRAINT extracted from FOREIGN KEY (review_id) REFERENCES review (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE thesis ADD CONSTRAINT extracted_from FOREIGN KEY (review_id) REFERENCES review (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE product ADD CONSTRAINT belongs to FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE product ADD CONSTRAINT belongs_to FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE category ADD CONSTRAINT has parent FOREIGN KEY (parent_category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE category ADD CONSTRAINT has_parent FOREIGN KEY (parent_category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;

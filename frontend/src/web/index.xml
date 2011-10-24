@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<page>  GoodsReview к вашим услугам!
-    <yalet id="GetReviewOnProductYalet"/>
+<?xml-stylesheet type="text/xsl" href="index.xsl"?>
+<page>
+    <yalet id="getReviewOnProduct"/>
 </page>
 
