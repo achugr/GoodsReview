@@ -235,10 +235,7 @@
       <module fileurl="file://$PROJECT_DIR$/core/src/core.iml" filepath="$PROJECT_DIR$/core/src/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/extractor/extractor.iml" filepath="$PROJECT_DIR$/extractor/extractor.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/indexer/indexer.iml" filepath="$PROJECT_DIR$/indexer/indexer.iml" />
-=======
->>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
       <module fileurl="file://$PROJECT_DIR$/miner/miner.iml" filepath="$PROJECT_DIR$/miner/miner.iml" />
       <module fileurl="file://$PROJECT_DIR$/storage/storage.iml" filepath="$PROJECT_DIR$/storage/storage.iml" />
     </modules>
