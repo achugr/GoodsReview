@@ -2,6 +2,7 @@ package ru.goodsReview.storage.yalet;
 
 import net.sf.xfresh.core.InternalRequest;
 import net.sf.xfresh.core.InternalResponse;
+import ru.goodsReview.storage.mappers.RecordMapper;
 import net.sf.xfresh.db.*;
 import ru.goodsReview.storage.mappers.*;
 

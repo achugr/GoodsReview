@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="" />
+=======
     <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/service/GetProductInfo.java" />
       <change type="DELETED" beforePath="D:\GoodsReview\frontend\src\java\ru\goodsReview\frontend\controller\GetProductInfo.java" afterPath="" />
@@ -26,6 +29,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java" afterPath="$PROJECT_DIR$/storage/src/java/test/goodsReview/storage/DbModuleTest.java" />
     </list>
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <ignored path="GoodsReview.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,6 +94,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
+      <file leaf-file-name="Indexer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/indexer/src/java/ru/goodsReview/indexer/Indexer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="16" selection-start="589" selection-end="589" vertical-scroll-proportion="0.0">
+=======
       <file leaf-file-name="Product.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Product.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -130,11 +140,18 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="24" column="14" selection-start="843" selection-end="843" vertical-scroll-proportion="0.6014898">
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="ProductDbController.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="56" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.8513514">
+=======
       <file leaf-file-name="ProductDbController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -175,6 +192,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/web/index.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0">
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
               <folding />
             </state>
           </provider>
@@ -194,11 +212,14 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+<<<<<<< HEAD
+=======
         <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" />
         <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/model/Review.java" />
         <option value="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/KGrams.java" />
         <option value="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/FrequencyAnalyzer.java" />
         <option value="$PROJECT_DIR$/miner/src/java/test/goodsReview/miner/Test.java" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
         <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ReviewMapper.java" />
         <option value="$PROJECT_DIR$/frontend/src/java/test/goodsReview/frontend/FrontendModuleTest.java" />
         <option value="$PROJECT_DIR$/frontend/src/web/index.xsl" />
@@ -210,6 +231,14 @@
         <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java" />
         <option value="$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java" />
         <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/model/StorageProduct.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/indexer/src/ru/goodsReviews/indexer/Indexer.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/QueryYalet.java" />
+        <option value="$PROJECT_DIR$/indexer/src/java/ru/goodsReviews/indexer/Indexer.java" />
+        <option value="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" />
+        <option value="$PROJECT_DIR$/indexer/src/java/ru/goodsReview/indexer/Indexer.java" />
+=======
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
       </list>
     </option>
   </component>
@@ -265,17 +294,40 @@
       <sortByType />
     </navigator>
     <panes>
+<<<<<<< HEAD
+      <pane id="Favorites" />
+      <pane id="PackagesPane">
+=======
       <pane id="ProjectPane">
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="GoodsReview" />
+<<<<<<< HEAD
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+=======
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="GoodsReview" />
+<<<<<<< HEAD
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+=======
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -283,18 +335,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="GoodsReview" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+=======
               <option name="myItemId" value="GoodsReview" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="storage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -303,11 +361,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="AChugr-GoodsReview-eddfb69" />
+=======
               <option name="myItemId" value="GoodsReview" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="frontend" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -317,6 +379,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="AChugr-GoodsReview-eddfb69" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+=======
               <option name="myItemId" value="GoodsReview" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -404,11 +473,18 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="frontend" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Modules" />
+=======
       <pane id="Scope" />
       <pane id="Favorites" />
       <pane id="PackagesPane">
@@ -435,10 +511,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Project" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="139" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="157" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
+<<<<<<< HEAD
+    <property name="Repository.Attach.JavaDocs" value="false" />
+=======
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="154" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
@@ -453,6 +534,19 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+<<<<<<< HEAD
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="Downloaded.Files.Path" value="C:\Ярослав\DM\1234\AChugr-GoodsReview-eddfb69\lib" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+=======
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -462,6 +556,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="fileTemplates" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="dynamic.classpath" value="false" />
@@ -739,7 +834,11 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
+<<<<<<< HEAD
+    <configuration useDefault="true">C:\Documents and Settings\Ярик\Application Data\Subversion</configuration>
+=======
     <configuration useDefault="true">C:\Users\Artemij\AppData\Roaming\Subversion</configuration>
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -771,6 +870,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="-4" y="-4" width="1288" height="808" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.04255319" sideWeight="0.5955631" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38853502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3797277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280255" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.67235494" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39908952" sideWeight="0.6544586" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32605177" sideWeight="0.62027234" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5455927" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40443686" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
@@ -790,6 +910,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40443686" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38054606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -857,6 +978,8 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mappers/ReviewMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="30" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" />
@@ -867,6 +990,7 @@
         <state line="25" column="6" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <entry file="file://$PROJECT_DIR$/frontend/frontend.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -877,11 +1001,14 @@
         <state line="139" column="0" selection-start="6314" selection-end="6314" vertical-scroll-proportion="0.748366" />
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="17" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
     <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/service/GetProductInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="23" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0" />
@@ -897,6 +1024,21 @@
         <state line="17" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/dbscript.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="19" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="11" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/model/ProductForView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="29" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0" />
+=======
     <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="13" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" />
@@ -910,6 +1052,7 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/scripts/beans.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="34" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.0" />
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/web/index.xsl">
@@ -922,6 +1065,31 @@
         <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/AbstractDbYalet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="2" selection-start="356" selection-end="437" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/scripts/beans.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="34" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/yalet/QueryYalet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="43" selection-start="125" selection-end="125" vertical-scroll-proportion="0.08044164" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/indexer/src/java/ru/goodsReview/indexer/Indexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="589" selection-end="589" vertical-scroll-proportion="0.0">
+=======
     <entry file="file://$PROJECT_DIR$/dbscript.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="19" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0">
@@ -932,13 +1100,20 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetReviewOnProductYalet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="11" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="56" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.8513514">
+=======
     <entry file="file://$PROJECT_DIR$/frontend/src/java/ru/goodsReview/frontend/yalet/GetProductYalet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="14" selection-start="843" selection-end="843" vertical-scroll-proportion="0.6014898">
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
           <folding />
         </state>
       </provider>
@@ -995,7 +1170,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
+<<<<<<< HEAD
+          <last-edited>indexer</last-edited>
+=======
           <last-edited>miner</last-edited>
+>>>>>>> b4fb7284012d04bb32146391803b1adeeb28b76f
           <splitter-proportions>
             <option name="proportions">
               <list>

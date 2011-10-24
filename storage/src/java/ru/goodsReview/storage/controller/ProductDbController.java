@@ -32,6 +32,12 @@ public class ProductDbController {
             e.printStackTrace();
         }
     }
+
+    public List<Product> getAllProducts(){
+        List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product", productMapper);
+        return products;
+    }
+
     public Product getProductById(long product_id){
         List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE id = " + Long.toString(product_id), productMapper);
         return products.get(0);
