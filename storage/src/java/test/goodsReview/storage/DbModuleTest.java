@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 public class DbModuleTest {
 
     public static void main(String[] args) throws SQLException {
-            final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("beans.xml");
+            final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
             DataSource dataSource = null;
             dataSource = (DataSource) context.getBean("dataSource");
             ProductDbController baseController = new  ProductDbController(new SimpleJdbcTemplate(dataSource));

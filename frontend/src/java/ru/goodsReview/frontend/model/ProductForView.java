@@ -10,6 +10,22 @@ import ru.goodsReview.core.model.Product;
  * To change this template use File | Settings | File Templates.
  */
 
+/*  //TODO
+    Problems:
+        Yalets in storage module
+        Table category.. Field parent_category_id can't be empty.. why??
+        Table Product.. product with null category...   popularity??
+        int (10) int (11)
+        all beans should be smaller!!
+        Start all classes with starter class from xfresh
+        one naming for all directories in diff modules
+        where is exceptions in db controller
+        download categories
+
+        school239 password:sW75Gxm945dI
+
+
+ */
 public class ProductForView {
 	private String name;
 	private String description;
