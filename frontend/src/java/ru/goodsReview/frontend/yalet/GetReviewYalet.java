@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package ru.goodsReview.frontend.yalet;
 
 import net.sf.xfresh.core.InternalRequest;
@@ -21,3 +22,4 @@ public class GetReviewYalet implements Yalet {
 		return;
 	}
 }
+
