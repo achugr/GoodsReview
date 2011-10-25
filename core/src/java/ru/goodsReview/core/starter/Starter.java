@@ -2,7 +2,7 @@
     Date: 25.10.11
     Time: 22:56
     Author: 
-        Artemij Chugreev 
+        Artemij Chugreev
         artemij.chugreev@gmail.com
 */
 

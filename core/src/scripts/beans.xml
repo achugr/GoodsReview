@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-autowire="byName">
+    <!--Spring helpers-->
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    <!--Jetty beans-->
+    <bean id="serverInitializer" class="net.sf.xfresh.jetty.JettyServerInitializer">
+        <property name="port" value="8080"/>
+        <!--property's-->
+        <property name="maxThreads" value="10"/>
+        <property name="handlers">
+            <list>
+                <bean class="net.sf.xfresh.jetty.YaletXmlPageHandler">
+                    <property name="resourceBase" value="./frontend/src/web"/>
+                </bean>
+                <bean class="org.mortbay.jetty.handler.ResourceHandler">
+                    <property name="resourceBase" value="./frontend/src/web"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--Fresh core beans-->
+    <bean id="yaletProcessor" class="net.sf.xfresh.core.YaletProcessor">
+        <property name="encoding" value="utf-8"/>
+    </bean>
+
+    <bean id="yaletSupport" class="net.sf.xfresh.core.impl.DefaultYaletSupport"/>
+
+    <bean id="yaletResolver" class="net.sf.xfresh.core.spring.SpringYaletResolver"/>
+
+    <bean id="saxGenerator" class="net.sf.xfresh.core.sax.DefaultSaxGenerator"/>
+
+    <bean id="singleYaletProcessor" class="net.sf.xfresh.core.impl.DefaultSingleYaletProcessor"/>
+
+    <!--Yalets-->
+
+    <!--Yalets-->
+    <bean id="getReviewYalet" class="ru.goodsReview.frontend.yalet.GetReviewYalet"/>
+    <bean id="getPopularProductsYalet" class="ru.goodsReview.frontend.yalet.GetPopularProductsYalet"/>
+    <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
+    <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
+</beans>
