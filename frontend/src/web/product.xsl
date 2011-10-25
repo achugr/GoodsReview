@@ -13,9 +13,14 @@
                 <tr>
                     <xsl:call-template name="find"/>
                 </tr>
-                <xsl:call-template name="popular"/>
+                <xsl:apply-templates/>
+                <hr/>
             </body>
         </html>
     </xsl:template>
+    <xsl:template match="//product-for-view">
+        <xsl:call-template name="product"/>
+    </xsl:template>
 
 </xsl:stylesheet>
+

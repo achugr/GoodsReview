@@ -41,4 +41,5 @@
     <bean id="getReviewYalet" class="ru.goodsReview.frontend.yalet.GetReviewYalet"/>
     <bean id="getPopularProductsYalet" class="ru.goodsReview.frontend.yalet.GetPopularProductsYalet"/>
     <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
+    <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
 </beans>
