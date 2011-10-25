@@ -2540,6 +2540,8 @@ main 2011-10-24 23:09:34,327 INFO Server started: 45 ms IN net.sf.xfresh.jetty.J
 595364508@qtp-153145364-2 2011-10-24 23:10:13,610 DEBUG name: Contex IN net.sf.xfresh.core.sax.DefaultSaxHandler
 595364508@qtp-153145364-2 2011-10-24 23:10:13,610 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
 595364508@qtp-153145364-2 2011-10-24 23:10:13,612 INFO Processing time for user request => {./frontend/src/web/index.xml} is 26 ms IN net.sf.xfresh.core.YaletProcessor
+<<<<<<< HEAD
+=======
 main 2011-10-25 23:16:21,630 INFO App started IN ru.goodsReview.core.starter.Starter
 main 2011-10-25 23:16:21,661 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@22760f48: display name [org.springframework.context.support.FileSystemXmlApplicationContext@22760f48]; startup date [Tue Oct 25 23:16:21 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
 main 2011-10-25 23:16:21,715 INFO Loading XML bean definitions from file [D:\GoodsReviewProject\core\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
@@ -2675,3 +2677,4 @@ main 2011-10-25 23:39:41,081 INFO Server started: 43 ms IN net.sf.xfresh.jetty.J
 1315028041@qtp-1877776408-0 2011-10-25 23:39:46,457 DEBUG name: Contex IN net.sf.xfresh.core.sax.DefaultSaxHandler
 1315028041@qtp-1877776408-0 2011-10-25 23:39:46,457 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
 1315028041@qtp-1877776408-0 2011-10-25 23:39:46,481 INFO Processing time for user request => {./frontend/src/web/index.xml} is 360 ms IN net.sf.xfresh.core.YaletProcessor
+>>>>>>> 076be6aaebfc36d9f87ea22b646baf773dd48727

@@ -8,7 +8,11 @@
     <!--Jetty beans-->
     <bean id="serverInitializer" class="net.sf.xfresh.jetty.JettyServerInitializer">
         <property name="port" value="8080"/>
+<<<<<<< HEAD
+        <!--property's value for nerds =)-->
+=======
         <!--property's-->
+>>>>>>> 076be6aaebfc36d9f87ea22b646baf773dd48727
         <property name="maxThreads" value="10"/>
         <property name="handlers">
             <list>
@@ -38,8 +42,15 @@
     <!--Yalets-->
 
     <!--Yalets-->
+<<<<<<< HEAD
+    <bean id="getReviewYalet" class="ru.goodsReview.frontend.yalet.GetReviewYalet"/>
+    <bean id="getPopularProductsYalet" class="ru.goodsReview.frontend.yalet.GetPopularProductsYalet"/>
+    <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
+    <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
+=======
    <!-- <bean id="getReviewYalet" class="ru.goodsReview.frontend.yalet.GetReviewYalet"/>
     <bean id="getPopularProductsYalet" class="ru.goodsReview.frontend.yalet.GetPopularProductsYalet"/>
     <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
     <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>      -->
+>>>>>>> 076be6aaebfc36d9f87ea22b646baf773dd48727
 </beans>
