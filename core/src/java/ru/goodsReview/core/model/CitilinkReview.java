@@ -16,7 +16,7 @@ public class CitilinkReview extends Review {
     private int helpfulnessNo;
 
     public CitilinkReview(int rate, String description, String goodAspect, String badAspect, String comment, int helpfulnessYes, int helpfulnessNo) {
-        super(comment);
+        super(-1, -1, comment, "Anonymous", 0, description, 0, "http://citilink.ru/...", 0.0, 0.0, helpfulnessYes, helpfulnessNo);
         this.rate = rate;
         this.description = description;
         this.goodAspect = goodAspect;
@@ -31,10 +31,6 @@ public class CitilinkReview extends Review {
 
     public String getDescription() {
         return description;
-    }
-
-    public String getComment() {
-        return super.getComment();
     }
 
     public String getGoodAspect() {

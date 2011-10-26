@@ -38,13 +38,13 @@ public class ListOfReviews {
     public List<String> getListOfComments(){
         List<String> listOfComments = new ArrayList<String>();
         for(Review review : this.reviewsList){
-            listOfComments.add(review.getComment());
+            listOfComments.add(review.getContent());
         }
         return listOfComments;
     }
 
     public char[] getCitilinkReviewChars(int i) {
-        return this.reviewsList.get(i).getComment().toCharArray();
+        return this.reviewsList.get(i).getContent().toCharArray();
     }
 
     public void addCitilinkReview(CitilinkReview citilinkReview){
@@ -53,7 +53,7 @@ public class ListOfReviews {
     public void printCitilinkReviews() {
         Iterator <Review> iterator = this.reviewsList.iterator();
         while (iterator.hasNext()){
-            System.out.println(iterator.next().getComment());
+            System.out.println(iterator.next().getContent());
         }
     }
 

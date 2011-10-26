@@ -193,5 +193,5 @@ ALTER TABLE thesis ADD CONSTRAINT extracted_from FOREIGN KEY (review_id) REFEREN
 ALTER TABLE product ADD CONSTRAINT belongs_to FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE category ADD CONSTRAINT has_parent FOREIGN KEY (parent_category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
-;
+-- ALTER TABLE category ADD CONSTRAINT has_parent FOREIGN KEY (parent_category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+-- ;
