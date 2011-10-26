@@ -2956,3 +2956,28 @@ main 2011-10-26 08:54:07,463 INFO App started IN ru.goodsReview.core.starter.Sta
 main 2011-10-26 08:56:24,537 INFO App started IN ru.goodsReview.core.starter.Starter
 main 2011-10-26 08:58:31,998 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
 main 2011-10-26 08:58:31,999 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:01:56,537 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:01:56,537 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:09,390 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:09,391 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:14,248 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:14,248 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:34,225 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:34,225 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:02:34,636 INFO desc: bad phone IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:03:16,236 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:03:16,237 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:03:16,671 DEBUG desc: bad phone IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:06:34,773 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:06:34,774 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:06:35,364 DEBUG desc: bad phone IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:06:42,833 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:06:42,834 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:06:43,287 DEBUG desc: bad phone IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:36,686 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:36,686 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:37,052 DEBUG desc: bad phone IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:37,098 ERROR 123 IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:48,622 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:48,622 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 09:09:49,021 DEBUG desc: bad phone IN ru.goodsReview.storage.DbModuleTest
