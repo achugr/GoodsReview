@@ -212,12 +212,10 @@
         <root url="file://$PROJECT_DIR$/lib/jetbrains" />
         <root url="file://$PROJECT_DIR$/lib/xfresh" />
         <root url="file://$PROJECT_DIR$/lib/xalan" />
-        <root url="file://$PROJECT_DIR$/lib/database" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
-      <jarDirectory url="file://$PROJECT_DIR$/lib/database" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/httpclient" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jakarta-commons" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jetbrains" recursive="false" />
@@ -227,6 +225,22 @@
       <jarDirectory url="file://$PROJECT_DIR$/lib/spring" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/webharvest" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/xalan" recursive="false" />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/xfresh" recursive="false" />
+    </library>
+    <library name="mySql">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.18-bin.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="XFresh">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib/xfresh" />
+        <root url="file://$PROJECT_DIR$/lib/xfresh" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib/xfresh" recursive="false" />
     </library>
   </component>

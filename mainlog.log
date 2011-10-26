@@ -2844,3 +2844,109 @@ main 2011-10-26 07:46:01,738 INFO Loading XML bean definitions from file [D:\Goo
 main 2011-10-26 07:46:01,797 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@3d4be8c5]: org.springframework.beans.factory.support.DefaultListableBeanFactory@6e9ea162 IN org.springframework.context.support.FileSystemXmlApplicationContext
 main 2011-10-26 07:46:01,831 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
 main 2011-10-26 07:46:01,836 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6e9ea162: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,dataSource,jdbcTemplate]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-26 08:35:03,423 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:35:03,459 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@1fe0d66: display name [org.springframework.context.support.FileSystemXmlApplicationContext@1fe0d66]; startup date [Wed Oct 26 08:35:03 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:35:03,516 INFO Loading XML bean definitions from file [E:\VANS\My Dropbox\SVN\GoodsReview\core\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-26 08:35:03,587 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@1fe0d66]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1ffdf86 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:35:03,646 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:35:03,654 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1ffdf86: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,getReviewYalet,getPopularProductsYalet,getProductYalet,searchProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-26 08:35:03,924 INFO Server started: 120 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-26 08:36:31,496 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:36:31,529 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@1b561a2: display name [org.springframework.context.support.FileSystemXmlApplicationContext@1b561a2]; startup date [Wed Oct 26 08:36:31 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:36:31,585 INFO Loading XML bean definitions from file [E:\VANS\My Dropbox\SVN\GoodsReview\core\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-26 08:36:31,721 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@1b561a2]: org.springframework.beans.factory.support.DefaultListableBeanFactory@b8f952 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:36:31,784 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:36:31,791 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@b8f952: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,getReviewYalet,getPopularProductsYalet,getProductYalet,searchProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-26 08:36:32,012 INFO Server started: 104 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+main 2011-10-26 08:38:31,170 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:38:31,205 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@113c817: display name [org.springframework.context.support.FileSystemXmlApplicationContext@113c817]; startup date [Wed Oct 26 08:38:31 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:38:31,259 INFO Loading XML bean definitions from file [E:\VANS\My Dropbox\SVN\GoodsReview\core\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-26 08:38:31,307 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@113c817]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1cfb56 IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:38:31,346 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:38:31,349 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cfb56: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,getReviewYalet,getPopularProductsYalet,getProductYalet,searchProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-26 08:38:31,512 INFO Server started: 50 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+27436928@qtp-18942714-0 2011-10-26 08:38:38,975 DEBUG handle url => {./frontend/src/web/product.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:38,975 INFO Start process user request => {./frontend/src/web/product.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+27436928@qtp-18942714-0 2011-10-26 08:38:38,990 DEBUG needTransform for ./frontend/src/web/product.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+27436928@qtp-18942714-0 2011-10-26 08:38:39,606 INFO Starting process yalet => {getProduct} IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+27436928@qtp-18942714-0 2011-10-26 08:38:39,606 DEBUG name = id IN net.sf.xfresh.core.impl.SimpleInternalRequest
+27436928@qtp-18942714-0 2011-10-26 08:38:39,606 DEBUG value = 1 IN net.sf.xfresh.core.impl.SimpleInternalRequest
+27436928@qtp-18942714-0 2011-10-26 08:38:39,607 INFO Processing time for yalet => {getProduct} is 1 ms IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+27436928@qtp-18942714-0 2011-10-26 08:38:39,615 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:39,615 DEBUG class: java.lang.Object@1e306f IN net.sf.xfresh.core.sax.DefaultSaxHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:39,615 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:39,615 DEBUG id: 1 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:39,615 DEBUG name: All is ok1 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:39,615 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+27436928@qtp-18942714-0 2011-10-26 08:38:39,647 INFO Processing time for user request => {./frontend/src/web/product.xml} is 672 ms IN net.sf.xfresh.core.YaletProcessor
+9988469@qtp-18942714-2 2011-10-26 08:38:41,523 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,524 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+9988469@qtp-18942714-2 2011-10-26 08:38:41,532 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+9988469@qtp-18942714-2 2011-10-26 08:38:41,562 INFO Starting process yalet => {getPopularProducts} IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+9988469@qtp-18942714-2 2011-10-26 08:38:41,562 INFO Processing time for yalet => {getPopularProducts} is 0 ms IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+9988469@qtp-18942714-2 2011-10-26 08:38:41,564 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,564 DEBUG class: java.lang.Object@1e306f IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,564 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,564 DEBUG id: 1 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,564 DEBUG name: Lenovo notebooks IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,564 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG class: java.lang.Object@1e306f IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG id: 2 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG name: BMW X5 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG class: java.lang.Object@1e306f IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG id: 3 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG name: Contex IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,565 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+9988469@qtp-18942714-2 2011-10-26 08:38:41,569 INFO Processing time for user request => {./frontend/src/web/index.xml} is 45 ms IN net.sf.xfresh.core.YaletProcessor
+main 2011-10-26 08:41:48,076 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:41:48,111 INFO Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@1fb069: display name [org.springframework.context.support.FileSystemXmlApplicationContext@1fb069]; startup date [Wed Oct 26 08:41:48 MSD 2011]; root of context hierarchy IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:41:48,203 INFO Loading XML bean definitions from file [E:\VANS\My Dropbox\SVN\GoodsReview\core\src\scripts\beans.xml] IN org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+main 2011-10-26 08:41:48,250 INFO Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@1fb069]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1e12e2c IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:41:48,300 INFO Bean 'org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor' is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) IN org.springframework.context.support.FileSystemXmlApplicationContext
+main 2011-10-26 08:41:48,306 INFO Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1e12e2c: defining beans [org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor,serverInitializer,yaletProcessor,yaletSupport,yaletResolver,saxGenerator,singleYaletProcessor,getReviewYalet,getPopularProductsYalet,getProductYalet,searchProductYalet]; root of factory hierarchy IN org.springframework.beans.factory.support.DefaultListableBeanFactory
+main 2011-10-26 08:41:48,553 INFO Server started: 81 ms IN net.sf.xfresh.jetty.JettyServerInitializer
+1001246@qtp-11417789-1 2011-10-26 08:42:05,738 DEBUG handle url => {./frontend/src/web/index.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:05,739 INFO Start process user request => {./frontend/src/web/index.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:05,757 DEBUG needTransform for ./frontend/src/web/index.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1001246@qtp-11417789-1 2011-10-26 08:42:06,306 INFO Starting process yalet => {getPopularProducts} IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:06,307 INFO Processing time for yalet => {getPopularProducts} is 1 ms IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:06,315 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,315 DEBUG class: java.lang.Object@1fbfa37 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,315 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,315 DEBUG id: 1 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,315 DEBUG name: Lenovo notebooks IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,316 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,316 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,316 DEBUG class: java.lang.Object@1fbfa37 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,316 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,316 DEBUG id: 2 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,316 DEBUG name: BMW X5 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG class: java.lang.Object@1fbfa37 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG id: 3 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG name: Contex IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,317 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:06,343 INFO Processing time for user request => {./frontend/src/web/index.xml} is 604 ms IN net.sf.xfresh.core.YaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:07,854 DEBUG handle url => {./frontend/src/web/product.xml} IN net.sf.xfresh.jetty.YaletXmlPageHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,855 INFO Start process user request => {./frontend/src/web/product.xml}, remote ip => {0:0:0:0:0:0:0:1}, method=GET IN net.sf.xfresh.core.YaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:07,865 DEBUG needTransform for ./frontend/src/web/product.xml = true IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1001246@qtp-11417789-1 2011-10-26 08:42:07,891 INFO Starting process yalet => {getProduct} IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:07,891 DEBUG name = id IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1001246@qtp-11417789-1 2011-10-26 08:42:07,891 DEBUG value = 1 IN net.sf.xfresh.core.impl.SimpleInternalRequest
+1001246@qtp-11417789-1 2011-10-26 08:42:07,892 INFO Processing time for yalet => {getProduct} is 1 ms IN net.sf.xfresh.core.impl.DefaultSingleYaletProcessor
+1001246@qtp-11417789-1 2011-10-26 08:42:07,894 DEBUG categoryId: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,894 DEBUG class: java.lang.Object@1fbfa37 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,894 DEBUG description: null IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,894 DEBUG id: 1 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,894 DEBUG name: All is ok1 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,899 DEBUG popularity: 0 IN net.sf.xfresh.core.sax.DefaultSaxHandler
+1001246@qtp-11417789-1 2011-10-26 08:42:07,902 INFO Processing time for user request => {./frontend/src/web/product.xml} is 47 ms IN net.sf.xfresh.core.YaletProcessor
+main 2011-10-26 08:42:44,152 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:43:10,011 INFO App started IN ru.goodsReview.core.starter.Starter
