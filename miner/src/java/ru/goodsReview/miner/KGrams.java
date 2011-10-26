@@ -1,4 +1,4 @@
-package test.goodsReview.miner;
+package ru.goodsReview.miner;
 
 /**
  * Created by IntelliJ IDEA.
@@ -8,9 +8,12 @@ package test.goodsReview.miner;
  * To change this template use File | Settings | File Templates.
  */
 
-import java.lang.*;
-import java.util.*;
-import ru.goodsReview.core.model.*;
+import ru.goodsReview.core.model.ListOfReviews;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
 
 //this class implements k-grams method
 public class KGrams {
@@ -40,7 +43,7 @@ public class KGrams {
         Boolean[] tokenIncitilinkReviews;
         // token must be realised as QUEUE ???
         for (n = 0; n < citilinkReviews.getReviewsNum(); n++) {
-            text = citilinkReviews.getCitilinkReviewChars(n);
+            text = citilinkReviews.getReviews().get(n).getContent().toCharArray();
             for (i = 0; i < text.length - KGrams.tokenSize + 1; i++) {
                 for (j = i, k = 0; j < i + KGrams.tokenSize; j++, k++) {
                     token[k] = text[j];

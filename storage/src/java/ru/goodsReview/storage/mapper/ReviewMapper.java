@@ -1,19 +1,30 @@
 package ru.goodsReview.storage.mapper;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Artemij
- * Date: 19.10.11
- * Time: 1:21
- * To change this template use File | Settings | File Templates.
- */
-public class ReviewMapper {
-   /* public Product mapRow(ResultSet resultSet, int i) throws SQLException, NumberFormatException {
-        try {
-          //  return new CitilinkReview(Long.parseLong(resultSet.getString("id")), Long.parseLong(resultSet.getString("article_id")), resultSet.getString("name"), resultSet.getString("content"),resultSet.getString(resultSet.getString("author")), Integer.parseInt(resultSet.getString("date")), Integer.parseInt(resultSet.getString("source_id")), resultSet.getString("source_url"), Integer.parseInt(resultSet.getString("score")));
-        } catch (Exception e) {
-            return new Product(Long.parseLong(resultSet.getString("id")), -1, resultSet.getString("name"), "", -1);
-        }
-    }  */
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import ru.goodsReview.core.model.Review;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ReviewMapper implements ParameterizedRowMapper<Review> {
+    public Review mapRow(ResultSet resultSet, int i) {
+        try {
+            return new Review(
+                    resultSet.getLong("id"),
+                    resultSet.getLong("product_id"),
+                    resultSet.getString("content"),
+                    resultSet.getString("author"),
+                    resultSet.getLong("date"),
+                    resultSet.getString("description"),
+                    resultSet.getLong("source_id"),
+                    resultSet.getString("source_url"),
+                    resultSet.getDouble("positivity"),
+                    resultSet.getDouble("importance"),
+                    resultSet.getInt("vote_yes"),
+                    resultSet.getInt("vote_no"));
+        } catch (SQLException e) {
+            // Something is wrong with the base, i.e. one of column labels isn't presented.
+            return new Review(-1, -1, "NOCONTENT", "NOAUTHOR", 0, "", -1, "", 0.0, 0.0, 0, 0);
+        }
+    }
 }

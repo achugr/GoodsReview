@@ -1,4 +1,4 @@
-package test.goodsReview.extractor;
+package ru.goodsReview.extractor;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
