@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4ce0863-e810-41b6-9d3f-3042e8e6e54c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Category.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/searcher/searcher.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/searcher/src/test/ru/goodsReview/searcher/TestSearcher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/CategoryDbController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/CategoryMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/ReviewMapper.java" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\core\src\java\ru\goodsReview\core\model\CitilinkReview.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\extractor\src\test\goodsReview\extractor\XMLParser.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\frontend\src\java\test\goodsReview\frontend\FrontendModuleTest.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\indexer\src\java\test\goodsReview\indexer\testIndexer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\miner\src\java\test\goodsReview\miner\FrequencyAnalyzer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\miner\src\java\test\goodsReview\miner\KGrams.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extractor/src/java/ru/goodsReview/extractor/Grabber.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extractor/src/java/ru/goodsReview/extractor/GrabberCitilink.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extractor/src/java/ru/goodsReview/extractor/GrabberContainer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extractor/src/java/ru/goodsReview/extractor/listener/CitilinkNotebooksScraperRuntimeListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extractor/src/java/ru/goodsReview/extractor/utils/DataTransformator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/indexer/src/test/ru/goodsReview/indexer/testIndexer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/miner/src/java/ru/goodsReview/miner/ThesisHashTable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/miner/src/test/ru/goodsReview/miner/Test.java" />
       <change type="DELETED" beforePath="D:\GoodsReviewProject\miner\src\java\test\goodsReview\miner\Test.java" afterPath="" />
       <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\lib\commons-collections.jar" afterPath="" />
       <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\lib\commons-dbcp-1.2.2.jar" afterPath="" />
@@ -22,14 +18,10 @@
       <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\lib\spring-dao.jar" afterPath="" />
       <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\lib\spring-jdbc.jar" afterPath="" />
       <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\lib\spring-support.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\src\java\ru\goodsReview\storage\mappers\RecordMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\src\java\ru\goodsReview\storage\mappers\ReviewMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\src\java\ru\goodsReview\storage\model\Cell.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\src\java\ru\goodsReview\storage\model\Record.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\GoodsReviewProject\storage\src\java\ru\goodsReview\storage\model\StorageProduct.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GoodsReview.ipr" afterPath="$PROJECT_DIR$/GoodsReview.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GoodsReview.iws" afterPath="$PROJECT_DIR$/GoodsReview.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Category.java" afterPath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Category.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/ListOfReviews.java" afterPath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/ListOfReviews.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Product.java" afterPath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Product.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Review.java" afterPath="$PROJECT_DIR$/core/src/java/ru/goodsReview/core/model/Review.java" />
@@ -40,11 +32,18 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/indexer/src/java/ru/goodsReview/indexer/Indexer.java" afterPath="$PROJECT_DIR$/indexer/src/java/ru/goodsReview/indexer/Indexer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainlog.log" afterPath="$PROJECT_DIR$/mainlog.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/miner/miner.iml" afterPath="$PROJECT_DIR$/miner/miner.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/searcher/searcher.iml" afterPath="$PROJECT_DIR$/searcher/searcher.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/searcher/src/test/ru/goodsReview/searcher/TestSearcher.java" afterPath="$PROJECT_DIR$/searcher/src/test/ru/goodsReview/searcher/TestSearcher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/CategoryDbController.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/CategoryDbController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ProductDbController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ReviewDbController.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/controller/ReviewDbController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/CategoryMapper.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/CategoryMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/ReviewMapper.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/ReviewMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/src/test/ru/goodsReview/storage/DbModuleTest.java" afterPath="$PROJECT_DIR$/storage/src/test/ru/goodsReview/storage/DbModuleTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/storage.iml" afterPath="$PROJECT_DIR$/storage/storage.iml" />
-      <change type="MOVED" beforePath="D:\GoodsReviewProject\storage\src\java\ru\goodsReview\storage\mappers\ProductMapper.java" afterPath="$PROJECT_DIR$/storage/src/java/ru/goodsReview/storage/mapper/ProductMapper.java" />
+      <change type="MOVED" beforePath="D:\GoodsReviewProject\extractor\src\test\goodsReview\extractor\XMLParser.java" afterPath="$PROJECT_DIR$/extractor/src/test/ru/goodsReview/extractor/XMLParser.java" />
+      <change type="MOVED" beforePath="D:\GoodsReviewProject\miner\src\java\test\goodsReview\miner\FrequencyAnalyzer.java" afterPath="$PROJECT_DIR$/miner/src/java/ru/goodsReview/miner/FrequencyAnalyzer.java" />
+      <change type="MOVED" beforePath="D:\GoodsReviewProject\miner\src\java\test\goodsReview\miner\KGrams.java" afterPath="$PROJECT_DIR$/miner/src/java/ru/goodsReview/miner/KGrams.java" />
     </list>
     <ignored path="GoodsReview.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -371,11 +370,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GoodsReview" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GoodsReviewProject" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,66 +407,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReviewProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GoodsReviewProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -685,8 +638,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -698,7 +651,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24848025" sideWeight="0.57337886" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24848025" sideWeight="0.57337886" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42662117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
