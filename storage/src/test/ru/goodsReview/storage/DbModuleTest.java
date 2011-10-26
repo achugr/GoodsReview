@@ -8,6 +8,7 @@
 
 package ru.goodsReview.storage;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Category;
@@ -19,13 +20,13 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 public class DbModuleTest {
-
+	private static final Logger log = Logger.getLogger(DbModuleTest.class);
     public static void main(String[] args) throws SQLException {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
 
-        System.err.println("PRIVET");
-        System.out.println("PRIVET");
+        log.error("PRIVET");
+        log.info("PRIVET");
         CategoryDbController categoryController = new CategoryDbController(new SimpleJdbcTemplate(dataSource));
         Category category0 = new Category(1, "Mobile phones", "PHONES", 1);
         categoryController.addCategory(category0);
@@ -36,7 +37,7 @@ public class DbModuleTest {
 
         Product product1;
         product1 = productController.getProductByName("motorola");
-        System.out.println("desc: " + product1.getDescription());
+        log.debug("desc: " + product1.getDescription());
     }
 
      /* public static void main(String[] args) throws SQLException {

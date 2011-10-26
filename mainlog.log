@@ -2950,3 +2950,9 @@ main 2011-10-26 08:41:48,553 INFO Server started: 81 ms IN net.sf.xfresh.jetty.J
 1001246@qtp-11417789-1 2011-10-26 08:42:07,902 INFO Processing time for user request => {./frontend/src/web/product.xml} is 47 ms IN net.sf.xfresh.core.YaletProcessor
 main 2011-10-26 08:42:44,152 INFO App started IN ru.goodsReview.core.starter.Starter
 main 2011-10-26 08:43:10,011 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:52:44,969 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:53:25,128 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:54:07,463 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:56:24,537 INFO App started IN ru.goodsReview.core.starter.Starter
+main 2011-10-26 08:58:31,998 ERROR PRIVET IN ru.goodsReview.storage.DbModuleTest
+main 2011-10-26 08:58:31,999 INFO PRIVET IN ru.goodsReview.storage.DbModuleTest
