@@ -184,6 +184,7 @@
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/indexer/indexer.iml" filepath="$PROJECT_DIR$/indexer/indexer.iml" />
       <module fileurl="file://$PROJECT_DIR$/miner/miner.iml" filepath="$PROJECT_DIR$/miner/miner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/searcher/searcher.iml" filepath="$PROJECT_DIR$/searcher/searcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/storage/storage.iml" filepath="$PROJECT_DIR$/storage/storage.iml" />
     </modules>
   </component>
@@ -211,10 +212,12 @@
         <root url="file://$PROJECT_DIR$/lib/jetbrains" />
         <root url="file://$PROJECT_DIR$/lib/xfresh" />
         <root url="file://$PROJECT_DIR$/lib/xalan" />
+        <root url="file://$PROJECT_DIR$/lib/database" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/database" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/httpclient" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jakarta-commons" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jetbrains" recursive="false" />

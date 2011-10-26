@@ -22,6 +22,13 @@ public class Product {
         this.popularity = popularity;
     }
 
+    public Product(long categoryId, String name, String description, int popularity) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.description = description;
+        this.popularity = popularity;
+    }
+
     public Product(long id, String name) {
         this.id = id;
         this.name = name;
