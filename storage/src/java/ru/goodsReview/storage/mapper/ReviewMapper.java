@@ -1,11 +1,4 @@
-package ru.goodsReview.storage.mappers;
-
-import ru.goodsReview.core.model.CitilinkReview;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.core.model.Review;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+package ru.goodsReview.storage.mapper;
 
 /**
  * Created by IntelliJ IDEA.

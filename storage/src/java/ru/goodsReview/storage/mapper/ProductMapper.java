@@ -1,4 +1,4 @@
-package ru.goodsReview.storage.mappers;
+package ru.goodsReview.storage.mapper;
 
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import ru.goodsReview.core.model.Product;
