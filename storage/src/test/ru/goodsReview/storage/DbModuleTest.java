@@ -1,20 +1,18 @@
 package ru.goodsReview.storage;
 
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
-
+import junit.framework.Assert;
 import org.apache.log4j.Logger;
+import org.junit.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-
-import org.junit.Test;
-import junit.framework.Assert;
-
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.controller.CategoryDbController;
 import ru.goodsReview.storage.controller.ProductDbController;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
 
 
 /*
