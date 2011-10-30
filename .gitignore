@@ -26,10 +26,8 @@ database
 *.tar
 *.zip
 
-# Logs and databases #
+# Logs#
 *.log
-*.sql
-*.sqlite
 
 # OS generated files #
 .DS_Store*
