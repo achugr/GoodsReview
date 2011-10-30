@@ -41,7 +41,7 @@ public class DbModuleTest {
         categoryController.addCategory(category0);
 
         ProductDbController productController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
-        Product product0 = new Product(2 /* any ID */, 1, "Motorola", "����������������� �������", 10);
+        Product product0 = new Product(2 /* any ID */, 1, "Motorola", "very bad phone", 10);
         //long id0 = productController.addProduct(product0);
 
         Product product1;
