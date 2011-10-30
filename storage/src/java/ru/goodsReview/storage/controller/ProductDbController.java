@@ -72,7 +72,10 @@ public class ProductDbController {
                         new Object[]{product_id},
                         new int[]{Types.INTEGER},
                         productMapper);
-        return products.get(0);
+        if (products.size() > 0) {
+            return products.get(0);
+        }
+        return null;
     }
 
     public Product getProductByName(String product_name) {
@@ -81,10 +84,22 @@ public class ProductDbController {
                         new Object[]{product_name},
                         new int[]{Types.VARCHAR},
                         productMapper);
-        return products.get(0);
+        if (products.size() > 0) {
+            return products.get(0);
+        }
+        return null;
     }
 
-    public List<Product> getProductsByCategory(long category_id) {
+    public List<Product> getProductsByName(String product_name) {
+        List<Product> products =
+                simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE name = ?",
+                        new Object[]{product_name},
+                        new int[]{Types.VARCHAR},
+                        productMapper);
+        return products;
+    }
+
+    public List<Product> getProductsByCategoryId(long category_id) {
         List<Product> products =
                 simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE category_id = ?",
                         new Object[]{category_id},
