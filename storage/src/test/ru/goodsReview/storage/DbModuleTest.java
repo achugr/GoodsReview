@@ -1,15 +1,21 @@
 package ru.goodsReview.storage;
 
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+
+import org.junit.Test;
+import junit.framework.Assert;
+
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.controller.CategoryDbController;
 import ru.goodsReview.storage.controller.ProductDbController;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /*
     Date: 26.10.11
@@ -20,6 +26,11 @@ import java.sql.SQLException;
 */
 public class DbModuleTest {
 	private static final Logger log = Logger.getLogger(DbModuleTest.class);
+
+	@Test
+	public void testSMB(){
+		Assert.assertEquals(4, 2 + 2);
+	}
     public static void main(String[] args) throws SQLException {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
@@ -37,6 +48,8 @@ public class DbModuleTest {
         Product product1;
         product1 = productController.getProductByName("motorola");
         log.debug("desc: " + product1.getDescription());
+
+
     }
 
      /* public static void main(String[] args) throws SQLException {

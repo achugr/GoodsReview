@@ -8,7 +8,7 @@ import ru.goodsReview.core.model.Product;
 
 // todo rewrite this class
 
-public class GetPopularProductsYalet implements Yalet {
+public class PopularProductsYalet implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
 		res.add(new Product(1, "Lenovo notebooks"));
 		res.add(new Product(2, "BMW X5"));

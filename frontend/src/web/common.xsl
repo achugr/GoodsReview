@@ -55,8 +55,11 @@
         Category:
         <xsl:value-of select="category"/>
         <br/>
+        CategoryId:
+        <xsl:value-of select="@category-id"/>
+        <br/>
         Popularity:
-        <xsl:value-of select="popularity"/>
+        <xsl:value-of select="@popularity"/>
         <br/>
         Id:
         <xsl:value-of select="@id"/>

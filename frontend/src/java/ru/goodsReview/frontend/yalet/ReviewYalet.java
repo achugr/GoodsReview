@@ -7,7 +7,7 @@ import net.sf.xfresh.core.Yalet;
 import ru.goodsReview.core.model.Review;
 
 // todo rewrite this class
-public class GetReviewYalet implements Yalet {
+public class ReviewYalet implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
 		String request = req.getParameter("query");
 		if (request == null || request.isEmpty()) {

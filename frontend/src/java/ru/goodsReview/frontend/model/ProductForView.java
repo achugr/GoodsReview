@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.model;
 
+import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 
 public class ProductForView {
@@ -10,20 +11,19 @@ public class ProductForView {
 	private long categoryId;
 	private long popularity;
 
-	public ProductForView(Product product) {
+	public ProductForView(Product product, Category category) throws Exception{
 		name = product.getName();
 		description = product.getDescription();
 		id = product.getId();
-		setCategoryId(product.getCategoryId());
+		if(product.getCategoryId() != category.getId())
+			throw new Exception("Category mismatch");
+		categoryId = category.getId();
+		this.category = category.getName();
 		popularity = product.getPopularity();
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getDescription() {
@@ -39,28 +39,24 @@ public class ProductForView {
 	}
 
 	public void setCategoryId(long categoryId) {
-		this.category = category;
+		this.categoryId = categoryId;
 		category = getCategory(categoryId);
+	}
+
+	public String getCategory() {
+		return category;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public long getPopularity() {
 		return popularity;
 	}
 
-	public void setPopularity(long popularity) {
-		this.popularity = popularity;
-	}
-
 	public static String getCategory(long id){
 		//TODO get category name from table
-		return id + " ";
+		return id + " category";
 	}
 }
