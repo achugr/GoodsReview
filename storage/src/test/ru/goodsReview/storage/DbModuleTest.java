@@ -1,11 +1,3 @@
-/*
-    Date: 26.10.11
-    Time: 00:52
-    Author: 
-        Artemij Chugreev 
-        artemij.chugreev@gmail.com
-*/
-
 package ru.goodsReview.storage;
 
 import org.apache.log4j.Logger;
@@ -19,6 +11,13 @@ import ru.goodsReview.storage.controller.ProductDbController;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+/*
+    Date: 26.10.11
+    Time: 00:52
+    Author:
+        Artemij Chugreev
+        artemij.chugreev@gmail.com
+*/
 public class DbModuleTest {
 	private static final Logger log = Logger.getLogger(DbModuleTest.class);
     public static void main(String[] args) throws SQLException {

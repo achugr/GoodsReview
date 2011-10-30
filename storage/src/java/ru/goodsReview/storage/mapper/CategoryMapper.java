@@ -1,11 +1,3 @@
-/**
- * Date: 26.10.2011
- * Time: 1:43:36
- * Author:
- *   Sergey Serebryakov
- *   sergey.serebryakoff@gmail.com
- */
-
 package ru.goodsReview.storage.mapper;
 
 import ru.goodsReview.core.model.Category;
@@ -14,6 +6,13 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Date: 26.10.2011
+ * Time: 1:43:36
+ * Author:
+ *   Sergey Serebryakov
+ *   sergey.serebryakoff@gmail.com
+ */
 public class CategoryMapper implements ParameterizedRowMapper<Category> {
     public Category mapRow(ResultSet resultSet, int i) {
         try {

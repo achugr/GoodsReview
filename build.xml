@@ -1,161 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="GoodsReview" default="all" basedir=".">
-    <description>
-        GoodsReview
-    </description>
 
-    <!--main paths-->
+    <!--main paths defenition-->
     <property name="project.dir" location="."/>
     <property name="lib.dir" location="${project.dir}/lib"/>
+    <property name="build.dir" location="${project.dir}/build"/>
+    <property name="classes.dir" location="${build.dir}/classes"/>
+    <property name="dist.dir" location="${build.dir}/dist"/>
+
+    <!--пути к вложенным билд файлам-->
+    <property name="core.build" location="${project.dir}/core/build.xml"/>
+    <property name="miner.build" location="${project.dir}/miner/build.xml"/>
+    <property name="indexer.build" location="${project.dir}/indexer/build.xml"/>
+    <property name="frontend.build" location="${project.dir}/frontend/build.xml"/>
+   <!-- <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>-->
+    <property name="storage.build" location="${project.dir}/storage/build.xml"/>
+    <property name="extractor.build" location="${project.dir}/extractor/build.xml"/>
+    <property name = "searcher.build" location="${project.dir}/searcher/build.xml"/>
 
     <!-- classpath -->
     <path id="libs">
         <fileset dir="lib" includes="**/*.jar"/>
-        <fileset dir="build" includes="**/*.class"/>
+        <fileset dir="${classes.dir}" includes="**/*.class"/>
     </path>
 
-    <path id="libs.miner">
-        <fileset dir="lib" includes="webharvest/**/*.jar"/>
-        <fileset dir="lib" includes="webharvest/**/*.jar"/>
-        <fileset dir="lib" includes="jakarta-commons/**/*.jar"/>
-        <fileset dir="lib" includes="saxon/**/*.jar"/>
-        <fileset dir="lib" includes="*.jar"/>
-    </path>
-
-    <path id="libs.core">
-        <fileset dir="lib" includes="jetty/**/*.jar"/>
-        <fileset dir="lib" includes="xfresh/**/*.jar"/>
-        <fileset dir="lib" includes="jetbrains/**/*.jar"/>
-        <fileset dir="lib" includes="httpclient/**/*.jar"/>
-        <fileset dir="lib" includes="rhino/**/*.jar"/>
-        <fileset dir="lib" includes="jakarta-commons/**/*.jar"/>
-        <fileset dir="lib" includes="saxon/**/*.jar"/>
-        <fileset dir="lib" includes="spring/**/*.jar"/>
-        <fileset dir="lib" includes="xalan/**/*.jar"/>
-        <fileset dir="lib" includes="*.jar"/>
-    </path>
-
-    <property name="build.dir" location="${project.dir}/build"/>
-    <property name="src.core.dir" location="${project.dir}/core/src/java/"/>
-    <property name="src.miner.dir" location="${project.dir}/miner/src/java/"/>
-    <property name="src.frontend.dir" location="${project.dir}/frontend/src/java/"/>
-    <property name="src.storage.dir" location="${project.dir}/storage/src/java/"/>
-
-    <pathconvert pathsep=" " property="miner_libs_manifest" refid="libs.miner"/>
-    <pathconvert pathsep=" " property="core_libs_manifest" refid="libs.core"/>
-
+    <!--iсоздание папок-->
     <target name="init">
-        <echo>GoodsReview</echo>
         <mkdir dir="${build.dir}"/>
-        <mkdir dir="${build.dir}/classes"/>
-        <mkdir dir="${build.dir}/minerconfigs"/>
-        <delete>
-            <fileset dir="${build.dir}" includes="GoodsReview.jar"/>
-        </delete>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
     </target>
 
+    <!--далее по всем таргетам вызываются вложенные билдеры-->
     <target name="core" depends="init">
-        <javac srcdir="${src.core.dir}"
-               destdir="${build.dir}/classes"
-               debug="true"
-               deprecation="true"
-               optimize="false"
-               includeAntRuntime="false">
-            <classpath refid="libs"/>
-        </javac>
+        <ant antfile="${core.build}"/>
     </target>
 
-    <target name="storage" depends="init,core">
-        <javac srcdir="${src.storage.dir}"
-               destdir="${build.dir}/classes"
-               debug="true"
-               deprecation="true"
-               optimize="false"
-               includeAntRuntime="false">
-            <classpath refid="libs"/>
-        </javac>
+    <target name="storage" depends="core">
+        <ant antfile="${storage.build}"/>
     </target>
 
-    <target name="miner" depends="init,core,storage">
-        <javac srcdir="${src.miner.dir}"
-               destdir="${build.dir}/classes"
-               debug="true"
-               deprecation="true"
-               optimize="false"
-               includeAntRuntime="false">
-            <classpath refid="libs"/>
-        </javac>
-
-        <copy todir="${build.dir}/minerconfigs">
-            <fileset dir="${project.dir}/miner/configs" includes="**/*.*"/>
-        </copy>
+    <target name="frontend" depends="core">
+        <ant antfile="${frontend.build}"/>
     </target>
 
-    <target name="frontend" depends="init,core,storage">
-        <javac srcdir="${src.frontend.dir}"
-               destdir="${build.dir}/classes"
-               debug="true"
-               deprecation="true"
-               optimize="false"
-               includeAntRuntime="false">
-            <classpath refid="libs"/>
-        </javac>
+    <target name="miner" depends="core">
+        <ant antfile="${miner.build}"/>
+    </target>
 
-        <copy todir="${build.dir}/web">
-            <fileset dir="${project.dir}/frontend/src/web" includes="**/*.*"/>
-        </copy>
+    <target name="indexer" depends="core">
+        <ant antfile="${indexer.build}"/>
+    </target>
 
-        <copy file="start.sh" todir="${build.dir}"/>
+    <target name="searcher" depends="indexer">
+        <ant antfile="${searcher.build}"/>
+    </target>
 
-        <copy todir="${build.dir}/script">
-            <fileset dir="${project.dir}/frontend/src/script" includes="**/*.*"/>
-        </copy>
+    <target name="extractor" depends="core">
+        <ant antfile="${extractor.build}"/>
     </target>
 
 
-    <target name="all" depends="core,miner,frontend">
+    <!--по умолчанию вызывается этот таргет (тут пара строчек лишние, но так понятнее)-->
+    <target name="all" depends="init">
+        <antcall target="core"/>
+        <antcall target="frontend"/>
+        <antcall target="storage"/>
+        <antcall target="miner"/>
+        <antcall target="indexer"/>
+        <antcall target="searcher"/>
+        <antcall target="storage"/>
+        <antcall target="extractor"/>
+    </target>
 
-        <copy todir="${build.dir}/lib">
-            <fileset dir="${lib.dir}" includes="**/*.*" excludes="xfresh/xfresh-core.jar"/>
-        </copy>
-
-        <jar destfile="${build.dir}/GoodsReviewMiner.jar">
-            <fileset dir="${build.dir}/classes" includes="**/*.class"/>
-            <manifest>
-                <attribute name="Built-By" value="GoodsReviewBuild.xml"/>
-                <attribute name="Main-Class" value="ru.GoodsReview.miner.GrabberPreAlpha"/>
-                <attribute name="Class-Path" value="${miner_libs_manifest} ${build.dir}/classes/"/>
-            </manifest>
-        </jar>
-
-        <jar destfile="${build.dir}/GoodsReview_core.jar">
-            <fileset dir="${build.dir}/classes" includes="**/*.class"/>
-            <manifest>
-                <attribute name="Built-By" value="GoodsReviewBuild.xml"/>
-                <attribute name="Main-Class" value="net.sf.xfresh.util.Starter"/>
-                <attribute name="Class-Path" value="${core_libs_manifest} ${build.dir}/classes/"/>
-            </manifest>
-        </jar>
-
-        <chmod file="${build.dir}/start.sh" perm="+x"/>
-        <echo>GoodsReview installing complete!</echo>
+    <!--для запуска различных модулей испольются следующие таргеты-->
+    <target name="run_storage">
+        <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
+            <jvmarg value="-Xms64m"/>
+            <jvmarg value="-Xmx1750m"/>
+            <arg value="/storage/src/scripts/beans.xml" />
+        </java>
     </target>
 
     <target name="run_frontend">
-        <java dir="${project.dir}" jar="${build.dir}/GoodsReviewCore.jar" fork="true">
+        <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
             <jvmarg value="-Xms64m"/>
             <jvmarg value="-Xmx1750m"/>
-            <arg value="/build/scripts/beans.xml" />
+            <arg value="/frontend/src/scripts/beans.xml" />
         </java>
-     <!--   <exec dir="${build.dir}" executable="${build.dir}/start.sh" /> -->
     </target>
 
-    <target name="run_miner" depends="all" description="miner started">
-        <java dir="${project.dir}" jar="${build.dir}/GoodsReviewMiner.jar" fork="true">
-            <jvmarg value="-Xms64m"/>
-            <jvmarg value="-Xmx1750m"/>
-            <arg value="/resources/miner/" />
-        </java>
-    </target>
 </project>
 
