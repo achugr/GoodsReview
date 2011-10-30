@@ -9,29 +9,18 @@ import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.util.ProductForViewPrepare;
 import ru.goodsReview.storage.controller.ProductDbController;
 
-public class SearchManager {
+public class ProductManager {
 	private SimpleJdbcTemplate jdbcTemplate;
 
 	public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	//private Searcher searcher;
 
-	//public void setSearcher(Searcher searcher) {
-	//	this.searcher = searcher;
-	//}
-
-	public List<ProductForView> searchByName(String query) throws Exception {
-
-	/*		List<ProductForView> brandList = new ArrayList<ProductForView>();
-			for (Brand b : searcher.searchBrandByDescription(query)) {
-				brandList.add(new ProductForView(b.getId(), b.getName(), b.getDescription(), b.getWebsite()));
-			}
-			return brandList;*/
+	public List<ProductForView> productById(long id) throws Exception {
 		ProductDbController pdbc = new ProductDbController(jdbcTemplate);
 		List<ProductForView> result = new ArrayList<ProductForView>();
 
-		result.add(ProductForViewPrepare.prepare(jdbcTemplate, pdbc.getProductByName(query)));
+		result.add(ProductForViewPrepare.prepare(jdbcTemplate, pdbc.getProductById(id)));
 		return result;
 	}
 

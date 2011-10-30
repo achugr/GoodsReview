@@ -19,7 +19,7 @@
         </html>
     </xsl:template>
 
-    <xsl:template match="////product-for-view">
+    <xsl:template match="//product-for-view">
         <xsl:call-template name="product"/>
     </xsl:template>
 

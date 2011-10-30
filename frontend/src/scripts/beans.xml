@@ -38,6 +38,7 @@
     <!--Managers-->
 
     <bean id="searchManager" class="ru.goodsReview.frontend.service.SearchManager"/>
+    <bean id="productManager" class="ru.goodsReview.frontend.service.ProductManager"/>
 
     <!--Yalets-->
     <bean id="reviewYalet" class="ru.goodsReview.frontend.yalet.ReviewYalet"/>

@@ -10,8 +10,8 @@ public class SimilarProduct implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
 			long id = req.getIntParameter("id");
 			Product product = new Product(id, "All is ok" + id);
-			ProductForView pvf = new ProductForView(product);
-			res.add(pvf);
+			//ProductForView pvf = new ProductForView(product);
+			//res.add(pvf);
 			return;
 		}
 
