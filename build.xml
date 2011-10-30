@@ -10,13 +10,15 @@
 
     <!--пути к вложенным билд файлам-->
     <property name="core.build" location="${project.dir}/core/build.xml"/>
-    <property name="miner.build" location="${project.dir}/miner/build.xml"/>
-    <property name="indexer.build" location="${project.dir}/indexer/build.xml"/>
-    <property name="frontend.build" location="${project.dir}/frontend/build.xml"/>
-   <!-- <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>-->
     <property name="storage.build" location="${project.dir}/storage/build.xml"/>
-    <property name="extractor.build" location="${project.dir}/extractor/build.xml"/>
+    <property name="indexer.build" location="${project.dir}/indexer/build.xml"/>
     <property name = "searcher.build" location="${project.dir}/searcher/build.xml"/>
+    <property name="frontend.build" location="${project.dir}/frontend/build.xml"/>
+    <property name="miner.build" location="${project.dir}/miner/build.xml"/>
+    <property name="extractor.build" location="${project.dir}/extractor/build.xml"/>
+
+
+   <!-- <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>-->
 
     <!-- classpath -->
     <path id="libs">
@@ -40,20 +42,20 @@
         <ant antfile="${storage.build}"/>
     </target>
 
+     <target name="indexer" depends="core">
+        <ant antfile="${indexer.build}"/>
+    </target>
+
+    <target name="searcher" depends="indexer">
+        <ant antfile="${searcher.build}"/>
+    </target>
+
     <target name="frontend" depends="core">
         <ant antfile="${frontend.build}"/>
     </target>
 
     <target name="miner" depends="core">
         <ant antfile="${miner.build}"/>
-    </target>
-
-    <target name="indexer" depends="core">
-        <ant antfile="${indexer.build}"/>
-    </target>
-
-    <target name="searcher" depends="indexer">
-        <ant antfile="${searcher.build}"/>
     </target>
 
     <target name="extractor" depends="core">
@@ -64,12 +66,11 @@
     <!--по умолчанию вызывается этот таргет (тут пара строчек лишние, но так понятнее)-->
     <target name="all" depends="init">
         <antcall target="core"/>
-        <antcall target="frontend"/>
         <antcall target="storage"/>
-        <antcall target="miner"/>
         <antcall target="indexer"/>
         <antcall target="searcher"/>
-        <antcall target="storage"/>
+        <antcall target="frontend"/>
+        <antcall target="miner"/>
         <antcall target="extractor"/>
     </target>
 
