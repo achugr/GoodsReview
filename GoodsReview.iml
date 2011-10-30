@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="false" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="Spring" name="Spring" implicit="true">
-      <configuration>
-        <options>
-          <option name="enableValidation" value="false" />
-          <option name="reportErrorsAsWarnings" value="true" />
-        </options>
-        <customNs />
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
@@ -19,9 +8,8 @@
     <orderEntry type="module" module-name="frontend" />
     <orderEntry type="module" module-name="miner" />
     <orderEntry type="module" module-name="core" />
-	<orderEntry type="module" module-name="storage" />
+    <orderEntry type="module" module-name="storage" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntryProperties />
   </component>
 </module>
 

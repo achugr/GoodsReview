@@ -8,14 +8,13 @@
 
 package ru.goodsReview.storage.controller;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
-import ru.goodsReview.storage.mapper.ReviewMapper;
-import ru.goodsReview.storage.mapper.ThesisMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Thesis;
+import ru.goodsReview.storage.mapper.ThesisMapper;
 
-import java.util.List;
 import java.sql.Types;
+import java.util.List;
 
 /**
  * User: Sergey Serebryakov
