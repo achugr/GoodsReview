@@ -19,6 +19,7 @@
     <orderEntry type="module" module-name="frontend" />
     <orderEntry type="module" module-name="miner" />
     <orderEntry type="module" module-name="core" />
+	<orderEntry type="module" module-name="storage" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntryProperties />
   </component>
