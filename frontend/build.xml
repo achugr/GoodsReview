@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GoodsReview" default="all" basedir=".">
+
+    <path id="libs">
+            <fileset dir="${lib.dir}" includes="**/*.jar"/>
+            <fileset dir="${dist.dir}" includes="**/*.jar"/>
+    </path>
+
+    <property name="src.frontend.dir" location="${project.dir}/frontend/src/java/"/>
+    <pathconvert pathsep=" " property="libs_manifest" refid="libs"/>
+
+    <target name="all">
+
+	<!--class-файлы в папку build/classes-->
+        <javac srcdir="${src.frontend.dir}"
+               destdir="${build.dir}/classes"
+               debug="true"
+               deprecation="true"
+               optimize="false"
+               includeAntRuntime="false">
+            <classpath refid="libs"/>
+        </javac>
+
+	<!--собирается архив с классом, у которого есть метод main в папку dist-->
+        <jar destfile="${dist.dir}/frontend.jar" basedir="${classes.dir}" includes="ru/goodsReview/frontend/**/*.*">
+            <manifest>
+                <attribute name="Built-By" value="frontend: build.xml"/>
+                <attribute name="Class-Path" value="${libs_manifest}/"/>
+            </manifest>
+        </jar>
+
+        <mkdir dir="${build.dir}/frontend"/>
+        <copy todir="${build.dir}/frontend" overwrite="true">
+            <fileset dir="${project.dir}/frontend" includes="**/*.*" excludes="**/*.java build.xml *.iml"/>
+        </copy>
+	<echo>frontend building complete</echo>
+    </target>
+
+    <target name="run">
+        <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
+            <jvmarg value="-Xms64m"/>
+            <jvmarg value="-Xmx1750m"/>
+            <arg value="/frontend/src/scripts/beans.xml" />
+        </java>
+    </target>
+
+</project>
+

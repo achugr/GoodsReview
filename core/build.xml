@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GoodsReview" default="all" basedir=".">
+
+    <!--внешние зависимости-->
+    <path id="libs">
+            <fileset dir="${lib.dir}" includes="**/*.jar"/>
+            <fileset dir="${dist.dir}" includes="**/*.jar"/>
+    </path>
+
+    <property name="src.core.dir" location="${project.dir}/core/src/java/"/>
+    <pathconvert pathsep=" " property="libs_manifest" refid="libs"/>       <!--classpath для jar-архива-->
+
+    <target name="all">
+
+	<!--class-файлы создаются в папку build/classes-->
+        <javac srcdir="${src.core.dir}"
+               destdir="${build.dir}/classes"
+               debug="true"
+               deprecation="true"
+               optimize="false"
+               includeAntRuntime="false">
+            <classpath refid="libs"/>
+        </javac>
+        <echo> "${libs_manifest} </echo>
+        <echo> "${classes.dir}\ru\goodsReview\core\starter\Starter.class" </echo>
+	<!--собирается архив с классом, у которого есть метод main в папку dist-->
+        <jar destfile="${dist.dir}/core.jar" basedir="${classes.dir}" includes="ru/goodsReview/core/**/*.class" >
+            <manifest>
+                <attribute name="Built-By" value="core: build.xml"/>
+                <attribute name="Main-Class" value="ru.goodsReview.core.starter.Starter"/>
+                <attribute name="Class-Path" value="${libs_manifest}"/>
+            </manifest>
+        </jar>
+
+	<echo>core building complete</echo>
+    </target>
+
+</project>
+

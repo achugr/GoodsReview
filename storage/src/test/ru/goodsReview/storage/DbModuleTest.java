@@ -1,11 +1,3 @@
-/*
-    Date: 26.10.11
-    Time: 00:52
-    Author: 
-        Artemij Chugreev 
-        artemij.chugreev@gmail.com
-*/
-
 package ru.goodsReview.storage;
 
 
@@ -25,6 +17,13 @@ import ru.goodsReview.storage.controller.CategoryDbController;
 import ru.goodsReview.storage.controller.ProductDbController;
 
 
+/*
+    Date: 26.10.11
+    Time: 00:52
+    Author:
+        Artemij Chugreev
+        artemij.chugreev@gmail.com
+*/
 public class DbModuleTest {
 	private static final Logger log = Logger.getLogger(DbModuleTest.class);
 

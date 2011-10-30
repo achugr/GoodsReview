@@ -6,13 +6,6 @@ import ru.goodsReview.core.model.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Artemij
- * Date: 18.10.11
- * Time: 23:31
- * To change this template use File | Settings | File Templates.
- */
 public class ProductMapper implements ParameterizedRowMapper<Product>{
     public Product mapRow(ResultSet resultSet, int i)throws SQLException, NumberFormatException {
          try{

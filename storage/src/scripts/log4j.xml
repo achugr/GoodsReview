@@ -9,7 +9,8 @@
         </layout>
     </appender>
     <appender name="file" class="org.apache.log4j.FileAppender">
-        <param name="File" value="mainlog.log"/>
+       <!-- <param name="File" value="mainlog.log"/>  -->
+        <param name="File" value="dbLog.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%t %d %p %m IN %c%n"/>
         </layout>
