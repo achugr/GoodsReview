@@ -1,21 +1,17 @@
 package ru.goodsReview.storage;
 
+import junit.framework.Assert;
+import org.apache.log4j.Logger;
+import org.junit.Test;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.*;
+import ru.goodsReview.storage.controller.*;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Random;
-
-import org.apache.log4j.Logger;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-
-import org.junit.Test;
-import junit.framework.Assert;
-
-import ru.goodsReview.core.model.*;
-import ru.goodsReview.storage.controller.*;
-
 
 /*
     Date: 26.10.11
@@ -46,7 +42,7 @@ public class DbModuleTest {
         Category category1 = categoryController.getCategoryById(category0id);
         Assert.assertEquals(category0id, category1.getId());
 
-        String productName = "Motorola RND" + (new Random().nextInt(1000000000));   
+        String productName = "Motorola RND" + (new Random().nextInt(1000000000));
         ProductDbController productController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
         Product product0 = new Product(-1 /* any ID */, category0id, productName, "отвратительнейший телефон", 10);
         long product0id = productController.addProduct(product0);
@@ -78,7 +74,7 @@ public class DbModuleTest {
         log.debug("Content: " + thesis1.getContent());
         log.debug("Theses for review ID = " + review0id);
         for (Thesis thesis : thesisController.getThesesByReviewId(review0id)) {
-            log.debug("Content: " + thesis.getContent());            
+            log.debug("Content: " + thesis.getContent());
         }
         log.debug("Theses for product ID = " + product0id);
         for (Thesis thesis : thesisController.getThesesByProductId(product0id)) {
