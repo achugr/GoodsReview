@@ -39,6 +39,7 @@ public class ProductForView {
 	}
 
 	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
 		this.category = category;
 		category = getCategory(categoryId);
 	}
