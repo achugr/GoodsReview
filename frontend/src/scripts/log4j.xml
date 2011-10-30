@@ -17,12 +17,12 @@
 
 
     <logger name="net.sf.xfresh" additivity="false">
-        <level value="DEBUG"/>
+        <level value="ERROR"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </logger>
     <logger name="org.springframework" additivity="false">
-        <level value="DEBUG"/>
+        <level value="ERROR"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </logger>
