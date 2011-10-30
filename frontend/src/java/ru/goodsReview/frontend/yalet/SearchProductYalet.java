@@ -11,6 +11,14 @@ import net.sf.xfresh.core.xml.Xmler;
 import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.service.SearchManager;
 
+/*
+ *  Date: 30.10.11
+ *   Time: 14:12
+ *   Author:
+ *      Vanslov Evgeny
+ *      vans239@gmail.com
+ */
+
 public class SearchProductYalet implements Yalet {
 	private static final Logger log = org.apache.log4j.Logger.getLogger(SearchProductYalet.class);
 	private SearchManager searchManager;

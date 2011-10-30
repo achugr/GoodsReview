@@ -9,6 +9,14 @@ import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.util.ProductForViewPrepare;
 import ru.goodsReview.storage.controller.ProductDbController;
 
+/*
+ *  Date: 30.10.11
+ *   Time: 14:12
+ *   Author:
+ *      Vanslov Evgeny
+ *      vans239@gmail.com
+ */
+
 public class SearchManager {
 	private SimpleJdbcTemplate jdbcTemplate;
 

@@ -13,6 +13,14 @@ import ru.goodsReview.frontend.service.ProductManager;
 import java.util.List;
 
 // todo rewrite this class
+/*
+ *  Date: 30.10.11
+ *   Time: 14:12
+ *   Author:
+ *      Vanslov Evgeny
+ *      vans239@gmail.com
+ */
+
 public class ProductYalet implements Yalet {
 	private static final Logger log = org.apache.log4j.Logger.getLogger(ProductYalet.class);
 	private ProductManager productManager;

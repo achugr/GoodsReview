@@ -3,6 +3,14 @@ package ru.goodsReview.frontend.model;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 
+/*
+ *  Date: 30.10.11
+ *   Time: 14:12
+ *   Author:
+ *      Vanslov Evgeny
+ *      vans239@gmail.com
+ */
+
 public class ProductForView {
 	private String name;
 	private String description;

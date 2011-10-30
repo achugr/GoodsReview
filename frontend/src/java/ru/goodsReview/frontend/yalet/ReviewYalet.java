@@ -7,6 +7,14 @@ import net.sf.xfresh.core.Yalet;
 import ru.goodsReview.core.model.Review;
 
 // todo rewrite this class
+/*
+ *  Date: 30.10.11
+ *   Time: 14:12
+ *   Author:
+ *      Vanslov Evgeny
+ *      vans239@gmail.com
+ */
+
 public class ReviewYalet implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
 		String request = req.getParameter("query");

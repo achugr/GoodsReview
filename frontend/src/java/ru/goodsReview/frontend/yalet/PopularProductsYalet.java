@@ -7,6 +7,13 @@ import net.sf.xfresh.core.Yalet;
 import ru.goodsReview.core.model.Product;
 
 // todo rewrite this class
+/*
+ *  Date: 30.10.11
+ *   Time: 14:12
+ *   Author:
+ *      Vanslov Evgeny
+ *      vans239@gmail.com
+ */
 
 public class PopularProductsYalet implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
