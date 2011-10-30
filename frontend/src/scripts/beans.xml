@@ -39,7 +39,11 @@
 
     <bean id="searchManager" class="ru.goodsReview.frontend.service.SearchManager"/>
     <bean id="productManager" class="ru.goodsReview.frontend.service.ProductManager"/>
-
+    <bean id="popularProductsManager" class="ru.goodsReview.frontend.service.PopularProductsManager">
+        <property name="count">
+            <value>5</value>
+        </property>
+    </bean>
     <!--Yalets-->
     <bean id="reviewYalet" class="ru.goodsReview.frontend.yalet.ReviewYalet"/>
     <bean id="popularProductsYalet" class="ru.goodsReview.frontend.yalet.PopularProductsYalet"/>

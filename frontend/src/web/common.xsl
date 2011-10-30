@@ -68,7 +68,7 @@
 
     <xsl:template name="popular">
         <h4>Popular queries</h4>
-        <xsl:for-each select="//product">
+        <xsl:for-each select="//product-for-view">
             <xsl:call-template name="product"/>
         </xsl:for-each>
         <hr/>

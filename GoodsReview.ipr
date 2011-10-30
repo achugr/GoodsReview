@@ -11,13 +11,6 @@
       <properties />
     </buildFile>
   </component>
-  <component name="BuildJarProjectSettings">
-    <option name="BUILD_JARS_ON_MAKE" value="false" />
-  </component>
-  <component name="CodeStyleProjectProfileManger">
-    <option name="PROJECT_PROFILE" />
-    <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
-  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
@@ -38,31 +31,25 @@
   <component name="CopyrightManager" default="">
     <module2copyright />
   </component>
-  <component name="DependenciesAnalyzeManager">
-    <option name="myForwardDirection" value="false" />
-  </component>
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
-  </component>
-  <component name="EclipseCompilerSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="true" />
-    <option name="DEPRECATION" value="false" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
-  </component>
-  <component name="EclipseEmbeddedCompilerSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="true" />
-    <option name="DEPRECATION" value="false" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="IdProvider" IDEtalkID="B4ECFAC8696C75D8C07D3DCAC28D4943" />
+  <component name="InspectionProjectProfileManager">
+    <profiles>
+      <profile version="1.0" is_locked="false">
+        <option name="myName" value="Project Default" />
+        <option name="myLocal" value="false" />
+        <inspection_tool class="AntResolveInspection" enabled="false" level="ERROR" enabled_by_default="false" />
+      </profile>
+    </profiles>
+    <option name="PROJECT_PROFILE" value="Project Default" />
+    <option name="USE_PROJECT_PROFILE" value="true" />
+    <version value="1.0" />
+  </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />
@@ -79,14 +66,6 @@
     <option name="HEAP_SIZE" />
     <option name="LOCALE" />
     <option name="OPEN_IN_BROWSER" value="true" />
-  </component>
-  <component name="JikesSettings">
-    <option name="JIKES_PATH" value="" />
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="DEPRECATION" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="IS_EMACS_ERRORS_MODE" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
   <component name="Palette2">
     <group name="Swing">
@@ -227,18 +206,10 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
-  <component name="ResourceManagerContainer">
-    <option name="myResourceBundles">
-      <value>
-        <list size="0" />
-      </value>
-    </option>
-  </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
     <mapping directory="" vcs="Git" />
   </component>
-  <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
     <library name="lib">
       <CLASSES>
@@ -259,7 +230,6 @@
         <root url="file://$PROJECT_DIR$/lib/database" />
       </SOURCES>
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
-      <jarDirectory url="file://$PROJECT_DIR$/lib/database" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/httpclient" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jakarta-commons" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jetbrains" recursive="false" />
@@ -270,6 +240,7 @@
       <jarDirectory url="file://$PROJECT_DIR$/lib/webharvest" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/xalan" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/xfresh" recursive="false" />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/database" recursive="false" type="SOURCES" />
     </library>
     <library name="mySql">
       <CLASSES>
