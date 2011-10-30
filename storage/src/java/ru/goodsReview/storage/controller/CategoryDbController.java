@@ -33,6 +33,7 @@ public class CategoryDbController {
         } catch (DataAccessException e) {
             // We don't have permissions to update the table.
             // TODO(serebryakov): Log the error.
+            e.printStackTrace();
         }
     }
 
