@@ -49,6 +49,9 @@ public class CategoryDbController {
                         new Object[]{category_id},
                         new int[]{Types.INTEGER},
                         categoryMapper);
-        return categories.get(0);
+        if (categories.size() > 0) {
+            return categories.get(0);
+        }
+        return null;
     }
 }

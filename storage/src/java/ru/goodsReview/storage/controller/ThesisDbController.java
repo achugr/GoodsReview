@@ -8,13 +8,14 @@
 
 package ru.goodsReview.storage.controller;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.Thesis;
+import org.springframework.dao.DataAccessException;
 import ru.goodsReview.storage.mapper.ThesisMapper;
+import ru.goodsReview.core.model.Thesis;
 
-import java.sql.Types;
 import java.util.List;
+import java.util.ArrayList;
+import java.sql.Types;
 
 /**
  * User: Sergey Serebryakov
@@ -30,16 +31,27 @@ public class ThesisDbController {
         this.thesisMapper = new ThesisMapper();
     }
 
-    public void addThesis(Thesis thesis) {
+    public long addThesis(Thesis thesis) {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(?,?,?,?,?,?)",
-                    new Object[]{thesis.getReview_id(), thesis.getContent(), thesis.getPositivity(), thesis.getImportance(), thesis.getVotes_yes(), thesis.getVotes_no()},
+                    new Object[]{thesis.getReview_id(), thesis.getContent(), thesis.getPositivity(), thesis.getImportance(), thesis.getVotesYes(), thesis.getVotesNo()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER});
+            long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
+            return lastId;
         } catch (DataAccessException e) {
             // We don't have permissions to update the table.
             // TODO(serebryakov): Log the error.
             e.printStackTrace();
         }
+        return -1;
+    }
+
+    public List<Long> addThesisList(List<Thesis> thesisList) {
+        List<Long> ids = new ArrayList<Long>();
+        for (Thesis thesis : thesisList) {
+            ids.add(addThesis(thesis));
+        }
+        return ids;
     }
 
     public List<Thesis> getAllTheses() {
@@ -54,6 +66,18 @@ public class ThesisDbController {
                         new Object[]{id},
                         new int[]{Types.INTEGER},
                         thesisMapper);
-        return theses.get(0);
+        if (theses.size() > 0) {
+            return theses.get(0);
+        }
+        return null;
+    }
+
+    public List<Thesis> getThesesByReviewId(long review_id) {
+        List<Thesis> theses =
+                simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE review_id = ?",
+                        new Object[]{review_id},
+                        new int[]{Types.INTEGER},
+                        thesisMapper);
+        return theses;        
     }
 }

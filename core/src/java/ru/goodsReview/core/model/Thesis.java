@@ -68,19 +68,19 @@ public class Thesis {
         this.importance = importance;
     }
 
-    public long getVotes_yes() {
+    public long getVotesYes() {
         return votes_yes;
     }
 
-    public void setVotes_yes(long votes_yes) {
+    public void setVotesYes(long votes_yes) {
         this.votes_yes = votes_yes;
     }
 
-    public long getVotes_no() {
+    public long getVotesNo() {
         return votes_no;
     }
 
-    public void setVotes_no(long votes_no) {
+    public void setVotesNo(long votes_no) {
         this.votes_no = votes_no;
     }
 
