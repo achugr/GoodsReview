@@ -34,7 +34,7 @@ public class ThesisDbController {
     public long addThesis(Thesis thesis) {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(?,?,?,?,?,?)",
-                    new Object[]{thesis.getReview_id(), thesis.getContent(), thesis.getPositivity(), thesis.getImportance(), thesis.getVotesYes(), thesis.getVotesNo()},
+                    new Object[]{thesis.getReviewId(), thesis.getContent(), thesis.getPositivity(), thesis.getImportance(), thesis.getVotesYes(), thesis.getVotesNo()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
@@ -79,5 +79,14 @@ public class ThesisDbController {
                         new int[]{Types.INTEGER},
                         thesisMapper);
         return theses;        
+    }
+
+    public List<Thesis> getThesesByProductId(long product_id) {
+        List<Thesis> theses =
+                simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM (thesis JOIN review ON thesis.review_id = review.id) WHERE product_id = ?",
+                        new Object[]{product_id},
+                        new int[]{Types.INTEGER},
+                        thesisMapper);
+        return theses;
     }
 }

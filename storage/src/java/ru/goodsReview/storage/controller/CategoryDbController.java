@@ -25,16 +25,19 @@ public class CategoryDbController {
         this.categoryMapper = new CategoryMapper();
     }
 
-    public void addCategory(Category category) {
+    public long addCategory(Category category) {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO category (name, description, parent_category_id) VALUES(?,?,?)",
                     new Object[]{category.getName(), category.getDescription(), category.getParentCategoryId()},
                     new int[]{Types.VARCHAR, Types.VARCHAR, Types.INTEGER});
+            long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
+            return lastId;
         } catch (DataAccessException e) {
             // We don't have permissions to update the table.
             // TODO(serebryakov): Log the error.
             e.printStackTrace();
         }
+        return -1;
     }
 
     public List<Category> getAllCategories() {
