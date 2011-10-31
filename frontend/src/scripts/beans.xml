@@ -44,6 +44,11 @@
             <value>5</value>
         </property>
     </bean>
+    <bean id="popularReviewManager" class="ru.goodsReview.frontend.service.PopularReviewManager">
+        <property name="count">
+            <value>5</value>
+        </property>
+    </bean>
 
     <!--Yalets-->
     <bean id="reviewYalet" class="ru.goodsReview.frontend.yalet.ReviewYalet"/>
@@ -52,6 +57,7 @@
     <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
     <bean id="similarProductYalet" class="ru.goodsReview.frontend.yalet.SimilarProductYalet"/>
     <bean id="thesisYalet" class="ru.goodsReview.frontend.yalet.ThesisYalet"/>
+    <bean id="popularReviewYalet" class="ru.goodsReview.frontend.yalet.PopularReviewYalet"/>
 
     <!--Other-->
     <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" lazy-init="false">

@@ -33,5 +33,15 @@
         <br/>
     </xsl:template>
 
+    <xsl:template match="data[@id='popularReview']">
+        <h2> PopularReviews:</h2>
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="//review-for-view">
+        <xsl:call-template name="review"/>
+        <br/>
+    </xsl:template>
+
 </xsl:stylesheet>
 

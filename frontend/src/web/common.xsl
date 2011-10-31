@@ -80,9 +80,37 @@
         <xsl:value-of select="@rate"/>
         <br/>
     </xsl:template>
+
     <xsl:template name="thesis">
         Thesis:
         <xsl:value-of select="content"/>
+        <br/>
+        positivity:
+        <xsl:value-of select="@positivity"/>
+        <br/>
+        votes-no:
+        <xsl:value-of select="@votes-no"/>
+        <br/>
+        votes-yes:
+        <xsl:value-of select="@votes-yes"/>
+        <br/>
+        importance:
+        <xsl:value-of select="@importance"/>
+        <br/>
+    </xsl:template>
+
+    <xsl:template name="review">
+        Thesis:
+        <xsl:value-of select="content"/>
+        <br/>
+        Author:
+        <xsl:value-of select="author"/>
+        <br/>
+        description:
+        <xsl:value-of select="description"/>
+        <br/>
+        Source-url:
+        <xsl:value-of select="source-url"/>
         <br/>
         positivity:
         <xsl:value-of select="@positivity"/>
