@@ -40,15 +40,15 @@
         <ant antfile="${storage.build}"/>
     </target>
 
-    <target name="frontend" depends="core">
-        <ant antfile="${frontend.build}"/>
+	<target name="extractor" depends="storage">
+        <ant antfile="${extractor.build}"/>
     </target>
 
-    <target name="miner" depends="core">
+    <target name="miner" depends="storage">
         <ant antfile="${miner.build}"/>
     </target>
 
-    <target name="indexer" depends="core">
+    <target name="indexer" depends="storage">
         <ant antfile="${indexer.build}"/>
     </target>
 
@@ -56,11 +56,12 @@
         <ant antfile="${searcher.build}"/>
     </target>
 
-    <target name="extractor" depends="core">
-        <ant antfile="${extractor.build}"/>
+
+    <target name="frontend" depends="searcher">
+        <ant antfile="${frontend.build}"/>
     </target>
 
-
+        
     <!--по умолчанию вызывается этот таргет (тут пара строчек лишние, но так понятнее)-->
     <target name="all" depends="init">
         <antcall target="core"/>
