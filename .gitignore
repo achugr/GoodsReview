@@ -26,7 +26,6 @@ findbugs_report.xml
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 *.zip
