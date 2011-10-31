@@ -3,6 +3,7 @@ package ru.goodsReview.storage.controller;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.mapper.ReviewMapper;
 
 import java.sql.Types;
@@ -90,6 +91,15 @@ public class ReviewDbController {
                 new int[]{Types.INTEGER},
                 reviewMapper);
         return reviews;
+    }
+
+    public List<Review> getPopularReviewsByProductId(long product_id, int n) {
+        List<Review> reviews = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review WHERE product_id = ? ORDER BY importance DESC LIMIT ?",
+                new Object[]{product_id, n},
+                new int[]{Types.INTEGER, Types.INTEGER},
+                reviewMapper);
+        return reviews;
+
     }
 
     // TODO(serebryakov): Uncomment this when list of reviews will be implemented properly.
