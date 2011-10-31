@@ -218,7 +218,6 @@
         <root url="file://$PROJECT_DIR$/lib/jakarta-commons" />
         <root url="file://$PROJECT_DIR$/lib/httpclient" />
         <root url="file://$PROJECT_DIR$/lib/webharvest" />
-        <root url="file://$PROJECT_DIR$/lib/rhino" />
         <root url="file://$PROJECT_DIR$/lib/spring" />
         <root url="file://$PROJECT_DIR$/lib/jetty" />
         <root url="file://$PROJECT_DIR$/lib/jetbrains" />
@@ -234,7 +233,6 @@
       <jarDirectory url="file://$PROJECT_DIR$/lib/jakarta-commons" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jetbrains" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jetty" recursive="false" />
-      <jarDirectory url="file://$PROJECT_DIR$/lib/rhino" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/saxon" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/spring" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/webharvest" recursive="false" />

@@ -1,11 +1,9 @@
 package ru.goodsReview.miner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-//import test.goodsReview.miner.FrequencyAnalyzer;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.Review;
+import ru.goodsReview.storage.controller.ReviewDbController;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +14,8 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args) {
-        HashMap<String, Integer> thesis1= new HashMap<String, Integer >();
+
+        /*HashMap<String, Integer> thesis1= new HashMap<String, Integer >();
         HashMap<String, Integer> thesis2= new HashMap<String, Integer >();
         HashMap<String, Integer> thesis3= new HashMap<String, Integer >();
         thesis1.put("bad",1);
@@ -34,8 +33,18 @@ public class Test {
         list1.add(thesis2);
         list1.add(thesis3);
         thesisHashTable.addSeveralThesisTables(list1);
-        thesisHashTable.print();
+        thesisHashTable.print();*/
+        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
+        javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
+        ReviewDbController reviewDbController1 = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
 
+        Review new_review1 = new Review(1,1,"Could be better,but still good enough");
+        Review new_review2 = new Review(2,1,"Not good enough");
+        reviewDbController1.addReview(new_review1);
+        reviewDbController1.addReview(new_review2);
+
+        AnalyzeThesis analyzeThesis = new AnalyzeThesis();
+        analyzeThesis.updateThesisByProductId(1);
 
        /* ListOfReviews citilinkReviews;
         citilinkReviews = new ListOfReviews();

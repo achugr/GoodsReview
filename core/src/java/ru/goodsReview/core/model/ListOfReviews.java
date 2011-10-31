@@ -25,7 +25,9 @@ public class ListOfReviews {
     public List<Review> getReviews() {
         return this.reviewsList;
     }
-
+    public void clear(){
+        reviewsList.clear();
+    }
     public void setReviewsList(List<Review> reviewsList) {
         this.reviewsList = reviewsList;
     }
