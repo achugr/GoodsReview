@@ -36,11 +36,11 @@ public class Thesis {
         this.id = id;
     }
 
-    public long getReview_id() {
+    public long getReviewId() {
         return review_id;
     }
 
-    public void setReview_id(long review_id) {
+    public void setReviewId(long review_id) {
         this.review_id = review_id;
     }
 

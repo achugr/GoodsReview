@@ -1,5 +1,7 @@
 package ru.goodsReview.core.model;
 
+import java.util.Date;
+
 /**
  * User: Artemij
  * Date: 16.10.11
@@ -10,7 +12,7 @@ public class Review {
     private long productId;
     private String content;
     private String author;
-    private long date;
+    private Date date;
     private String description;
     private long sourceId;
     private String sourceUrl;
@@ -19,7 +21,7 @@ public class Review {
     private int votesYes;
     private int votesNo;
 
-    public Review(long id, long productId, String content, String author, long date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
+    public Review(long id, long productId, String content, String author, Date date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
         this.id = id;
         this.productId = productId;
         this.content = content;
@@ -74,11 +76,11 @@ public class Review {
         this.author = author;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
