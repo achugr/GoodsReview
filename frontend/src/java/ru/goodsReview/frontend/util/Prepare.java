@@ -15,10 +15,11 @@ import ru.goodsReview.core.model.Category;
  *      vans239@gmail.com
  */
 
-public class ProductForViewPrepare {
-	public static ProductForView prepare(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
+public class Prepare {
+	public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
 		CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
-
+		if (product == null)
+			return null;
 		Category category = cdbc.getCategoryById(product.getCategoryId());
 		ProductForView pfv = new ProductForView(product, category);
 		return pfv;

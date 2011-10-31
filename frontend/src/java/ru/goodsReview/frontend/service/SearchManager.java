@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import ru.goodsReview.frontend.model.ProductForView;
-import ru.goodsReview.frontend.util.ProductForViewPrepare;
+import ru.goodsReview.frontend.util.Prepare;
 import ru.goodsReview.storage.controller.ProductDbController;
 
 /*
@@ -20,7 +20,11 @@ import ru.goodsReview.storage.controller.ProductDbController;
 public class SearchManager {
 	private SimpleJdbcTemplate jdbcTemplate;
 
-	public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
+	public SearchManager() {
+
+	}
+
+	public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	//private Searcher searcher;
@@ -31,16 +35,16 @@ public class SearchManager {
 
 	public List<ProductForView> searchByName(String query) throws Exception {
 
-	/*		List<ProductForView> brandList = new ArrayList<ProductForView>();
-			for (Brand b : searcher.searchBrandByDescription(query)) {
-				brandList.add(new ProductForView(b.getId(), b.getName(), b.getDescription(), b.getWebsite()));
-			}
-			return brandList;*/
+		/*		List<ProductForView> brandList = new ArrayList<ProductForView>();
+					for (Brand b : searcher.searchBrandByDescription(query)) {
+						brandList.add(new ProductForView(b.getId(), b.getName(), b.getDescription(), b.getWebsite()));
+					}
+					return brandList;*/
 		ProductDbController pdbc = new ProductDbController(jdbcTemplate);
 		List<ProductForView> result = new ArrayList<ProductForView>();
-
-		result.add(ProductForViewPrepare.prepare(jdbcTemplate, pdbc.getProductByName(query)));
+		ProductForView pfv = Prepare.prepareProductForView(jdbcTemplate, pdbc.getProductByName(query));
+		if(pfv != null)
+			result.add(pfv);
 		return result;
 	}
-
 }

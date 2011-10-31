@@ -3,8 +3,9 @@ package ru.goodsReview.frontend.yalet;
 import net.sf.xfresh.core.InternalRequest;
 import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
+
 import ru.goodsReview.core.model.Product;
-import ru.goodsReview.frontend.model.ProductForView;
+
 
 /*
  *  Date: 30.10.11
@@ -14,7 +15,7 @@ import ru.goodsReview.frontend.model.ProductForView;
  *      vans239@gmail.com
  */
 
-public class SimilarProduct implements Yalet {
+public class SimilarProductYalet implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
 			long id = req.getIntParameter("id");
 			Product product = new Product(id, "All is ok" + id);

@@ -1,17 +1,17 @@
 package ru.goodsReview.frontend.yalet;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import net.sf.xfresh.core.InternalRequest;
 import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 
-import org.apache.log4j.Logger;
 import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.service.PopularProductsManager;
 
-import java.util.List;
-
-// todo rewrite this class
 /*
  *  Date: 30.10.11
  *   Time: 14:12
@@ -27,12 +27,15 @@ public class PopularProductsYalet implements Yalet {
 	public void setPopularProductsManager(PopularProductsManager popularProductsManager) {
 		this.popularProductsManager = popularProductsManager;
 	}
+
 	public void process(InternalRequest req, InternalResponse res) {
 		try {
 			List<ProductForView> products = popularProductsManager.products();
+			log.debug("Request popular products");
 			if (products.size() != 0) {
 				res.add(products);
 			} else {
+				log.debug("Nothing found");
 				Xmler.Tag ans = Xmler.tag("answer", "Ничего не найдено.");
 				res.add(ans);
 			}
