@@ -6,14 +6,18 @@
     <xsl:template match="/">
         <html>
             <head>
+                <link type="text/css" rel="stylesheet" href="main.css"/>
                 <xsl:call-template name="title"/>
             </head>
             <body>
-                <xsl:call-template name="greeting"/>
-                <tr>
-                    <xsl:call-template name="find"/>
-                </tr>
-                <xsl:call-template name="popular"/>
+                <img id="logo" src="goodsReview.png" width="150" height="150"/>
+                <div id="content">
+                    <xsl:call-template name="greeting"/>
+                    <tr>
+                        <xsl:call-template name="find"/>
+                    </tr>
+                    <xsl:call-template name="popular"/>
+                </div>
             </body>
         </html>
     </xsl:template>

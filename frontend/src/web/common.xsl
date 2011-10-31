@@ -5,6 +5,7 @@
     <xsl:template name="template">
         <html>
             <head>
+                <link type="text/css" rel="stylesheet" href="main.css"/>
                 <title>
                     <xsl:text>Goods Review</xsl:text>
                 </title>
