@@ -93,18 +93,18 @@
      <!-- for checking code style -->
      <target name="checkstyle">
 
-        <delete file="checkstyle_report.xml"/>
-        <delete file="checkstyle_report.htm"/>
+        <delete file="codeValidation/checkstyle_report.xml"/>
+        <delete file="codeValidation/checkstyle_report.htm"/>
 
         <taskdef resource="checkstyletask.properties" classpath="${lib.dir}/checkstyle/checkstyle-5.4-all.jar"/>
-        <checkstyle config="${project.dir}/checks.xml"
+        <checkstyle config="codeValidation/checks.xml"
                failureProperty="checkstyle.failure"
                failOnViolation="false">
-            <formatter type="xml" tofile="checkstyle_report.xml"/>
+            <formatter type="xml" tofile="codeValidation/checkstyle_report.xml"/>
             <fileset dir="${project.dir}" includes="**/*.java" excludes="**/net/**/*.java **/test/** "/>
         </checkstyle>
 
-        <xslt in="checkstyle_report.xml" out="checkstyle_report.htm" style="checkstyle.xsl">
+        <xslt in="codeValidation/checkstyle_report.xml" out="codeValidation/checkstyle_report.htm" style="codeValidation/checkstyle.xsl">
             <outputproperty name="method" value="html"/>
             <outputproperty name="standalone" value="yes"/>
             <outputproperty name="encoding" value="iso8859_1"/>
@@ -114,13 +114,13 @@
     <!--for find bugs in code -->
     <target name="findbugs">
 
-        <delete file="findbugs_report.xml"/>
+        <delete file="codeValidation/findbugs_report.xml"/>
 
         <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
 
         <findbugs home="${lib.dir}/findbugs/"
             output="xml"
-            outputFile="findbugs_report.xml" >
+            outputFile="codeValidation/findbugs_report.xml" >
             <auxClasspath refid="libs"/>
             <sourcePath path="${project.dir}" />
             <class location="${build.dir}/" />
@@ -129,13 +129,13 @@
 
     <target name="findbugs_html">
 
-        <delete file="findbugs_report.html"/>
+        <delete file="codeValidation/findbugs_report.html"/>
 
         <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
 
         <findbugs home="${lib.dir}/findbugs/"
             output="html"
-            outputFile="findbugs_report.html" >
+            outputFile="codeValidation/findbugs_report.html" >
             <auxClasspath refid="libs"/>
             <sourcePath path="${project.dir}" />
             <class location="${build.dir}/" />
