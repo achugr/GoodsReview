@@ -2,23 +2,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
-    <xsl:template name="template">
-        <html>
-            <head>
-                <link type="text/css" rel="stylesheet" href="main.css"/>
-                <title>
-                    <xsl:text>Goods Review</xsl:text>
-                </title>
-            </head>
-            <body>
-                <h3>Goods Review</h3>
-                <tr>
-                    <xsl:call-template name="find"/>
-                </tr>
-            </body>
-        </html>
-    </xsl:template>
-
     <xsl:template name="find">
         <tr align="center">
             <td colspan="3">
@@ -35,6 +18,11 @@
             <xsl:text>Goods Review</xsl:text>
         </title>
     </xsl:template>
+
+    <xsl:template name="logo">
+        <img id="logo" src="goodsReview.png" width="150" height="150"/>
+    </xsl:template>
+
 
     <xsl:template name="greeting">
         <h1>
@@ -90,6 +78,23 @@
         <br/>
         Rate:
         <xsl:value-of select="@rate"/>
+        <br/>
+    </xsl:template>
+    <xsl:template name="thesis">
+        Thesis:
+        <xsl:value-of select="content"/>
+        <br/>
+        positivity:
+        <xsl:value-of select="@positivity"/>
+        <br/>
+        votes-no:
+        <xsl:value-of select="@votes-no"/>
+        <br/>
+        votes-yes:
+        <xsl:value-of select="@votes-yes"/>
+        <br/>
+        importance:
+        <xsl:value-of select="@importance"/>
         <br/>
     </xsl:template>
 </xsl:stylesheet>

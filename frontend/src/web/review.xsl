@@ -9,6 +9,7 @@
                 <xsl:call-template name="title"/>
             </head>
             <body>
+                <xsl:call-template name="logo"/>
                 <xsl:call-template name="greeting"/>
                 <tr>
                     <xsl:call-template name="find"/>

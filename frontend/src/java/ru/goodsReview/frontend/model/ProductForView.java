@@ -19,11 +19,11 @@ public class ProductForView {
 	private long categoryId;
 	private long popularity;
 
-	public ProductForView(Product product, Category category) throws Exception{
+	public ProductForView(Product product, Category category) throws Exception {
 		name = product.getName();
 		description = product.getDescription();
 		id = product.getId();
-		if(product.getCategoryId() != category.getId())
+		if (product.getCategoryId() != category.getId())
 			throw new Exception("Category mismatch");
 		categoryId = category.getId();
 		this.category = category.getName();
@@ -46,11 +46,6 @@ public class ProductForView {
 		return categoryId;
 	}
 
-	public void setCategoryId(long categoryId) {
-		this.categoryId = categoryId;
-		category = getCategory(categoryId);
-	}
-
 	public String getCategory() {
 		return category;
 	}
@@ -63,8 +58,4 @@ public class ProductForView {
 		return popularity;
 	}
 
-	public static String getCategory(long id){
-		//TODO get category name from table
-		return id + " category";
-	}
 }

@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.yalet;
 
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import net.sf.xfresh.core.InternalRequest;
@@ -29,8 +30,9 @@ public class SearchProductYalet implements Yalet {
 
 	public void process(InternalRequest req, InternalResponse res) {
 		String query = req.getParameter("query");
-
+		log.debug("Request search query:" + query);
 		if (query.isEmpty()) {
+			log.debug("Empty query");
 			Xmler.Tag ans = Xmler.tag("answer", "Пустой запрос. Query: " + query);
 			res.add(ans);
 			return;
@@ -41,14 +43,15 @@ public class SearchProductYalet implements Yalet {
 			if (products.size() != 0) {
 				res.add(products);
 			} else {
+				log.debug("Nothing found for query " + query);
 				Xmler.Tag ans = Xmler.tag("answer", "Ничего не найдено. Query: " + query);
 				res.add(ans);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("Something happens wrong with query: " + query);
 			Xmler.Tag ans = Xmler.tag("answer", "Все сломалось. Query: " + query);
 			res.add(ans);
 		}
 	}
 }
+

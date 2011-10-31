@@ -9,6 +9,7 @@
                 <xsl:call-template name="title"/>
             </head>
             <body>
+                <xsl:call-template name="logo"/>
                 <xsl:call-template name="greeting"/>
                 <tr>
                     <xsl:call-template name="find"/>
@@ -20,6 +21,16 @@
     </xsl:template>
     <xsl:template match="//product-for-view">
         <xsl:call-template name="product"/>
+    </xsl:template>
+
+    <xsl:template match="data[@id='thesis']">
+        <h2> Theses:</h2>
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="//thesis-for-view">
+        <xsl:call-template name="thesis"/>
+        <br/>
     </xsl:template>
 
 </xsl:stylesheet>

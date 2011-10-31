@@ -1,15 +1,15 @@
 package ru.goodsReview.frontend.service;
 
-import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.frontend.model.ProductForView;
-import ru.goodsReview.frontend.util.ProductForViewPrepare;
-import ru.goodsReview.frontend.yalet.ProductYalet;
-import ru.goodsReview.storage.controller.ProductDbController;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+
+import ru.goodsReview.core.model.Product;
+import ru.goodsReview.frontend.model.ProductForView;
+import ru.goodsReview.frontend.util.Prepare;
+import ru.goodsReview.storage.controller.ProductDbController;
 
 /*
  *  Date: 30.10.11
@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 public class PopularProductsManager {
-	private static final Logger log = org.apache.log4j.Logger.getLogger(PopularProductsManager.class);
+	private static final Logger log = Logger.getLogger(PopularProductsManager.class);
 	private int count;
 	private SimpleJdbcTemplate jdbcTemplate;
 
@@ -37,9 +37,8 @@ public class PopularProductsManager {
 		List<ProductForView> result = new ArrayList<ProductForView>();
 		for (Product product : pdbc.getPopularProducts(count)) {
 			log.debug("Product added:" + product.getName() + " Id:" + product.getId());
-			result.add(ProductForViewPrepare.prepare(jdbcTemplate, product));
+			result.add(Prepare.prepareProductForView(jdbcTemplate, product));
 		}
 		return result;
 	}
-
 }

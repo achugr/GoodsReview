@@ -3,5 +3,6 @@
 <page>
     <yalet id="product"/>
     <yalet id="similarProduct"/>
+    <yalet id="thesis"/>
 </page>
 
