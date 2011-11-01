@@ -49,6 +49,7 @@ public class AnalyzeThesis {
         FrequencyAnalyzer  freqAnForSingleReview;
         ListOfReviews buffLOR = new ListOfReviews();
         Thesis currThesis;
+        // Here we got some tough stuff
         for(Review rev : desiredReviews){
             buffLOR.clear();
             buffLOR.addReview(rev);
