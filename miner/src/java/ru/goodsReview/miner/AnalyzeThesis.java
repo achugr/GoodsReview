@@ -34,47 +34,37 @@ public class AnalyzeThesis {
 
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
         javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
-        //ProductDbController productDbController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
-        //Product product = productDbController.getProductById(productId);
 
         ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
         List<Review> desiredReviews = new ArrayList<Review>();
 
-        // Получаем список отзывов на товар producyId
         desiredReviews =  reviewDbController.getReviewsByProductId(productId);
 
-        //Теперь здесь юзаем getReviewsByProductId из ReviewDbController
         List<Review> derivedFromDbReviews = new ArrayList<Review>();
         derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
         ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
         FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
-        //Сейчас мы получим из каждого отзыва из desiredReviews (FreqAnal'ом) HashMap<String, Integer>
         ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         FrequencyAnalyzer  freqAnForSingleReview;
-        ListOfReviews booferLOR = new ListOfReviews();
+        ListOfReviews buffLOR = new ListOfReviews();
         Thesis currThesis;
         for(Review rev : desiredReviews){
-            booferLOR.clear();
-            booferLOR.addReview(rev);
-            freqAnForSingleReview = new FrequencyAnalyzer(booferLOR);
+            buffLOR.clear();
+            buffLOR.addReview(rev);
+            freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
-            //Теперь строим Thesis'ы и кладём в БД
             for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
                 currThesis = new Thesis(entry.getValue(), entry.getKey());
                 thesisDbController.addThesis(currThesis);
             }
         }
-        //Теперь часть 3: 1) достаём по отзыву из БД список
-        //Теперь этот замечательный списко нужно прогнать через FrequencyAnalyzer
-        //Создаём объект класса ListOfReviews, чтобы теперь можно было юзать FrequencyAnalyzer
+
         ListOfReviews listOfReviews;
         listOfReviews = new ListOfReviews(desiredReviews);
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
-        // Создаём HashMap'у
         frequencyAnalyzer.makeFrequencyDictionary();
 
-        //List<Thesis> listOfThesis = new ArrayList<Thesis>();
         for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
             currThesis = new Thesis(entry.getValue(), entry.getKey());
             thesisDbController.addThesis(currThesis);
