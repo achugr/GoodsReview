@@ -6,7 +6,6 @@
 */
 package ru.goodsReview.extractor;
 
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
@@ -16,20 +15,20 @@ import java.io.FileNotFoundException;
 
 public class GrabberCitilink extends Grabber{
 
-    private static final Logger log = Logger.getLogger(GrabberCitilink.class);
+    //private static final Logger log = Logger.getLogger(GrabberCitilink.class);
 
 
-    @Override
+
     public void setConfig(String config) {
         this.config = config;
     }
 
-    @Override
+
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
+
     public void grab() {
         try {
 
@@ -39,10 +38,10 @@ public class GrabberCitilink extends Grabber{
                 scraper.setDebug(true);
                 scraper.execute();
 
-            log.info("Citilink: succecsful");
+         //   log.info("Citilink: succecsful");
         } catch (Exception exception) {
-            exception.printStackTrace();
-            log.error("cannot process Citilink");
+         //   exception.printStackTrace();
+        //    log.error("cannot process Citilink");
         }
     }
 

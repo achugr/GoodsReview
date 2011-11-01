@@ -12,9 +12,7 @@ package ru.goodsReview.extractor;
  * Date: 10/26/11
  * Time: 6:20 AM
  */
-import org.apache.log4j.Logger;
-import java.util.List;
-
+/*
 public class GrabberContainer {
 
     private static final Logger log = Logger.getLogger(GrabberContainer.class);
@@ -35,4 +33,4 @@ public class GrabberContainer {
         }
         log.info("miner finished.");
     }
-}
+}        */

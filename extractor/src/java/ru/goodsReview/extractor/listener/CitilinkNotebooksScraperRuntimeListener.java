@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
-import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
@@ -29,7 +28,7 @@ import java.util.Map;
 public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeListener {
 
     private int i = 0;
-    private static final Logger log = Logger.getLogger(CitilinkNotebooksScraperRuntimeListener.class);
+   // private static final Logger log = Logger.getLogger(CitilinkNotebooksScraperRuntimeListener.class);
 
     protected SimpleJdbcTemplate jdbcTemplate;
     protected ReviewDbController reviewDbController;
@@ -78,17 +77,17 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
 
-        /*if ("body".equalsIgnoreCase(baseProcessor.getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 5)) {
+        if ("body".equalsIgnoreCase(baseProcessor.getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 5)) {
             String nameProd =  scraper.getContext().get("ProductName").toString();
             String ProdPrice = scraper.getContext().get("Price").toString();
             System.out.println(nameProd + ": " + ProdPrice + "::: "+ scraper.getRunningLevel());
-        } */
+        }
 
-          if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 8)) {
+         /* if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 8)) {
 
             String nameProd =  scraper.getContext().get("ProductName").toString();
             String ProdPrice = scraper.getContext().get("Price").toString();
-            //System.out.println(nameProd + ": " + ProdPrice);
+           // System.out.println(nameProd + ": " + ProdPrice);
 
             String ReviewTime = scraper.getContext().get("ReviewTime").toString();
             String StarRate = scraper.getContext().get("StarRate").toString();
@@ -101,9 +100,9 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             //Review rev =  new Review(1,1, GoodFeatures+BadFeatures+ Comments, "amarch", 10, Description, 15 , "httpa", Integer.parseInt(StarRate), 100500, Integer.parseInt(VoteYes), Integer.parseInt(VoteNo));
             //reviewDbController.addReview(rev);
           //  articleProvider.writeArticleToDataStore(article);
-            log.info(" New review addded");
+           // log.info(" New review addded");
            // System.out.println(ReviewTime + " " + StarRate + " ");
-          }
+          }   */
 
 
             //Variable newsText = (Variable) scraper.getContext().get("newsFullText");
@@ -123,7 +122,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
     public void onExecutionError(Scraper scraper, Exception e) {
         if (e != null) {
-            log.error("CitilinkNotebooksScraperRuntimeListener error");
+            //log.error("CitilinkNotebooksScraperRuntimeListener error");
         }
     }
 }

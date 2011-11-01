@@ -39,20 +39,20 @@
             <body>
             	<empty>
 
-            	<!--file action="write" path="DownloadedCitilink/p=${i.toInt()}${oneNew}opinion.html">
+            	<file action="write" path="DownloadedCitilink/p=${i.toInt()}${oneNew}opinion.html">
                 	<var-def name="oneNewURL">
                     	<html-to-xml>
                         	<http url="http://www.citilink.ru${oneNew}?opinion"/>
                     	</html-to-xml>
                 	</var-def>
-        		</file-->
+        		</file>
 
 
-        		<file action="append" path="DownloadedCitilink/List.xml">
+        		<!--file action="append" path="DownloadedCitilink/List.xml">
                 	<![CDATA[ <div> ]]>
                 		<var name="oneNew"/>
                 	<![CDATA[ </div> ]]>
-        		</file>
+        		</file-->
 
             	</empty>
             </body>
