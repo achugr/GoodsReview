@@ -20,11 +20,12 @@
     </xsl:template>
 
     <xsl:template name="logo">
-        <img id="logo" src="goodsReview.png" width="150" height="150"/>
+        <img id="logo" src="goodsReview.png" width="75" height="75"/>
     </xsl:template>
 
 
     <xsl:template name="greeting">
+
         <h1>
             <a href="/index.xml">Goods Review</a>
         </h1>
