@@ -56,7 +56,7 @@ public class AnalyzeThesis {
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
             for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
-                currThesis = new Thesis(entry.getValue(), entry.getKey());
+                currThesis = new Thesis(rev.getId(), entry.getKey(), entry.getValue());
                 thesisDbController.addThesis(currThesis);
             }
         }
@@ -67,7 +67,7 @@ public class AnalyzeThesis {
         frequencyAnalyzer.makeFrequencyDictionary();
 
         for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
-            currThesis = new Thesis(entry.getValue(), entry.getKey());
+            currThesis = new Thesis(entry.getKey(), entry.getValue());
             thesisDbController.addThesis(currThesis);
         }
     }
