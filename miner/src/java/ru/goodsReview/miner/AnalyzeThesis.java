@@ -15,6 +15,7 @@ import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,14 @@ public class AnalyzeThesis {
         javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
 
         ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-        List<Review> desiredReviews;
+        List<Review> desiredReviews = new ArrayList<Review>();
 
         desiredReviews =  reviewDbController.getReviewsByProductId(productId);
+
+        List<Review> derivedFromDbReviews = new ArrayList<Review>();
+        derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
+        ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
+        FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
         ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         FrequencyAnalyzer  freqAnForSingleReview;
@@ -50,8 +56,7 @@ public class AnalyzeThesis {
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
             for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
-                System.out.println("review id: "+ entry.getValue() + " thesis: "+ entry.getKey());
-                currThesis = new Thesis(entry.getValue(), entry.getKey());
+                currThesis = new Thesis(rev.getId(), entry.getKey(), entry.getValue());
                 thesisDbController.addThesis(currThesis);
             }
         }
@@ -62,8 +67,7 @@ public class AnalyzeThesis {
         frequencyAnalyzer.makeFrequencyDictionary();
 
         for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
-            currThesis = new Thesis(entry.getValue(), entry.getKey());
-            System.out.println("review id: "+ entry.getValue() + " thesis: "+ entry.getKey());
+            currThesis = new Thesis(entry.getKey(), entry.getValue());
             thesisDbController.addThesis(currThesis);
         }
     }
