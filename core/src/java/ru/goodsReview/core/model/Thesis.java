@@ -18,6 +18,11 @@ public class Thesis {
     private long votes_yes;
     private long votes_no;
 
+    public Thesis(long review_id, String content) {
+        this.review_id = review_id;
+        this.content = content;
+    }
+
     public Thesis(long id, long review_id, String content, double positivity, double importance, long votes_yes, long votes_no) {
         this.id = id;
         this.review_id = review_id;
