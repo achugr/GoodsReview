@@ -1,89 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
-<config charset="ISO-8859-1">
-    
-    <include path="functionsCitilink.xml"/>
-                
-    <var-def name="products">    
-        <call name="download-multipage-list">
-            <call-param name="pageUrl">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</call-param>
-            <call-param name="nextXPath">//div[@class="cat_nav top"]/*/a[text() = ((..//span/text())+1)]/@href</call-param>
-            <call-param name="itemXPath">//table[@class = "item"]</call-param>
-            <call-param name="maxloops">42</call-param>
-        </call>
+
+<config>
+
+   <var-def name="MaxPage">
+            <xpath expression="//div[@class='cat_nav top']/div[@class='b']/a[last()]/text()">
+                <html-to-xml>
+                    <http url="http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/"/>
+                </html-to-xml>
+            </xpath>
     </var-def>
-      
-      
-      
-      <file action="write" path="citilinkReviews.xml" charset="UTF-8">
-        <![CDATA[ <catalog> ]]>
-        <loop item="link" index="i">
+   
+   
+    <while condition="${MaxPage.toInt() + 1>i.toInt()}" index="i"><empty>
+        <var-def name="ProductsURL">
+            <xpath expression='//table[@class = "item"]'>
+                <html-to-xml>
+                    <http url="http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/?p=${i.toInt()}"/>
+                </html-to-xml>
+            </xpath>
+        </var-def>
+
+        	<loop item="oneNew" index="j">
             <list>
-            	<xpath expression='//td[@class="l"]/*//@href'>
+                <xpath expression='//td[@class="l"]/*//@href'>
            			 <html-to-xml>
-            		    <var name="products"/>
+            		    <var name="ProductsURL"/>
            			 </html-to-xml>
         		</xpath>
-        	</list>
-            <body>
-            	
-            	<![CDATA[ <product> ]]>
-            		<xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
-           				 <html-to-xml>
-            			    <http url="http://www.citilink.ru${link}?opinion"/>
-           				 </html-to-xml>
-        			</xpath>
-        			
-                <![CDATA[ <price> ]]>
-            		<xpath expression='//div[@class="price"]/text()'>
-           				 <html-to-xml>
-            			    <http url="http://www.citilink.ru${link}?opinion"/>
-           				 </html-to-xml>
-        			</xpath>
-        		<![CDATA[ </price> ]]>	
+            </list>
+            <body><empty>
+                <var-def name="oneNewURL">
+                    <html-to-xml>
+                        <http url="http://www.citilink.ru${oneNew}?opinion"/>
+                    </html-to-xml>
+                </var-def>
+
+                <var-def name="ProductName">
+                    <xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
+                        <var name="oneNewURL"/>
+                    </xpath>
+                </var-def>
+                
+              <var-def name = "Price">
+            	<xpath expression='//div[@class="price"]/text()'>
+           				<html-to-xml>
+            		    	<var name = "oneNewURL"/>
+           				</html-to-xml>
+        		</xpath>
+        		</var-def>
         		
-            	<loop item="review" index="j">
+        		
+        		<loop item="review" index="j">
             	<list>
             		<xpath expression='//div[@class="opinion row1"]'>
            				 <html-to-xml>
-            			    <http url="http://www.citilink.ru${link}?opinion"/>
+            			    <var name="oneNewURL"/>
            				 </html-to-xml>
         			</xpath>
 				</list>
-            	<body>
-                	<xquery>
-                 	   <xq-param name="review" type="node()"><var name="review"/></xq-param>
-                 	   <xq-expression><![CDATA[
-                    	        declare variable $review as node() external;
- 
-                        	    let $rev_time := data($review//*[@class='l']/p[@class='d']/text())
-                        	    let $rate := data($review//*[@class='m']/p[1]/img/@alt)
-                            	let $desc := data($review//*[@class='m']/p[1]/b/text())
-                            	let $good := data($review//*[@class='m']/p[2])
-                            	let $bad := data($review//*[@class='m']/p[3])
-                            	let $comment := data($review//*[@class='m']/p[4])
-                            	let $vote_yes := data($review//*[@class='vote']/p/span[3]/text())
-                            	let $vote_no := data($review//*[@class='vote']/p/span[6]/text())
-                                	
-                                	return
-                                    	<review>
-                                        	<rev_time>{normalize-space($rev_time)}</rev_time>
-                                        	<rate>{normalize-space($rate)}</rate>
-                                        	<desc>{normalize-space($desc)}</desc>
-                                        	<good>{normalize-space($good)}</good>
-                                        	<bad>{normalize-space($bad)}</bad>
-                                        	<comment>{normalize-space($comment)}</comment>
-                                        	<vote_yes>{normalize-space($vote_yes)}</vote_yes>
-                                        	<vote_no>{normalize-space($vote_no)}</vote_no>
-                                       	</review>
-                    	]]></xq-expression>
-                	</xquery>
-                </body>
-                </loop>
-                <![CDATA[ </product> ]]>
-            </body>
-        </loop>
-        <![CDATA[ </catalog> ]]>
-    </file>
-</config>
 
+            	<body><empty>
+            	
+            
+            	<var-def name = "ReviewTime">
+            		<xpath expression="//*[@class='l']/p[@class='d']/text()">
+            		    	<var name = "review"/>
+        			</xpath>
+        		</var-def>
+        		
+        		
+        		<var-def name = "StarRate">
+            		<xpath expression="//*[@class='m']/p[1]/img/@alt">
+            		    	<var name = "review"/>
+        			</xpath>
+        		</var-def>
+        		
+        		<var-def name = "Description">
+            		<xpath expression="//*[@class='m']/p[1]/b/text()">
+            		    	<var name = "review"/>
+        			</xpath>
+        		</var-def>
+            		
+            	<var-def name = "GoodFeatures">
+            		<xpath expression="//*[@class='m']/p[2]">
+            		    	<var name = "review"/>
+           			</xpath>
+        		</var-def>
+        		
+        		<var-def name = "BadFeatures">
+            		<xpath expression="//*[@class='m']/p[3]">
+           			    	<var name = "review"/>
+           			</xpath>
+        		</var-def>
+        		
+        		<var-def name = "Comments">
+            		<xpath expression="//*[@class='m']/p[4]">
+           			    	<var name = "review"/>
+           			</xpath>
+        		</var-def>
+        		
+        		<var-def name = "VoteYes">
+            		<xpath expression="//*[@class='vote']/p/span[3]/text()">
+           			    	<var name = "review"/>
+           			</xpath>
+        		</var-def>
+        		
+        		<var-def name = "VoteNo">
+            		<xpath expression="//*[@class='vote']/p/span[6]/text()">
+           			    	<var name = "review"/>
+           			</xpath>
+        		</var-def>
+            		
+                	</empty>
+                </body>
+                </loop>    		
+
+            </empty></body>
+        </loop>
+    </empty></while>
+
+
+</config>
