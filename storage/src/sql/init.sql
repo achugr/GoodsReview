@@ -9,7 +9,7 @@ Database: MySQL 5.5
 
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
 
-
+use goodsreview_permanent;
 -- Drop relationships section -------------------------------------------------
 
 ALTER TABLE query DROP FOREIGN KEY query like unique
