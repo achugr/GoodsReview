@@ -2,7 +2,10 @@ package ru.goodsReview.miner;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.controller.ReviewDbController;
+
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,14 +36,16 @@ public class Test {
         list1.add(thesis3);
         thesisHashTable.addSeveralThesisTables(list1);
         thesisHashTable.print();*/
-        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-        javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
-        ReviewDbController reviewDbController1 = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
 
-       /* Review new_review1 = new Review(1,1,"good good good phone");
-        Review new_review2 = new Review(2,1,"Not good enough");
-        reviewDbController1.addReview(new_review1);
-        reviewDbController1.addReview(new_review2);*/
+        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
+        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
+        ReviewDbController reviewDbController1 = new ReviewDbController(jdbcTemplate);
+
+		Review new_review1 = new Review(1, 1, "good good good phone", null,new Date(), null, 1, null, 0, 0, 0, 0);
+		Review new_review2 = new Review(1, 1, "Not good enough", null,new Date(), null, 1, null, 0, 0, 0, 0);
+
+        reviewDbController1.addReview(new_review2);
+		reviewDbController1.addReview(new_review1);
 
         AnalyzeThesis analyzeThesis = new AnalyzeThesis();
         analyzeThesis.updateThesisByProductId(1);
