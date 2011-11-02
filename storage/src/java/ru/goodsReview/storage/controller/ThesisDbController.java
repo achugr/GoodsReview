@@ -33,6 +33,8 @@ public class ThesisDbController {
 
     public long addThesis(Thesis thesis) {
         try {
+			System.out.println(thesis.getReviewId());
+
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(?,?,?,?,?,?)",
                     new Object[]{thesis.getReviewId(), thesis.getContent(), thesis.getPositivity(), thesis.getImportance(), thesis.getVotesYes(), thesis.getVotesNo()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER});
