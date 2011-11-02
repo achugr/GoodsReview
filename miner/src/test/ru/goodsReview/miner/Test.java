@@ -2,7 +2,6 @@ package ru.goodsReview.miner;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
 /**
@@ -38,10 +37,10 @@ public class Test {
         javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
         ReviewDbController reviewDbController1 = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
 
-        Review new_review1 = new Review(1,1,"good good good phone");
+       /* Review new_review1 = new Review(1,1,"good good good phone");
         Review new_review2 = new Review(2,1,"Not good enough");
         reviewDbController1.addReview(new_review1);
-        reviewDbController1.addReview(new_review2);
+        reviewDbController1.addReview(new_review2);*/
 
         AnalyzeThesis analyzeThesis = new AnalyzeThesis();
         analyzeThesis.updateThesisByProductId(1);
