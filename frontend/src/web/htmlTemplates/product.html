@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -119,6 +119,21 @@
 			left:2%;
 			top:10%;
 		}
+		.rightSearchPanel {
+			position: fixed;
+			left:85%;
+			top:10%;
+			width:20px;
+		}
+		.rightSearchPanel .btn {
+			margin: 10px 20px 0px 35px;
+		}
+		.rightSearchPanel img {
+			margin: 0px 20px 5px 20px;
+		}
+		.rightSearchPanel input {
+			width:150px;
+		}
       .topbar .btn {
         border: 0;
       }
@@ -130,11 +145,24 @@
 		margin: 15px 0px 15px 0px;
 		background-color:whiteSmoke;
 		font-size:110%;
-		padding:2px 2px 2px 4px;
 	  }
 	  .brand {
 		position:absolute;
 		left:15px;
+	  }
+	  .comment {
+		height:20px;
+		margin: 15px 0px 15px 0px;
+		background-color:whiteSmoke;
+		padding: 5px 5px 5px 5px;
+	  }
+	  .productInfo .productName {
+		height:20px;
+		margin: -15px 0px 10px 0px;
+		background-color:whiteSmoke;
+		padding: 10px 10px 10px 10px;
+		font-size:120%;
+		font-weight:bold;
 	  }
 
     </style>
@@ -176,87 +204,56 @@
 				
 			</div>
 			<div class="menu">
-			<div class="fill">
-			<div class="container">
-			  <ul class="nav">
-				<li class="current"><a href="#">Популярные товары</a></li>
-				<li><a href="#">Частые тезисы</a></li>
-				<li><a href="#">Последние запросы</a></li>
-			  </ul>
-			</div>
-			</div>
-			</div>
-			<div class="page-header">
-				<div class="row">
-					<div class="span2">
-						<img src="images/mediumLogo.png"/>
-					</div>
-					<div class="span3">
-						<div class="input">
-							<input class="xlarge" id="xlInput" name="xlInput" size="30" type="text" title="Спросите и Mr. ReviewMan подробно опишет вам товар">
-						</div>
-					</div>
-					<div class="span1">
-						<button class="btn">Подскажи!</button>
+				<div class="fill">
+					<div class="container">
+					  <ul class="nav">
+						<li><a href="#">Популярные товары</a></li>
+						<li><a href="#">Частые тезисы</a></li>
+						<li><a href="#">Последние запросы</a></li>
+					  </ul>
 					</div>
 				</div>
 			</div>
-		<div class="replaceableContent">
-		  <ul class="popularProducts">
-			<li>
-				<div class="productName"><a href="#">Lenovo thinkpad x220</a></div>
-				<table>
-					<tr>
-						<td>
-							<a href="#">
-								<img src="images/lenovo.jpg"/>
-							</a>
-						</td>
-						<td>
-							<div>Популярность: 12</div>
-							<div>Тезисов:8</div>
-							<div>Комментариев:12</div>
-						</td>
-					</tr>
-				</table>
-			</li>
-			<li>
-				<div class="productName"><a href="#">Motorola hz</a></div>
-				<table>
-					<tr>
-						<td>
-							<a href="#">
-								<img src="images/motorola.jpg"/>
-							</a>
-						</td>
-						<td>
-							<div>Популярность: 8</div>
-							<div>Тезисов:9</div>
-							<div>Комментариев:7</div>
-						</td>
-					</tr>
-				</table>
-			</li>
-			<li>
-				<div class="productName"><a href="#">Apple iphone 3G</a></div>
-				<table>
-					<tr>
-						<td>
-							<a href="#">
-								<img src="images/iphone.jpg"/>
-							</a>
-						</td>
-						<td>
-							<div>Популярность: 100</div>
-							<div>Тезисов:80</div>
-							<div>Комментариев:150</div>
-						</td>
-					</tr>
-				</table>
-			</li>
-		  </ul>
+			<div class="rightSearchPanel">
+				<img src="images/mediumLogo.png"/>
+				<form>
+					<input id="" name="" type="text"/>
+					<button class="btn">Подскажи!</button>
+				</form>
+			</div>
+			
+			<div class="productInfo">
+			<div class="productName">lenovo thinkpad x220 tablet</div>
+			<div class="row">
+				<div class="span5">
+					<img src="images/lenovoTabletBig.jpg"/>
+				</div>
+				<div class="span3">
+					<h3>Тезисы</h3>
+					<ul>
+						<li>легкий</li>
+						<li>элегантный</li>
+						<li>плохая сборка</li>
+						<li>удобная клавиатура</li>
+						<li>дороговат</li>
+						<li>элегантный корпус</li>
+						<li>плохая батарея</li>
+					</ul>
+				</div>
+				<div class="span5">
+				<h3>Похожие товары</h3>
+					<ul>
+						<li><a href="#">lenovo thinkpad x201</a></li>
+						<li><a href="#">lenovo thinkpad x220</a></li>
+					</ul>
+				</div>
+			</div>
+			</div>
+			<h3>Лучшие комментарии</h3>
+			<div class="comment">Хороший, легкий ноутбук, только качество сборки так себе.. <a href="source">>></a></div>
+			<div class="comment">Хороший ноутбук, мне нравится! Удобная клавиатура, элегантный корпус, но качество сборки оставляет желать лучшего :( <a href="source">>></a></div>
+			
 		</div>
-      </div>
 
       <footer>
         <p>&copy; GoodsReview 2011</p>
