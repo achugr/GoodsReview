@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <title>GoodsReview</title>
     <meta name="description" content="">
@@ -8,163 +8,162 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
     <link href="bootstrap.css" rel="stylesheet">
-    <!--<link href="../docs.css" rel="stylesheet">-->
+	<!--<link href="../docs.css" rel="stylesheet">-->
 
     <style type="text/css">
-        /* Override some defaults */
-        html, body {
+      /* Override some defaults */
+      html, body {
         background-color: #eee;
-        }
-        body {
+      }
+      body {
         padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
-        }
-        .container > footer p {
+      }
+      .container > footer p {
         text-align: center; /* center align it with the container */
-        }
-        .container {
-        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this
-        removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-        }
+      }
+      .container {
+        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+      }
 
-        /* The white background content wrapper */
-        .content {
+      /* The white background content wrapper */
+      .content {
         background-color: #fff;
         padding: 20px;
         margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
         -webkit-border-radius: 0 0 6px 6px;
-        -moz-border-radius: 0 0 6px 6px;
-        border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
         -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-        box-shadow: 0 1px 2px rgba(0,0,0,.15);
-        }
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
 
-        /* Page header tweaks */
-        .page-header {
+      /* Page header tweaks */
+      .page-header {
         background-color: #f5f5f5;
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
-        }
+      }
 
-        /* Styles you shouldn't keep as they are for displaying this base example only */
-        .content .span10,
-        .content .span4 {
+      /* Styles you shouldn't keep as they are for displaying this base example only */
+      .content .span10,
+      .content .span4 {
         min-height: 500px;
-        }
-        /* Give a quick and non-cross-browser friendly divider */
-        .content .span4 {
+      }
+      /* Give a quick and non-cross-browser friendly divider */
+      .content .span4 {
         margin-left: 0;
         padding-left: 19px;
         border-left: 1px solid #eee;
-        }
-        .span3 {
-        height:50px;
-        }
+      }
+		.span3 {
+			height:50px;
+		}
 
-        #xlInput {
-        width: 500px;
-        margin-top:30px;
-        margin-bottom:15px;
-        margin-right: 20px;
-        }
-        .span1 {
-        margin-top:29px;
-        margin-left:370px;
-        }
+		#xlInput {
+			width: 500px;
+			margin-top:30px;
+			margin-bottom:15px;
+			margin-right: 20px;
+		}
+		.span1 {
+			margin-top:29px;
+			margin-left:370px;
+		}
 
-        .topMenu a{
-        color:#BFBFBF;
-        }
-        .topMenu li:hover{
-        background-color:#404040;
-        }
-        .topMenu .current {
-        border-top: solid 2px red;
-        }
-        .topMenu .current a{
-        color:white;
-        font-weight:bold;
-        margin-top:-2px;
-        }
-        .menu {
-        background: #EEE;
-        text-align: center;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        min-height: 30px;
-        line-height: 30px;
-        margin-bottom:40px;
+		.topMenu a{
+			color:#BFBFBF;
+		}
+		.topMenu li:hover{
+			background-color:#404040;
+		}
+		.topMenu .current {
+			border-top: solid 2px red;
+		}
+		.topMenu .current a{
+			color:white;
+			font-weight:bold;
+			margin-top:-2px;
+		}
+		.menu {
+			background: #EEE;
+			text-align: center;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			min-height: 30px;
+			line-height: 30px;
+			margin-bottom:40px;
 
-        }
-        .menu .nav li:hover{
-        background-color:#CCC;
-        }
-        .menu .nav a{
-        font-size:110%;
-        color:#464D5C;
-        }
-        .menu .nav li{
-        margin:0px 20px 0px 20px;
-        }
-        .menu .current {
-        background-color:#CCC;
-        }
-        .leftMenu {
-        position: fixed;
-        left:2%;
-        top:10%;
-        }
-        .rightSearchPanel {
-        position: fixed;
-        left:85%;
-        top:10%;
-        width:20px;
-        }
-        .rightSearchPanel .btn {
-        margin: 10px 20px 0px 35px;
-        }
-        .rightSearchPanel img {
-        margin: 0px 20px 5px 20px;
-        }
-        .rightSearchPanel input {
-        width:150px;
-        }
-        .topbar .btn {
+		}
+		.menu .nav li:hover{
+			background-color:#CCC;
+		}
+		.menu .nav a{
+			font-size:110%;
+			color:#464D5C;
+		}
+		.menu .nav li{
+			margin:0px 20px 0px 20px;
+		}
+		.menu .current {
+			background-color:#CCC;
+		}
+		.leftMenu {
+			position: fixed;
+			left:2%;
+			top:10%;
+		}
+		.rightSearchPanel {
+			position: fixed;
+			left:85%;
+			top:10%;
+			width:20px;
+		}
+		.rightSearchPanel .btn {
+			margin: 10px 20px 0px 35px;
+		}
+		.rightSearchPanel img {
+			margin: 0px 20px 5px 20px;
+		}
+		.rightSearchPanel input {
+			width:150px;
+		}
+      .topbar .btn {
         border: 0;
-        }
-        .popularProducts li{
+      }
+	  .popularProducts li{
 
-        }
-        .productName{
-        height:20px;
-        margin: 15px 0px 15px 0px;
-        background-color:whiteSmoke;
-        font-size:110%;
-        }
-        .brand {
-        position:absolute;
-        left:15px;
-        }
-        .comment {
-        height:20px;
-        margin: 15px 0px 15px 0px;
-        background-color:whiteSmoke;
-        padding: 5px 5px 5px 5px;
-        }
-        .productInfo .productName {
-        height:20px;
-        margin: -15px 0px 10px 0px;
-        background-color:whiteSmoke;
-        padding: 10px 10px 10px 10px;
-        font-size:120%;
-        font-weight:bold;
-        }
+	  }
+	  .productName{
+		height:20px;
+		margin: 15px 0px 15px 0px;
+		background-color:whiteSmoke;
+		font-size:110%;
+	  }
+	  .brand {
+		position:absolute;
+		left:15px;
+	  }
+	  .comment {
+		height:20px;
+		margin: 15px 0px 15px 0px;
+		background-color:whiteSmoke;
+		padding: 5px 5px 5px 5px;
+	  }
+	  .productInfo .productName {
+		height:20px;
+		margin: -15px 0px 10px 0px;
+		background-color:whiteSmoke;
+		padding: 10px 10px 10px 10px;
+		font-size:120%;
+		font-weight:bold;
+	  }
 
     </style>
 
@@ -173,99 +172,94 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-</head>
+  </head>
 
-<body>
+  <body>
 
-<div class="topbar">
-    <div class="fill">
+    <div class="topbar">
+      <div class="fill">
         <div class="container">
-            <a class="brand" href="#">GoodsReview</a>
-            <ul class="topMenu">
-                <li class="current"><a href="#">Главная</a></li>
-                <li><a href="#about">О проекте</a></li>
-                <li><a href="#tasks">Интересные задачи</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
+          <a class="brand" href="#">GoodsReview</a>
+          <ul class="topMenu">
+            <li class="current"><a href="#">Главная</a></li>
+            <li><a href="#about">О проекте</a></li>
+			<li><a href="#tasks">Интересные задачи</a></li>
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
         </div>
-    </div>
-</div>
-
-<div class="container">
-
-    <div class="content">
-        <div class="leftMenu">
-            <h3>Категории товаров</h3>
-            <ul class="leftMenuHead">
-                <li><a href="#">Ноутбуки</a></li>
-                <li><a href="#">Мобильные телефоны</a></li>
-                <li><a href="#">Настольные пк</a></li>
-                <li><a href="#">Аудио-плееры</a></li>
-            </ul>
-
-        </div>
-        <div class="menu">
-            <div class="fill">
-                <div class="container">
-                    <ul class="nav">
-                        <li><a href="#">Популярные товары</a></li>
-                        <li><a href="#">Частые тезисы</a></li>
-                        <li><a href="#">Последние запросы</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="rightSearchPanel">
-            <img src="images/mediumLogo.png"/>
-
-            <form>
-                <input id="" name="" type="text"/>
-                <button class="btn">Подскажи!</button>
-            </form>
-        </div>
-
-        <div class="productInfo">
-            <div class="productName">lenovo thinkpad x220 tablet</div>
-            <div class="row">
-                <div class="span5">
-                    <img src="images/lenovoTabletBig.jpg"/>
-                </div>
-                <div class="span3">
-                    <h3>Тезисы</h3>
-                    <ul>
-                        <li>легкий</li>
-                        <li>элегантный</li>
-                        <li>плохая сборка</li>
-                        <li>удобная клавиатура</li>
-                        <li>дороговат</li>
-                        <li>элегантный корпус</li>
-                        <li>плохая батарея</li>
-                    </ul>
-                </div>
-                <div class="span5">
-                    <h3>Похожие товары</h3>
-                    <ul>
-                        <li><a href="#">lenovo thinkpad x201</a></li>
-                        <li><a href="#">lenovo thinkpad x220</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <h3>Лучшие комментарии</h3>
-
-        <div class="comment">Хороший, легкий ноутбук, только качество сборки так себе.. <a href="source">>></a></div>
-        <div class="comment">Хороший ноутбук, мне нравится! Удобная клавиатура, элегантный корпус, но качество сборки
-            оставляет желать лучшего :( <a href="source">>></a>
-        </div>
-
+      </div>
     </div>
 
-    <footer>
+    <div class="container">
+
+		<div class="content">
+			<div class="leftMenu">
+				<h3>Категории товаров</h3>
+				<ul class="leftMenuHead">
+					<li><a href="#">Ноутбуки</a></li>
+					<li><a href="#">Мобильные телефоны</a></li>
+					<li><a href="#">Настольные пк</a></li>
+					<li><a href="#">Аудио-плееры</a></li>
+				</ul>
+
+			</div>
+			<div class="menu">
+				<div class="fill">
+					<div class="container">
+					  <ul class="nav">
+						<li><a href="#">Популярные товары</a></li>
+						<li><a href="#">Частые тезисы</a></li>
+						<li><a href="#">Последние запросы</a></li>
+					  </ul>
+					</div>
+				</div>
+			</div>
+			<div class="rightSearchPanel">
+				<img src="images/mediumLogo.png"/>
+				<form>
+					<input id="" name="" type="text"/>
+					<button class="btn">Подскажи!</button>
+				</form>
+			</div>
+
+			<div class="productInfo">
+			<div class="productName">lenovo thinkpad x220 tablet</div>
+			<div class="row">
+				<div class="span5">
+					<img src="images/lenovoTabletBig.jpg"/>
+				</div>
+				<div class="span3">
+					<h3>Тезисы</h3>
+					<ul>
+						<li>легкий</li>
+						<li>элегантный</li>
+						<li>плохая сборка</li>
+						<li>удобная клавиатура</li>
+						<li>дороговат</li>
+						<li>элегантный корпус</li>
+						<li>плохая батарея</li>
+					</ul>
+				</div>
+				<div class="span5">
+				<h3>Похожие товары</h3>
+					<ul>
+						<li><a href="#">lenovo thinkpad x201</a></li>
+						<li><a href="#">lenovo thinkpad x220</a></li>
+					</ul>
+				</div>
+			</div>
+			</div>
+			<h3>Лучшие комментарии</h3>
+			<div class="comment">Хороший, легкий ноутбук, только качество сборки так себе.. <a href="source">>></a></div>
+			<div class="comment">Хороший ноутбук, мне нравится! Удобная клавиатура, элегантный корпус, но качество сборки оставляет желать лучшего :( <a href="source">>></a></div>
+
+		</div>
+
+      <footer>
         <p>&copy; GoodsReview 2011</p>
-    </footer>
+      </footer>
 
-</div>
-<!-- /container -->
+    </div> <!-- /container -->
 
-</body>
+  </body>
 </html>
