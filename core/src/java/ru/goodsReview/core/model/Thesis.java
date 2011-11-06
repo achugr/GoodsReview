@@ -13,35 +13,17 @@ public class Thesis {
     private long id;
     private long review_id;
     private String content;
+    private int frequency;
     private double positivity;
     private double importance;
-    private long votes_yes;
-    private long votes_no;
 
-    public Thesis(String content, double importance) {
-        this.content = content;
-        this.importance = importance;
-    }
-
-    public Thesis(long review_id, String content, double importance) {
-        this.review_id = review_id;
-        this.content = content;
-        this.importance = importance;
-    }
-
-    public Thesis(long review_id, String content) {
-        this.review_id = review_id;
-        this.content = content;
-    }
-
-    public Thesis(long id, long review_id, String content, double positivity, double importance, long votes_yes, long votes_no) {
+    public Thesis(long review_id, String content, int frequency, double positivity, double importance) {
         this.id = id;
         this.review_id = review_id;
         this.content = content;
         this.positivity = positivity;
         this.importance = importance;
-        this.votes_yes = votes_yes;
-        this.votes_no = votes_no;
+        this.frequency = frequency;
     }
 
     public long getId() {
@@ -84,20 +66,11 @@ public class Thesis {
         this.importance = importance;
     }
 
-    public long getVotesYes() {
-        return votes_yes;
+    public int getFrequency() {
+        return frequency;
     }
 
-    public void setVotesYes(long votes_yes) {
-        this.votes_yes = votes_yes;
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
-
-    public long getVotesNo() {
-        return votes_no;
-    }
-
-    public void setVotesNo(long votes_no) {
-        this.votes_no = votes_no;
-    }
-
 }

@@ -2,11 +2,13 @@ package ru.goodsReview.core.model;
 
 import java.util.Date;
 
-/**
- * User: Artemij
- * Date: 16.10.11
- * Time: 17:01
- */
+/*
+    Date: 16.10.11
+    Time: 17:01
+    Author:
+        Artemij Chugreev
+        artemij.chugreev@gmail.com
+*/
 public class Review {
     private long id;
     private long productId;
