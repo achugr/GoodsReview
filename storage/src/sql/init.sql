@@ -7,35 +7,37 @@ Author: Sergey Serebryakov
 Database: MySQL 5.5
 */
 
+DROP DATABASE IF EXISTS goodsreview_permanent;
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
 
 use goodsreview_permanent;
+
 -- Drop relationships section -------------------------------------------------
 
-ALTER TABLE query DROP FOREIGN KEY query like unique
-;
-ALTER TABLE thesis DROP FOREIGN KEY thesis_like_unique
-;
-ALTER TABLE category DROP FOREIGN KEY has_parent
-;
-ALTER TABLE product DROP FOREIGN KEY belongs_to
-;
-ALTER TABLE thesis DROP FOREIGN KEY extracted_from
-;
-ALTER TABLE review DROP FOREIGN KEY provides
-;
-ALTER TABLE review DROP FOREIGN KEY has_review
-;
-ALTER TABLE shop_link DROP FOREIGN KEY hosts
-;
-ALTER TABLE specification_value DROP FOREIGN KEY is_value_of
-;
-ALTER TABLE specification_value DROP FOREIGN KEY has_spec
-;
-ALTER TABLE shop_link DROP FOREIGN KEY has_link_to
-;
-
-
+-- ALTER TABLE query DROP FOREIGN KEY query like unique
+-- ;
+-- ALTER TABLE thesis DROP FOREIGN KEY thesis_like_unique
+-- ;
+-- ALTER TABLE category DROP FOREIGN KEY has_parent
+-- ;
+-- ALTER TABLE product DROP FOREIGN KEY belongs_to
+-- ;
+-- ALTER TABLE thesis DROP FOREIGN KEY extracted_from
+-- ;
+-- ALTER TABLE review DROP FOREIGN KEY provides
+-- ;
+-- ALTER TABLE review DROP FOREIGN KEY has_review
+-- ;
+-- ALTER TABLE shop_link DROP FOREIGN KEY hosts
+-- ;
+-- ALTER TABLE specification_value DROP FOREIGN KEY is_value_of
+-- ;
+-- ALTER TABLE specification_value DROP FOREIGN KEY has_spec
+-- ;
+-- ALTER TABLE shop_link DROP FOREIGN KEY has_link_to
+-- ;
+--
+--
 
 
 -- Drop keys for tables section -------------------------------------------------
@@ -296,7 +298,7 @@ ALTER TABLE category ADD CONSTRAINT has_parent FOREIGN KEY (parent_category_id) 
 ALTER TABLE thesis ADD CONSTRAINT thesis_like_unique FOREIGN KEY (thesis_unique_id) REFERENCES thesis_unique (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
-ALTER TABLE query ADD CONSTRAINT query like unique FOREIGN KEY (query_unique_id) REFERENCES query_unique (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE query ADD CONSTRAINT query_like_unique FOREIGN KEY (query_unique_id) REFERENCES query_unique (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 
