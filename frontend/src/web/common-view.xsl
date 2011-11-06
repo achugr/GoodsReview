@@ -146,6 +146,11 @@
             font-size:110%;
             padding:5px 5px 5px 10px;
             }
+            .donate {
+                position: absolute;
+                top: 10%;
+                right: 5%;
+            }
         </style>
     </xsl:template>
 
@@ -211,6 +216,9 @@
                                 </li>
                             </ul>
 
+                        </div>
+                        <div class="donate">
+                            <a href="#donate"><img src="images/donate.png"/></a>
                         </div>
 
                         <div class="page-header">
