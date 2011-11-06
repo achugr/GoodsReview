@@ -13,7 +13,7 @@
         <h3>Результаты поиска по запросу "<xsl:value-of select="query"/>"</h3>
         <ul class="searchResult">
             <xsl:for-each select="//detailed-product-for-view">
-                <xsl:call-template name="productNew"/>
+                <xsl:call-template name="product"/>
             </xsl:for-each>
         </ul>
         <ul class="popularProducts">

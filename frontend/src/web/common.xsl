@@ -3,7 +3,7 @@
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
 
-    <xsl:template name="productNew">
+    <xsl:template name="product">
         <li>
             <div class="productName">
                 <a>
@@ -35,55 +35,9 @@
         </li>
     </xsl:template>
 
-    <xsl:template name="detailed-product">
-        <div class="productName">
-            <xsl:value-of select="name"/>
-        </div>
-        <div class="row">
-            <div class="span5">
-                <img src="images/lenovoTabletBig.jpg"/>
-            </div>
-            <div class="span3">
-                <h3>Тезисы</h3>
-                <ul>
-                    <xsl:for-each select="//thesis-for-view">
-                        <li>
-                            <xsl:value-of select="content"/>
-                        </li>
-                    </xsl:for-each>
-                </ul>
-            </div>
-            <div class="span5">
-                <h3>Похожие товары</h3>
-                <ul>
-                    <li>
-                        <a href="#">lenovo thinkpad x201</a>
-                    </li>
-                    <li>
-                        <a href="#">lenovo thinkpad x220</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <h3>Лучшие комментарии</h3>
-        <xsl:for-each select="//review-for-view">
-            <div class="comment">
-                <xsl:value-of select="content"/>
-                <a>
-                    <xsl:attribute name="href">review.xml?id=<xsl:value-of select="@id"/>
-                    </xsl:attribute>
-                    >>
-                </a>
-            </div>
-        </xsl:for-each>
-    </xsl:template>
 
-    <xsl:template name="popular">
-        <xsl:for-each select="/page/data[@id='popularProducts']/collection/detailed-product-for-view">
-            <xsl:call-template name="productNew"/>
-        </xsl:for-each>
-        <hr/>
-    </xsl:template>
+
+
 
 
     <!--old-->
@@ -147,31 +101,6 @@
         <br/>
         importance:
         <xsl:value-of select="@importance"/>
-        <br/>
-    </xsl:template>
-
-    <xsl:template name="product">
-        <hr/>
-        <a>
-            <xsl:attribute name="href">product.xml?id=<xsl:value-of select="@id"/>
-            </xsl:attribute>
-            <xsl:value-of select="name"/>
-        </a>
-        <br/>
-        Description:
-        <xsl:value-of select="description"/>
-        <br/>
-        Category:
-        <xsl:value-of select="category"/>
-        <br/>
-        CategoryId:
-        <xsl:value-of select="@category-id"/>
-        <br/>
-        Popularity:
-        <xsl:value-of select="@popularity"/>
-        <br/>
-        Id:
-        <xsl:value-of select="@id"/>
         <br/>
     </xsl:template>
 

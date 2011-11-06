@@ -60,7 +60,13 @@
             .span3 {
             height:50px;
             }
-
+            .input .xlarge {
+            width: 500px;
+            height:25px;
+            margin-top:32px;
+            margin-bottom:15px;
+            margin-left: -150px;
+            }
             #xlInput {
             width: 500px;
             margin-top:30px;
@@ -132,7 +138,13 @@
             position:absolute;
             left:15px;
             }
-
+            .comment .text{
+            height:auto;
+            margin: 15px 0px 15px 0px;
+            background-color:whiteSmoke;
+            font-size:110%;
+            padding:5px 5px 5px 10px;
+            }
         </style>
     </xsl:template>
 

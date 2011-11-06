@@ -36,10 +36,10 @@ public class PopularReviewManager {
 	public List<ReviewForView> reviewsByProduct(long id) throws Exception {
 		ReviewDbController pdbc = new ReviewDbController(jdbcTemplate);
 		List<ReviewForView> result = new ArrayList<ReviewForView>();
-		for (Review review : pdbc.getPopularReviewsByProductId(id, count)) {
+		/*for (Review review : pdbc.getPopularReviewsByProductId(id, count)) {
 			log.debug("Review added Id:" + review.getId());
 			result.add(new ReviewForView(review));
-		}
+		}*/
 		return result;
 	}
 }

@@ -14,9 +14,10 @@ import ru.goodsReview.core.model.Product;
  *     vans239@gmail.com
  */
 
-public class DetailedProductForView extends ProductForView{
+public class DetailedProductForView extends ProductForView {
 	private List<ThesisForView> theses;
 	private List<ReviewForView> reviews;
+
 	public DetailedProductForView(Product product, Category category, List<ThesisForView> theses, List<ReviewForView> reviews) throws Exception {
 		super(product, category);
 		this.theses = theses;

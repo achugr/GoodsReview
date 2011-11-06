@@ -48,7 +48,11 @@
             <value>5</value>
         </property>
     </bean>
-
+    <bean id="reviewManager" class="ru.goodsReview.frontend.service.ReviewManager">
+        <property name="popularCount">
+            <value>5</value>
+        </property>
+    </bean>
     <!--Yalets-->
     <bean id="reviewYalet" class="ru.goodsReview.frontend.yalet.ReviewYalet"/>
     <bean id="popularProductsYalet" class="ru.goodsReview.frontend.yalet.PopularProductsYalet"/>

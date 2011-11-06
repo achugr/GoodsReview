@@ -3,6 +3,7 @@ package ru.goodsReview.frontend.model;
 import ru.goodsReview.core.model.Review;
 
 import java.util.Date;
+import java.util.List;
 /*
  *  Date: 31.10.11
  *  Time: 16:58
@@ -24,8 +25,9 @@ public class ReviewForView {
 	private double importance;
 	private int votesYes;
 	private int votesNo;
+	private List<ThesisForView> theses;
 
-	public ReviewForView(Review review) {
+	public ReviewForView(Review review, List<ThesisForView> theses) {
 		this.id = review.getId();
 		this.productId = review.getProductId();
 		this.content = review.getContent();
@@ -38,6 +40,7 @@ public class ReviewForView {
 		this.importance = review.getImportance();
 		this.votesYes = review.getVotesYes();
 		this.votesNo = review.getVotesNo();
+		this.theses = theses;
 	}
 
 
@@ -87,6 +90,10 @@ public class ReviewForView {
 
 	public int getVotesNo() {
 		return votesNo;
+	}
+
+	public List<ThesisForView> getTheses() {
+		return theses;
 	}
 
 }

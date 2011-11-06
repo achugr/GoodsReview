@@ -29,7 +29,7 @@ public class Prepare {
 	public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
 		CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
 		if (product == null)
-			return null;
+			throw new Exception();
 		Category category = cdbc.getCategoryById(product.getCategoryId());
 		ProductForView pfv = new ProductForView(product, category);
 		return pfv;
@@ -37,7 +37,7 @@ public class Prepare {
 	public static DetailedProductForView prepareDetailedProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
 		CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
 		if (product == null)
-			return null;
+			throw new Exception();
 		Category category = cdbc.getCategoryById(product.getCategoryId());
 
 		List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
@@ -51,8 +51,23 @@ public class Prepare {
 		ReviewDbController rdbc = new ReviewDbController(jdbcTemplate);
 		List<Review> reviews = rdbc.getReviewsByProductId(product.getId());
 		for (Review review : reviews) {
-			reviewsForView.add(new ReviewForView(review));
+			reviewsForView.add(prepareReviewForView(jdbcTemplate, review));
 		}
 		return new DetailedProductForView(product, category, thesesForView, reviewsForView);
+	}
+
+	public static ReviewForView prepareReviewForView(final SimpleJdbcTemplate jdbcTemplate, final Review review) throws Exception {
+		ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
+		if (review == null)
+			throw new Exception();
+
+		List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
+
+		List<Thesis> theses = tdbc.getThesesByReviewId(review.getId());
+		for (Thesis thesis : theses) {
+			thesesForView.add(new ThesisForView(thesis));
+		}
+
+		return new ReviewForView(review, thesesForView);
 	}
 }
