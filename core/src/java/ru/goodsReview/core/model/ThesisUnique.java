@@ -25,6 +25,15 @@ public class ThesisUnique {
         this.importance = importance;
     }
 
+    public ThesisUnique(long id, String content, int frequency, Date lastScan, double positivity, double importance) {
+        this.id = id;
+        this.content = content;
+        this.frequency = frequency;
+        this.lastScan = lastScan;
+        this.positivity = positivity;
+        this.importance = importance;
+    }
+
     public long getId() {
         return id;
     }

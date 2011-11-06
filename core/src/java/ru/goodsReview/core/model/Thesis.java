@@ -27,6 +27,16 @@ public class Thesis {
         this.frequency = frequency;
     }
 
+    public Thesis(long id, long reviewId, long thesisUniqueId, String content, int frequency, double positivity, double importance) {
+        this.id = id;
+        this.reviewId = reviewId;
+        this.thesisUniqueId = thesisUniqueId;
+        this.content = content;
+        this.frequency = frequency;
+        this.positivity = positivity;
+        this.importance = importance;
+    }
+
     public long getId() {
         return id;
     }

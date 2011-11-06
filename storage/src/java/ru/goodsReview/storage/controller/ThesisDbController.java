@@ -8,14 +8,14 @@
 
 package ru.goodsReview.storage.controller;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
-import ru.goodsReview.storage.mapper.ThesisMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Thesis;
+import ru.goodsReview.storage.mapper.ThesisMapper;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Sergey Serebryakov
@@ -35,9 +35,9 @@ public class ThesisDbController {
         try {
 			System.out.println(thesis.getReviewId());
 
-            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(?,?,?,?,?,?)",
-                    new Object[]{thesis.getReviewId(), thesis.getContent(), thesis.getPositivity(), thesis.getImportance(), thesis.getVotesYes(), thesis.getVotesNo()},
-                    new int[]{Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER});
+            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis (review_id,  thesis_unique_id, content, frequency, positivity, importance) VALUES(?,?,?,?,?,?)",
+                    new Object[]{thesis.getReviewId(), thesis.getThesisUniqueId(), thesis.getContent(), thesis.getFrequency(), thesis.getPositivity(), thesis.getImportance()},
+                    new int[]{Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.INTEGER, Types.DOUBLE, Types.DOUBLE});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
