@@ -3,12 +3,15 @@ package ru.goodsReview.frontend.util;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import ru.goodsReview.core.model.Product;
+import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.model.ProductForView;
+import ru.goodsReview.frontend.model.ReviewForView;
 import ru.goodsReview.frontend.model.ThesisForView;
 import ru.goodsReview.storage.controller.CategoryDbController;
 import ru.goodsReview.core.model.Category;
+import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 
 import java.util.ArrayList;
@@ -38,12 +41,18 @@ public class Prepare {
 		Category category = cdbc.getCategoryById(product.getCategoryId());
 
 		List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
-
 		ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
 		List<Thesis> theses = tdbc.getThesesByProductId(product.getId());
 		for (Thesis thesis : theses) {
 			thesesForView.add(new ThesisForView(thesis));
 		}
-		return new DetailedProductForView(product, category, thesesForView);
+
+		List<ReviewForView> reviewsForView = new ArrayList<ReviewForView>();
+		ReviewDbController rdbc = new ReviewDbController(jdbcTemplate);
+		List<Review> reviews = rdbc.getReviewsByProductId(product.getId());
+		for (Review review : reviews) {
+			reviewsForView.add(new ReviewForView(review));
+		}
+		return new DetailedProductForView(product, category, thesesForView, reviewsForView);
 	}
 }

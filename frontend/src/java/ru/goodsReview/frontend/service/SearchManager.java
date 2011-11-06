@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
+import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.util.Prepare;
 import ru.goodsReview.storage.controller.ProductDbController;
@@ -33,7 +34,7 @@ public class SearchManager {
 	//	this.searcher = searcher;
 	//}
 
-	public List<ProductForView> searchByName(String query) throws Exception {
+	public List<DetailedProductForView> searchByName(String query) throws Exception {
 
 		/*		List<ProductForView> brandList = new ArrayList<ProductForView>();
 					for (Brand b : searcher.searchBrandByDescription(query)) {
@@ -41,8 +42,8 @@ public class SearchManager {
 					}
 					return brandList;*/
 		ProductDbController pdbc = new ProductDbController(jdbcTemplate);
-		List<ProductForView> result = new ArrayList<ProductForView>();
-		ProductForView pfv = Prepare.prepareProductForView(jdbcTemplate, pdbc.getProductByName(query));
+		List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
+		DetailedProductForView pfv = Prepare.prepareDetailedProductForView(jdbcTemplate, pdbc.getProductByName(query));
 		if(pfv != null)
 			result.add(pfv);
 		return result;

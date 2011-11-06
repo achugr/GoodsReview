@@ -38,9 +38,8 @@
     <!--Managers-->
     <bean id="searchManager" class="ru.goodsReview.frontend.service.SearchManager"/>
     <bean id="thesisManager" class="ru.goodsReview.frontend.service.ThesisManager"/>
-    <bean id="productManager" class="ru.goodsReview.frontend.service.ProductManager"/>
-    <bean id="popularProductsManager" class="ru.goodsReview.frontend.service.PopularProductsManager">
-        <property name="count">
+    <bean id="productManager" class="ru.goodsReview.frontend.service.ProductManager">
+        <property name="popularCount">
             <value>5</value>
         </property>
     </bean>

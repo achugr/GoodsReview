@@ -27,10 +27,10 @@
             </div>
         </div>
         <div class="productInfo">
-            <xsl:call-template name="detailed-product"/>
+            <xsl:for-each select="/page/data[@id='product']/collection/detailed-product-for-view">
+                <xsl:call-template name="detailed-product"/>
+            </xsl:for-each>
         </div>
-
-
     </xsl:template>
 </xsl:stylesheet>
 

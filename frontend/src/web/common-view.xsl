@@ -154,20 +154,12 @@
                 <!--<link href="../docs.css" rel="stylesheet">-->
 
                 <xsl:call-template name="style"/>
-
-                <!-- Le fav and touch icons -->
-                <link rel="shortcut icon" href="images/favicon.ico"/>
-                <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
-                <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png"/>
-                <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"/>
             </head>
-
             <body>
-
                 <div class="topbar">
                     <div class="fill">
                         <div class="container">
-                            <a class="brand" href="#">GoodsReview</a>
+                            <a class="brand" href="/index.xml">GoodsReview</a>
                             <ul class="topMenu">
                                 <li class="current">
                                     <a href="#">Главная</a>
@@ -187,7 +179,6 @@
                 </div>
 
                 <div class="container">
-
                     <div class="content">
                         <div class="leftMenu">
                             <h3>Категории товаров</h3>
@@ -214,15 +205,17 @@
                                 <div class="span2">
                                     <img src="images/mediumLogo.png"/>
                                 </div>
-                                <div class="span3">
-                                    <div class="input">
-                                        <input class="xlarge" id="xlInput" name="xlInput" size="30" type="text"
-                                               title="Спросите и Mr. ReviewMan подробно опишет вам товар"/>
+                                <form method="get" action="/search.xml" align="center">
+                                    <div class="span3">
+                                        <div class="input">
+                                            <input class="xlarge" id="query" name="query" size="30" type="text"
+                                                   title="Спросите и Mr. ReviewMan подробно опишет вам товар"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="span1">
-                                    <button class="btn">Подскажи!</button>
-                                </div>
+                                    <div class="span1">
+                                        <button class="btn">Подскажи!</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="replaceableContent">
@@ -233,10 +226,7 @@
                     <footer>
                         <p>&#169; GoodsReview 2011</p>
                     </footer>
-
                 </div>
-                <!-- /container -->
-
             </body>
         </html>
     </xsl:template>

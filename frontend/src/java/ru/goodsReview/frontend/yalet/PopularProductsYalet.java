@@ -9,8 +9,9 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 
+import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.model.ProductForView;
-import ru.goodsReview.frontend.service.PopularProductsManager;
+import ru.goodsReview.frontend.service.ProductManager;
 
 /*
  *  Date: 30.10.11
@@ -21,16 +22,16 @@ import ru.goodsReview.frontend.service.PopularProductsManager;
  */
 
 public class PopularProductsYalet implements Yalet {
-	private static final Logger log = org.apache.log4j.Logger.getLogger(ProductYalet.class);
-	private PopularProductsManager popularProductsManager;
+	private static final Logger log = org.apache.log4j.Logger.getLogger(PopularProductsYalet.class);
+	private ProductManager productManager;
 
-	public void setPopularProductsManager(PopularProductsManager popularProductsManager) {
-		this.popularProductsManager = popularProductsManager;
+	public void setProductManager(ProductManager productManager) {
+		this.productManager = productManager;
 	}
 
 	public void process(InternalRequest req, InternalResponse res) {
 		try {
-			List<ProductForView> products = popularProductsManager.products();
+			List<DetailedProductForView> products = productManager.popularProducts();
 			log.debug("Request popular products");
 			if (products.size() != 0) {
 				res.add(products);
@@ -40,6 +41,7 @@ public class PopularProductsYalet implements Yalet {
 				res.add(ans);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error("Something happens wrong");
 			Xmler.Tag ans = Xmler.tag("answer", "Все сломалось.");
 			res.add(ans);

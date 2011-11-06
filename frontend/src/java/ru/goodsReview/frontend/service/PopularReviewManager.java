@@ -21,7 +21,7 @@ import ru.goodsReview.storage.controller.ReviewDbController;
 
 
 public class PopularReviewManager {
-	private static final Logger log = Logger.getLogger(PopularProductsManager.class);
+	private static final Logger log = Logger.getLogger(PopularReviewManager.class);
 	private int count;
 	private SimpleJdbcTemplate jdbcTemplate;
 

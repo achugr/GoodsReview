@@ -2,8 +2,5 @@
 <?xml-stylesheet type="text/xsl" href="product.xsl"?>
 <page>
     <yalet id="product"/>
-    <yalet id="similarProduct"/>
-    <yalet id="thesis"/>
-    <yalet id="popularReview"/>
 </page>
 

@@ -9,6 +9,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 
+import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.service.SearchManager;
 
@@ -39,7 +40,7 @@ public class SearchProductYalet implements Yalet {
 		}
 
 		try {
-			List<ProductForView> products = searchManager.searchByName(query);
+			List<DetailedProductForView> products = searchManager.searchByName(query);
 			if (products.size() != 0) {
 				res.add(products);
 			} else {
