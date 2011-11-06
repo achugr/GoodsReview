@@ -2,46 +2,35 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     <xsl:include href="common.xsl"/>
+    <xsl:include href="common-view.xsl"/>
 
     <xsl:template match="/">
-        <html>
-            <head>
-                <xsl:call-template name="title"/>
-            </head>
-            <body>
-                <xsl:call-template name="logo"/>
-                <xsl:call-template name="greeting"/>
-                <tr>
-                    <xsl:call-template name="find"/>
-                </tr>
-                <xsl:apply-templates/>
-                <hr/>
-            </body>
-        </html>
-    </xsl:template>
-    <xsl:template match="//product-for-view">
-        <xsl:call-template name="product"/>
+        <xsl:call-template name="test"/>
     </xsl:template>
 
-    <xsl:template match="data[@id='thesis']">
-        <h2> Theses:</h2>
-        <xsl:apply-templates/>
-    </xsl:template>
+    <xsl:template match="/page">
+        <div class="menu">
+            <div class="fill">
+                <div class="container">
+                    <ul class="nav">
+                        <li class="current">
+                            <a href="#">Популярные товары</a>
+                        </li>
+                        <li>
+                            <a href="#">Частые тезисы</a>
+                        </li>
+                        <li>
+                            <a href="#">Последние запросы</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="productInfo">
+            <xsl:call-template name="detailed-product"/>
+        </div>
 
-    <xsl:template match="//thesis-for-view">
-        <xsl:call-template name="thesis"/>
-        <br/>
-    </xsl:template>
 
-    <xsl:template match="data[@id='popularReview']">
-        <h2> PopularReviews:</h2>
-        <xsl:apply-templates/>
     </xsl:template>
-
-    <xsl:template match="//review-for-view">
-        <xsl:call-template name="review"/>
-        <br/>
-    </xsl:template>
-
 </xsl:stylesheet>
 

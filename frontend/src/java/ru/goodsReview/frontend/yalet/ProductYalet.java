@@ -9,6 +9,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 
+import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.service.ProductManager;
 
@@ -32,7 +33,7 @@ public class ProductYalet implements Yalet {
 		long id = req.getIntParameter("id");
 		try {
 			log.debug("Request product. id = " + id);
-			List<ProductForView> products = productManager.productById(id);
+			List<DetailedProductForView> products = productManager.productById(id);
 
 			if (products.size() != 0) {
 				res.add(products);

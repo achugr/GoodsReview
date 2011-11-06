@@ -33,8 +33,8 @@ public class ThesisManager {
 	public List<ThesisForView> thesesByProduct(long id) throws Exception {
 		List<ThesisForView> result = new ArrayList<ThesisForView>();
 
-		ThesisDbController cdbc = new ThesisDbController(jdbcTemplate);
-		List<Thesis> theses = cdbc.getThesesByProductId(id);
+		ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
+		List<Thesis> theses = tdbc.getThesesByProductId(id);
 		for (Thesis thesis : theses) {
 			log.debug("Added thesis with id " + thesis.getId() + " and content " + thesis.getId());
 			result.add(new ThesisForView(thesis));

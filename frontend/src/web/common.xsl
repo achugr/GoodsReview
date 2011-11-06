@@ -2,35 +2,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
-    <xsl:template name="find">
-        <tr align="center">
-            <td colspan="3">
-                <form method="get" action="/search.xml">
-                    <input type="text" name="query" size="100"/>
-                    <input type="submit" value="Find"/>
-                </form>
-            </td>
-        </tr>
-    </xsl:template>
-
-    <xsl:template name="title">
-        <title>
-            <xsl:text>Goods Review</xsl:text>
-        </title>
-    </xsl:template>
-
-    <xsl:template name="logo">
-        <img id="logo" src="goodsReview.png" width="75" height="75"/>
-    </xsl:template>
-
-
-    <xsl:template name="greeting">
-
-        <h1>
-            <a href="/index.xml">Goods Review</a>
-        </h1>
-    </xsl:template>
-
     <xsl:template name="product">
         <hr/>
         <a>
@@ -56,10 +27,81 @@
         <br/>
     </xsl:template>
 
+    <xsl:template name="productNew">
+        <li>
+            <div class="productName">
+                <a>
+                    <xsl:attribute name="href">product.xml?id=<xsl:value-of select="@id"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="name"/>
+                </a>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <a href="#">
+                            <img src="images/lenovo.jpg"/>
+                        </a>
+                    </td>
+                    <td>
+                        <div>Популярность:
+                            <xsl:value-of select="@popularity"/>
+                        </div>
+                        <div>Тезисов:8</div>
+                        <div>Комментариев:12</div>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    </xsl:template>
+
+    <xsl:template name="detailed-product">
+        <xsl:for-each select="/page/data[@id='product']/collection/detailed-product-for-view">
+
+            <div class="productName">
+                <xsl:value-of select="name"/>
+            </div>
+            <div class="row">
+                <div class="span5">
+                    <img src="images/lenovoTabletBig.jpg"/>
+                </div>
+                <div class="span3">
+                    <h3>Тезисы</h3>
+                    <ul>
+                        <xsl:for-each select="//thesis-for-view">
+                            <li><xsl:value-of select="content"/></li>
+                        </xsl:for-each>
+                    </ul>
+                </div>
+                <div class="span5">
+                    <h3>Похожие товары</h3>
+                    <ul>
+                        <li>
+                            <a href="#">lenovo thinkpad x201</a>
+                        </li>
+                        <li>
+                            <a href="#">lenovo thinkpad x220</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h3>Лучшие комментарии</h3>
+
+            <div class="comment">Хороший, легкий ноутбук, только качество сборки так себе..
+                <a href="source">>></a>
+            </div>
+            <div class="comment">Хороший ноутбук, мне нравится! Удобная клавиатура, элегантный корпус, но качество
+                сборки
+                оставляет желать лучшего :(
+                <a href="source">>></a>
+            </div>
+        </xsl:for-each>
+    </xsl:template>
+
+
     <xsl:template name="popular">
-        <h4>Popular queries</h4>
-        <xsl:for-each select="//product-for-view">
-            <xsl:call-template name="product"/>
+        <xsl:for-each select="/page/data[@id='popularProducts']/collection/product-for-view">
+            <xsl:call-template name="productNew"/>
         </xsl:for-each>
         <hr/>
     </xsl:template>

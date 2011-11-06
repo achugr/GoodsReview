@@ -38,10 +38,6 @@ public class ProductForView {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public long getCategoryId() {
 		return categoryId;
 	}
