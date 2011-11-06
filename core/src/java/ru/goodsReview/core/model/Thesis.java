@@ -11,21 +11,20 @@ package ru.goodsReview.core.model;
 public class Thesis {
 
     private long id;
-    private long review_id;
+    private long reviewId;
+    private long thesisUniqueId;
     private String content;
+    private int frequency;
     private double positivity;
     private double importance;
-    private long votes_yes;
-    private long votes_no;
 
-    public Thesis(long id, long review_id, String content, double positivity, double importance, long votes_yes, long votes_no) {
-        this.id = id;
-        this.review_id = review_id;
+    public Thesis(long reviewId, long thesisUniqueId, String content, int frequency, double positivity, double importance) {
+        this.reviewId = reviewId;
+        this.thesisUniqueId = thesisUniqueId;
         this.content = content;
         this.positivity = positivity;
         this.importance = importance;
-        this.votes_yes = votes_yes;
-        this.votes_no = votes_no;
+        this.frequency = frequency;
     }
 
     public long getId() {
@@ -36,12 +35,20 @@ public class Thesis {
         this.id = id;
     }
 
-    public long getReview_id() {
-        return review_id;
+    public long getThesisUniqueId() {
+        return thesisUniqueId;
     }
 
-    public void setReview_id(long review_id) {
-        this.review_id = review_id;
+    public void setThesisUniqueId(long thesisUniqueId) {
+        this.thesisUniqueId = thesisUniqueId;
+    }
+
+    public long getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(long review_id) {
+        this.reviewId = review_id;
     }
 
     public String getContent() {
@@ -68,20 +75,11 @@ public class Thesis {
         this.importance = importance;
     }
 
-    public long getVotes_yes() {
-        return votes_yes;
+    public int getFrequency() {
+        return frequency;
     }
 
-    public void setVotes_yes(long votes_yes) {
-        this.votes_yes = votes_yes;
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
-
-    public long getVotes_no() {
-        return votes_no;
-    }
-
-    public void setVotes_no(long votes_no) {
-        this.votes_no = votes_no;
-    }
-
 }

@@ -2,3 +2,39 @@
 database
 out
 build
+database
+
+#checkStyle and findBugs reports#
+checkstyle_report.xml
+checkstyle_report.htm
+findbugs_report.xml
+
+# Idea system files #
+*.iws
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
+
+# Logs#
+*.log
+
+# OS generated files #
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db

@@ -7,8 +7,8 @@
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
     <!--Jetty beans-->
     <bean id="serverInitializer" class="net.sf.xfresh.jetty.JettyServerInitializer">
-        <property name="port" value="8080"/>
         <!--property's-->
+        <property name="port" value="8080"/>
         <property name="maxThreads" value="10"/>
         <property name="handlers">
             <list>
@@ -43,3 +43,14 @@
     <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
     <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
 </beans>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-autowire="byName">
+
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+</beans>
+
+        -->

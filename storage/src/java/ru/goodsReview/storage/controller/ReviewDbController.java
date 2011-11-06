@@ -3,10 +3,12 @@ package ru.goodsReview.storage.controller;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Review;
-import ru.goodsReview.storage.mappers.ReviewMapper;
+import ru.goodsReview.core.model.Product;
+import ru.goodsReview.storage.mapper.ReviewMapper;
 
 import java.sql.Types;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,7 +26,7 @@ public class ReviewDbController {
         this.reviewMapper = new ReviewMapper();
     }
 
-    public void addReview(Review review) {
+    public long addReview(Review review) {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO review " +
@@ -54,9 +56,22 @@ public class ReviewDbController {
                             Types.DOUBLE,
                             Types.INTEGER,
                             Types.INTEGER});
+            long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
+            return lastId;
         } catch (DataAccessException e) {
+            // We don't have permissions to update the table.
+            // TODO(serebryakov): Log the error.
             e.printStackTrace();
         }
+        return -1;
+    }
+
+    public List<Long> addReviewList(List<Review> reviewList) {
+        List<Long> ids = new ArrayList<Long>();
+        for (Review review : reviewList) {
+            ids.add(addReview(review));
+        }
+        return ids;
     }
 
     public Review getReviewById(long review_id) {
@@ -64,7 +79,27 @@ public class ReviewDbController {
                 new Object[]{review_id},
                 new int[]{Types.INTEGER},
                 reviewMapper); 
-        return reviews.get(0);
+        if (reviews.size() > 0) {
+            return reviews.get(0);
+        }
+        return null;
+    }
+
+    public List<Review> getReviewsByProductId(long product_id) {
+        List<Review> reviews = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review WHERE product_id = ?",
+                new Object[]{product_id},
+                new int[]{Types.INTEGER},
+                reviewMapper);
+        return reviews;
+    }
+
+    public List<Review> getPopularReviewsByProductId(long product_id, int n) {
+        List<Review> reviews = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review WHERE product_id = ? ORDER BY importance DESC LIMIT ?",
+                new Object[]{product_id, n},
+                new int[]{Types.INTEGER, Types.INTEGER},
+                reviewMapper);
+        return reviews;
+
     }
 
     // TODO(serebryakov): Uncomment this when list of reviews will be implemented properly.

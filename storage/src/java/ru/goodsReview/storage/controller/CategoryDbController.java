@@ -8,21 +8,14 @@
 
 package ru.goodsReview.storage.controller;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
-import ru.goodsReview.storage.mappers.ProductMapper;
-import ru.goodsReview.storage.mappers.CategoryMapper;
-import ru.goodsReview.core.model.Product;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Category;
+import ru.goodsReview.storage.mapper.CategoryMapper;
 
 import java.sql.Types;
 import java.util.List;
 
-/**
- * User: Sergey
- * Date: 26.10.2011
- * Time: 1:45:49
- */
 public class CategoryDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private CategoryMapper categoryMapper;
@@ -32,15 +25,19 @@ public class CategoryDbController {
         this.categoryMapper = new CategoryMapper();
     }
 
-    public void addCategory(Category category) {
+    public long addCategory(Category category) {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO category (name, description, parent_category_id) VALUES(?,?,?)",
                     new Object[]{category.getName(), category.getDescription(), category.getParentCategoryId()},
                     new int[]{Types.VARCHAR, Types.VARCHAR, Types.INTEGER});
+            long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
+            return lastId;
         } catch (DataAccessException e) {
             // We don't have permissions to update the table.
             // TODO(serebryakov): Log the error.
+            e.printStackTrace();
         }
+        return -1;
     }
 
     public List<Category> getAllCategories() {
@@ -55,6 +52,9 @@ public class CategoryDbController {
                         new Object[]{category_id},
                         new int[]{Types.INTEGER},
                         categoryMapper);
-        return categories.get(0);
+        if (categories.size() > 0) {
+            return categories.get(0);
+        }
+        return null;
     }
 }

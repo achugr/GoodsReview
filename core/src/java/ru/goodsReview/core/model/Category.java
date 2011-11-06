@@ -1,18 +1,13 @@
 /**
  * Date: 26.10.2011
  * Time: 1:38:31
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
 package ru.goodsReview.core.model;
 
-/**
- * User: Sergey
- * Date: 26.10.2011
- * Time: 1:38:31
- */
 public class Category {
     private long id;
     private String name;

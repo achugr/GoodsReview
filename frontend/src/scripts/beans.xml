@@ -5,14 +5,10 @@
 <beans default-autowire="byName">
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
     <!--Jetty beans-->
     <bean id="serverInitializer" class="net.sf.xfresh.jetty.JettyServerInitializer">
         <property name="port" value="8080"/>
-<<<<<<< HEAD
-        <!--property's value for nerds =)-->
-=======
-        <!--property's-->
->>>>>>> 076be6aaebfc36d9f87ea22b646baf773dd48727
         <property name="maxThreads" value="10"/>
         <property name="handlers">
             <list>
@@ -39,18 +35,44 @@
 
     <bean id="singleYaletProcessor" class="net.sf.xfresh.core.impl.DefaultSingleYaletProcessor"/>
 
+    <!--Managers-->
+    <bean id="searchManager" class="ru.goodsReview.frontend.service.SearchManager"/>
+    <bean id="thesisManager" class="ru.goodsReview.frontend.service.ThesisManager"/>
+    <bean id="productManager" class="ru.goodsReview.frontend.service.ProductManager">
+        <property name="popularCount">
+            <value>5</value>
+        </property>
+    </bean>
+    <bean id="popularReviewManager" class="ru.goodsReview.frontend.service.PopularReviewManager">
+        <property name="count">
+            <value>5</value>
+        </property>
+    </bean>
+    <bean id="reviewManager" class="ru.goodsReview.frontend.service.ReviewManager">
+        <property name="popularCount">
+            <value>5</value>
+        </property>
+    </bean>
     <!--Yalets-->
-
-    <!--Yalets-->
-<<<<<<< HEAD
-    <bean id="getReviewYalet" class="ru.goodsReview.frontend.yalet.GetReviewYalet"/>
-    <bean id="getPopularProductsYalet" class="ru.goodsReview.frontend.yalet.GetPopularProductsYalet"/>
-    <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
+    <bean id="reviewYalet" class="ru.goodsReview.frontend.yalet.ReviewYalet"/>
+    <bean id="popularProductsYalet" class="ru.goodsReview.frontend.yalet.PopularProductsYalet"/>
+    <bean id="productYalet" class="ru.goodsReview.frontend.yalet.ProductYalet"/>
     <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
-=======
-   <!-- <bean id="getReviewYalet" class="ru.goodsReview.frontend.yalet.GetReviewYalet"/>
-    <bean id="getPopularProductsYalet" class="ru.goodsReview.frontend.yalet.GetPopularProductsYalet"/>
-    <bean id="getProductYalet" class="ru.goodsReview.frontend.yalet.GetProductYalet"/>
-    <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>      -->
->>>>>>> 076be6aaebfc36d9f87ea22b646baf773dd48727
+    <bean id="similarProductYalet" class="ru.goodsReview.frontend.yalet.SimilarProductYalet"/>
+    <bean id="thesisYalet" class="ru.goodsReview.frontend.yalet.ThesisYalet"/>
+    <bean id="popularReviewYalet" class="ru.goodsReview.frontend.yalet.PopularReviewYalet"/>
+
+    <!--Other-->
+    <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" lazy-init="false">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/goodsreview_permanent?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="validationQuery" value="select 1"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate" lazy-init="false">
+        <constructor-arg ref="dataSource"/>
+    </bean>
 </beans>
