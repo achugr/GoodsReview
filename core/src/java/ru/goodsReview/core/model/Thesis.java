@@ -18,7 +18,6 @@ public class Thesis {
     private double importance;
 
     public Thesis(long review_id, String content, int frequency, double positivity, double importance) {
-        this.id = id;
         this.review_id = review_id;
         this.content = content;
         this.positivity = positivity;
