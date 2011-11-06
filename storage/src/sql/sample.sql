@@ -13,8 +13,8 @@ INSERT INTO source (name, main_page_url) VALUES("Vans Home","brain.ru");
 INSERT INTO review (product_id, content, author, date, description, source_id, source_url, positivity, importance, votes_yes, votes_no) VALUES(1,"Not bad notebook. It is very cheap, but have small batery","I am",'2011-10-01',NULL,1,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO review (product_id, content, author, date, description, source_id, source_url, positivity, importance, votes_yes, votes_no) VALUES(1,"SPAM","I am",'2011-10-01', NULL,1,NULL,NULL,NULL,NULL,NULL);
 
-INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(1,"Not bad notebook",10,10,10,0);
-INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(1,"It is very cheap",10,10,10,0);
-INSERT INTO thesis (review_id, content, positivity, importance, votes_yes, votes_no) VALUES(1,"but have small batery",10,10,10,0);
+INSERT INTO thesis (review_id, thesis_unique_id, content, frequency, positivity, importance) VALUES(1,NULL,"Not bad notebook",2,5.0,1.0);
+INSERT INTO thesis (review_id, thesis_unique_id, content,frequency, positivity, importance) VALUES(1,NULL,"It is very cheap",3,-1.0,10.0);
+INSERT INTO thesis (review_id, thesis_unique_id, content, frequency, positivity, importance) VALUES(1,NULL, "but have small batery",5,-10.0,10.0);
 
 
