@@ -74,7 +74,7 @@
             margin-top:30px;
             margin-bottom:15px;
             margin-right: 20px;
-
+            }
             .span1 {
             margin-top:29px;
             margin-left:370px;

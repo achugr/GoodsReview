@@ -9,8 +9,9 @@
         <xsl:call-template name="test"/>
     </xsl:template>
 
-    <xsl:template  name="main">
-        <h3>Результаты поиска по запросу "<xsl:value-of select="query"/>"</h3>
+    <xsl:template name="main">
+        <h3>Результаты поиска по запросу "<xsl:value-of select="query"/>"
+        </h3>
         <ul class="searchResult">
             <xsl:for-each select="//detailed-product-for-view">
                 <xsl:call-template name="product"/>
@@ -20,4 +21,11 @@
             <xsl:call-template name="popular"/>
         </ul>
     </xsl:template>
+    <xsl:template name="popular">
+        <xsl:for-each select="/page/data[@id='popularProducts']/collection/detailed-product-for-view">
+            <xsl:call-template name="product"/>
+        </xsl:for-each>
+        <hr/>
+    </xsl:template>
+
 </xsl:stylesheet>

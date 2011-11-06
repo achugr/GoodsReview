@@ -37,9 +37,6 @@
 
 
 
-
-
-
     <!--old-->
     <xsl:template name="citilink-review">
         Comment:
