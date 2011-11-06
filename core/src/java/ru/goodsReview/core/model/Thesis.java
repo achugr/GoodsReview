@@ -11,14 +11,16 @@ package ru.goodsReview.core.model;
 public class Thesis {
 
     private long id;
-    private long review_id;
+    private long reviewId;
+    private long thesisUniqueId;
     private String content;
     private int frequency;
     private double positivity;
     private double importance;
 
-    public Thesis(long review_id, String content, int frequency, double positivity, double importance) {
-        this.review_id = review_id;
+    public Thesis(long reviewId, long thesisUniqueId, String content, int frequency, double positivity, double importance) {
+        this.reviewId = reviewId;
+        this.thesisUniqueId = thesisUniqueId;
         this.content = content;
         this.positivity = positivity;
         this.importance = importance;
@@ -33,12 +35,20 @@ public class Thesis {
         this.id = id;
     }
 
+    public long getThesisUniqueId() {
+        return thesisUniqueId;
+    }
+
+    public void setThesisUniqueId(long thesisUniqueId) {
+        this.thesisUniqueId = thesisUniqueId;
+    }
+
     public long getReviewId() {
-        return review_id;
+        return reviewId;
     }
 
     public void setReviewId(long review_id) {
-        this.review_id = review_id;
+        this.reviewId = review_id;
     }
 
     public String getContent() {
