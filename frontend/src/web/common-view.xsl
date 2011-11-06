@@ -60,6 +60,7 @@
             .span3 {
             height:50px;
             }
+
             .input .xlarge {
             width: 500px;
             height:25px;
@@ -67,12 +68,13 @@
             margin-bottom:15px;
             margin-left: -150px;
             }
+
             #xlInput {
             width: 500px;
             margin-top:30px;
             margin-bottom:15px;
             margin-right: 20px;
-            }
+
             .span1 {
             margin-top:29px;
             margin-left:370px;
@@ -101,7 +103,6 @@
             min-height: 30px;
             line-height: 30px;
             margin-bottom:40px;
-
             }
             .menu .nav li:hover{
             background-color:#CCC;
@@ -217,7 +218,7 @@
                                 <div class="span2">
                                     <img src="images/mediumLogo.png"/>
                                 </div>
-                                <form method="get" action="/search.xml" align="center">
+                                <form method="get" action="/search.xml">
                                     <div class="span3">
                                         <div class="input">
                                             <input class="xlarge" id="query" name="query" size="30" type="text"
