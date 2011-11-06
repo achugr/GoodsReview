@@ -189,7 +189,7 @@ CREATE TABLE thesis
 (
   id Int NOT NULL AUTO_INCREMENT,
   review_id Int NOT NULL,
-  thesis_unique_id Int NOT NULL,
+  thesis_unique_id Int,
   content Varchar(100) NOT NULL,
   frequency Int UNSIGNED NOT NULL DEFAULT 0,
   positivity Double,
@@ -215,7 +215,7 @@ CREATE TABLE category
 CREATE TABLE query
 (
   id Int UNSIGNED NOT NULL AUTO_INCREMENT,
-  query_unique_id Int UNSIGNED NOT NULL,
+  query_unique_id Int UNSIGNED,
   text Varchar(200) NOT NULL,
   date Timestamp NOT NULL,
  PRIMARY KEY (id),
