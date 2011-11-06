@@ -8,7 +8,7 @@
         <xsl:call-template name="test"/>
     </xsl:template>
 
-    <xsl:template match="/page">
+    <xsl:template name="main">
         <div class="menu">
             <div class="fill">
                 <div class="container">

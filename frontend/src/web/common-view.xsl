@@ -219,7 +219,7 @@
                             </div>
                         </div>
                         <div class="replaceableContent">
-                            <xsl:apply-templates/>
+                            <xsl:call-template name="main"/>
                         </div>
                     </div>
 
