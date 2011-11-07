@@ -29,10 +29,10 @@ public class TestSearcher {
         Query query = queryParser.parse("name:iPhone 4"); //"good" example
         TopDocs topDocs = indexSearcher.search(query,1);
         if (topDocs.getMaxScore() > 0) {
-            Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc); //H-H-H-H-H-H-HOLY SHIT!!!!1
+            Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc);
             System.out.println(document.get("id")+" "+document.get("name")+" "+document.get("popularity")+" "+document.get("description"));
         } else {
-            System.out.println("Sorry, no results!");
+            System.out.println("Good job, yeah!");
         }
 
         Query query1 = queryParser.parse("name:iMNotiPhone5, lol"); //"bad" example
