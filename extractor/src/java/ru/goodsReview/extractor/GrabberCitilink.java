@@ -26,7 +26,6 @@ public class GrabberCitilink extends Grabber {
 	public void run() {
 		try {
 			log.info("Citilink grabbing started");
-
 			ScraperConfiguration config = new ScraperConfiguration(this.config);
 			Scraper scraper = new Scraper(config, ".");
 			scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
