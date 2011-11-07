@@ -13,19 +13,19 @@ import java.util.List;
  */
 
 public class ReviewForView {
-	private long id;
-	private long productId;
-	private String content;
-	private String author;
-	private Date date;
-	private String description;
-	private long sourceId;
-	private String sourceUrl;
-	private double positivity;
-	private double importance;
-	private int votesYes;
-	private int votesNo;
-	private List<ThesisForView> theses;
+	private final long id;
+	private final long productId;
+	private final String content;
+	private final String author;
+	private final Date date;
+	private final String description;
+	private final long sourceId;
+	private final String sourceUrl;
+	private final double positivity;
+	private final double importance;
+	private final int votesYes;
+	private final int votesNo;
+	private final List<ThesisForView> theses;
 
 	public ReviewForView(Review review, List<ThesisForView> theses) {
 		this.id = review.getId();

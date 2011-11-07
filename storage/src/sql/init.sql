@@ -194,7 +194,8 @@ CREATE TABLE thesis
   frequency Int UNSIGNED NOT NULL DEFAULT 0,
   positivity Double,
   importance Double,
- PRIMARY KEY (id)
+ PRIMARY KEY (id),
+ FOREIGN KEY (thesis_unique_id) REFERENCES thesis_unique(id)
 )
 ;
 
@@ -234,7 +235,8 @@ CREATE TABLE thesis_unique
   last_scan Timestamp NOT NULL,
   positivity Double,
   importance Double,
- PRIMARY KEY (id)
+ PRIMARY KEY (id),
+ UNIQUE (content)
 )
 ;
 

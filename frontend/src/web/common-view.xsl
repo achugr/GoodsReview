@@ -147,9 +147,9 @@
             padding:5px 5px 5px 10px;
             }
             .donate {
-                position: absolute;
-                top: 10%;
-                right: 5%;
+            position: absolute;
+            top: 10%;
+            right: 5%;
             }
         </style>
     </xsl:template>
@@ -218,13 +218,17 @@
 
                         </div>
                         <div class="donate">
-                            <a href="#donate"><img src="images/donate.png"/></a>
+                            <a href="#donate">
+                                <img src="images/donate.png"/>
+                            </a>
                         </div>
 
                         <div class="page-header">
                             <div class="row">
                                 <div class="span2">
-                                    <img src="images/mediumLogo.png"/>
+                                    <a class="brand" href="/index.xml">
+                                        <img src="images/mediumLogo.png"/>
+                                    </a>
                                 </div>
                                 <form method="get" action="/search.xml">
                                     <div class="span3">

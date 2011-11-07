@@ -2,6 +2,7 @@ package ru.goodsReview.storage.controller;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.apache.log4j.Logger;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.mapper.ProductMapper;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class ProductDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ProductMapper productMapper;
+    private static final Logger log = Logger.getLogger(ProductDbController.class);
 
     public ProductDbController(SimpleJdbcTemplate simpleJdbcTemplate) {
         this.simpleJdbcTemplate = simpleJdbcTemplate;
@@ -31,9 +33,7 @@ public class ProductDbController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            // We don't have permissions to update the table.
-            // TODO(serebryakov): Log the error.
-            e.printStackTrace();
+            log.error("Error while inserting product (probably not enough permissions): " + product);
         }
         return -1;
     }

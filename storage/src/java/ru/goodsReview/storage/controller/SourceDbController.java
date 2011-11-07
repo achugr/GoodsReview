@@ -10,6 +10,7 @@ package ru.goodsReview.storage.controller;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
+import org.apache.log4j.Logger;
 import ru.goodsReview.storage.mapper.SourceMapper;
 import ru.goodsReview.core.model.Source;
 
@@ -24,6 +25,7 @@ import java.util.List;
 public class SourceDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private SourceMapper sourceMapper;
+    private static final Logger log = Logger.getLogger(SourceDbController.class);
 
     public SourceDbController(SimpleJdbcTemplate simpleJdbcTemplate) {
         this.simpleJdbcTemplate = simpleJdbcTemplate;
@@ -38,9 +40,7 @@ public class SourceDbController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            // We don't have permissions to update the table.
-            // TODO(serebryakov): Log the error.
-            e.printStackTrace();
+            log.error("Error while inserting source (probably not enough permissions): " + source);
         }
         return -1;
     }

@@ -10,6 +10,7 @@ package ru.goodsReview.storage.controller;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.apache.log4j.Logger;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.mapper.ThesisMapper;
 
@@ -25,6 +26,7 @@ import java.util.List;
 public class ThesisDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ThesisMapper thesisMapper;
+    private static final Logger log = Logger.getLogger(ThesisDbController.class);
 
     public ThesisDbController(SimpleJdbcTemplate simpleJdbcTemplate) {
         this.simpleJdbcTemplate = simpleJdbcTemplate;
@@ -41,9 +43,7 @@ public class ThesisDbController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            // We don't have permissions to update the table.
-            // TODO(serebryakov): Log the error.
-            e.printStackTrace();
+            log.error("Error while inserting thesis (probably not enough permissions): " + thesis);
         }
         return -1;
     }
@@ -60,6 +60,10 @@ public class ThesisDbController {
         List<Thesis> theses =
                 simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis", thesisMapper);
         return theses;
+    }
+
+    public void setThesisUniqueId (long thesisId, long thesisUniqueId){
+         simpleJdbcTemplate.getJdbcOperations().update("UPDATE thesis SET thesis_unique_id = ? where id = ?", new Object[]{thesisUniqueId, thesisId});
     }
 
     public Thesis getThesisById(long id) {
