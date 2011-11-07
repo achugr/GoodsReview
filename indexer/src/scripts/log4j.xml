@@ -15,19 +15,13 @@
         </layout>
     </appender>
 
-
-    <logger name="net.sf.xfresh" additivity="false">
-        <level value="ERROR"/>
-        <appender-ref ref="file"/>
-        <appender-ref ref="console"/>
-    </logger>
-    <logger name="org.springframework" additivity="false">
-        <level value="ERROR"/>
+    <logger name="ru.goodsReview" additivity="false">
+        <level value="DEBUG"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </logger>
     <root>
-        <priority value="DEBUG"/>
+        <priority value="ERROR"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </root>
