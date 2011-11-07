@@ -12,10 +12,20 @@ import org.apache.log4j.Logger;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class Starter {
-    private static final Logger log = Logger.getLogger(Starter.class);
+	private static final Logger log = Logger.getLogger(Starter.class);
 
-    public static void main(final String[] args) {
-        log.info("Module started");
-        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
-    }
+	public static void main(final String[] args) {
+		if (args.length == 1) {
+			log.info("Module started");
+			final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
+			log.info("Module ended");
+		} else {
+			log.info("Project started");
+			final FileSystemXmlApplicationContext frontend = new FileSystemXmlApplicationContext("/frontend/src/scripts/beans.xml");
+			final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext("/indexer/src/scripts/beans.xml");
+			final FileSystemXmlApplicationContext extractor = new FileSystemXmlApplicationContext("/extractor/src/scripts/beans.xml");
+			//final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext();
+			log.info("Project ended");
+		}
+	}
 }
