@@ -1,53 +1,49 @@
 ﻿/*
 Created: 04.10.2011
-Modified: 02.11.2011
+Modified: 07.11.2011
 Project: goodsreview_permanent
 Model: GoodsReviews
 Author: Sergey Serebryakov
 Database: MySQL 5.5
 */
 
-DROP DATABASE IF EXISTS goodsreview_permanent;
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
-
 use goodsreview_permanent;
 
 -- Drop relationships section -------------------------------------------------
 
--- ALTER TABLE query DROP FOREIGN KEY query like unique
--- ;
--- ALTER TABLE thesis DROP FOREIGN KEY thesis_like_unique
--- ;
--- ALTER TABLE category DROP FOREIGN KEY has_parent
--- ;
--- ALTER TABLE product DROP FOREIGN KEY belongs_to
--- ;
--- ALTER TABLE thesis DROP FOREIGN KEY extracted_from
--- ;
--- ALTER TABLE review DROP FOREIGN KEY provides
--- ;
--- ALTER TABLE review DROP FOREIGN KEY has_review
--- ;
--- ALTER TABLE shop_link DROP FOREIGN KEY hosts
--- ;
--- ALTER TABLE specification_value DROP FOREIGN KEY is_value_of
--- ;
--- ALTER TABLE specification_value DROP FOREIGN KEY has_spec
--- ;
--- ALTER TABLE shop_link DROP FOREIGN KEY has_link_to
--- ;
---
---
+ALTER TABLE query DROP FOREIGN KEY query_like_unique
+;
+ALTER TABLE thesis DROP FOREIGN KEY thesis_like_unique
+;
+ALTER TABLE category DROP FOREIGN KEY has_parent
+;
+ALTER TABLE product DROP FOREIGN KEY belongs_to
+;
+ALTER TABLE thesis DROP FOREIGN KEY extracted_from
+;
+ALTER TABLE review DROP FOREIGN KEY provides
+;
+ALTER TABLE review DROP FOREIGN KEY has_review
+;
+ALTER TABLE shop_link DROP FOREIGN KEY hosts
+;
+ALTER TABLE specification_value DROP FOREIGN KEY is_value_of
+;
+ALTER TABLE specification_value DROP FOREIGN KEY has_spec
+;
+ALTER TABLE shop_link DROP FOREIGN KEY has_link_to
+;
+
+
 
 
 -- Drop keys for tables section -------------------------------------------------
 
 -- ALTER TABLE query_unique DROP PRIMARY KEY
--- ALTER TABLE query_unique DROP KEY id
 -- ALTER TABLE thesis_unique DROP PRIMARY KEY
 -- ALTER TABLE vote DROP PRIMARY KEY
 -- ALTER TABLE query DROP PRIMARY KEY
--- ALTER TABLE query DROP KEY id
 -- ALTER TABLE category DROP PRIMARY KEY
 -- ALTER TABLE thesis DROP PRIMARY KEY
 -- ALTER TABLE source DROP PRIMARY KEY
@@ -194,8 +190,7 @@ CREATE TABLE thesis
   frequency Int UNSIGNED NOT NULL DEFAULT 0,
   positivity Double,
   importance Double,
- PRIMARY KEY (id),
- FOREIGN KEY (thesis_unique_id) REFERENCES thesis_unique(id)
+ PRIMARY KEY (id)
 )
 ;
 
@@ -219,8 +214,7 @@ CREATE TABLE query
   query_unique_id Int UNSIGNED,
   text Varchar(200) NOT NULL,
   date Timestamp NOT NULL,
- PRIMARY KEY (id),
- UNIQUE id (id)
+ PRIMARY KEY (id)
 )
 ;
 
@@ -235,8 +229,7 @@ CREATE TABLE thesis_unique
   last_scan Timestamp NOT NULL,
   positivity Double,
   importance Double,
- PRIMARY KEY (id),
- UNIQUE (content)
+ PRIMARY KEY (id)
 )
 ;
 
@@ -248,8 +241,7 @@ CREATE TABLE query_unique
   text Varchar(200) NOT NULL,
   last_scan Timestamp NOT NULL,
   frequency Int NOT NULL,
- PRIMARY KEY (id),
- UNIQUE id (id)
+ PRIMARY KEY (id)
 )
 ;
 
@@ -302,7 +294,6 @@ ALTER TABLE thesis ADD CONSTRAINT thesis_like_unique FOREIGN KEY (thesis_unique_
 
 ALTER TABLE query ADD CONSTRAINT query_like_unique FOREIGN KEY (query_unique_id) REFERENCES query_unique (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
-
 
 
 

@@ -1,17 +1,12 @@
 package ru.goodsReview.storage;
 
-import junit.framework.Assert;
 import org.apache.log4j.Logger;
-import org.junit.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.*;
-import ru.goodsReview.storage.controller.*;
+import ru.goodsReview.storage.controller.ThesisDbController;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Random;
 
 /*
     Date: 26.10.11
@@ -23,10 +18,10 @@ import java.util.Random;
 public class DbModuleTest {
     private static final Logger log = Logger.getLogger(DbModuleTest.class);
 
-    @Test
+    /*@Test
     public void testSMB() {
         Assert.assertEquals(4, 2 + 2);
-    }
+    } */
 
     public static void main(String[] args) throws SQLException {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
@@ -34,6 +29,17 @@ public class DbModuleTest {
 
         log.error("PRIVET");
         log.info("PRIVET");
+<<<<<<< HEAD
+        /*ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(new SimpleJdbcTemplate(dataSource));
+        ThesisUnique thesisUnique = new ThesisUnique("good phone", 14, new Date(), 5.0, 1.0);
+        ThesisUnique thesisUnique2 = new ThesisUnique("bad phone", 2, new Date(), -1.0, 0.1);
+        List<ThesisUnique> list = new ArrayList<ThesisUnique>();
+        list.add(thesisUnique);
+        list.add(thesisUnique2);
+        thesisUniqueDbController.addThesisUniqueList(list);            */
+        ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
+        thesisDbController.setThesisUniqueId(4, 2);
+=======
 
         /* NOTE(serebryakov): I recommend to run this test on the clean database. */
         CategoryDbController categoryController = new CategoryDbController(new SimpleJdbcTemplate(dataSource));
@@ -68,7 +74,8 @@ public class DbModuleTest {
 
         ThesisDbController thesisController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
 		//todo change this constructor. Sorry.
-        Thesis thesis0 = new Thesis(1, "OK thesis content", 0, 0.0, 0.0);
+        Thesis thesis0 = null;
+		//new Thesis(-1, review0id, "OK thesis content", 0.0, 0.0, 0, 0);
         long thesis0id = thesisController.addThesis(thesis0);
         Thesis thesis1 = thesisController.getThesisById(thesis0id);
         log.debug("Thesis by ID = " + thesis0id);
@@ -81,19 +88,6 @@ public class DbModuleTest {
         for (Thesis thesis : thesisController.getThesesByProductId(product0id)) {
             log.debug("Content: " + thesis.getContent());
         }
+>>>>>>> 1c889f2ce65131c607bc196f789cc0d842341865
     }
-
-    /* public static void main(String[] args) throws SQLException {
-       final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-       DataSource dataSource = null;
-       dataSource = (DataSource) context.getBean("dataSource");
-       ProductDbController baseController = new  ProductDbController(new SimpleJdbcTemplate(dataSource));
-       List<Product> productsList = new ArrayList<Product>();
-       productsList.add(new Product(1, "iphone 4", "mobile_phone_by_apple", 10));
-       productsList.add(new Product(1, "htc desire", "mobile phone by HTC", 6));
-       productsList.add(new Product(1, "nokia 3310", "cool mobile phone by Nokia", 100));
-       productsList.add(new Product(1, "motorola", "bad phone", 100));
-
-       baseController.addProductList(productsList);
- }   */
 }
