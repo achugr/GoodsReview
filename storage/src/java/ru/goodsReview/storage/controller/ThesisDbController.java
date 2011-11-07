@@ -62,6 +62,10 @@ public class ThesisDbController {
         return theses;
     }
 
+    public void setThesisUniqueId (long thesisId, long thesisUniqueId){
+         simpleJdbcTemplate.getJdbcOperations().update("UPDATE thesis SET thesis_unique_id = ? where id = ?", new Object[]{thesisUniqueId, thesisId});
+    }
+
     public Thesis getThesisById(long id) {
         List<Thesis> theses =
                 simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE id = ?",
