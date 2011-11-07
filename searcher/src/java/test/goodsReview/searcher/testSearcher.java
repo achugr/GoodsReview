@@ -1,4 +1,4 @@
-package goodsReview.searcher;
+package test.goodsReview.searcher;
 
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.document.Document;
@@ -21,7 +21,8 @@ public class testSearcher {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
         DataSource dataSource = null;
         dataSource = (DataSource) context.getBean("dataSource");
-        Indexer indexer = new Indexer(new SimpleJdbcTemplate(dataSource));
+        Indexer indexer = new Indexer();
+        indexer.setJdbcTemplate(new SimpleJdbcTemplate(dataSource));
         indexer.doProductsIndex(DBDirectory);
         IndexSearcher indexSearcher = new IndexSearcher(new SimpleFSDirectory(new File(DBDirectory)));
         QueryParser queryParser = new QueryParser(Version.LUCENE_34, "",new RussianAnalyzer(Version.LUCENE_34));
@@ -29,7 +30,7 @@ public class testSearcher {
         Query query = queryParser.parse("name:iPhone 4"); //"good" example
         TopDocs topDocs = indexSearcher.search(query,1);
         if (topDocs.getMaxScore() > 0) {
-            Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc); //H-H-H-H-H-H-HOLY SHIT!!!!1
+            Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc); //ZOMG
             System.out.println(document.get("id")+" "+document.get("name")+" "+document.get("popularity")+" "+document.get("description"));
         } else {
             System.out.println("Sorry, no results!");
