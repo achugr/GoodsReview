@@ -12,13 +12,15 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
+import ru.goodsReview.core.model.ThesisUnique;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
+import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 /**
  * Created by IntelliJ IDEA.
  * User: ruslan
@@ -30,6 +32,7 @@ public class AnalyzeThesis {
     public AnalyzeThesis() {
     }
 
+    //public int
     public void updateThesisByProductId(long productId){
 
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
@@ -56,19 +59,23 @@ public class AnalyzeThesis {
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
             for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
-                currThesis = new Thesis(rev.getId(), entry.getKey(), entry.getValue());
+                currThesis = new Thesis(rev.getId(), 0, entry.getKey(), entry.getValue(),0,0);
                 thesisDbController.addThesis(currThesis);
             }
         }
 
+        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(new SimpleJdbcTemplate(dataSource));
         ListOfReviews listOfReviews;
+        ThesisUnique currThesisUnique;
         listOfReviews = new ListOfReviews(desiredReviews);
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
         frequencyAnalyzer.makeFrequencyDictionary();
-
+        Date date = new Date();
         for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
-            currThesis = new Thesis(entry.getKey(), entry.getValue());
-            thesisDbController.addThesis(currThesis);
+            currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
+            thesisUniqueDbController.addThesisUnique(currThesisUnique);
         }
     }
+
+
 }
