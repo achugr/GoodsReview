@@ -10,6 +10,7 @@ package ru.goodsReview.storage.controller;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.apache.log4j.Logger;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.storage.mapper.CategoryMapper;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class CategoryDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private CategoryMapper categoryMapper;
+    private static final Logger log = Logger.getLogger(CategoryDbController.class);
 
     public CategoryDbController(SimpleJdbcTemplate simpleJdbcTemplate) {
         this.simpleJdbcTemplate = simpleJdbcTemplate;
@@ -33,9 +35,7 @@ public class CategoryDbController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            // We don't have permissions to update the table.
-            // TODO(serebryakov): Log the error.
-            e.printStackTrace();
+            log.error("Error while inserting category (probably not enough permissions): " + category);
         }
         return -1;
     }

@@ -2,6 +2,7 @@ package ru.goodsReview.storage.controller;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.apache.log4j.Logger;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.mapper.ReviewMapper;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class ReviewDbController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ReviewMapper reviewMapper;
+    private static final Logger log = Logger.getLogger(ReviewDbController.class);
 
     public ReviewDbController(SimpleJdbcTemplate simpleJdbcTemplate) {
         this.simpleJdbcTemplate = simpleJdbcTemplate;
@@ -59,9 +61,7 @@ public class ReviewDbController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            // We don't have permissions to update the table.
-            // TODO(serebryakov): Log the error.
-            e.printStackTrace();
+            log.error("Error while inserting review (probably not enough permissions): " + review);
         }
         return -1;
     }
