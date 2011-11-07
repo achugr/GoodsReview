@@ -27,7 +27,7 @@
         <jar destfile="${dist.dir}/core.jar" basedir="${classes.dir}" includes="ru/goodsReview/core/**/*.class" >
             <manifest>
                 <attribute name="Built-By" value="core: build.xml"/>
-                <attribute name="Main-Class" value="ru.goodsReview.core.starter.Starter"/>
+               <attribute name="Main-Class" value="ru.goodsReview.core.starter.Starter"/>
                 <attribute name="Class-Path" value="${libs_manifest}"/>
             </manifest>
         </jar>
