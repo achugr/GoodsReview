@@ -3,11 +3,13 @@
 out
 build
 database
+data
 
 #checkStyle and findBugs reports#
 checkstyle_report.xml
 checkstyle_report.htm
 findbugs_report.xml
+findbugs_report.html
 
 # Idea system files #
 *.iws

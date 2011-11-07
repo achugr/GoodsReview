@@ -15,7 +15,7 @@ public class Starter {
     private static final Logger log = Logger.getLogger(Starter.class);
 
     public static void main(final String[] args) {
-        log.info("App started");
-        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(new String[]{args[0]});
+        log.info("Module started");
+        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
     }
 }

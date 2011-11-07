@@ -9,26 +9,19 @@
         </layout>
     </appender>
     <appender name="file" class="org.apache.log4j.FileAppender">
-       <!-- <param name="File" value="mainlog.log"/>  -->
-        <param name="File" value="dbLog.log"/>
+        <param name="File" value="mainlog.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%t %d %p %m IN %c%n"/>
         </layout>
     </appender>
 
-
-    <logger name="net.sf.xfresh" additivity="false">
-        <level value="ERROR"/>
-        <appender-ref ref="file"/>
-        <appender-ref ref="console"/>
-    </logger>
-    <logger name="org.springframework" additivity="false">
-        <level value="ERROR"/>
+    <logger name="ru.goodsReview" additivity="false">
+        <level value="DEBUG"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </logger>
     <root>
-        <priority value="DEBUG"/>
+        <priority value="ERROR"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </root>

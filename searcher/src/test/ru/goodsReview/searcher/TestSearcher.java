@@ -19,9 +19,9 @@ public class TestSearcher {
     static final String DBDirectory = "database";
     public static void main(String[] args) throws Exception {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-        DataSource dataSource = null;
-        dataSource = (DataSource) context.getBean("dataSource");
-        Indexer indexer = new Indexer(new SimpleJdbcTemplate(dataSource));
+        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
+        Indexer indexer = new Indexer();
+		indexer.setJdbcTemplate(jdbcTemplate);
         indexer.doProductsIndex(DBDirectory);
         IndexSearcher indexSearcher = new IndexSearcher(new SimpleFSDirectory(new File(DBDirectory)));
         QueryParser queryParser = new QueryParser(Version.LUCENE_34, "",new RussianAnalyzer(Version.LUCENE_34));

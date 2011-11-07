@@ -10,50 +10,44 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
 import ru.goodsReview.extractor.listener.CitilinkNotebooksScraperRuntimeListener;
+import org.apache.log4j.Logger;
 
-import java.io.FileNotFoundException;
+public class GrabberCitilink extends Grabber {
+	private static final Logger log = Logger.getLogger(GrabberCitilink.class);
 
-public class GrabberCitilink extends Grabber{
+	public void setConfig(String config) {
+		this.config = config;
+	}
 
-    //private static final Logger log = Logger.getLogger(GrabberCitilink.class);
+	public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
+	public void run() {
+		try {
+			log.info("Citilink grabbing started");
+			ScraperConfiguration config = new ScraperConfiguration(this.config);
+			Scraper scraper = new Scraper(config, ".");
+			scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
+			scraper.setDebug(true);
+			scraper.execute();
 
+			log.info("Citilink grabbing ended succecsful");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("cannot process Citilink");
+			log.error(e);
+		}
+	}
 
-    public void setConfig(String config) {
-        this.config = config;
-    }
+	//todo delete this method
+	/*public static void main(String[] args) throws FileNotFoundException {
+		SimpleJdbcTemplate jdbcTemplate = null;
+		GrabberCitilink citi = new GrabberCitilink();
+		citi.setConfig("extractor/webHarvest/configs/CitilinkReviewsConfig.xml");
+		citi.setJdbcTemplate(jdbcTemplate);
+		citi.run();
 
-
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-
-    public void grab() {
-        try {
-
-                ScraperConfiguration config = new ScraperConfiguration(this.config);
-                Scraper scraper = new Scraper(config, ".");
-                scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
-                scraper.setDebug(true);
-                scraper.execute();
-
-         //   log.info("Citilink: succecsful");
-        } catch (Exception exception) {
-         //   exception.printStackTrace();
-        //    log.error("cannot process Citilink");
-        }
-    }
-
-
-    public static void main(String[] args) throws FileNotFoundException {
-
-        SimpleJdbcTemplate jdbcTemplate = null;
-        GrabberCitilink citi =   new GrabberCitilink();
-        citi.setConfig("extractor/webHarvest/configs/CitilinkReviewsConfig.xml");
-        citi.setJdbcTemplate(jdbcTemplate);
-        citi.grab();
-
-    }
+	}*/
 
 }
