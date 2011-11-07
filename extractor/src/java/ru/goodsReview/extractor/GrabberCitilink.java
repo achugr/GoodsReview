@@ -40,14 +40,13 @@ public class GrabberCitilink extends Grabber {
 		}
 	}
 
-	//todo delete this method
-	/*public static void main(String[] args) throws FileNotFoundException {
-		SimpleJdbcTemplate jdbcTemplate = null;
-		GrabberCitilink citi = new GrabberCitilink();
-		citi.setConfig("extractor/webHarvest/configs/CitilinkReviewsConfig.xml");
-		citi.setJdbcTemplate(jdbcTemplate);
-		citi.run();
+    public static void main(String[] args){
 
-	}*/
+        SimpleJdbcTemplate jdbcTemplate = null;
+        GrabberCitilink citi =   new GrabberCitilink();
+        citi.setConfig("extractor/webHarvest/configs/CitilinkReviewsConfig.xml");
+        citi.setJdbcTemplate(jdbcTemplate);
+        citi.run();
 
+    }
 }
