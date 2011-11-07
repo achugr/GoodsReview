@@ -226,7 +226,7 @@
                         <div class="page-header">
                             <div class="row">
                                 <div class="span2">
-                                    <a class="brand" href="/index.xml">
+                                    <a href="/index.xml">
                                         <img src="images/mediumLogo.png"/>
                                     </a>
                                 </div>
