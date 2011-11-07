@@ -44,7 +44,7 @@ public class DbModuleTest {
 
         String productName = "Motorola RND" + (new Random().nextInt(1000000000));
         ProductDbController productController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
-        Product product0 = new Product(-1 /* any ID */, category0id, productName, "отвратительнейший телефон", 10);
+        Product product0 = new Product(-1 /* any ID */, category0id, productName, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 10);
         long product0id = productController.addProduct(product0);
         Product product1 = productController.getProductByName(productName);
         log.debug("Product name: " + product1.getName());
@@ -67,7 +67,9 @@ public class DbModuleTest {
         log.debug("Review date: " + review1.getDate() + ", time: " + review1.getDate().getTime());
 
         ThesisDbController thesisController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
-        Thesis thesis0 = new Thesis(-1, review0id, "OK thesis content", 0.0, 0.0, 0, 0);
+		//todo change this constructor. Sorry.
+        Thesis thesis0 = null;
+		//new Thesis(-1, review0id, "OK thesis content", 0.0, 0.0, 0, 0);
         long thesis0id = thesisController.addThesis(thesis0);
         Thesis thesis1 = thesisController.getThesisById(thesis0id);
         log.debug("Thesis by ID = " + thesis0id);

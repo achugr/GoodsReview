@@ -27,48 +27,52 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class AnalyzeThesis {
-    public AnalyzeThesis() {
-    }
+	public AnalyzeThesis() {
+	}
 
-    public void updateThesisByProductId(long productId){
+	public void updateThesisByProductId(long productId) {
 
-        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-        javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
+		FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
+		javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
 
-        ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-        List<Review> desiredReviews = new ArrayList<Review>();
+		ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
+		List<Review> desiredReviews = new ArrayList<Review>();
 
-        desiredReviews =  reviewDbController.getReviewsByProductId(productId);
+		desiredReviews = reviewDbController.getReviewsByProductId(productId);
 
-        List<Review> derivedFromDbReviews = new ArrayList<Review>();
-        derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
-        ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
-        FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
+		List<Review> derivedFromDbReviews = new ArrayList<Review>();
+		derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
+		ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
+		FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
-        ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
-        FrequencyAnalyzer  freqAnForSingleReview;
-        ListOfReviews buffLOR = new ListOfReviews();
-        Thesis currThesis;
-        // Here we got some tough stuff
-        for(Review rev : desiredReviews){
-            buffLOR.clear();
-            buffLOR.addReview(rev);
-            freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
-            freqAnForSingleReview.makeFrequencyDictionary();
-            for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
-                currThesis = new Thesis(rev.getId(), entry.getKey(), entry.getValue());
-                thesisDbController.addThesis(currThesis);
-            }
-        }
+		ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
+		FrequencyAnalyzer freqAnForSingleReview;
+		ListOfReviews buffLOR = new ListOfReviews();
+		Thesis currThesis;
+		// Here we got some tough stuff
+		for (Review rev : desiredReviews) {
+			buffLOR.clear();
+			buffLOR.addReview(rev);
+			freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
+			freqAnForSingleReview.makeFrequencyDictionary();
+			for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
+				//todo change this constructor. Sorry.
+				currThesis = null;
+				//currThesis = new Thesis(rev.getId(), entry.getKey(), entry.getValue());
+				thesisDbController.addThesis(currThesis);
+			}
+		}
 
-        ListOfReviews listOfReviews;
-        listOfReviews = new ListOfReviews(desiredReviews);
-        FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
-        frequencyAnalyzer.makeFrequencyDictionary();
+		ListOfReviews listOfReviews;
+		listOfReviews = new ListOfReviews(desiredReviews);
+		FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
+		frequencyAnalyzer.makeFrequencyDictionary();
 
-        for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
-            currThesis = new Thesis(entry.getKey(), entry.getValue());
-            thesisDbController.addThesis(currThesis);
-        }
-    }
+		for (Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()) {
+			//todo change this constructor. Sorry.
+			currThesis = null;
+			//currThesis = new Thesis(entry.getKey(), entry.getValue());
+			thesisDbController.addThesis(currThesis);
+		}
+	}
 }
