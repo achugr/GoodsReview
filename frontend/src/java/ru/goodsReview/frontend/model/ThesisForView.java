@@ -26,8 +26,6 @@ public class ThesisForView {
 		this.content = thesis.getContent();
 		this.positivity = thesis.getPositivity();
 		this.importance = thesis.getImportance();
-		this.votes_yes = thesis.getVotesYes();
-		this.votes_no = thesis.getVotesNo();
 	}
 
 	public long getId() {
