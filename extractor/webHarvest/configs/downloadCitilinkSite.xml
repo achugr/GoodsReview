@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-
+	
+	<var-def name="path">allLinks/</var-def>
 	<var-def name="startURL">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</var-def>
-
-
+	
+	
    <var-def name="MaxPage">
             <xpath expression="//div[@class='cat_nav top']/div[@class='b']/a[last()]/text()">
                 <html-to-xml>
@@ -12,13 +13,13 @@
                 </html-to-xml>
             </xpath>
     </var-def>
-
-
+   
+   
    <file action="append" path="DownloadedCitilink/List.xml">
                 	<![CDATA[ <body> ]]>
    </file>
-
-
+   
+   
     <while condition="${MaxPage.toInt() + 1>i.toInt()}" index="i"><empty>
         <var-def name="ProductsURL">
             <xpath expression='//table[@class = "item"]'>
@@ -28,7 +29,7 @@
             </xpath>
         </var-def>
 
-        	<loop item="oneNew" index="j">
+        	<loop item="oneNew" index="j">	
             <list>
                 <xpath expression='//td[@class="l"]/*//@href'>
            			 <html-to-xml>
@@ -38,28 +39,22 @@
             </list>
             <body>
             	<empty>
-
-            	<file action="write" path="DownloadedCitilink/p=${i.toInt()}${oneNew}opinion.html">
+            	
+            	<file action="write" path="CitilinkHTML/${i.toInt()}_${j}.html">
+            		
                 	<var-def name="oneNewURL">
                     	<html-to-xml>
                         	<http url="http://www.citilink.ru${oneNew}?opinion"/>
                     	</html-to-xml>
-                	</var-def>
+                	</var-def>          		
         		</file>
-
-
-        		<!--file action="append" path="DownloadedCitilink/List.xml">
-                	<![CDATA[ <div> ]]>
-                		<var name="oneNew"/>
-                	<![CDATA[ </div> ]]>
-        		</file-->
-
+        		
             	</empty>
             </body>
         </loop>
     </empty>
     </while>
-
+    
     <file action="append" path="DownloadedCitilink/List.xml">
                 	<![CDATA[ </body> ]]>
    </file>

@@ -12,12 +12,12 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
+import ru.goodsReview.core.model.ThesisUnique;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
+import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,6 +29,8 @@ import java.util.Map;
 public class AnalyzeThesis {
 	public AnalyzeThesis() {
 	}
+
+    //public int
 
 	public void updateThesisByProductId(long productId) {
 
@@ -45,34 +47,49 @@ public class AnalyzeThesis {
 		ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
 		FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
-		ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
-		FrequencyAnalyzer freqAnForSingleReview;
-		ListOfReviews buffLOR = new ListOfReviews();
-		Thesis currThesis;
-		// Here we got some tough stuff
-		for (Review rev : desiredReviews) {
-			buffLOR.clear();
-			buffLOR.addReview(rev);
-			freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
-			freqAnForSingleReview.makeFrequencyDictionary();
-			for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
-				//todo change this constructor. Sorry.
-				currThesis = null;
-				//currThesis = new Thesis(rev.getId(), entry.getKey(), entry.getValue());
-				thesisDbController.addThesis(currThesis);
-			}
-		}
 
-		ListOfReviews listOfReviews;
-		listOfReviews = new ListOfReviews(desiredReviews);
-		FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
-		frequencyAnalyzer.makeFrequencyDictionary();
+        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(new SimpleJdbcTemplate(dataSource));
+        ListOfReviews listOfReviews;
+        listOfReviews = new ListOfReviews(desiredReviews);
+        FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
+        frequencyAnalyzer.makeFrequencyDictionary();
+        Date date = new Date();
+        Map<String, Integer> thesisUniques = new HashMap<String, Integer>();
+        Map<String, Long> tableOfId = new HashMap<String, Long>();   //
+        Integer currfreq;
+        for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
+            //currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
+            currfreq = thesisUniques.get(entry.getKey());
+            thesisUniques.put(entry.getKey(), entry.getValue() + (currfreq == null ? 0 : currfreq));
+            //tableOfId.put(entry.getKey(), currThesisUnique.getId());
+        }
 
-		for (Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()) {
-			//todo change this constructor. Sorry.
-			currThesis = null;
-			//currThesis = new Thesis(entry.getKey(), entry.getValue());
-			thesisDbController.addThesis(currThesis);
-		}
-	}
+        // Создаём таблицу thesis_unique
+        // True hardcore
+        ThesisUnique currThesisUnique;
+        List<ThesisUnique> recievedTU;
+        for(Map.Entry<String, Integer> entry : thesisUniques.entrySet()){
+            currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
+            thesisUniqueDbController.addThesisUnique(currThesisUnique);
+            recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
+            tableOfId.put(entry.getKey(), recievedTU.get(0).getId());
+        }
+
+
+        ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
+        FrequencyAnalyzer  freqAnForSingleReview;
+        ListOfReviews buffLOR = new ListOfReviews();
+        Thesis currThesis;
+        // Here we got some tough stuff
+        for(Review rev : desiredReviews){
+            buffLOR.clear();
+            buffLOR.addReview(rev);
+            freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
+            freqAnForSingleReview.makeFrequencyDictionary();
+            for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
+                currThesis = new Thesis(rev.getId(), tableOfId.get(entry.getKey()), entry.getKey(), entry.getValue(),0,0);
+                thesisDbController.addThesis(currThesis);
+            }
+        }
+    }
 }
