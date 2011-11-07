@@ -14,7 +14,7 @@ import ru.goodsReview.core.model.Product;
  *      Vanslov Evgeny
  *      vans239@gmail.com
  */
-
+         // todo write this class
 public class SimilarProductYalet implements Yalet {
 	public void process(InternalRequest req, InternalResponse res) {
 			long id = req.getIntParameter("id");
