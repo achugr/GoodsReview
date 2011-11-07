@@ -40,5 +40,13 @@ public class GrabberCitilink extends Grabber {
 		}
 	}
 
+    public static void main(String[] args){
 
+        SimpleJdbcTemplate jdbcTemplate = null;
+        GrabberCitilink citi =   new GrabberCitilink();
+        citi.setConfig("extractor/webHarvest/configs/CitilinkReviewsConfig.xml");
+        citi.setJdbcTemplate(jdbcTemplate);
+        citi.run();
+
+    }
 }
