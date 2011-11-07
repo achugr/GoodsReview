@@ -13,21 +13,21 @@ import ru.goodsReview.core.model.Thesis;
 public class ThesisForView {
 
 	private long id;
-	private long review_id;
-	private String content;
-	private double positivity;
-	private double importance;
-	private long votes_yes;
-	private long votes_no;
+    private long reviewId;
+    private long thesisUniqueId;
+    private String content;
+    private int frequency;
+    private double positivity;
+    private double importance;
 
 	public ThesisForView(Thesis thesis) {
 		this.id = thesis.getId();
-		this.review_id = thesis.getReviewId();
+		this.reviewId = thesis.getReviewId();
 		this.content = thesis.getContent();
 		this.positivity = thesis.getPositivity();
 		this.importance = thesis.getImportance();
-		this.votes_yes = thesis.getVotesYes();
-		this.votes_no = thesis.getVotesNo();
+		this.thesisUniqueId = thesis.getThesisUniqueId();
+		this.frequency = thesis.getFrequency();
 	}
 
 	public long getId() {
@@ -35,7 +35,7 @@ public class ThesisForView {
 	}
 
 	public long getReviewId() {
-		return review_id;
+		return reviewId;
 	}
 
 	public String getContent() {
@@ -50,11 +50,11 @@ public class ThesisForView {
 		return importance;
 	}
 
-	public long getVotesYes() {
-		return votes_yes;
+	public long getThesisUniqueId() {
+		return thesisUniqueId;
 	}
 
-	public long getVotesNo() {
-		return votes_no;
+	public long getFrequency() {
+		return frequency;
 	}
 }
