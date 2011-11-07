@@ -57,6 +57,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
           if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
 
+
             String nameProd =  scraper.getContext().get("ProductName").toString();
             String ProdPrice = scraper.getContext().get("Price").toString();
             String ReviewTime = scraper.getContext().get("ReviewTime").toString();
@@ -69,8 +70,8 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String VoteNo = scraper.getContext().get("VoteNo").toString();
             Date date = new Date(System.currentTimeMillis());
 
-             Review rev =  new Review(1,1, GoodFeatures+"\n"+BadFeatures+"\n"+Comments, "amarch", date, Description, 15 , "httpa",
-                                    Integer.parseInt(StarRate), 100500, Integer.parseInt(VoteYes), Integer.parseInt(VoteNo));
+             Review rev =  new Review(1,1, GoodFeatures+"\n"+BadFeatures+"\n"+Comments, "anonimus", date, Description, 15 , "http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/",
+                                    Integer.parseInt(StarRate), 0, Integer.parseInt(VoteYes), Integer.parseInt(VoteNo));
             reviewDbController.addReview(rev);
             log.info(" New review addded");
           }
