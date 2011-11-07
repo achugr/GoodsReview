@@ -2,7 +2,9 @@ package ru.goodsReview.miner;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
 import java.util.Date;
@@ -40,15 +42,30 @@ public class Test {
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
         SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
         ReviewDbController reviewDbController1 = new ReviewDbController(jdbcTemplate);
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
 
-		Review new_review1 = new Review(1, 1, "good good good phone", null,new Date(), null, 1, null, 0, 0, 0, 0);
-		Review new_review2 = new Review(1, 1, "Not good enough", null,new Date(), null, 1, null, 0, 0, 0, 0);
+        Product pro1 = new Product(1, "Motorola", "bad phone",0);
+        //Product pro2 = new Product(1, "Motorola Razer V3", "very bad phone",0);
 
+        productDbController.addProduct(pro1);
+        //productDbController.addProduct(pro2);
+
+
+        Review new_review1 = new Review(1, 1, "good good good phone", null,new Date(), null, 1, null, 0, 0, 0, 0);
+        Review new_review2 = new Review(2, 1, "Not good enough", null,new Date(), null, 1, null, 0, 0, 0, 0);
+        Review new_review3 = new Review(3, 1, "good bad good phone", null,new Date(), null, 1, null, 0, 0, 0, 0);
+        Review new_review4 = new Review(4, 1, " Still not good enough", null,new Date(), null, 1, null, 0, 0, 0, 0);
+
+
+
+        reviewDbController1.addReview(new_review1);
         reviewDbController1.addReview(new_review2);
-		reviewDbController1.addReview(new_review1);
+        reviewDbController1.addReview(new_review3);
+        reviewDbController1.addReview(new_review4);
 
         AnalyzeThesis analyzeThesis = new AnalyzeThesis();
         analyzeThesis.updateThesisByProductId(1);
+        //analyzeThesis.updateThesisByProductId(2);
 
        /* ListOfReviews citilinkReviews;
         citilinkReviews = new ListOfReviews();

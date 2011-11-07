@@ -47,4 +47,12 @@ public class ThesisUniqueDbController {
         }
         return ids;
     }
+    public List<ThesisUnique> getThesisUniqueByContent(String content) {
+        List<ThesisUnique> theses =
+                simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis_unique WHERE content = ?",
+                        new Object[]{content},
+                        new int[]{Types.VARCHAR},
+                        thesisUniqueMapper);
+        return theses;
+    }
 }

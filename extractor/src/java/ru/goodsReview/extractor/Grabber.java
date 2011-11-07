@@ -6,15 +6,19 @@
 */
 package ru.goodsReview.extractor;
 
+import java.util.TimerTask;
+
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
-public abstract class Grabber {
-    protected SimpleJdbcTemplate jdbcTemplate;
-    protected String config;
 
-    public abstract void grab();
+public abstract class Grabber extends TimerTask {
+	protected SimpleJdbcTemplate jdbcTemplate;
+	protected String config;
 
-    public abstract void setConfig(String config);
+	public abstract void run();
 
-    public abstract void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate);
+	public abstract void setConfig(String config);
+
+	public abstract void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate);
+
 }
