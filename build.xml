@@ -78,16 +78,16 @@
     <target name="run_storage">
         <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
             <jvmarg value="-Xms64m"/>
-            <jvmarg value="-Xmx1750m"/>
-            <arg value="/storage/src/scripts/beans.xml" />
+            <jvmarg value="-Xmx1000m"/>
+            <arg value="storage/src/scripts/beans.xml" />
         </java>
     </target>
 
     <target name="run_frontend">
         <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
             <jvmarg value="-Xms64m"/>
-            <jvmarg value="-Xmx1750m"/>
-            <arg value="/frontend/src/scripts/beans.xml" />
+            <jvmarg value="-Xmx1000m"/>
+            <arg value="frontend/src/scripts/beans.xml" />
         </java>
     </target>
      <!-- for checking code style -->
