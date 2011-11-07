@@ -12,13 +12,13 @@ import ru.goodsReview.core.model.Thesis;
 
 public class ThesisForView {
 
-	private long id;
-    private long reviewId;
-    private long thesisUniqueId;
-    private String content;
-    private int frequency;
-    private double positivity;
-    private double importance;
+	private final long id;
+    private final long reviewId;
+    private final long thesisUniqueId;
+    private final String content;
+    private final int frequency;
+    private final double positivity;
+    private final double importance;
 
 	public ThesisForView(Thesis thesis) {
 		this.id = thesis.getId();

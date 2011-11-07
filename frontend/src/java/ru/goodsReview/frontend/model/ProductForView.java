@@ -12,12 +12,12 @@ import ru.goodsReview.core.model.Product;
  */
 
 public class ProductForView {
-	private String name;
-	private String description;
-	private long id;
-	private String category;
-	private long categoryId;
-	private long popularity;
+	private final String name;
+	private final String description;
+	private final long id;
+	private final String category;
+	private final long categoryId;
+	private final long popularity;
 
 	public ProductForView(Product product, Category category) throws Exception {
 		name = product.getName();
