@@ -44,13 +44,14 @@ public class DbModuleTest {
 
         String productName = "Motorola RND" + (new Random().nextInt(1000000000));
         ProductDbController productController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
-        Product product0 = new Product(-1 /* any ID */, category0id, productName, "����������������� �������", 10);
+        Product product0 = new Product(-1 /* any ID */, category0id, productName, "хороший товар", 10);
         long product0id = productController.addProduct(product0);
         Product product1 = productController.getProductByName(productName);
         log.debug("Product name: " + product1.getName());
         log.debug("Product desc: " + product1.getDescription());
         log.debug("[id when insert: " + product0id + ", id when select: " + product1.getId() + "]");
-
+        Product productFrom = productController.getProductById(10);
+        System.out.println("PRODUCT == " + productFrom.getDescription());
         SourceDbController sourceController = new SourceDbController(new SimpleJdbcTemplate(dataSource));
         Source source0 = new Source(-1, "Reliable source", "OK some url");
         long source0id = sourceController.addSource(source0);
