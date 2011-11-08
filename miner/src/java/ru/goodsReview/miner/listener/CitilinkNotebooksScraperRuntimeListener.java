@@ -82,7 +82,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             rev.setSourceUrl("citilink.ru/catalog/computers_and_notebooks/notebooks/");
 
             reviewDbController.addReview(rev);
-            log.info(" New review addded: ID="+ rev.getId());
+            log.info(" New review addded: ID=" + rev.getId());
         }
     }
 

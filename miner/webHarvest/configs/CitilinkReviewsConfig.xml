@@ -1,5 +1,5 @@
  <config>
- <var-def name="path">/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML</var-def>
+ <var-def name="path">miner/web/CitilinkPages/</var-def>
     <var-def name="files">
         <file action="list" path="${path}" listdirs="no" listfilter="*.html"/>
     </var-def>
