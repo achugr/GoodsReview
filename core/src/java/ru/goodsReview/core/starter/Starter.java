@@ -23,7 +23,7 @@ public class Starter {
 			log.info("Project started");
 			final FileSystemXmlApplicationContext frontend = new FileSystemXmlApplicationContext("/frontend/src/scripts/beans.xml");
 			final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext("/indexer/src/scripts/beans.xml");
-			final FileSystemXmlApplicationContext extractor = new FileSystemXmlApplicationContext("/extractor/src/scripts/beans.xml");
+			final FileSystemXmlApplicationContext extractor = new FileSystemXmlApplicationContext("/miner/src/scripts/beans.xml");
 			//final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext();
 			log.info("Project ended");
 		}
