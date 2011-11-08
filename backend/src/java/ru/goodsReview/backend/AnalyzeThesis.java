@@ -7,7 +7,6 @@
 */
 package ru.goodsReview.backend;
 
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
@@ -27,28 +26,31 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class AnalyzeThesis {
-	public AnalyzeThesis() {
+	private SimpleJdbcTemplate jdbcTemplate;
+
+    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+    public AnalyzeThesis() {
 	}
 
     //public int
 
 	public void updateThesisByProductId(long productId) {
 
-		FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-		javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
+        //select reviews from database by product id
+		ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+		List<Review> desiredReviews;
+        desiredReviews = reviewDbController.getReviewsByProductId(productId);
 
-		ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-		List<Review> desiredReviews = new ArrayList<Review>();
-
-		desiredReviews = reviewDbController.getReviewsByProductId(productId);
-
-		List<Review> derivedFromDbReviews = new ArrayList<Review>();
+		List<Review> derivedFromDbReviews;
 		derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
 		ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
 		FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
 
-        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(new SimpleJdbcTemplate(dataSource));
+        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
         ListOfReviews listOfReviews;
         listOfReviews = new ListOfReviews(desiredReviews);
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
@@ -67,16 +69,16 @@ public class AnalyzeThesis {
         // Создаём таблицу thesis_unique
         // True hardcore
         ThesisUnique currThesisUnique;
-        List<ThesisUnique> recievedTU;
+        ThesisUnique recievedTU;
         for(Map.Entry<String, Integer> entry : thesisUniques.entrySet()){
             currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
             thesisUniqueDbController.addThesisUnique(currThesisUnique);
             recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
-            tableOfId.put(entry.getKey(), recievedTU.get(0).getId());
+            tableOfId.put(entry.getKey(), recievedTU.getId());
         }
 
 
-        ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
+        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
         FrequencyAnalyzer  freqAnForSingleReview;
         ListOfReviews buffLOR = new ListOfReviews();
         Thesis currThesis;
