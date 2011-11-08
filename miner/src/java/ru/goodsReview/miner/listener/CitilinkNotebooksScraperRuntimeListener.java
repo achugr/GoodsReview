@@ -55,10 +55,10 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
 
-          if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
+        if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
 
-
-            String nameProd =  scraper.getContext().get("ProductName").toString();
+            // todo naming local
+            String nameProd = scraper.getContext().get("ProductName").toString();
             String ProdPrice = scraper.getContext().get("Price").toString();
             String ReviewTime = scraper.getContext().get("ReviewTime").toString();
             String StarRate = scraper.getContext().get("StarRate").toString();
@@ -68,13 +68,14 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String Comments = scraper.getContext().get("Comments").toString();
             String VoteYes = scraper.getContext().get("VoteYes").toString();
             String VoteNo = scraper.getContext().get("VoteNo").toString();
-            Date date = new Date(System.currentTimeMillis());
+            Date date = new Date();
 
-             Review rev =  new Review(1,1, GoodFeatures+"\n"+BadFeatures+"\n"+Comments, "anonimus", date, Description, 15 , "http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/",
-                                    Integer.parseInt(StarRate), 0, Integer.parseInt(VoteYes), Integer.parseInt(VoteNo));
+            //todo getProduct(Product product)
+            Review rev = new Review(1, 1, GoodFeatures + "\n" + BadFeatures + "\n" + Comments, "anonimus", date, Description, 15, "http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/",
+                    Integer.parseInt(StarRate), 0, Integer.parseInt(VoteYes), Integer.parseInt(VoteNo));
             reviewDbController.addReview(rev);
             log.info(" New review addded");
-          }
+        }
     }
 
     public void onExecutionError(Scraper scraper, Exception e) {
