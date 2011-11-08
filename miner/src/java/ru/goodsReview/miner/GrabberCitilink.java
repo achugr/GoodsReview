@@ -63,7 +63,7 @@ public class GrabberCitilink extends Grabber {
         try{
             log.info("Citilink  run started");
             findPages(path);
-            //downloadPages(path);
+            downloadPages(path);
             grabPages(path);
             log.info("Citilink run succecsful");
         } catch (Exception e){
