@@ -1,4 +1,4 @@
-package ru.goodsReview.miner;
+package ru.goodsReview.backend;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package ru.goodsReview.miner;
+package ru.goodsReview.backend;
 
 import java.util.Iterator;
 import java.util.List;

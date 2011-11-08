@@ -26,7 +26,7 @@
         <jar destfile="${dist.dir}/searcher.jar" basedir="${classes.dir}" includes="ru/goodsReview/searcher/**/*.* net/sf/xfresh/**/*.*" >
             <manifest>
                 <attribute name="Built-By" value="searcher: build.xml"/>
-                <!--<attribute name="Main-Class" value="ru.goodsReview.miner.Test"/> -->  <!--это класс который запускается при запуске джарника-->            </manifest>
+                <!--<attribute name="Main-Class" value="ru.goodsReview.backend.Test"/> -->  <!--это класс который запускается при запуске джарника-->            </manifest>
         </jar>
 
 	<echo>searcher building complete</echo>

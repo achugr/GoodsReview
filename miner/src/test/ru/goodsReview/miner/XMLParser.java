@@ -1,4 +1,4 @@
-package ru.goodsReview.extractor;
+package ru.goodsReview.miner;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

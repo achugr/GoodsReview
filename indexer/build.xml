@@ -26,7 +26,7 @@
         <jar destfile="${dist.dir}/indexer.jar" basedir="${classes.dir}" includes="ru/goodsReview/indexer/**/*.* net/sf/xfresh/**/*.*" >
             <manifest>
                 <attribute name="Built-By" value="core: build.xml"/>
-                <!--<attribute name="Main-Class" value="ru.goodsReview.miner.Test"/>-->  <!--это класс который запускается при запуске джарника-->            </manifest>
+                <!--<attribute name="Main-Class" value="Test"/>-->  <!--это класс который запускается при запуске джарника-->            </manifest>
         </jar>
 
 	<echo>indexer building complete</echo>

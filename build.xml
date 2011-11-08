@@ -10,12 +10,12 @@
 
     <!--пути к вложенным билд файлам-->
     <property name="core.build" location="${project.dir}/core/build.xml"/>
-    <property name="miner.build" location="${project.dir}/miner/build.xml"/>
+    <property name="backend.build" location="${project.dir}/backend/build.xml"/>
     <property name="indexer.build" location="${project.dir}/indexer/build.xml"/>
     <property name="frontend.build" location="${project.dir}/frontend/build.xml"/>
    <!-- <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>-->
     <property name="storage.build" location="${project.dir}/storage/build.xml"/>
-    <property name="extractor.build" location="${project.dir}/extractor/build.xml"/>
+    <property name="miner.build" location="${project.dir}/miner/build.xml"/>
     <property name = "searcher.build" location="${project.dir}/searcher/build.xml"/>
 
     <!-- classpath -->
@@ -40,12 +40,12 @@
         <ant antfile="${storage.build}"/>
     </target>
 
-	<target name="extractor" depends="storage">
-        <ant antfile="${extractor.build}"/>
+	<target name="miner" depends="storage">
+        <ant antfile="${miner.build}"/>
     </target>
 
-    <target name="miner" depends="storage">
-        <ant antfile="${miner.build}"/>
+    <target name="backend" depends="storage">
+        <ant antfile="${backend.build}"/>
     </target>
 
     <target name="indexer" depends="storage">
@@ -67,11 +67,11 @@
         <antcall target="core"/>
         <antcall target="frontend"/>
         <antcall target="storage"/>
-        <antcall target="miner"/>
+        <antcall target="backend"/>
         <antcall target="indexer"/>
         <antcall target="searcher"/>
         <antcall target="storage"/>
-        <antcall target="extractor"/>
+        <antcall target="miner"/>
     </target>
 
     <!--для запуска различных модулей испольются следующие таргеты-->
