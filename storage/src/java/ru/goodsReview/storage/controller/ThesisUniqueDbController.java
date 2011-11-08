@@ -7,9 +7,9 @@ package ru.goodsReview.storage.controller;
  *      artemij.chugreev@gmail.com
  */
 
+import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import org.apache.log4j.Logger;
 import ru.goodsReview.core.model.ThesisUnique;
 import ru.goodsReview.storage.mapper.ThesisUniqueMapper;
 
@@ -47,12 +47,12 @@ public class ThesisUniqueDbController {
         }
         return ids;
     }
-    public List<ThesisUnique> getThesisUniqueByContent(String content) {
+    public ThesisUnique getThesisUniqueByContent(String content) {
         List<ThesisUnique> theses =
                 simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis_unique WHERE content = ?",
                         new Object[]{content},
                         new int[]{Types.VARCHAR},
                         thesisUniqueMapper);
-        return theses;
+        return theses.get(0);
     }
 }

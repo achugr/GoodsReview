@@ -227,7 +227,7 @@
                             <div class="row">
                                 <div class="span2">
                                     <a href="/index.xml">
-                                        <img src="images/mediumLogo.png"/>
+                                        <img src="images/mediumLogoSearch.png"/>
                                     </a>
                                 </div>
                                 <form method="get" action="/search.xml">
