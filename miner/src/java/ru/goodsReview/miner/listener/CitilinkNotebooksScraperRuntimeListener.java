@@ -57,24 +57,32 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
         if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
 
-            // todo naming local
             String nameProd = scraper.getContext().get("ProductName").toString();
-            String ProdPrice = scraper.getContext().get("Price").toString();
-            String ReviewTime = scraper.getContext().get("ReviewTime").toString();
-            String StarRate = scraper.getContext().get("StarRate").toString();
-            String Description = scraper.getContext().get("Description").toString();
-            String GoodFeatures = scraper.getContext().get("GoodFeatures").toString();
-            String BadFeatures = scraper.getContext().get("BadFeatures").toString();
-            String Comments = scraper.getContext().get("Comments").toString();
-            String VoteYes = scraper.getContext().get("VoteYes").toString();
-            String VoteNo = scraper.getContext().get("VoteNo").toString();
+            String prodPrice = scraper.getContext().get("Price").toString();
+            String reviewTime = scraper.getContext().get("ReviewTime").toString();
+            String starRate = scraper.getContext().get("StarRate").toString();
+            String description = scraper.getContext().get("Description").toString();
+            String goodFeatures = scraper.getContext().get("GoodFeatures").toString();
+            String badFeatures = scraper.getContext().get("BadFeatures").toString();
+            String comments = scraper.getContext().get("Comments").toString();
+            String voteYes = scraper.getContext().get("VoteYes").toString();
+            String voteNo = scraper.getContext().get("VoteNo").toString();
+
             Date date = new Date();
 
             //todo getProduct(Product product)
-            Review rev = new Review(1, 1, GoodFeatures + "\n" + BadFeatures + "\n" + Comments, "anonimus", date, Description, 15, "http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/",
-                    Integer.parseInt(StarRate), 0, Integer.parseInt(VoteYes), Integer.parseInt(VoteNo));
+            Review rev = new Review(1, 1, goodFeatures + "\n" + badFeatures + "\n" + comments);
+            rev.setAuthor("anonim");
+            rev.setDescription(description);
+            rev.setVotesNo(Integer.parseInt(voteNo));
+            rev.setVotesYes(Integer.parseInt(voteYes));
+            rev.setDate(date);
+            rev.setImportance(0);
+            rev.setPositivity(0);
+            rev.setSourceUrl("citilink.ru/catalog/computers_and_notebooks/notebooks/");
+
             reviewDbController.addReview(rev);
-            log.info(" New review addded");
+            log.info(" New review addded: ID="+ rev.getId());
         }
     }
 
