@@ -4,11 +4,11 @@
     Author: Alexander Marchuk
             aamarchuk@gmail.com
 */
-package ru.goodsReview.extractor;
-
-import java.util.TimerTask;
+package ru.goodsReview.miner;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+
+import java.util.TimerTask;
 
 
 public abstract class Grabber extends TimerTask {

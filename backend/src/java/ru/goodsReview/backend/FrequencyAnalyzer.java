@@ -1,4 +1,4 @@
-package ru.goodsReview.miner;
+package ru.goodsReview.backend;
 
 import ru.goodsReview.core.model.ListOfReviews;
 

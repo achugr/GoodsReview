@@ -1,4 +1,4 @@
-package ru.goodsReview.extractor.listener;
+package ru.goodsReview.miner.listener;
 
 /**
  * User: Alexander Marchuk

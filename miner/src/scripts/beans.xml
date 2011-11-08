@@ -21,7 +21,7 @@
     </bean>
 
     <!--Grabbers-->
-    <bean id="grabberCitilink" class="ru.goodsReview.extractor.GrabberCitilink">
+    <bean id="grabberCitilink" class="ru.goodsReview.miner.GrabberCitilink">
         <property name="config" value="extractor/webHarvest/configs/CitilinkReviewsConfig.xml"/>
     </bean>
 

@@ -1,9 +1,9 @@
-package ru.goodsReview.miner;
+package ru.goodsReview.backend;
 
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.backend.AnalyzeThesis;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
@@ -17,6 +17,12 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Test {
+    private static SimpleJdbcTemplate jdbcTemplate;
+
+    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
     public static void main(String[] args) {
 
         /*HashMap<String, Integer> thesis1= new HashMap<String, Integer >();
@@ -38,9 +44,9 @@ public class Test {
         list1.add(thesis3);
         thesisHashTable.addSeveralThesisTables(list1);
         thesisHashTable.print();*/
-
-        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
+        //TODO don't use this method for get jdbcTemplate
+        /*FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
+        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");    */
         ReviewDbController reviewDbController1 = new ReviewDbController(jdbcTemplate);
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
 
@@ -50,7 +56,8 @@ public class Test {
         productDbController.addProduct(pro1);
         //productDbController.addProduct(pro2);
 
-
+        //TODO please, don't name variables with "_", we must keep in common code style (Artemij)
+        //TODO first argument in this constructor - id of Review, in db it's autoincrement, please, use constructor without id
         Review new_review1 = new Review(1, 1, "good good good phone", null,new Date(), null, 1, null, 0, 0, 0, 0);
         Review new_review2 = new Review(2, 1, "Not good enough", null,new Date(), null, 1, null, 0, 0, 0, 0);
         Review new_review3 = new Review(3, 1, "good bad good phone", null,new Date(), null, 1, null, 0, 0, 0, 0);

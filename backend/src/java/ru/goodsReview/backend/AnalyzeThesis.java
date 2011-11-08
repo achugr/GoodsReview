@@ -5,7 +5,7 @@
 * Artemij Chugreev 
 * artemij.chugreev@gmail.com
 */
-package ru.goodsReview.miner;
+package ru.goodsReview.backend;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;

@@ -26,9 +26,8 @@
         <jar destfile="${dist.dir}/miner.jar" basedir="${classes.dir}" includes="ru/goodsReview/miner/**/*.* net/sf/xfresh/**/*.*" >
             <manifest>
                 <attribute name="Built-By" value="core: build.xml"/>
-                <attribute name="Main-Class" value="ru.goodsReview.miner.Test"/>   <!--это класс который запускается при запуске джарника-->            </manifest>
+               <!--<attribute name="Main-Class" value="Test"/>-->   <!--это класс который запускается при запуске джарника-->            </manifest>
         </jar>
-
 
 	<echo>miner building complete</echo>
     </target>

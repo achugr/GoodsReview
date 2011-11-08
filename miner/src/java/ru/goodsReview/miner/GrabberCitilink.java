@@ -4,13 +4,13 @@
     Author: Alexander Marchuk
             aamarchuk@gmail.com
 */
-package ru.goodsReview.extractor;
+package ru.goodsReview.miner;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
-import ru.goodsReview.extractor.listener.CitilinkNotebooksScraperRuntimeListener;
+import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
