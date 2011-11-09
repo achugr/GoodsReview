@@ -17,7 +17,8 @@ public class DetailedProductForView extends ProductForView {
     private List<ThesisForView> theses;
     private List<ReviewForView> reviews;
 
-    public DetailedProductForView(Product product, Category category, List<ThesisForView> theses, List<ReviewForView> reviews) throws Exception {
+    public DetailedProductForView(Product product, Category category, List<ThesisForView> theses,
+                                  List<ReviewForView> reviews) throws Exception {
         super(product, category);
         this.theses = theses;
         this.reviews = reviews;

@@ -29,7 +29,10 @@ public class CategoryDbController {
 
     public long addCategory(Category category) {
         try {
-            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO category (name, description, parent_category_id) VALUES(?,?,?)", new Object[]{category.getName(), category.getDescription(), category.getParentCategoryId()}, new int[]{Types.VARCHAR, Types.VARCHAR, Types.INTEGER});
+            simpleJdbcTemplate.getJdbcOperations().update(
+                    "INSERT INTO category (name, description, parent_category_id) VALUES(?,?,?)",
+                    new Object[]{category.getName(), category.getDescription(), category.getParentCategoryId()},
+                    new int[]{Types.VARCHAR, Types.VARCHAR, Types.INTEGER});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
@@ -39,12 +42,16 @@ public class CategoryDbController {
     }
 
     public List<Category> getAllCategories() {
-        List<Category> categories = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM category", categoryMapper);
+        List<Category> categories = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM category",
+                                                                                 categoryMapper);
         return categories;
     }
 
     public Category getCategoryById(long category_id) {
-        List<Category> categories = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM category WHERE id = ?", new Object[]{category_id}, new int[]{Types.INTEGER}, categoryMapper);
+        List<Category> categories = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM category WHERE id = ?",
+                                                                                 new Object[]{category_id},
+                                                                                 new int[]{Types.INTEGER},
+                                                                                 categoryMapper);
         if (categories.size() > 0) {
             return categories.get(0);
         }

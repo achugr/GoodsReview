@@ -17,7 +17,9 @@ import java.util.Date;
 public class ThesisUniqueMapper implements ParameterizedRowMapper<ThesisUnique> {
     public ThesisUnique mapRow(ResultSet resultSet, int i) {
         try {
-            return new ThesisUnique(resultSet.getLong("id"), resultSet.getString("content"), resultSet.getInt("frequency"), resultSet.getDate("last_scan"), resultSet.getDouble("positivity"), resultSet.getDouble("importance"));
+            return new ThesisUnique(resultSet.getLong("id"), resultSet.getString("content"),
+                                    resultSet.getInt("frequency"), resultSet.getDate("last_scan"),
+                                    resultSet.getDouble("positivity"), resultSet.getDouble("importance"));
         } catch (SQLException e) {
             // Something is wrong with the base, i.e. one of column labels isn't presented.
             return new ThesisUnique(-1, "NOCONTENT", 0, new Date(), 0.0, 0.0);

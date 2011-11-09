@@ -3,8 +3,8 @@ package ru.goodsReview.core.model;
 /*
     Date: 26.10.11
     Time: 00:02
-    Author: 
-        Yaroslav Skudarnov 
+    Author:
+        Yaroslav Skudarnov
         SkudarnovYI@gmail.com
 */
 
@@ -18,7 +18,8 @@ public class Thesis {
     private double positivity;
     private double importance;
 
-    public Thesis(long reviewId, long thesisUniqueId, String content, int frequency, double positivity, double importance) {
+    public Thesis(long reviewId, long thesisUniqueId, String content, int frequency, double positivity,
+                  double importance) {
         this.reviewId = reviewId;
         this.thesisUniqueId = thesisUniqueId;
         this.content = content;
@@ -35,7 +36,8 @@ public class Thesis {
         this.importance = importance;
     }
 
-    public Thesis(long id, long reviewId, long thesisUniqueId, String content, int frequency, double positivity, double importance) {
+    public Thesis(long id, long reviewId, long thesisUniqueId, String content, int frequency, double positivity,
+                  double importance) {
         this.id = id;
         this.reviewId = reviewId;
         this.thesisUniqueId = thesisUniqueId;

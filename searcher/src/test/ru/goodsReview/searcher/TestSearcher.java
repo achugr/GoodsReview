@@ -18,7 +18,8 @@ public class TestSearcher {
     static final String DBDirectory = "database";
 
     public static void main(String[] args) throws Exception {
-        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
+        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                "storage/src/scripts/beans.xml");
         SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
         Indexer indexer = new Indexer();
         indexer.setJdbcTemplate(jdbcTemplate);
@@ -30,7 +31,8 @@ public class TestSearcher {
         TopDocs topDocs = indexSearcher.search(query, 1);
         if (topDocs.getMaxScore() > 0) {
             Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc); //H-H-H-H-H-H-HOLY SHIT!!!!1
-            System.out.println(document.get("id") + " " + document.get("name") + " " + document.get("popularity") + " " + document.get("description"));
+            System.out.println(document.get("id") + " " + document.get("name") + " " + document.get(
+                    "popularity") + " " + document.get("description"));
         } else {
             System.out.println("Sorry, no results!");
         }
@@ -39,7 +41,8 @@ public class TestSearcher {
         TopDocs topDocs1 = indexSearcher.search(query1, 1);
         if (topDocs1.getMaxScore() > 0) {
             Document document = indexSearcher.doc(topDocs1.scoreDocs[0].doc);
-            System.out.println(document.get("id") + " " + document.get("name") + " " + document.get("popularity") + " " + document.get("description"));
+            System.out.println(document.get("id") + " " + document.get("name") + " " + document.get(
+                    "popularity") + " " + document.get("description"));
         } else {
             System.out.println("Sorry, no results!");
         }

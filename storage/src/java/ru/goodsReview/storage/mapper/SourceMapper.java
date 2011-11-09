@@ -22,7 +22,8 @@ import java.sql.SQLException;
 public class SourceMapper implements ParameterizedRowMapper<Source> {
     public Source mapRow(ResultSet resultSet, int i) {
         try {
-            return new Source(resultSet.getLong("id"), resultSet.getString("name"), resultSet.getString("main_page_url"));
+            return new Source(resultSet.getLong("id"), resultSet.getString("name"),
+                              resultSet.getString("main_page_url"));
         } catch (SQLException e) {
             // Something is wrong with the base, i.e. one of column labels isn't presented.
             return new Source(-1, "NONAME", "NOURL");

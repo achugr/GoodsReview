@@ -25,7 +25,8 @@ public class Starter {
 //          final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext("/indexer/src/scripts/beans.xml");
 //          final FileSystemXmlApplicationContext miner = new FileSystemXmlApplicationContext("/miner/src/scripts/beans.xml");
             //final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext();
-            final FileSystemXmlApplicationContext backend = new FileSystemXmlApplicationContext("/backend/src/scripts/beans.xml");
+            final FileSystemXmlApplicationContext backend = new FileSystemXmlApplicationContext(
+                    "/backend/src/scripts/beans.xml");
             log.info("Project ended");
         }
     }

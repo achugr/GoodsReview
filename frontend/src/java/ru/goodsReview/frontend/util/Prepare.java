@@ -25,7 +25,8 @@ import java.util.List;
  */
 
 public class Prepare {
-    public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
+    public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate,
+                                                       final Product product) throws Exception {
         CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
         if (product == null) {
             throw new Exception();
@@ -35,7 +36,8 @@ public class Prepare {
         return pfv;
     }
 
-    public static DetailedProductForView prepareDetailedProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
+    public static DetailedProductForView prepareDetailedProductForView(final SimpleJdbcTemplate jdbcTemplate,
+                                                                       final Product product) throws Exception {
         CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
         if (product == null) {
             throw new Exception();
@@ -58,7 +60,8 @@ public class Prepare {
         return new DetailedProductForView(product, category, thesesForView, reviewsForView);
     }
 
-    public static ReviewForView prepareReviewForView(final SimpleJdbcTemplate jdbcTemplate, final Review review) throws Exception {
+    public static ReviewForView prepareReviewForView(final SimpleJdbcTemplate jdbcTemplate,
+                                                     final Review review) throws Exception {
         ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
         if (review == null) {
             throw new Exception();

@@ -55,7 +55,8 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
 
-        if ("body".equalsIgnoreCase(scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
+        if ("body".equalsIgnoreCase(
+                scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
 
             String nameProd = scraper.getContext().get("ProductName").toString();
             String prodPrice = scraper.getContext().get("Price").toString();

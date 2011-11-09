@@ -29,7 +29,8 @@ public class Review {
         this.content = content;
     }
 
-    public Review(long id, long productId, String content, String author, Date date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
+    public Review(long id, long productId, String content, String author, Date date, String description, long sourceId,
+                  String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
         this.id = id;
         this.productId = productId;
         this.content = content;

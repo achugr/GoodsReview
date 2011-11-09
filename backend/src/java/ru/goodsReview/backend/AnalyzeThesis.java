@@ -92,7 +92,8 @@ public class AnalyzeThesis {
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
             for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
-                currThesis = new Thesis(rev.getId(), tableOfId.get(entry.getKey()), entry.getKey(), entry.getValue(), 0, 0);
+                currThesis = new Thesis(rev.getId(), tableOfId.get(entry.getKey()), entry.getKey(), entry.getValue(), 0,
+                                        0);
                 thesisDbController.addThesis(currThesis);
             }
         }

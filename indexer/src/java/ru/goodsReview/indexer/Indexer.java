@@ -37,7 +37,8 @@ public class Indexer extends TimerTask {
 
     private void init(String directoryDB) throws Exception {
         SimpleFSDirectory directory = new SimpleFSDirectory(new File(directoryDB));
-        this.writer = new IndexWriter(directory, new IndexWriterConfig(Version.LUCENE_34, new RussianAnalyzer(Version.LUCENE_34)));
+        this.writer = new IndexWriter(directory,
+                                      new IndexWriterConfig(Version.LUCENE_34, new RussianAnalyzer(Version.LUCENE_34)));
         ProductDbController DBController = new ProductDbController(jdbcTemplate);
     }
 
@@ -53,10 +54,12 @@ public class Indexer extends TimerTask {
         for (Product product : products) {
             document = new Document();
             document.add(new Field("id", Long.toString(product.getId()), Field.Store.YES, Field.Index.NOT_ANALYZED));
-            document.add(new Field("category_id", Long.toString(product.getCategoryId()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+            document.add(new Field("category_id", Long.toString(product.getCategoryId()), Field.Store.YES,
+                                   Field.Index.NOT_ANALYZED));
             document.add(new Field("name", product.getName(), Field.Store.YES, Field.Index.NOT_ANALYZED));
             document.add(new Field("description", product.getDescription(), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("popularity", Integer.toString(product.getPopularity()), Field.Store.YES, Field.Index.ANALYZED));
+            document.add(new Field("popularity", Integer.toString(product.getPopularity()), Field.Store.YES,
+                                   Field.Index.ANALYZED));
             writer.addDocument(document);
         }
         finish();

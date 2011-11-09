@@ -29,7 +29,10 @@ public class ThesisUniqueDbController {
 
     public long addThesisUnique(ThesisUnique thesisUnique) {
         try {
-            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)", new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique.getPositivity(), thesisUnique.getImportance()}, new int[]{Types.VARCHAR, Types.INTEGER, Types.DATE, Types.DOUBLE, Types.DOUBLE});
+            simpleJdbcTemplate.getJdbcOperations().update(
+                    "INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
+                    new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique.getPositivity(), thesisUnique.getImportance()},
+                    new int[]{Types.VARCHAR, Types.INTEGER, Types.DATE, Types.DOUBLE, Types.DOUBLE});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
@@ -47,7 +50,9 @@ public class ThesisUniqueDbController {
     }
 
     public ThesisUnique getThesisUniqueByContent(String content) {
-        List<ThesisUnique> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis_unique WHERE content = ?", new Object[]{content}, new int[]{Types.VARCHAR}, thesisUniqueMapper);
+        List<ThesisUnique> theses = simpleJdbcTemplate.getJdbcOperations().query(
+                "SELECT * FROM thesis_unique WHERE content = ?", new Object[]{content}, new int[]{Types.VARCHAR},
+                thesisUniqueMapper);
         return theses.get(0);
     }
 }

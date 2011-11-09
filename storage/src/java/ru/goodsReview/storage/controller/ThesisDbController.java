@@ -37,7 +37,10 @@ public class ThesisDbController {
         try {
             System.out.println(thesis.getReviewId());
 
-            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis (review_id,  thesis_unique_id, content, frequency, positivity, importance) VALUES(?,?,?,?,?,?)", new Object[]{thesis.getReviewId(), thesis.getThesisUniqueId(), thesis.getContent(), thesis.getFrequency(), thesis.getPositivity(), thesis.getImportance()}, new int[]{Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.INTEGER, Types.DOUBLE, Types.DOUBLE});
+            simpleJdbcTemplate.getJdbcOperations().update(
+                    "INSERT INTO thesis (review_id,  thesis_unique_id, content, frequency, positivity, importance) VALUES(?,?,?,?,?,?)",
+                    new Object[]{thesis.getReviewId(), thesis.getThesisUniqueId(), thesis.getContent(), thesis.getFrequency(), thesis.getPositivity(), thesis.getImportance()},
+                    new int[]{Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.INTEGER, Types.DOUBLE, Types.DOUBLE});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
@@ -60,11 +63,14 @@ public class ThesisDbController {
     }
 
     public void setThesisUniqueId(long thesisId, long thesisUniqueId) {
-        simpleJdbcTemplate.getJdbcOperations().update("UPDATE thesis SET thesis_unique_id = ? where id = ?", new Object[]{thesisUniqueId, thesisId});
+        simpleJdbcTemplate.getJdbcOperations().update("UPDATE thesis SET thesis_unique_id = ? where id = ?",
+                                                      new Object[]{thesisUniqueId, thesisId});
     }
 
     public Thesis getThesisById(long id) {
-        List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE id = ?", new Object[]{id}, new int[]{Types.INTEGER}, thesisMapper);
+        List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE id = ?",
+                                                                           new Object[]{id}, new int[]{Types.INTEGER},
+                                                                           thesisMapper);
         if (theses.size() > 0) {
             return theses.get(0);
         }
@@ -72,12 +78,16 @@ public class ThesisDbController {
     }
 
     public List<Thesis> getThesesByReviewId(long review_id) {
-        List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE review_id = ?", new Object[]{review_id}, new int[]{Types.INTEGER}, thesisMapper);
+        List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE review_id = ?",
+                                                                           new Object[]{review_id},
+                                                                           new int[]{Types.INTEGER}, thesisMapper);
         return theses;
     }
 
     public List<Thesis> getThesesByProductId(long product_id) {
-        List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM (thesis JOIN review ON thesis.review_id = review.id) WHERE product_id = ?", new Object[]{product_id}, new int[]{Types.INTEGER}, thesisMapper);
+        List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query(
+                "SELECT * FROM (thesis JOIN review ON thesis.review_id = review.id) WHERE product_id = ?",
+                new Object[]{product_id}, new int[]{Types.INTEGER}, thesisMapper);
         return theses;
     }
 }

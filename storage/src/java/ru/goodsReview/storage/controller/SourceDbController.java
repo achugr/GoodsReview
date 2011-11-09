@@ -34,7 +34,9 @@ public class SourceDbController {
 
     public long addSource(Source source) {
         try {
-            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO source (name, main_page_url) VALUES(?,?)", new Object[]{source.getName(), source.getMainPageUrl()}, new int[]{Types.VARCHAR, Types.VARCHAR});
+            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO source (name, main_page_url) VALUES(?,?)",
+                                                          new Object[]{source.getName(), source.getMainPageUrl()},
+                                                          new int[]{Types.VARCHAR, Types.VARCHAR});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
@@ -44,7 +46,9 @@ public class SourceDbController {
     }
 
     public Source getSourceById(long source_id) {
-        List<Source> sources = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM source WHERE id = ?", new Object[]{source_id}, new int[]{Types.INTEGER}, sourceMapper);
+        List<Source> sources = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM source WHERE id = ?",
+                                                                            new Object[]{source_id},
+                                                                            new int[]{Types.INTEGER}, sourceMapper);
         if (sources.size() > 0) {
             return sources.get(0);
         }

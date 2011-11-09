@@ -16,7 +16,8 @@ public class testIndexer {
     static final String DBDirectory = "database";
 
     public static void main(String[] args) throws Exception {
-        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("indexer/src/scripts/beans.xml");
+        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                "indexer/src/scripts/beans.xml");
         ScheduledTimerTask st = (ScheduledTimerTask) context.getBean("scheduledTask");
 /*        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
         Indexer indexer = new Indexer();
