@@ -45,6 +45,20 @@ public class Review {
         this.votesNo = votesNo;
     }
 
+    public Review(long productId, String content, String author, Date date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
+        this.productId = productId;
+        this.content = content;
+        this.author = author;
+        this.date = date;
+        this.description = description;
+        this.sourceId = sourceId;
+        this.sourceUrl = sourceUrl;
+        this.positivity = positivity;
+        this.importance = importance;
+        this.votesYes = votesYes;
+        this.votesNo = votesNo;
+    }
+
     public int getVotesNo() {
         return votesNo;
     }

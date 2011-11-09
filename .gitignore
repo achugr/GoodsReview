@@ -4,6 +4,7 @@ out
 build
 database
 data
+miner/web
 
 #checkStyle and findBugs reports#
 checkstyle_report.xml
