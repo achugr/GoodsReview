@@ -13,10 +13,10 @@
     <property name="backend.build" location="${project.dir}/backend/build.xml"/>
     <property name="indexer.build" location="${project.dir}/indexer/build.xml"/>
     <property name="frontend.build" location="${project.dir}/frontend/build.xml"/>
-   <!-- <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>-->
+    <!-- <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>-->
     <property name="storage.build" location="${project.dir}/storage/build.xml"/>
     <property name="miner.build" location="${project.dir}/miner/build.xml"/>
-    <property name = "searcher.build" location="${project.dir}/searcher/build.xml"/>
+    <property name="searcher.build" location="${project.dir}/searcher/build.xml"/>
 
     <!-- classpath -->
     <path id="libs">
@@ -40,7 +40,7 @@
         <ant antfile="${storage.build}"/>
     </target>
 
-	<target name="miner" depends="storage">
+    <target name="miner" depends="storage">
         <ant antfile="${miner.build}"/>
     </target>
 
@@ -61,7 +61,7 @@
         <ant antfile="${frontend.build}"/>
     </target>
 
-        
+
     <!--по умолчанию вызывается этот таргет (тут пара строчек лишние, но так понятнее)-->
     <target name="all" depends="init">
         <antcall target="core"/>
@@ -79,7 +79,7 @@
         <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
             <jvmarg value="-Xms64m"/>
             <jvmarg value="-Xmx1000m"/>
-            <arg value="storage/src/scripts/beans.xml" />
+            <arg value="storage/src/scripts/beans.xml"/>
         </java>
     </target>
 
@@ -87,24 +87,25 @@
         <java dir="${build.dir}" jar="${dist.dir}/core.jar" fork="true">
             <jvmarg value="-Xms64m"/>
             <jvmarg value="-Xmx1000m"/>
-            <arg value="frontend/src/scripts/beans.xml" />
+            <arg value="frontend/src/scripts/beans.xml"/>
         </java>
     </target>
-     <!-- for checking code style -->
-     <target name="checkstyle">
+    <!-- for checking code style -->
+    <target name="checkstyle">
 
         <delete file="codeValidation/checkstyle_report.xml"/>
         <delete file="codeValidation/checkstyle_report.htm"/>
 
         <taskdef resource="checkstyletask.properties" classpath="${lib.dir}/checkstyle/checkstyle-5.4-all.jar"/>
         <checkstyle config="codeValidation/checks.xml"
-               failureProperty="checkstyle.failure"
-               failOnViolation="false">
+                    failureProperty="checkstyle.failure"
+                    failOnViolation="false">
             <formatter type="xml" tofile="codeValidation/checkstyle_report.xml"/>
             <fileset dir="${project.dir}" includes="**/*.java" excludes="**/net/**/*.java **/test/** "/>
         </checkstyle>
 
-        <xslt in="codeValidation/checkstyle_report.xml" out="codeValidation/checkstyle_report.htm" style="codeValidation/checkstyle.xsl">
+        <xslt in="codeValidation/checkstyle_report.xml" out="codeValidation/checkstyle_report.htm"
+              style="codeValidation/checkstyle.xsl">
             <outputproperty name="method" value="html"/>
             <outputproperty name="standalone" value="yes"/>
             <outputproperty name="encoding" value="iso8859_1"/>
@@ -116,14 +117,15 @@
 
         <delete file="codeValidation/findbugs_report.xml"/>
 
-        <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+        <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar"
+                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
 
         <findbugs home="${lib.dir}/findbugs/"
-            output="xml"
-            outputFile="codeValidation/findbugs_report.xml" >
+                  output="xml"
+                  outputFile="codeValidation/findbugs_report.xml">
             <auxClasspath refid="libs"/>
-            <sourcePath path="${project.dir}" />
-            <class location="${build.dir}/" />
+            <sourcePath path="${project.dir}"/>
+            <class location="${build.dir}/"/>
         </findbugs>
     </target>
 
@@ -131,14 +133,15 @@
 
         <delete file="codeValidation/findbugs_report.html"/>
 
-        <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+        <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar"
+                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
 
         <findbugs home="${lib.dir}/findbugs/"
-            output="html"
-            outputFile="codeValidation/findbugs_report.html" >
+                  output="html"
+                  outputFile="codeValidation/findbugs_report.html">
             <auxClasspath refid="libs"/>
-            <sourcePath path="${project.dir}" />
-            <class location="${build.dir}/" />
+            <sourcePath path="${project.dir}"/>
+            <class location="${build.dir}/"/>
         </findbugs>
     </target>
 

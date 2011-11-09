@@ -14,46 +14,45 @@ import java.util.*;
  */
 public class FrequencyAnalyzer {
     private ListOfReviews listOfReviews;
-	private HashMap<String,Integer> words;
+    private HashMap<String, Integer> words;
 
-    public HashMap<String,Integer> getWords() {
-		return this.words;
-	}
+    public HashMap<String, Integer> getWords() {
+        return this.words;
+    }
 
     public FrequencyAnalyzer(ListOfReviews listOfReviews) {
-		this.listOfReviews = listOfReviews;
-	}
+        this.listOfReviews = listOfReviews;
+    }
 
-    public void printFrequencyDictionary(){
+    public void printFrequencyDictionary() {
         Iterator iterator = words.entrySet().iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
 
     }
 
-    public void makeFrequencyDictionary () {
-		this.words = new HashMap<String,Integer>();
-		List<String> listOfReviews = this.listOfReviews.getListOfComments();
-		for (Iterator<String> it = listOfReviews.iterator(); it.hasNext();) {
-			String currentCitilinkReview = it.next();
-			StringTokenizer st = new StringTokenizer(currentCitilinkReview," ,");
-			int i = 0;
-			String[] listWords = new String[currentCitilinkReview.length()];
-			while (st.hasMoreTokens()) {
-				listWords[i++] = st.nextToken();
-			}
-			listWords = Arrays.copyOf(listWords, i);
-			int length = listWords.length;
-			for (int j = 0; j < length; j++)
-			{
-				String currentWord = listWords[j];
-				if (this.words.containsKey(currentWord)) {
-					this.words.put(currentWord, this.words.get(currentWord) + 1);
-				} else {
-					this.words.put(currentWord, 1);
-				}
-			}
-		}
-	}
+    public void makeFrequencyDictionary() {
+        this.words = new HashMap<String, Integer>();
+        List<String> listOfReviews = this.listOfReviews.getListOfComments();
+        for (Iterator<String> it = listOfReviews.iterator(); it.hasNext(); ) {
+            String currentCitilinkReview = it.next();
+            StringTokenizer st = new StringTokenizer(currentCitilinkReview, " ,");
+            int i = 0;
+            String[] listWords = new String[currentCitilinkReview.length()];
+            while (st.hasMoreTokens()) {
+                listWords[i++] = st.nextToken();
+            }
+            listWords = Arrays.copyOf(listWords, i);
+            int length = listWords.length;
+            for (int j = 0; j < length; j++) {
+                String currentWord = listWords[j];
+                if (this.words.containsKey(currentWord)) {
+                    this.words.put(currentWord, this.words.get(currentWord) + 1);
+                } else {
+                    this.words.put(currentWord, 1);
+                }
+            }
+        }
+    }
 }

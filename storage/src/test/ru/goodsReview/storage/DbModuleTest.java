@@ -29,7 +29,8 @@ public class DbModuleTest {
     }
 
     public static void main(String[] args) throws SQLException {
-        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
+        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                "storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
 
         log.error("PRIVET");
@@ -60,7 +61,8 @@ public class DbModuleTest {
         log.debug("Source name: " + source1.getName());
 
         ReviewDbController reviewController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-        Review review0 = new Review(-1, product0id, "OK review content", "Sergey", new Date(), "OK description", source0id, "http://url", 0.0, 0.0, 0, 0);
+        Review review0 = new Review(-1, product0id, "OK review content", "Sergey", new Date(), "OK description",
+                                    source0id, "http://url", 0.0, 0.0, 0, 0);
         long review0id = reviewController.addReview(review0);
         Review review1 = reviewController.getReviewById(review0id);
         Assert.assertEquals(review0id, review1.getId());
@@ -68,7 +70,7 @@ public class DbModuleTest {
         log.debug("Review date: " + review1.getDate() + ", time: " + review1.getDate().getTime());
 
         ThesisDbController thesisController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
-		//todo change this constructor. Sorry.
+        //todo change this constructor. Sorry.
         Thesis thesis0 = new Thesis(1, "OK thesis content", 0, 0.0, 0.0);
         long thesis0id = thesisController.addThesis(thesis0);
         Thesis thesis1 = thesisController.getThesisById(thesis0id);

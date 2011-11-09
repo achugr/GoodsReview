@@ -14,28 +14,32 @@ import java.util.Map;
 public class ThesisHashTable {
     private Map<String, Integer> thesisTable;
 
-    public void print(){
-        for(Map.Entry<String, Integer> ent : thesisTable.entrySet()){
+    public void print() {
+        for (Map.Entry<String, Integer> ent : thesisTable.entrySet()) {
             System.out.println(ent.getKey() + " " + ent.getValue());
         }
     }
+
     public ThesisHashTable(Map<String, Integer> thesisTable) {
         this.thesisTable = thesisTable;
     }
-    public void add(Map<String, Integer> thesisTable){
+
+    public void add(Map<String, Integer> thesisTable) {
         Integer currFreq = 0;
-        for(Map.Entry<String, Integer> entry : thesisTable.entrySet()){
+        for (Map.Entry<String, Integer> entry : thesisTable.entrySet()) {
             currFreq = this.thesisTable.get(entry.getKey());
             this.thesisTable.put(entry.getKey(), entry.getValue() + (currFreq == null ? 0 : currFreq));
         }
     }
-    public void addSeveralThesisTables(List<Map<String,Integer>> listOfThesisTables){
-        for(Iterator<Map<String, Integer>> it = listOfThesisTables.iterator();it.hasNext();){
+
+    public void addSeveralThesisTables(List<Map<String, Integer>> listOfThesisTables) {
+        for (Iterator<Map<String, Integer>> it = listOfThesisTables.iterator(); it.hasNext(); ) {
             this.add(it.next());
         }
 
     }
-    public void getThesisTableFromDatabase(long productId){
+
+    public void getThesisTableFromDatabase(long productId) {
         //this.thesisTable = Selecting Table from DB
         //
     }

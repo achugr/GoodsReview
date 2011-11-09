@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <config>
     <!-- 
         Download multi-page list of items.
@@ -20,18 +20,20 @@
                             <http url="${pageUrl}"/>
                         </html-to-xml>
                     </var-def>
- 
+
                     <var-def name="nextLinkUrl">
                         <xpath expression="${nextXPath}">
                             <var name="content"/>
                         </xpath>
                     </var-def>
- 
+
                     <var-def name="pageUrl">
-                        <template>${sys.fullUrl(pageUrl.toString(),"/catalog/computers_and_notebooks/notebooks/" + nextLinkUrl.toString())}</template>
+                        <template>
+                            ${sys.fullUrl(pageUrl.toString(),"/catalog/computers_and_notebooks/notebooks/" + nextLinkUrl.toString())}
+                        </template>
                     </var-def>
                 </empty>
-    
+
                 <xpath expression="${itemXPath}">
                     <var name="content"/>
                 </xpath>

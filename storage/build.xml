@@ -3,16 +3,17 @@
 
     <!--внешние зависимости-->
     <path id="libs">
-            <fileset dir="${lib.dir}" includes="**/*.jar"/>
-            <fileset dir="${dist.dir}" includes="**/*.jar"/>
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <fileset dir="${dist.dir}" includes="**/*.jar"/>
     </path>
 
     <property name="src.storage.dir" location="${project.dir}/storage/src/java/"/>
-    <pathconvert pathsep=" " property="libs_manifest" refid="libs"/>       <!--classpath для jar-архива-->
+    <pathconvert pathsep=" " property="libs_manifest" refid="libs"/>
+    <!--classpath для jar-архива-->
 
     <target name="all">
 
-	<!--class-файлы создаются в папку build/classes-->
+        <!--class-файлы создаются в папку build/classes-->
         <javac srcdir="${src.storage.dir}"
                destdir="${build.dir}/classes"
                debug="true"
@@ -22,11 +23,12 @@
             <classpath refid="libs"/>
         </javac>
 
-	<!--собирается архив с классом, у которого есть метод main в папку dist-->
-        <jar destfile="${dist.dir}/storage.jar" basedir="${classes.dir}" includes="ru/goodsReview/storage/**/*.*" >
+        <!--собирается архив с классом, у которого есть метод main в папку dist-->
+        <jar destfile="${dist.dir}/storage.jar" basedir="${classes.dir}" includes="ru/goodsReview/storage/**/*.*">
             <manifest>
                 <attribute name="Built-By" value="storage: build.xml"/>
-                <attribute name="Class-Path" value="${libs_manifest}"/>  <!--его класс пасс-->
+                <attribute name="Class-Path" value="${libs_manifest}"/>
+                <!--его класс пасс-->
             </manifest>
         </jar>
 
@@ -35,7 +37,7 @@
             <fileset dir="${project.dir}/storage" includes="**/*.*" excludes="**/*.java build.xml *.iml"/>
         </copy>
 
-	    <echo>storage building complete</echo>
+        <echo>storage building complete</echo>
     </target>
 
 </project>

@@ -58,7 +58,6 @@ public class KGrams {
                     }
 
                     this.kGramsTable.put(tokenS, tokenIncitilinkReviews);
-
                 } else {
                     tokenIncitilinkReviews = new Boolean[this.kGramTableColumnsNum];
                     tokenIncitilinkReviews[n] = true;
@@ -112,9 +111,9 @@ public class KGrams {
         }
         System.out.println();
 
-        for(i=0; i<numOfTests; i++){
-            for(int j =0; j < signatureMatrix[i].length; j++){
-                System.out.print(signatureMatrix[i][j]+" ");
+        for (i = 0; i < numOfTests; i++) {
+            for (int j = 0; j < signatureMatrix[i].length; j++) {
+                System.out.print(signatureMatrix[i][j] + " ");
             }
             System.out.println();
         }
@@ -127,17 +126,17 @@ public class KGrams {
         int[] randomIndexes = createRandomIndexes(this.tokensNum);
         String[] tokens = this.getKeys();
         System.out.println();
-        for(int i=0; i<randomIndexes.length; i++){
+        for (int i = 0; i < randomIndexes.length; i++) {
             System.out.print(randomIndexes[i] + " ");
         }
-        for(int i=0; i<this.kGramTableColumnsNum; i++){
+        for (int i = 0; i < this.kGramTableColumnsNum; i++) {
             row[i] = -1;
         }
         Boolean[] values;
         for (int i = 0; i < randomIndexes.length; i++) {
             values = this.getValues(tokens[randomIndexes[i]]);
             for (int j = 0; j < this.kGramTableColumnsNum; j++) {
-                if (values[j] && (row[j]==-1)) {
+                if (values[j] && (row[j] == -1)) {
                     row[j] = i;
                 }
             }
@@ -162,24 +161,24 @@ public class KGrams {
         return randomIndexes;
     }
 
-    private double [][] createSimilarityMatrix(int [][] signatureMatrix){
-        double  [][] similarityMatrix = new double[signatureMatrix.length][this.kGramTableColumnsNum];
+    private double[][] createSimilarityMatrix(int[][] signatureMatrix) {
+        double[][] similarityMatrix = new double[signatureMatrix.length][this.kGramTableColumnsNum];
         int i, j, k;
 
-        for(i=0; i < signatureMatrix.length; i++){
-            for(j=0; j<this.kGramTableColumnsNum; j++){
-                for(k=j; k<this.kGramTableColumnsNum; k++){
-                    if(signatureMatrix[i][j] == signatureMatrix[i][k]){
-                        similarityMatrix[j][k] +=1;
+        for (i = 0; i < signatureMatrix.length; i++) {
+            for (j = 0; j < this.kGramTableColumnsNum; j++) {
+                for (k = j; k < this.kGramTableColumnsNum; k++) {
+                    if (signatureMatrix[i][j] == signatureMatrix[i][k]) {
+                        similarityMatrix[j][k] += 1;
                     }
                 }
             }
         }
-        for(i=0; i<this.kGramTableColumnsNum; i++){
+        for (i = 0; i < this.kGramTableColumnsNum; i++) {
             System.out.println();
-            for(j=0; j<this.kGramTableColumnsNum; j++){
-                similarityMatrix[i][j]/=similarityMatrix.length;
-                System.out.printf("%1$5.2g ",similarityMatrix[i][j]);
+            for (j = 0; j < this.kGramTableColumnsNum; j++) {
+                similarityMatrix[i][j] /= similarityMatrix.length;
+                System.out.printf("%1$5.2g ", similarityMatrix[i][j]);
             }
         }
         return similarityMatrix;
@@ -200,4 +199,3 @@ public class KGrams {
         }
     }
 }
-

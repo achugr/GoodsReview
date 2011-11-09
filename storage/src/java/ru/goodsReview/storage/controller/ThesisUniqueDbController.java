@@ -2,8 +2,8 @@ package ru.goodsReview.storage.controller;
 /*
  *  Date: 07.11.11
  *   Time: 00:44
- *   Author: 
- *      Artemij Chugreev 
+ *   Author:
+ *      Artemij Chugreev
  *      artemij.chugreev@gmail.com
  */
 
@@ -29,7 +29,8 @@ public class ThesisUniqueDbController {
 
     public long addThesisUnique(ThesisUnique thesisUnique) {
         try {
-            simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
+            simpleJdbcTemplate.getJdbcOperations().update(
+                    "INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
                     new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique.getPositivity(), thesisUnique.getImportance()},
                     new int[]{Types.VARCHAR, Types.INTEGER, Types.DATE, Types.DOUBLE, Types.DOUBLE});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
@@ -47,12 +48,11 @@ public class ThesisUniqueDbController {
         }
         return ids;
     }
+
     public ThesisUnique getThesisUniqueByContent(String content) {
-        List<ThesisUnique> theses =
-                simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis_unique WHERE content = ?",
-                        new Object[]{content},
-                        new int[]{Types.VARCHAR},
-                        thesisUniqueMapper);
+        List<ThesisUnique> theses = simpleJdbcTemplate.getJdbcOperations().query(
+                "SELECT * FROM thesis_unique WHERE content = ?", new Object[]{content}, new int[]{Types.VARCHAR},
+                thesisUniqueMapper);
         return theses.get(0);
     }
 }
