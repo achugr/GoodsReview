@@ -29,12 +29,12 @@ public class SearchManager {
     //private Searcher searcher;
 
     //public void setSearcher(Searcher searcher) {
-    //	this.searcher = searcher;
-    //}
+    // this.searcher = searcher;
+    // }
 
     public List<DetailedProductForView> searchByName(String query) throws Exception {
 
-        /*		List<ProductForView> brandList = new ArrayList<ProductForView>();
+        /*      List<ProductForView> brandList = new ArrayList<ProductForView>();
                       for (Brand b : searcher.searchBrandByDescription(query)) {
                           brandList.add(new ProductForView(b.getId(), b.getName(), b.getDescription(), b.getWebsite()));
                       }

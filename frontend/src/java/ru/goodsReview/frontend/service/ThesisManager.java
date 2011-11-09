@@ -29,7 +29,7 @@ public class ThesisManager {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<ThesisForView> thesesByProduct(long id) throws Exception {
+    public List<ThesisForView> thesesByProduct(long id){
         List<ThesisForView> result = new ArrayList<ThesisForView>();
 
         ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);

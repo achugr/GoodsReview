@@ -20,7 +20,5 @@ public class SimilarProductYalet implements Yalet {
         Product product = new Product(id, "All is ok" + id);
         //ProductForView pvf = new ProductForView(product);
         //res.add(pvf);
-        return;
     }
-
 }
