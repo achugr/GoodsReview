@@ -58,6 +58,7 @@ public class GrabberCitilink extends Grabber {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+//    TODO fix the absolute path
     public void run() {
         String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {
