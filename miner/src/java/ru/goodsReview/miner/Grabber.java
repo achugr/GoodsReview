@@ -12,12 +12,12 @@ import java.util.TimerTask;
 
 
 public abstract class Grabber extends TimerTask {
-	protected SimpleJdbcTemplate jdbcTemplate;
-	protected String config;
+    protected SimpleJdbcTemplate jdbcTemplate;
+    protected String config;
 
-	public abstract void run();
+    public abstract void run();
 
-	public abstract void setConfig(String config);
+    public abstract void setConfig(String config);
 
     public abstract void downloadPages(String path);
 
@@ -25,6 +25,6 @@ public abstract class Grabber extends TimerTask {
 
     public abstract void grabPages(String path);
 
-	public abstract void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate);
+    public abstract void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate);
 
 }

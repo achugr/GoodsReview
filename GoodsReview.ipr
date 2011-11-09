@@ -11,6 +11,11 @@
       <properties />
     </buildFile>
   </component>
+  <component name="CodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value />
+    </option>
+  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
@@ -190,6 +195,9 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="Kate" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoodsReview.iml" filepath="$PROJECT_DIR$/GoodsReview.iml" />
@@ -227,9 +235,7 @@
         <root url="file://$PROJECT_DIR$/lib/xalan" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES>
-        <root url="file://$PROJECT_DIR$/lib/database" />
-      </SOURCES>
+      <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/httpclient" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/jakarta-commons" recursive="false" />
@@ -240,7 +246,6 @@
       <jarDirectory url="file://$PROJECT_DIR$/lib/webharvest" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/xalan" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/xfresh" recursive="false" />
-      <jarDirectory url="file://$PROJECT_DIR$/lib/database" recursive="false" type="SOURCES" />
     </library>
     <library name="mySql">
       <CLASSES>

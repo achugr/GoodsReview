@@ -1,8 +1,8 @@
 /*
 * Date: 30.10.11
 * Time: 21:57
-* Author: 
-* Artemij Chugreev 
+* Author:
+* Artemij Chugreev
 * artemij.chugreev@gmail.com
 */
 package ru.goodsReview.backend;
@@ -16,7 +16,10 @@ import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,28 +29,28 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class AnalyzeThesis {
-	private SimpleJdbcTemplate jdbcTemplate;
+    private SimpleJdbcTemplate jdbcTemplate;
 
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public AnalyzeThesis() {
-	}
+    }
 
     //public int
 
-	public void updateThesisByProductId(long productId) {
+    public void updateThesisByProductId(long productId) {
 
         //select reviews from database by product id
-		ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
-		List<Review> desiredReviews;
+        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        List<Review> desiredReviews;
         desiredReviews = reviewDbController.getReviewsByProductId(productId);
 
-		List<Review> derivedFromDbReviews;
-		derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
-		ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
-		FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
+        List<Review> derivedFromDbReviews;
+        derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
+        ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
+        FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
 
         ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
@@ -59,7 +62,7 @@ public class AnalyzeThesis {
         Map<String, Integer> thesisUniques = new HashMap<String, Integer>();
         Map<String, Long> tableOfId = new HashMap<String, Long>();   //
         Integer currfreq;
-        for(Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()){
+        for (Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()) {
             //currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
             currfreq = thesisUniques.get(entry.getKey());
             thesisUniques.put(entry.getKey(), entry.getValue() + (currfreq == null ? 0 : currfreq));
@@ -70,7 +73,7 @@ public class AnalyzeThesis {
         // True hardcore
         ThesisUnique currThesisUnique;
         ThesisUnique recievedTU;
-        for(Map.Entry<String, Integer> entry : thesisUniques.entrySet()){
+        for (Map.Entry<String, Integer> entry : thesisUniques.entrySet()) {
             currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
             thesisUniqueDbController.addThesisUnique(currThesisUnique);
             recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
@@ -79,17 +82,17 @@ public class AnalyzeThesis {
 
 
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-        FrequencyAnalyzer  freqAnForSingleReview;
+        FrequencyAnalyzer freqAnForSingleReview;
         ListOfReviews buffLOR = new ListOfReviews();
         Thesis currThesis;
         // Here we got some tough stuff
-        for(Review rev : desiredReviews){
+        for (Review rev : desiredReviews) {
             buffLOR.clear();
             buffLOR.addReview(rev);
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
-            for(Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()){
-                currThesis = new Thesis(rev.getId(), tableOfId.get(entry.getKey()), entry.getKey(), entry.getValue(),0,0);
+            for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
+                currThesis = new Thesis(rev.getId(), tableOfId.get(entry.getKey()), entry.getKey(), entry.getValue(), 0, 0);
                 thesisDbController.addThesis(currThesis);
             }
         }

@@ -12,46 +12,47 @@ import ru.goodsReview.core.model.Product;
  */
 
 public class ProductForView {
-	private final String name;
-	private final String description;
-	private final long id;
-	private final String category;
-	private final long categoryId;
-	private final long popularity;
+    private final String name;
+    private final String description;
+    private final long id;
+    private final String category;
+    private final long categoryId;
+    private final long popularity;
 
-	public ProductForView(Product product, Category category) throws Exception {
-		name = product.getName();
-		description = product.getDescription();
-		id = product.getId();
-		if (product.getCategoryId() != category.getId())
-			throw new Exception("Category mismatch");
-		categoryId = category.getId();
-		this.category = category.getName();
-		popularity = product.getPopularity();
-	}
+    public ProductForView(Product product, Category category) throws Exception {
+        name = product.getName();
+        description = product.getDescription();
+        id = product.getId();
+        if (product.getCategoryId() != category.getId()) {
+            throw new Exception("Category mismatch");
+        }
+        categoryId = category.getId();
+        this.category = category.getName();
+        popularity = product.getPopularity();
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public long getCategoryId() {
-		return categoryId;
-	}
+    public long getCategoryId() {
+        return categoryId;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public long getPopularity() {
-		return popularity;
-	}
+    public long getPopularity() {
+        return popularity;
+    }
 
 }

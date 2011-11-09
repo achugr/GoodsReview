@@ -20,14 +20,17 @@ public class ListOfReviews {
         this.reviewsList = reviews;
     }
 
-    public ListOfReviews(){}
+    public ListOfReviews() {
+    }
 
     public List<Review> getReviews() {
         return this.reviewsList;
     }
-    public void clear(){
+
+    public void clear() {
         reviewsList.clear();
     }
+
     public void setReviewsList(List<Review> reviewsList) {
         this.reviewsList = reviewsList;
     }
@@ -43,13 +46,13 @@ public class ListOfReviews {
     public void printReviews() {
         for (int i = 0; i < this.reviewsList.size(); ++i) {
             System.out.println(this.reviewsList.get(i).getId() + " " + this.reviewsList.get(i).getProductId() + " " + this.reviewsList.get(i).getContent() + " " + this.reviewsList.get(i).getAuthor() + " " + this.reviewsList.get(i).getDate() + " " + this.reviewsList.get(i).getDescription() + " " + this.reviewsList.get(i).getSourceId() + " " + this.reviewsList.get(i).getSourceUrl() + " " + this.reviewsList.get(i).getPositivity() + " " + this.reviewsList.get(i).getImportance() + " " + this.reviewsList.get(i).getVotesYes() + " " + this.reviewsList.get(i).getVotesNo());
-                                                                        //                                                                                                                  long id, long productId, String content, String author, int date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo
+            //                                                                                                                  long id, long productId, String content, String author, int date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo
         }
     }
 
-    public List<String> getListOfComments(){
+    public List<String> getListOfComments() {
         List<String> listOfComments = new ArrayList<String>();
-        for(Review review : this.reviewsList){
+        for (Review review : this.reviewsList) {
             listOfComments.add(review.getContent());
         }
         return listOfComments;

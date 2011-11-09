@@ -30,10 +30,10 @@
     </bean>
 
     <bean class="org.springframework.scheduling.timer.TimerFactoryBean">
-	<property name="scheduledTimerTasks">
-		<list>
-			<ref local="scheduledTask" />
-		</list>
-	</property>
-</bean>
+        <property name="scheduledTimerTasks">
+            <list>
+                <ref local="scheduledTask"/>
+            </list>
+        </property>
+    </bean>
 </beans>

@@ -2,8 +2,8 @@ package ru.goodsReview.core.model;
 /*
  *  Date: 06.11.11
  *   Time: 23:50
- *   Author: 
- *      Artemij Chugreev 
+ *   Author:
+ *      Artemij Chugreev
  *      artemij.chugreev@gmail.com
  */
 
