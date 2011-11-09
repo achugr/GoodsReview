@@ -9,7 +9,7 @@
     </xsl:template>
 
     <xsl:template name="main">
-        <div class="menu">
+        <!--<div class="menu">
             <div class="fill">
                 <div class="container">
                     <ul class="nav">
@@ -25,7 +25,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>  -->
         <ul class="popularProducts">
             <xsl:call-template name="popular"/>
         </ul>
