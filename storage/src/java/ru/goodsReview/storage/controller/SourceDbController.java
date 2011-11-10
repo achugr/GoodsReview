@@ -1,18 +1,18 @@
 /**
  * Date: 30.10.2011
  * Time: 23:38:57
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
 package ru.goodsReview.storage.controller;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import org.springframework.dao.DataAccessException;
 import org.apache.log4j.Logger;
-import ru.goodsReview.storage.mapper.SourceMapper;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Source;
+import ru.goodsReview.storage.mapper.SourceMapper;
 
 import java.sql.Types;
 import java.util.List;
@@ -35,8 +35,8 @@ public class SourceDbController {
     public long addSource(Source source) {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO source (name, main_page_url) VALUES(?,?)",
-                    new Object[]{source.getName(), source.getMainPageUrl()},
-                    new int[]{Types.VARCHAR, Types.VARCHAR});
+                                                          new Object[]{source.getName(), source.getMainPageUrl()},
+                                                          new int[]{Types.VARCHAR, Types.VARCHAR});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
@@ -46,11 +46,9 @@ public class SourceDbController {
     }
 
     public Source getSourceById(long source_id) {
-        List<Source> sources =
-                simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM source WHERE id = ?",
-                        new Object[]{source_id},
-                        new int[]{Types.INTEGER},
-                        sourceMapper);
+        List<Source> sources = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM source WHERE id = ?",
+                                                                            new Object[]{source_id},
+                                                                            new int[]{Types.INTEGER}, sourceMapper);
         if (sources.size() > 0) {
             return sources.get(0);
         }

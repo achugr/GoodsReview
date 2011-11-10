@@ -9,7 +9,7 @@
     </xsl:template>
 
     <xsl:template name="main">
-        <div class="menu">
+       <!-- <div class="menu">
             <div class="fill">
                 <div class="container">
                     <ul class="nav">
@@ -25,7 +25,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>  -->
         <div class="productInfo">
             <xsl:for-each select="/page/data[@id='product']/collection/detailed-product-for-view">
                 <xsl:call-template name="detailed-product"/>

@@ -144,7 +144,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="miner" exported="" />
+    <orderEntry type="module" module-name="backend" exported="" />
   </component>
 </module>
 

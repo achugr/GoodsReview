@@ -133,7 +133,10 @@
             margin: 15px 0px 15px 0px;
             background-color:whiteSmoke;
             font-size:110%;
-            padding:2px 2px 2px 4px;
+            padding: 4px 2px 2px 4px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
             }
             .brand {
             position:absolute;
@@ -227,7 +230,7 @@
                             <div class="row">
                                 <div class="span2">
                                     <a href="/index.xml">
-                                        <img src="images/mediumLogo.png"/>
+                                        <img src="images/mediumLogoSearch.png"/>
                                     </a>
                                 </div>
                                 <form method="get" action="/search.xml">

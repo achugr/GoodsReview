@@ -6,84 +6,10 @@ Model: GoodsReviews
 Author: Sergey Serebryakov
 Database: MySQL 5.5
 */
+DROP DATABASE IF EXISTS goodsreview_permanent;
 
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
 use goodsreview_permanent;
-
--- Drop relationships section -------------------------------------------------
-
-ALTER TABLE query DROP FOREIGN KEY query_like_unique
-;
-ALTER TABLE thesis DROP FOREIGN KEY thesis_like_unique
-;
-ALTER TABLE category DROP FOREIGN KEY has_parent
-;
-ALTER TABLE product DROP FOREIGN KEY belongs_to
-;
-ALTER TABLE thesis DROP FOREIGN KEY extracted_from
-;
-ALTER TABLE review DROP FOREIGN KEY provides
-;
-ALTER TABLE review DROP FOREIGN KEY has_review
-;
-ALTER TABLE shop_link DROP FOREIGN KEY hosts
-;
-ALTER TABLE specification_value DROP FOREIGN KEY is_value_of
-;
-ALTER TABLE specification_value DROP FOREIGN KEY has_spec
-;
-ALTER TABLE shop_link DROP FOREIGN KEY has_link_to
-;
-
-
-
-
--- Drop keys for tables section -------------------------------------------------
-
--- ALTER TABLE query_unique DROP PRIMARY KEY
--- ALTER TABLE thesis_unique DROP PRIMARY KEY
--- ALTER TABLE vote DROP PRIMARY KEY
--- ALTER TABLE query DROP PRIMARY KEY
--- ALTER TABLE category DROP PRIMARY KEY
--- ALTER TABLE thesis DROP PRIMARY KEY
--- ALTER TABLE source DROP PRIMARY KEY
--- ALTER TABLE review DROP PRIMARY KEY
--- ALTER TABLE shop DROP PRIMARY KEY
--- ALTER TABLE shop_link DROP PRIMARY KEY
--- ALTER TABLE specification_value DROP PRIMARY KEY
--- ALTER TABLE specification_name DROP PRIMARY KEY
--- ALTER TABLE product DROP PRIMARY KEY
-
-
-
--- Drop tables section ---------------------------------------------------
-
-DROP TABLE IF EXISTS vote
-;
-DROP TABLE IF EXISTS query_unique
-;
-DROP TABLE IF EXISTS thesis_unique
-;
-DROP TABLE IF EXISTS query
-;
-DROP TABLE IF EXISTS category
-;
-DROP TABLE IF EXISTS thesis
-;
-DROP TABLE IF EXISTS source
-;
-DROP TABLE IF EXISTS review
-;
-DROP TABLE IF EXISTS shop
-;
-DROP TABLE IF EXISTS shop_link
-;
-DROP TABLE IF EXISTS specification_value
-;
-DROP TABLE IF EXISTS specification_name
-;
-DROP TABLE IF EXISTS product
-;
 
 -- Create tables section -------------------------------------------------
 

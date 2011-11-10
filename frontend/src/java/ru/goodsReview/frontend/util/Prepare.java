@@ -1,7 +1,7 @@
 package ru.goodsReview.frontend.util;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-
+import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
@@ -10,7 +10,6 @@ import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.model.ReviewForView;
 import ru.goodsReview.frontend.model.ThesisForView;
 import ru.goodsReview.storage.controller.CategoryDbController;
-import ru.goodsReview.core.model.Category;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 
@@ -26,48 +25,55 @@ import java.util.List;
  */
 
 public class Prepare {
-	public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
-		CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
-		if (product == null)
-			throw new Exception();
-		Category category = cdbc.getCategoryById(product.getCategoryId());
-		ProductForView pfv = new ProductForView(product, category);
-		return pfv;
-	}
-	public static DetailedProductForView prepareDetailedProductForView(final SimpleJdbcTemplate jdbcTemplate, final Product product) throws Exception {
-		CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
-		if (product == null)
-			throw new Exception();
-		Category category = cdbc.getCategoryById(product.getCategoryId());
+    public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate,
+                                                       final Product product) throws Exception {
+        CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
+        if (product == null) {
+            throw new Exception();
+        }
+        Category category = cdbc.getCategoryById(product.getCategoryId());
+        ProductForView pfv = new ProductForView(product, category);
+        return pfv;
+    }
 
-		List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
-		ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
-		List<Thesis> theses = tdbc.getThesesByProductId(product.getId());
-		for (Thesis thesis : theses) {
-			thesesForView.add(new ThesisForView(thesis));
-		}
+    public static DetailedProductForView prepareDetailedProductForView(final SimpleJdbcTemplate jdbcTemplate,
+                                                                       final Product product) throws Exception {
+        CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
+        if (product == null) {
+            throw new Exception();
+        }
+        Category category = cdbc.getCategoryById(product.getCategoryId());
 
-		List<ReviewForView> reviewsForView = new ArrayList<ReviewForView>();
-		ReviewDbController rdbc = new ReviewDbController(jdbcTemplate);
-		List<Review> reviews = rdbc.getReviewsByProductId(product.getId());
-		for (Review review : reviews) {
-			reviewsForView.add(prepareReviewForView(jdbcTemplate, review));
-		}
-		return new DetailedProductForView(product, category, thesesForView, reviewsForView);
-	}
+        List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
+        ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
+        List<Thesis> theses = tdbc.getThesesByProductId(product.getId());
+        for (Thesis thesis : theses) {
+            thesesForView.add(new ThesisForView(thesis));
+        }
 
-	public static ReviewForView prepareReviewForView(final SimpleJdbcTemplate jdbcTemplate, final Review review) throws Exception {
-		ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
-		if (review == null)
-			throw new Exception();
+        List<ReviewForView> reviewsForView = new ArrayList<ReviewForView>();
+        ReviewDbController rdbc = new ReviewDbController(jdbcTemplate);
+        List<Review> reviews = rdbc.getReviewsByProductId(product.getId());
+        for (Review review : reviews) {
+            reviewsForView.add(prepareReviewForView(jdbcTemplate, review));
+        }
+        return new DetailedProductForView(product, category, thesesForView, reviewsForView);
+    }
 
-		List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
+    public static ReviewForView prepareReviewForView(final SimpleJdbcTemplate jdbcTemplate,
+                                                     final Review review) throws Exception {
+        ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
+        if (review == null) {
+            throw new Exception();
+        }
 
-		List<Thesis> theses = tdbc.getThesesByReviewId(review.getId());
-		for (Thesis thesis : theses) {
-			thesesForView.add(new ThesisForView(thesis));
-		}
+        List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
 
-		return new ReviewForView(review, thesesForView);
-	}
+        List<Thesis> theses = tdbc.getThesesByReviewId(review.getId());
+        for (Thesis thesis : theses) {
+            thesesForView.add(new ThesisForView(thesis));
+        }
+
+        return new ReviewForView(review, thesesForView);
+    }
 }

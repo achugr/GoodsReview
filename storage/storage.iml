@@ -15,13 +15,13 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../miner" />
+          <root url="file://$MODULE_DIR$/../backend" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="miner" />
+    <orderEntry type="module" module-name="backend" />
   </component>
 </module>
 
