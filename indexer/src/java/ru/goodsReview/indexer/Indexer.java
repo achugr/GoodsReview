@@ -77,7 +77,7 @@ public class Indexer extends TimerTask {
             writer.addDocument(document);
         }
         finish();*/
-		//Something will be written here. I promise you! But only when I'll can use this f-n ReviewDbController ;(
+		//Something will be written here. I promise you!
 	}
 
 	public void run() {

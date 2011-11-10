@@ -9,4 +9,5 @@ package ru.goodsReview.searcher;
 */
 
 public class Searcher {
+
 }
