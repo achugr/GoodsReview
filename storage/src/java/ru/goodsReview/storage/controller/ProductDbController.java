@@ -74,6 +74,14 @@ public class ProductDbController {
         return null;
     }
 
+    public List<Product> getProductsByIds(List<Long> ids) {
+        List<Product> products = new ArrayList<Product>();
+        for (Long id : ids) {
+            products.add(getProductById(id));
+        }
+        return products;
+    }
+
     public Product getProductByName(String product_name) {
         List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE name = ?",
                                                                               new Object[]{product_name},
