@@ -14,11 +14,18 @@ import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
 public class GrabberCitilink extends Grabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
+    private String config;
+    private String path;
 
     public void setConfig(String config) {
         this.config = config;
     }
 
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    @Override
     public void downloadPages(String path) {
         try {
             log.info("Citilink download pages started");
@@ -34,10 +41,12 @@ public class GrabberCitilink extends Grabber {
         }
     }
 
-
+    @Override
     public void findPages(String path) {
     }
 
+
+    @Override
     public void grabPages(String path) {
         try {
             log.info("Citilink grabbing started");
@@ -54,13 +63,9 @@ public class GrabberCitilink extends Grabber {
         }
     }
 
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-//    TODO fix the absolute path
+    @Override
     public void run() {
-        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
+//        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {
             log.info("Citilink  run started");
             findPages(path);
