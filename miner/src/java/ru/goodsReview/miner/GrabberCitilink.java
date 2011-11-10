@@ -63,6 +63,7 @@ public class GrabberCitilink extends Grabber {
         }
     }
 
+    @Override
     public void run() {
 //        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {

@@ -14,6 +14,7 @@ import java.util.TimerTask;
 public abstract class Grabber extends TimerTask {
     protected SimpleJdbcTemplate jdbcTemplate;
 
+    @Override
     public abstract void run();
 
     public abstract void downloadPages(String path);
