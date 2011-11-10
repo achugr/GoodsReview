@@ -18,6 +18,9 @@ public class Starter {
         if (args.length == 1) {
             log.info("Module started");
             final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
+            while (context.isRunning()){
+                ;
+            }
             log.info("Module ended");
         } else {
             log.info("Project started");
