@@ -11,10 +11,10 @@ import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
-public class GrabberCitilink extends WebHarvestGrabber{
+public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
-    private String config;
-    private String path;
+    private final String config = "miner/webHarvest/configs/Citilink/CitilinkReviewsConfig.xml";
+    private final String path = "data/miner/CitilinkPages";
 
     @Override
     public void downloadPages() {
@@ -56,7 +56,6 @@ public class GrabberCitilink extends WebHarvestGrabber{
 
     @Override
     public void run() {
-//        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {
             log.info("Citilink  run started");
             findPages();

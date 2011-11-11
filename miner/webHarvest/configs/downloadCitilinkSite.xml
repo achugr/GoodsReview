@@ -41,7 +41,7 @@
                 <body>
                     <empty>
 
-                        <file action="write" path="miner/web/CitilinkPages/${i.toInt()}_${j}.html">
+                        <file action="write" path="data/miner/CitilinkPages/${i.toInt()}_${j}.html">
                             <var-def name="oneNewURL">
                                 <html-to-xml>
                                     <http url="http://www.citilink.ru${oneNew}?opinion"/>
