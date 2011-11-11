@@ -81,8 +81,8 @@ public class ReviewDbController {
     }
 
     // TODO(serebryakov): Uncomment this when list of reviews will be implemented properly.
-    public ListOfReviews getListOfReviews(int productId) {
+    /*public ListOfReviews getListOfReviews(int productId) {
         ListOfReviews listOfReviews = new ListOfReviews();
         listOfReviews.setReviewsList()= simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review WHERE product_id = ", new Object[productId], reviewMapper);
-    }
+    } */
 }

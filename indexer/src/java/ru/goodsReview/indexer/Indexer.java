@@ -11,8 +11,10 @@ import org.apache.lucene.util.Version;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
+import ru.goodsReview.storage.controller.ThesisDbController;
 
 import java.io.File;
 import java.io.IOException;
@@ -90,6 +92,24 @@ public class Indexer extends TimerTask {
             document.add(new Field("importance",Double.toString(review.getImportance()),Field.Store.NO,Field.Index.NOT_ANALYZED));
             document.add(new Field("votesYes",Integer.toString(review.getVotesYes()),Field.Store.NO,Field.Index.NOT_ANALYZED));
             document.add(new Field("votesNo",Integer.toString(review.getVotesNo()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            writer.addDocument(document);
+        }
+        finish();
+    }
+
+    public void doThesisIndex(String directoryDB) throws Exception {
+        init(directoryDB);
+        List<Thesis> theses = new ThesisDbController(jdbcTemplate).getAllTheses();
+        Document document;
+        for (Thesis thesis : theses) {
+            document = new Document();
+            document.add(new Field("id",Long.toString(thesis.getId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
+            document.add(new Field("reviewId",Long.toString(thesis.getReviewId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
+            document.add(new Field("thesisUniqueId",Long.toString(thesis.getThesisUniqueId()),Field.Store.NO, Field.Index.ANALYZED));
+            document.add(new Field("content",thesis.getContent(),Field.Store.NO, Field.Index.ANALYZED));
+            document.add(new Field("frequency",Integer.toString(thesis.getFrequency()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("positivity",Double.toString(thesis.getPositivity()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("importance",Double.toString(thesis.getImportance()),Field.Store.NO,Field.Index.NOT_ANALYZED));
             writer.addDocument(document);
         }
         finish();
