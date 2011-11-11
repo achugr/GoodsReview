@@ -10,7 +10,11 @@ import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Product;
+import ru.goodsReview.core.model.Review;
+import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.controller.ProductDbController;
+import ru.goodsReview.storage.controller.ReviewDbController;
+import ru.goodsReview.storage.controller.ThesisDbController;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,7 +61,12 @@ public class Indexer extends TimerTask {
             document.add(new Field("category_id", Long.toString(product.getCategoryId()), Field.Store.YES,
                                    Field.Index.NOT_ANALYZED));
             document.add(new Field("name", product.getName(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-            document.add(new Field("description", product.getDescription(), Field.Store.YES, Field.Index.ANALYZED));
+            String desc;
+            if ((desc = product.getDescription()) != null) {
+                document.add(new Field("description", product.getDescription(), Field.Store.YES, Field.Index.ANALYZED));
+            } else {
+                document.add(new Field("description", "", Field.Store.YES, Field.Index.ANALYZED));
+            }
             document.add(new Field("popularity", Integer.toString(product.getPopularity()), Field.Store.YES,
                                    Field.Index.ANALYZED));
             writer.addDocument(document);
@@ -65,22 +74,45 @@ public class Indexer extends TimerTask {
         finish();
     }
 
-
     public void doReviewsIndex(String directoryDB) throws Exception {
-/*        init(directoryDB);
-        List<Review> reviews = new ReviewDbController().getAllReviews();
+        init(directoryDB);
+        List<Review> reviews = new ReviewDbController(jdbcTemplate).getAllReviews();
         Document document;
-        for (Product product : products) {
+        for (Review review : reviews) {
             document = new Document();
-            document.add(new Field("id",Long.toString(product.getId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
-            document.add(new Field("category_id",Long.toString(product.getCategoryId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
-            document.add(new Field("name",product.getName(),Field.Store.YES,Field.Index.NOT_ANALYZED));
-            document.add(new Field("description",product.getDescription(),Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("popularity",Integer.toString(product.getPopularity()),Field.Store.YES, Field.Index.ANALYZED));
+            document.add(new Field("id",Long.toString(review.getId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
+            document.add(new Field("productId",Long.toString(review.getProductId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
+            document.add(new Field("content",review.getContent(),Field.Store.NO, Field.Index.ANALYZED));
+            document.add(new Field("author",review.getAuthor(),Field.Store.NO,Field.Index.ANALYZED));
+            document.add(new Field("date",review.getDate().toString(),Field.Store.NO,Field.Index.ANALYZED));
+            document.add(new Field("description",review.getDescription(),Field.Store.NO,Field.Index.NO));
+            document.add(new Field("sourceId",Long.toString(review.getSourceId()),Field.Store.NO,Field.Index.NO));
+            document.add(new Field("sourceUrl",review.getSourceUrl(),Field.Store.NO,Field.Index.NO));
+            document.add(new Field("positivity",Double.toString(review.getPositivity()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("importance",Double.toString(review.getImportance()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("votesYes",Integer.toString(review.getVotesYes()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("votesNo",Integer.toString(review.getVotesNo()),Field.Store.NO,Field.Index.NOT_ANALYZED));
             writer.addDocument(document);
         }
-        finish();*/
-        //Something will be written here. I promise you! But only when I'll can use this f-n ReviewDbController ;(
+        finish();
+    }
+
+    public void doThesisIndex(String directoryDB) throws Exception {
+        init(directoryDB);
+        List<Thesis> theses = new ThesisDbController(jdbcTemplate).getAllTheses();
+        Document document;
+        for (Thesis thesis : theses) {
+            document = new Document();
+            document.add(new Field("id",Long.toString(thesis.getId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
+            document.add(new Field("reviewId",Long.toString(thesis.getReviewId()),Field.Store.YES,Field.Index.NOT_ANALYZED));
+            document.add(new Field("thesisUniqueId",Long.toString(thesis.getThesisUniqueId()),Field.Store.NO, Field.Index.ANALYZED));
+            document.add(new Field("content",thesis.getContent(),Field.Store.NO, Field.Index.ANALYZED));
+            document.add(new Field("frequency",Integer.toString(thesis.getFrequency()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("positivity",Double.toString(thesis.getPositivity()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            document.add(new Field("importance",Double.toString(thesis.getImportance()),Field.Store.NO,Field.Index.NOT_ANALYZED));
+            writer.addDocument(document);
+        }
+        finish();
     }
 
     public void run() {

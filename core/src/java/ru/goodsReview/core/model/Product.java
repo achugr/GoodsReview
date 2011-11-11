@@ -72,4 +72,3 @@ public class Product {
         this.popularity = popularity;
     }
 }
-
