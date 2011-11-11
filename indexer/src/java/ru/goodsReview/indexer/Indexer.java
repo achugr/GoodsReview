@@ -56,17 +56,14 @@ public class Indexer extends TimerTask {
         Document document;
         for (Product product : products) {
             document = new Document();
-            document.add(new Field("id", Long.toString(product.getId()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+            document.add(new Field("id", Long.toString(product.getId()), Field.Store.YES, Field.Index.ANALYZED));
             document.add(new Field("category_id", Long.toString(product.getCategoryId()), Field.Store.YES,
                                    Field.Index.NOT_ANALYZED));
-            document.add(new Field("name", product.getName(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+            document.add(new Field("name", product.getName(), Field.Store.YES, Field.Index.ANALYZED));
             String desc = product.getDescription();
             if (desc != null) {
                 document.add(new Field("description", desc, Field.Store.YES, Field.Index.ANALYZED));
             }
-            /*else {
-                document.add(new Field("description", "", Field.Store.YES, Field.Index.ANALYZED));
-            }*/
             document.add(new Field("popularity", Integer.toString(product.getPopularity()), Field.Store.YES,
                                    Field.Index.ANALYZED));
             writer.addDocument(document);
@@ -90,34 +87,22 @@ public class Indexer extends TimerTask {
             if (content != null) {
                 document.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
             }
-            /*else {
-                document.add(new Field("content",null,Field.Store.NO,Field.Index.ANALYZED));
-            }*/
             String author = review.getContent();
             if (author != null) {
                 document.add(new Field("author", author, Field.Store.NO, Field.Index.ANALYZED));
             }
-            /* else {
-                document.add(new Field("author",null,Field.Store.NO,Field.Index.ANALYZED));
-            }*/
             document.add(new Field("author", review.getAuthor(), Field.Store.NO, Field.Index.ANALYZED));
             document.add(new Field("date", review.getDate().toString(), Field.Store.NO, Field.Index.ANALYZED));
             String desc = review.getDescription();
             if (desc != null) {
                 document.add(new Field("description", desc, Field.Store.NO, Field.Index.NO));
             }
-            /*else {
-                document.add(new Field("description", "", Field.Store.NO,Field.Index.NO));
-            }*/
             document.add(new Field("sourceId", Long.toString(review.getSourceId()), Field.Store.NO,
                                    Field.Index.NOT_ANALYZED));
             String sourceURL = review.getSourceUrl();
             if (sourceURL != null) {
                 document.add(new Field("sourceUrl", sourceURL, Field.Store.NO, Field.Index.NO));
             }
-            /*else {
-                document.add(new Field("sourceUrl", "", Field.Store.NO, Field.Index.NO));
-            }*/
             document.add(new Field("positivity", Double.toString(review.getPositivity()), Field.Store.NO,
                                    Field.Index.NOT_ANALYZED));
             document.add(new Field("importance", Double.toString(review.getImportance()), Field.Store.NO,
@@ -149,9 +134,6 @@ public class Indexer extends TimerTask {
             if (content != null) {
                 document.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
             }
-            /*else {
-                document.add(new Field("content",null,Field.Store.NO, Field.Index.ANALYZED));
-            }*/
             document.add(new Field("frequency", Integer.toString(thesis.getFrequency()), Field.Store.NO,
                                    Field.Index.NOT_ANALYZED));
             document.add(new Field("positivity", Double.toString(thesis.getPositivity()), Field.Store.NO,
@@ -177,9 +159,6 @@ public class Indexer extends TimerTask {
             if (content != null) {
                 document.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
             }
-            /*else {
-                document.add(new Field("content",null,Field.Store.NO, Field.Index.ANALYZED));
-            }*/
             document.add(new Field("frequency", Integer.toString(thesisUnique.getFrequency()), Field.Store.NO,
                                    Field.Index.NOT_ANALYZED));
             document.add(new Field("lastScan", thesisUnique.getLastScan().toString(), Field.Store.NO,
@@ -209,9 +188,6 @@ public class Indexer extends TimerTask {
             if (desc != null) {
                 document.add(new Field("description", desc, Field.Store.NO, Field.Index.ANALYZED));
             }
-            /*else {
-                document.add(new Field("description", "", Field.Store.NO, Field.Index.ANALYZED));
-            }*/
         }
         finish();
         log.debug("Category Index creating ended");
@@ -226,6 +202,7 @@ public class Indexer extends TimerTask {
             doThesesIndex("data/index/thesis");
             doThesesUniqueIndex("data/index/theseUnique");
             log.info("Index creating ended started");
+            System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e);
