@@ -3,6 +3,7 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.mapper.ReviewMapper;
 
@@ -74,9 +75,14 @@ public class ReviewDbController {
 
     }
 
+    public List<Review> getAllReviews() {
+        List<Review> reviews = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review", reviewMapper);
+        return reviews;
+    }
+
     // TODO(serebryakov): Uncomment this when list of reviews will be implemented properly.
-    /*public ListOfReviews getListOfReviews(int productId) {
+    public ListOfReviews getListOfReviews(int productId) {
         ListOfReviews listOfReviews = new ListOfReviews();
         listOfReviews.setReviewsList()= simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review WHERE product_id = ", new Object[productId], reviewMapper);
-    }*/
+    }
 }

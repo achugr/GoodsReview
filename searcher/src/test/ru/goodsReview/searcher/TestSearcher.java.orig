@@ -25,20 +25,25 @@ public class TestSearcher {
         indexer.setJdbcTemplate(jdbcTemplate);
         indexer.doProductsIndex(DBDirectory);
         IndexSearcher indexSearcher = new IndexSearcher(new SimpleFSDirectory(new File(DBDirectory)));
-        QueryParser queryParser = new QueryParser(Version.LUCENE_34, "name", new RussianAnalyzer(Version.LUCENE_34));
+        QueryParser queryParser = new QueryParser(Version.LUCENE_34, "", new RussianAnalyzer(Version.LUCENE_34));
 
-        Query query = queryParser.parse("Asus u30"); //"good" example
-        TopDocs topDocs = indexSearcher.search(query, 10);
+        Query query = queryParser.parse("name:iPhone 4"); //"good" example
+        TopDocs topDocs = indexSearcher.search(query, 1);
         if (topDocs.getMaxScore() > 0) {
+<<<<<<< HEAD
             Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc);
+            System.out.println(document.get("id")+" "+document.get("name")+" "+document.get("popularity")+" "+document.get("description"));
+=======
+            Document document = indexSearcher.doc(topDocs.scoreDocs[0].doc); //H-H-H-H-H-H-HOLY SHIT!!!!1
             System.out.println(document.get("id") + " " + document.get("name") + " " + document.get(
                     "popularity") + " " + document.get("description"));
+>>>>>>> origin/HEAD
         } else {
-            System.out.println("Sorry, no results!");
+            System.out.println("Good job, yeah!");
         }
 
-        Query query1 = queryParser.parse("Asus eee pc"); //"bad" example
-        TopDocs topDocs1 = indexSearcher.search(query1, 10);
+        Query query1 = queryParser.parse("name:iMNotiPhone5, lol"); //"bad" example
+        TopDocs topDocs1 = indexSearcher.search(query1, 1);
         if (topDocs1.getMaxScore() > 0) {
             Document document = indexSearcher.doc(topDocs1.scoreDocs[0].doc);
             System.out.println(document.get("id") + " " + document.get("name") + " " + document.get(
