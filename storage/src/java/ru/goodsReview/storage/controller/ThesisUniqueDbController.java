@@ -55,4 +55,10 @@ public class ThesisUniqueDbController {
                 thesisUniqueMapper);
         return theses.get(0);
     }
+
+    public List<ThesisUnique> getAllThesesUnique() {
+        List<ThesisUnique> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis_unique", thesisUniqueMapper);
+        return products;
+    }
+
 }
