@@ -70,7 +70,6 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
             Date date = new Date();
-
             //todo getProduct(Product product)
             Review rev = new Review(1, goodFeatures + "\n" + badFeatures + "\n" + comments, "anonim",
                     new Date(), description, 1, "source_url", 0.0, 0.0, 0, 0);
