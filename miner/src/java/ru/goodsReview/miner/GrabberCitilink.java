@@ -7,26 +7,17 @@
 package ru.goodsReview.miner;
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
-public class GrabberCitilink extends Grabber {
+public class GrabberCitilink extends WebHarvestGrabber{
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
     private String config;
     private String path;
 
-    public void setConfig(String config) {
-        this.config = config;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     @Override
-    public void downloadPages(String path) {
+    public void downloadPages() {
         try {
             log.info("Citilink download pages started");
             ScraperConfiguration config = new ScraperConfiguration("miner/webHarvest/configs/downloadCitilinkSite.xml");
@@ -42,12 +33,12 @@ public class GrabberCitilink extends Grabber {
     }
 
     @Override
-    public void findPages(String path) {
+    public void findPages() {
     }
 
 
     @Override
-    public void grabPages(String path) {
+    public void grabPages() {
         try {
             log.info("Citilink grabbing started");
             ScraperConfiguration config = new ScraperConfiguration(this.config);
@@ -68,9 +59,9 @@ public class GrabberCitilink extends Grabber {
 //        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {
             log.info("Citilink  run started");
-            findPages(path);
-            downloadPages(path);
-            grabPages(path);
+            findPages();
+            downloadPages();
+            grabPages();
             log.info("Citilink run succecsful");
         } catch (Exception e) {
             log.error("cannot process Citilink run");

@@ -17,12 +17,6 @@ public abstract class Grabber extends TimerTask {
     @Override
     public abstract void run();
 
-    public abstract void downloadPages(String path);
-
-    public abstract void findPages(String path);
-
-    public abstract void grabPages(String path);
-
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
