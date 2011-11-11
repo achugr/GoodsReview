@@ -55,17 +55,5 @@ public class GrabberCitilink extends WebHarvestGrabber {
         }
     }
 
-    @Override
-    public void run() {
-        try {
-            log.info("Run started");
-            findPages();
-            downloadPages();
-            grabPages();
-            log.info("Run succecsful");
-        } catch (Exception e) {
-            log.error("Cannot process run");
-            log.error(e);
-        }
-    }
+
 }
