@@ -11,68 +11,60 @@ import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
-public class GrabberCitilink extends Grabber {
+public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
-    private String config;
-    private String path;
-
-    public void setConfig(String config) {
-        this.config = config;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 
     @Override
-    public void downloadPages(String path) {
+    public void downloadPages() {
         try {
-            log.info("Citilink download pages started");
-            ScraperConfiguration config = new ScraperConfiguration("miner/webHarvest/configs/downloadCitilinkSite.xml");
+            //todo you shouldn't write citilink in log. It will be written by logger based on row 15
+            log.info("Download pages started");
+            ScraperConfiguration config = new ScraperConfiguration(getDownloadConfig());
             Scraper scraper = new Scraper(config, ".");
+            scraper.addVariableToContext("path", getPath());
             scraper.setDebug(true);
             scraper.execute();
 
-            log.info("Citilink download pages succecsful");
+            log.info("Download pages succecsful");
         } catch (Exception e) {
-            log.error("cannot process Citilink download pages");
+            log.error("Cannot process download pages");
             log.error(e);
         }
     }
 
     @Override
-    public void findPages(String path) {
+    public void findPages() {
     }
-
+    //todo where should be path??
 
     @Override
-    public void grabPages(String path) {
+    public void grabPages() {
         try {
-            log.info("Citilink grabbing started");
-            ScraperConfiguration config = new ScraperConfiguration(this.config);
+            log.info("Grabbing started");
+            ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
             Scraper scraper = new Scraper(config, ".");
             scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
+            scraper.addVariableToContext("path", getPath());
             scraper.setDebug(true);
             scraper.execute();
 
-            log.info("Citilink grabbing ended succecsful");
+            log.info("Grabbing ended succecsful");
         } catch (Exception e) {
-            log.error("cannot process Citilink grabber");
+            log.error("Cannot process grabber");
             log.error(e);
         }
     }
 
     @Override
     public void run() {
-//        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {
-            log.info("Citilink  run started");
-//            findPages(path);
-//            downloadPages(path);
-            grabPages(path);
-            log.info("Citilink run succecsful");
+            log.info("Run started");
+            findPages();
+            downloadPages();
+            grabPages();
+            log.info("Run succecsful");
         } catch (Exception e) {
-            log.error("cannot process Citilink run");
+            log.error("Cannot process run");
             log.error(e);
         }
     }

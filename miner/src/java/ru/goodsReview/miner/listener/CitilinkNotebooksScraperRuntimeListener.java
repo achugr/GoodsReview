@@ -74,7 +74,6 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
             Date date = new Date();
-
             //todo getProduct(Product product)
             Review goodFeauture = new Review(1, goodFeatures, "anonim", date, "", 1, "source", GOOD_FEAUTURE_POS, 0.0, 0,0);
             Review badFeauture = new Review(1, badFeatures, "anonim", date, "", 1, "source", BAD_FEAUTURE_POS, 0.0, 0,0);
@@ -93,6 +92,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             rev.setDate(date);
             rev.setImportance(0);
             rev.setPositivity(0);
+            //todo sourceUrl= citilink.ru   imho
             rev.setSourceUrl("citilink.ru/catalog/computers_and_notebooks/notebooks/");
 
             reviewDbController.addReview(rev);

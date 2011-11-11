@@ -22,13 +22,15 @@
 
     <!--Grabbers-->
     <bean id="grabberCitilink" class="ru.goodsReview.miner.GrabberCitilink">
-        <property name="config" value="miner/webHarvest/configs/CitilinkReviewsConfig.xml"/>
-        <property name="path" value="WebHarvest/Citilink/CitilinkHTML"/>
+        <property name="grabberConfig" value="miner/webHarvest/configs/Citilink/CitilinkReviewsConfig.xml"/>
+        <property name="downloadConfig" value="miner/webHarvest/configs/downloadCitilinkSite.xml"/>
+        <property name="path" value="data/miner/CitilinkPages"/>
+
     </bean>
 
     <bean id="grabberCitilinkTask" class="org.springframework.scheduling.timer.ScheduledTimerTask" lazy-init="false">
         <property name="delay" value="0"/>
-        <property name="period" value="50000"/>
+        <property name="period" value="600000"/>
         <property name="timerTask" ref="grabberCitilink"/>
     </bean>
 
