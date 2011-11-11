@@ -7,7 +7,6 @@
 package ru.goodsReview.miner;
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
@@ -68,8 +67,8 @@ public class GrabberCitilink extends Grabber {
 //        String path = "/home/amarch/Documents/CSCenter/GoodsReview/WebHarvest/Citilink/CitilinkHTML";
         try {
             log.info("Citilink  run started");
-            findPages(path);
-            downloadPages(path);
+//            findPages(path);
+//            downloadPages(path);
             grabPages(path);
             log.info("Citilink run succecsful");
         } catch (Exception e) {

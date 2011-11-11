@@ -3,7 +3,6 @@
         "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans default-autowire="byName">
-
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
     <!--DB conf-->
@@ -19,4 +18,5 @@
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate" lazy-init="false">
         <constructor-arg ref="dataSource"/>
     </bean>
+
 </beans>

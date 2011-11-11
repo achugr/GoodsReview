@@ -16,7 +16,7 @@
         <property name="validationQuery" value="select 1"/>
     </bean>
 
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate" lazy-init="false">
+    <bean id="simpleJdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate" lazy-init="false">
         <constructor-arg ref="dataSource"/>
     </bean>
 

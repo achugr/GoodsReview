@@ -1,11 +1,13 @@
 package ru.goodsReview.backend;
 
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
+import javax.sql.DataSource;
 import java.util.Date;
 
 /**
@@ -18,7 +20,7 @@ import java.util.Date;
 public class Test {
     private static SimpleJdbcTemplate jdbcTemplate;
 
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -43,17 +45,17 @@ public class Test {
         list1.add(thesis3);
         thesisHashTable.addSeveralThesisTables(list1);
         thesisHashTable.print();*/
-        //TODO don't use this method for get jdbcTemplate
-        /*FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("storage/src/scripts/beans.xml");
-        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");    */
-        ReviewDbController reviewDbController1 = new ReviewDbController(jdbcTemplate);
-        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                "backend/src/scripts/beans.xml");
+        DataSource dataSource = (DataSource) context.getBean("dataSource");
+
+        ProductDbController productDbController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
+        ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
 
         Product pro1 = new Product(1, "Motorola", "bad phone", 0);
-        //Product pro2 = new Product(1, "Motorola Razer V3", "very bad phone",0);
-
+        Product pro2 = new Product(1, "Motorola Razer V3", "very bad phone",0);
         productDbController.addProduct(pro1);
-        //productDbController.addProduct(pro2);
+        productDbController.addProduct(pro2);
 
         //TODO please, don't name variables with "_", we must keep in common code style (Artemij)
         //TODO first argument in this constructor - id of Review, in db it's autoincrement, please, use constructor without id
@@ -63,10 +65,10 @@ public class Test {
         Review new_review4 = new Review(4, 1, " Still not good enough", null, new Date(), null, 1, null, 0, 0, 0, 0);
 
 
-        reviewDbController1.addReview(new_review1);
-        reviewDbController1.addReview(new_review2);
-        reviewDbController1.addReview(new_review3);
-        reviewDbController1.addReview(new_review4);
+        reviewDbController.addReview(new_review1);
+        reviewDbController.addReview(new_review2);
+        reviewDbController.addReview(new_review3);
+        reviewDbController.addReview(new_review4);
 
         AnalyzeThesis analyzeThesis = new AnalyzeThesis();
         analyzeThesis.updateThesisByProductId(1);

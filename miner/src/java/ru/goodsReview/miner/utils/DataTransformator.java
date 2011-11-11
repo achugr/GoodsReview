@@ -7,4 +7,5 @@ package ru.goodsReview.miner.utils;
             aamarchuk@gmail.com
 */
 public class DataTransformator {
+
 }
