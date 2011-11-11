@@ -80,6 +80,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             rev.setDate(date);
             rev.setImportance(0);
             rev.setPositivity(0);    */
+            //todo sourceUrl= citilink.ru   imho
             rev.setSourceUrl("citilink.ru/catalog/computers_and_notebooks/notebooks/");
 
             reviewDbController.addReview(rev);

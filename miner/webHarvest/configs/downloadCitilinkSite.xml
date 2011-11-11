@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
+    <!--<var-def name="path">data/miner/CitilinkPages/</var-def>-->
 
-    <var-def name="path">allLinks/</var-def>
+    <!--<var-def name="path">allLinks/</var-def>-->
     <var-def name="startURL">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</var-def>
 
 
@@ -15,7 +16,7 @@
     </var-def>
 
 
-    <file action="write" path="miner/web/CitilinkPages/List.html">
+    <file action="write" path="${path}/List.html">
         <![CDATA[ <body> ]]>
     </file>
 
@@ -41,7 +42,7 @@
                 <body>
                     <empty>
 
-                        <file action="write" path="data/miner/CitilinkPages/${i.toInt()}_${j}.html">
+                        <file action="write" path="${path}/${i.toInt()}_${j}.html">
                             <var-def name="oneNewURL">
                                 <html-to-xml>
                                     <http url="http://www.citilink.ru${oneNew}?opinion"/>
@@ -49,7 +50,7 @@
                             </var-def>
                         </file>
 
-                        <file action="append" path="miner/web/CitilinkPages/List.html">
+                        <file action="append" path="${path}/List.html">
                             <![CDATA[ <div> ]]>
                             <var name="oneNew"/>
                             <![CDATA[ </div> ]]>
@@ -61,7 +62,7 @@
         </empty>
     </while>
 
-    <file action="append" path="miner/web/CitilinkPages/List.html">
+    <file action="append" path="${path}/List.html">
         <![CDATA[ </body> ]]>
     </file>
 </config>

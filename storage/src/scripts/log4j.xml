@@ -5,13 +5,13 @@
     <appender name="console" class="org.apache.log4j.ConsoleAppender">
         <param name="target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%t %d %p %m IN %c%n"/>
+            <param name="ConversionPattern" value="%d %p %m IN %c%n"/>
         </layout>
     </appender>
     <appender name="file" class="org.apache.log4j.FileAppender">
         <param name="File" value="mainlog.log"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%t %d %p %m IN %c%n"/>
+            <param name="ConversionPattern" value="%d %p %m IN %c%n"/>
         </layout>
     </appender>
 
