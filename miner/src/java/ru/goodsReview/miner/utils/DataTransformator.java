@@ -6,6 +6,14 @@ package ru.goodsReview.miner.utils;
     Author: Alexander Marchuk
             aamarchuk@gmail.com
 */
-public class DataTransformator {
+public abstract class DataTransformator {
 
+    /**
+     * Clear string from html-tags
+     * @param review string for clearing
+     * @return String without html-tags
+     */
+    protected static String clearReviewFromTags(String review){
+        return review.replaceAll("\\<.*?\\>", "");
+    }
 }
