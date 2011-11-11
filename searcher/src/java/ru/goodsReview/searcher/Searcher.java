@@ -38,7 +38,7 @@ public class Searcher {
         }
     }
 
-    public List<Product> searchProductByDescription(String query) throws ParseException, IOException {
+    public List<Product> searchProductByName(String query) throws ParseException, IOException {
 
         Analyzer analyzer = new RussianAnalyzer(Version.LUCENE_34);
         QueryParser parser = new QueryParser(Version.LUCENE_34, "name", analyzer);

@@ -24,7 +24,7 @@ public class ProductForView {
         description = product.getDescription();
         id = product.getId();
         if (product.getCategoryId() != category.getId()) {
-            throw new Exception("Category mismatch");
+            //throw new Exception("Category mismatch");
         }
         categoryId = category.getId();
         this.category = category.getName();
