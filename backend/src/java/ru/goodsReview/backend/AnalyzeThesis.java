@@ -40,66 +40,82 @@ public class AnalyzeThesis {
     public AnalyzeThesis() {
     }
 
-    //public int
+    private Map<String, Integer> fillingMapOfThesisUnique( List<Review> reviewList){
 
-    public void updateThesisByProductId(long productId) {
-          final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                "backend/src/scripts/beans.xml");
-        DataSource dataSource = (DataSource) context.getBean("dataSource");
-        //select reviews from database by product id
-        ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-        List<Review> desiredReviews;
-        desiredReviews = reviewDbController.getReviewsByProductId(productId);
-
-        List<Review> derivedFromDbReviews;
-        derivedFromDbReviews = reviewDbController.getReviewsByProductId(productId);
-        ListOfReviews new_listOfReviews = new ListOfReviews(derivedFromDbReviews);
-        FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
-
-
-        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(new SimpleJdbcTemplate(dataSource));
+        Map<String, Integer>  uniqueThesises = new HashMap<String, Integer>();
         ListOfReviews listOfReviews;
-        listOfReviews = new ListOfReviews(desiredReviews);
+        listOfReviews = new ListOfReviews(reviewList);
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
         frequencyAnalyzer.makeFrequencyDictionary();
-        Date date = new Date();
-        Map<String, Integer> thesisUniques = new HashMap<String, Integer>();
-        Map<String, Long> tableOfId = new HashMap<String, Long>();   //
         Integer currfreq;
         for (Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()) {
-            //currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
-            currfreq = thesisUniques.get(entry.getKey());
-            thesisUniques.put(entry.getKey(), entry.getValue() + (currfreq == null ? 0 : currfreq));
-            //tableOfId.put(entry.getKey(), currThesisUnique.getId());
+            currfreq = uniqueThesises.get(entry.getKey());
+            uniqueThesises.put(entry.getKey(), entry.getValue() + (currfreq == null ? 0 : currfreq));
         }
-
-        // Создаём таблицу thesis_unique
-        // True hardcore
+        return uniqueThesises;
+    }
+    private Map<String, Long> fillMapOfThesisId(Map<String, Integer> thesisUniques){
+         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                       "storage/src/scripts/beans.xml");
+        DataSource dataSource = (DataSource) context.getBean("dataSource");
+        Map<String, Long> tableOfId = new HashMap<String, Long>();   //
+        //ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
+        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(
+                new SimpleJdbcTemplate(dataSource));
         ThesisUnique currThesisUnique;
         ThesisUnique recievedTU;
+        Date date = new Date();
         for (Map.Entry<String, Integer> entry : thesisUniques.entrySet()) {
             currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
             thesisUniqueDbController.addThesisUnique(currThesisUnique);
             recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
             tableOfId.put(entry.getKey(), recievedTU.getId());
         }
+        return tableOfId;
+    }
 
+    private void addThesisesToDB(List<Review> listOfR, Map<String, Long> idTable){
+         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                       "storage/src/scripts/beans.xml");
+        DataSource dataSource = (DataSource) context.getBean("dataSource");
+        //ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
 
         ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         FrequencyAnalyzer freqAnForSingleReview;
         ListOfReviews buffLOR = new ListOfReviews();
         Thesis currThesis;
         // Here we got some tough stuff
-        for (Review rev : desiredReviews) {
+        for (Review rev : listOfR) {
             buffLOR.clear();
             buffLOR.addReview(rev);
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
             for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
-                currThesis = new Thesis(rev.getId(), tableOfId.get(entry.getKey()), entry.getKey(), entry.getValue(), 0,
-                                        0);
+                currThesis = new Thesis(rev.getId(), idTable.get(entry.getKey()), entry.getKey(),
+                        entry.getValue(), 0, 0);
                 thesisDbController.addThesis(currThesis);
             }
         }
+
+    }
+    public void updateThesisByProductId(long productId) {
+
+        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                       "storage/src/scripts/beans.xml");
+        DataSource dataSource = (DataSource) context.getBean("dataSource");
+        //ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
+        List<Review> desiredReviews;
+
+        //select reviews from database by product id
+        desiredReviews = reviewDbController.getReviewsByProductId(productId);
+
+        //filling map of unique thesis
+        Map<String, Integer> thesisUniques = fillingMapOfThesisUnique(desiredReviews);
+
+        // Создаём таблицу thesis_unique
+        Map<String, Long> tableOfId = fillMapOfThesisId(thesisUniques);
+
+        addThesisesToDB(desiredReviews, tableOfId);
     }
 }
