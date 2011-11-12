@@ -10,7 +10,7 @@
     <!--Grabbers-->
     <bean id="grabberCitilink" class="ru.goodsReview.miner.GrabberCitilink">
         <property name="grabberConfig" value="miner/webHarvest/configs/Citilink/CitilinkReviewsConfig.xml"/>
-        <property name="downloadConfig" value="miner/webHarvest/configs/downloadCitilinkSite.xml"/>
+        <property name="downloadConfig" value="miner/webHarvest/configs/Citilink/downloadCitilinkSite.xml"/>
         <property name="path" value="data/miner/CitilinkPages"/>
 
     </bean>

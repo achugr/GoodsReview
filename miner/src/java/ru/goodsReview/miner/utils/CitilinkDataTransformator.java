@@ -41,7 +41,7 @@ public class CitilinkDataTransformator extends DataTransformator{
     public Review clearReviewFromTrash(Review review){
         String clearReview = DataTransformator.clearReviewFromTags(review.getContent());
         clearReview = clearReview.replaceAll("^(\\s+)", "");
-        String [] trashWords = {DEFECTS, MERIT};
+        String [] trashWords = {DEFECTS, MERIT, COMMENT};
         clearReview = clearReviewFromTrashString(clearReview, trashWords);
         review.setContent(clearReview);
         return review;
