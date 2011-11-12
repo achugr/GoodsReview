@@ -12,6 +12,7 @@ public class Product {
     private String description;
     private int popularity;
 
+
     public Product(long id, long categoryId, String name, String description, int popularity) {
         this.id = id;
         this.categoryId = categoryId;

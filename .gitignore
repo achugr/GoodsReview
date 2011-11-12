@@ -1,3 +1,4 @@
+
 .idea/workspace.xml
 database
 out
@@ -23,6 +24,9 @@ findbugs_report.html
 *.exe
 *.o
 *.so
+
+# Original file versions #
+*.orig
 
 # Packages #
 *.7z

@@ -14,16 +14,21 @@ import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 
 public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeListener {
 
     private int i = 0;
+    private static double GOOD_FEAUTURE_POSITIVITY = 5.0;
+    private static double BAD_FEAUTURE_POSITIVITY = -5.0;
     private static final Logger log = Logger.getLogger(CitilinkNotebooksScraperRuntimeListener.class);
 
     protected SimpleJdbcTemplate jdbcTemplate;
@@ -71,20 +76,38 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
             Date date = new Date();
             //todo getProduct(Product product)
-            Review rev = new Review(1, goodFeatures + "\n" + badFeatures + "\n" + comments, "anonim",
+
+//          goodFeauture, badFeauture, comment - this is 3 different reviews
+            CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
+            Review goodFeauture = new Review(1, goodFeatures, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0,0);
+            Review badFeauture = new Review(1, badFeatures, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0,0);
+            Review comment = new Review(1, comments, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0,0);
+
+//            clear reviews content from trash
+            goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
+            badFeauture = citilinkDataTransformator.clearReviewFromTrash(badFeauture);
+            comment = citilinkDataTransformator.clearReviewFromTrash(comment);
+//            add reviews in DB
+            List<Review> reviewList = new ArrayList<Review>();
+            reviewList.add(goodFeauture);
+            reviewList.add(badFeauture);
+            reviewList.add(comment);
+            reviewDbController.addReviewList(reviewList);
+
+            /*Review rev = new Review(1, goodFeatures + "\n" + badFeatures + "\n" + comments, "anonim",
                     new Date(), description, 1, "source_url", 0.0, 0.0, 0, 0);
-            /*rev.setAuthor("anonim");
+            rev.setAuthor("anonim");
             rev.setDescription(description);
             rev.setVotesNo(Integer.parseInt(voteNo));
             rev.setVotesYes(Integer.parseInt(voteYes));
             rev.setDate(date);
             rev.setImportance(0);
-            rev.setPositivity(0);    */
+            rev.setPositivity(0);
             //todo sourceUrl= citilink.ru   imho
             rev.setSourceUrl("citilink.ru/catalog/computers_and_notebooks/notebooks/");
 
             reviewDbController.addReview(rev);
-            log.info(" New review addded: ID=" + rev.getId());
+            log.info(" New review addded: ID=" + rev.getId());      */
         }
     }
 

@@ -7,6 +7,7 @@
 */
 package ru.goodsReview.backend;
 
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
@@ -16,6 +17,7 @@ import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
+import javax.sql.DataSource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -41,9 +43,11 @@ public class AnalyzeThesis {
     //public int
 
     public void updateThesisByProductId(long productId) {
-
+          final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                "backend/src/scripts/beans.xml");
+        DataSource dataSource = (DataSource) context.getBean("dataSource");
         //select reviews from database by product id
-        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
         List<Review> desiredReviews;
         desiredReviews = reviewDbController.getReviewsByProductId(productId);
 
@@ -53,7 +57,7 @@ public class AnalyzeThesis {
         FrequencyAnalyzer newFrequencyAnalyzer = new FrequencyAnalyzer(new_listOfReviews);
 
 
-        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
+        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(new SimpleJdbcTemplate(dataSource));
         ListOfReviews listOfReviews;
         listOfReviews = new ListOfReviews(desiredReviews);
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
@@ -81,7 +85,7 @@ public class AnalyzeThesis {
         }
 
 
-        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+        ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         FrequencyAnalyzer freqAnForSingleReview;
         ListOfReviews buffLOR = new ListOfReviews();
         Thesis currThesis;
