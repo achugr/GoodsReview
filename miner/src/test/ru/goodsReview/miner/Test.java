@@ -10,30 +10,36 @@ package ru.goodsReview.miner;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Review;
-import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-// test class for miner module
+/**
+ * in this class i am testing methods for grabbing information and insert it into DB
+ */
 public class Test {
+    private static SimpleJdbcTemplate simpleJdbcTemplate;
 
-    public static void main(String [] args){
-        //here i use beans.xml from backend, because it contains all i need, but doesn't start downloading pages from citilink
+    /**
+     * here i use beans.xml from backend, because it contains all i need, but doesn't start downloading pages from citilink
+     */
+    public static void setJdbcTemplate(){
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
                 "backend/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
-        SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
+        simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
+    }
 
+    public static void printReviewByProductId(long id){
         ReviewDbController reviewDbController = new ReviewDbController(simpleJdbcTemplate);
-        List<Review> reviewList;
-        reviewList = reviewDbController.getReviewsByProductId(1);
-        CitilinkDataTransformator dataTransformator = new CitilinkDataTransformator();
-        //cleaning data from trash-content
-        for(Review review : reviewList){
-            //review = dataTransformator.clearReviewFromTrash(review);
-            System.out.println("REVIEW ->> " + review.getContent());
+        List<Review> reviewList = reviewDbController.getReviewsByProductId(id);
+        for(Review review: reviewList){
+            System.out.println("review ->> " + review.getContent());
         }
+    }
+    public static void main(String [] args){
+        setJdbcTemplate();
+        printReviewByProductId(1235);
     }
 }

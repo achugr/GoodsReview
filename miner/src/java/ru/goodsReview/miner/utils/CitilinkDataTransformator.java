@@ -1,5 +1,9 @@
 package ru.goodsReview.miner.utils;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  *  Date: 11.11.11
@@ -14,10 +18,56 @@ import ru.goodsReview.core.model.Review;
  * methods of this class allow to clean data from trash-content
  */
 public class CitilinkDataTransformator extends DataTransformator{
-    private static final String DEFECTS = "Недостатки:";
-    private static final String MERIT = "Достоинства:";
-    private static final String COMMENT = "Комментарий:";
+    /**
+     * enum for trash words
+     */
+    public enum TrashWords {
+        DEFECTS ("Недостатки:"),
+        MERIT ("Достоинства:"),
+        COMMENT ("Комментарий");
 
+        private final String trashWord;
+
+        TrashWords(String trashWord){
+            this.trashWord = trashWord;
+        }
+        public String getTrashWord(){
+            return this.trashWord;
+        }
+
+    }
+
+    /**
+     * enum for product categories
+     */
+    public enum Category{
+        LAPTOP("Ноутбук", 3),
+        NETBOOK("Нетбук", 4);
+
+        private String categoryName;
+        private long categoryId;
+
+        Category(String categoryName, long categoryId){
+            this.categoryName = categoryName;
+            this.categoryId = categoryId;
+        }
+
+        public String getCategoryName() {
+            return categoryName;
+        }
+
+        public void setCategoryName(String categoryName) {
+            this.categoryName = categoryName;
+        }
+
+        public long getCategoryId() {
+            return categoryId;
+        }
+
+        public void setCategoryId(long categoryId) {
+            this.categoryId = categoryId;
+        }
+    }
    /**
     * Clear Sting from trash-words
     * @param review string for clearing
@@ -41,9 +91,53 @@ public class CitilinkDataTransformator extends DataTransformator{
     public Review clearReviewFromTrash(Review review){
         String clearReview = DataTransformator.clearReviewFromTags(review.getContent());
         clearReview = clearReview.replaceAll("^(\\s+)", "");
-        String [] trashWords = {DEFECTS, MERIT, COMMENT};
+        String [] trashWords = {TrashWords.DEFECTS.getTrashWord(), TrashWords.MERIT.getTrashWord(), TrashWords.COMMENT.getTrashWord()};
         clearReview = clearReviewFromTrashString(clearReview, trashWords);
         review.setContent(clearReview);
         return review;
+    }
+
+    /**
+     * method for extracting category id from source info about product
+     * @param sourceProductInfo  source info about product
+     * @return  relevant category id of this product
+     */
+    public static long getGategoryFromSourceProductInfo(String sourceProductInfo){
+        long categoryId = 1;
+        for(Category category : Category.values()){
+            if(sourceProductInfo.contains(category.getCategoryName())){
+                categoryId = category.getCategoryId();
+                break;
+            }
+        }
+        return categoryId;
+    }
+
+    /**
+     * method for extracting product name from source info
+     * @param sourceProductInfo source info about product
+     * @return relevant product name
+     */
+    public static String getProductNameFromSourceProductInfo(String sourceProductInfo){
+        Pattern p = Pattern.compile("\"\\s(.+?),");
+        Matcher m = p.matcher(sourceProductInfo);
+        if(m.find()){
+            //System.out.println("product name  == " + m.group(1));
+        }
+        return m.group(1);
+    }
+
+    /**
+     * method create Product model from source info from Citilink
+     * @param sourceProductInfo - String source info
+     * @return  Product, in which fields "name" and "categoryId" are relevant
+     */
+    public Product createProductModelFromSource(String sourceProductInfo){
+        String productName;
+        long categoryId;
+        categoryId = getGategoryFromSourceProductInfo(sourceProductInfo);
+        productName = getProductNameFromSourceProductInfo(sourceProductInfo);
+        Product product = new Product(categoryId, productName, "no description", 1);
+        return product;
     }
 }

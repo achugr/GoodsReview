@@ -12,7 +12,14 @@ public class Product {
     private String description;
     private int popularity;
 
-
+    /**
+     * constructor 1
+     * @param id
+     * @param categoryId
+     * @param name
+     * @param description
+     * @param popularity
+     */
     public Product(long id, long categoryId, String name, String description, int popularity) {
         this.id = id;
         this.categoryId = categoryId;
@@ -21,6 +28,12 @@ public class Product {
         this.popularity = popularity;
     }
 
+    /**
+     * @param categoryId id of category of this product
+     * @param name name of this product
+     * @param description description for this product
+     * @param popularity product popularity
+     */
     public Product(long categoryId, String name, String description, int popularity) {
         this.categoryId = categoryId;
         this.name = name;
