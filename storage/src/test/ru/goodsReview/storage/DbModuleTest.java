@@ -51,8 +51,11 @@ public class DbModuleTest {
         log.debug("Product name: " + product1.getName());
         log.debug("Product desc: " + product1.getDescription());
         log.debug("[id when insert: " + product0id + ", id when select: " + product1.getId() + "]");
-        Product productFrom = productController.getProductById(10);
-        System.out.println("PRODUCT == " + productFrom.getDescription());
+
+        // NOTE(serebryakov): Who wrote these two lines? Please clarify your point or remove.
+        /*Product productFrom = productController.getProductById(10);
+        System.out.println("PRODUCT == " + productFrom.getDescription());*/
+        
         SourceDbController sourceController = new SourceDbController(new SimpleJdbcTemplate(dataSource));
         Source source0 = new Source(-1, "Reliable source", "OK some url");
         long source0id = sourceController.addSource(source0);
@@ -68,6 +71,10 @@ public class DbModuleTest {
         Assert.assertEquals(review0id, review1.getId());
         log.debug("Review content: " + review1.getContent());
         log.debug("Review date: " + review1.getDate() + ", time: " + review1.getDate().getTime());
+        review1.setContent("HAHAHA");
+        reviewController.updateReview(review1);
+        Review review2 = reviewController.getReviewById(review0id);
+        Assert.assertEquals(review1.getContent(), review2.getContent());
 
         ThesisDbController thesisController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         //todo change this constructor. Sorry.
