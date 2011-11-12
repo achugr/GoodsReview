@@ -30,12 +30,9 @@ public class Searcher {
         this.directoryDB = directoryDB;
     }
 
-    public void getReadyForSearch() {
-        try {
-            indexSearcherProduct = new IndexSearcher(new SimpleFSDirectory(new File(directoryDB)));
-        } catch (IOException e) {
-            log.info("Must create index before use UI");
-        }
+    public void getReadyForSearch() throws IOException {
+        indexSearcherProduct = new IndexSearcher(new SimpleFSDirectory(new File(directoryDB)));
+        //  log.error("Must create index before use UI");
     }
 
     public List<Product> searchProductByName(String query) throws ParseException, IOException {
@@ -54,6 +51,6 @@ public class Searcher {
     }
 
     private Product productMap(Document doc) {
-        return new Product( Long.parseLong(doc.get("id")), doc.get("name") );
+        return new Product(Long.parseLong(doc.get("id")), doc.get("name"));
     }
 }

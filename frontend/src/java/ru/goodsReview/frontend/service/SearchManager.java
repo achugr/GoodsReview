@@ -35,7 +35,7 @@ public class SearchManager {
     }
 
     public List<DetailedProductForView> searchByName(String query) throws Exception {
-
+        //todo not working yet
         List<DetailedProductForView> products = new ArrayList<DetailedProductForView>();
         for (Product product : searcher.searchProductByName(query)) {
             DetailedProductForView pfv = Prepare.prepareDetailedProductForView(jdbcTemplate, product);
