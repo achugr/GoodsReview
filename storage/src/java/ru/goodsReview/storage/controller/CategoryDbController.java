@@ -13,11 +13,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.storage.mapper.CategoryMapper;
+import ru.goodsReview.core.db.controller.CategoryController;
 
 import java.sql.Types;
 import java.util.List;
 
-public class CategoryDbController {
+public class CategoryDbController implements CategoryController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private CategoryMapper categoryMapper;
     private static final Logger log = Logger.getLogger(CategoryDbController.class);

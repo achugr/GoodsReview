@@ -10,6 +10,7 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.controller.ThesisUniqueController;
 import ru.goodsReview.core.model.ThesisUnique;
 import ru.goodsReview.storage.mapper.ThesisUniqueMapper;
 
@@ -17,7 +18,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThesisUniqueDbController {
+public class ThesisUniqueDbController implements ThesisUniqueController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ThesisUniqueMapper thesisUniqueMapper;
     private static final Logger log = Logger.getLogger(ThesisUniqueDbController.class);

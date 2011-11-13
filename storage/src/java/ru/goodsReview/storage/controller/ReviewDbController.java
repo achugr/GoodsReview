@@ -3,6 +3,7 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.controller.ReviewController;
 import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.mapper.ReviewMapper;
@@ -18,7 +19,7 @@ import java.util.List;
  * Time: 1:20
  * To change this template use File | Settings | File Templates.
  */
-public class ReviewDbController {
+public class ReviewDbController implements ReviewController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ReviewMapper reviewMapper;
     private static final Logger log = Logger.getLogger(ReviewDbController.class);

@@ -11,6 +11,7 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.controller.ThesisController;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.mapper.ThesisMapper;
 
@@ -23,7 +24,7 @@ import java.util.List;
  * Date: 30.10.2011
  * Time: 16:52:52
  */
-public class ThesisDbController {
+public class ThesisDbController implements ThesisController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ThesisMapper thesisMapper;
     private static final Logger log = Logger.getLogger(ThesisDbController.class);

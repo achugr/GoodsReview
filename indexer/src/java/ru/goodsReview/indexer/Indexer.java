@@ -204,7 +204,6 @@ public class Indexer extends TimerTask {
             log.info("Index creating ended started");
             System.exit(0);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error(e);
         }
     }

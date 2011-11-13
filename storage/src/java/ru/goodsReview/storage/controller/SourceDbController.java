@@ -11,6 +11,7 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.controller.SourceController;
 import ru.goodsReview.core.model.Source;
 import ru.goodsReview.storage.mapper.SourceMapper;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * Date: 30.10.2011
  * Time: 23:38:57
  */
-public class SourceDbController {
+public class SourceDbController implements SourceController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private SourceMapper sourceMapper;
     private static final Logger log = Logger.getLogger(SourceDbController.class);

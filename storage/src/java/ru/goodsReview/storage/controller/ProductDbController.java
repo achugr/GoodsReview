@@ -3,6 +3,7 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.controller.ProductController;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.mapper.ProductMapper;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Date: 17.10.11
  * Time: 19:04
  */
-public class ProductDbController {
+public class ProductDbController implements ProductController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ProductMapper productMapper;
     private static final Logger log = Logger.getLogger(ProductDbController.class);
