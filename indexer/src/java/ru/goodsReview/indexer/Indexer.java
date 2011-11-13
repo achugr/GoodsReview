@@ -24,7 +24,6 @@ import java.util.TimerTask;
  Yaroslav Skudarnov
  SkudarnovYI@gmail.com
  */
-//todo delete comments
 public class Indexer extends TimerTask {
     private static final Logger log = org.apache.log4j.Logger.getLogger(Indexer.class);
 
@@ -37,10 +36,9 @@ public class Indexer extends TimerTask {
 
     private void init(String directoryDB) throws Exception {
         SimpleFSDirectory directory = new SimpleFSDirectory(new File(directoryDB));
-        this.writer = new IndexWriter(directory,
+        writer = new IndexWriter(directory,
                                       new IndexWriterConfig(Version.LUCENE_34, new RussianAnalyzer(Version.LUCENE_34)));
-        //todo for what ??
-        //ProductDbController DBController = new ProductDbController(jdbcTemplate);
+        writer.deleteAll();
     }
 
     private void finish() throws IOException {
@@ -202,7 +200,6 @@ public class Indexer extends TimerTask {
             doThesesIndex("data/index/thesis");
             doThesesUniqueIndex("data/index/theseUnique");
             log.info("Index creating ended started");
-            System.exit(0);
         } catch (Exception e) {
             log.error(e);
         }
