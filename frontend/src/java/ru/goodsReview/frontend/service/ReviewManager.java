@@ -3,6 +3,7 @@ package ru.goodsReview.frontend.service;
 import org.apache.log4j.Logger;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.frontend.mapper.ProductMapper;
+import ru.goodsReview.frontend.mapper.ReviewMapper;
 import ru.goodsReview.frontend.model.ReviewForView;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ReviewManager {
     private static final Logger log = Logger.getLogger(ReviewManager.class);
     private ControllerFactory controllerFactory;
+    private ReviewMapper reviewMapper = new ReviewMapper();
     private int popularCount;
 
     public void setControllerFactory(ControllerFactory controllerFactory) {
@@ -31,7 +33,7 @@ public class ReviewManager {
 
     public List<ReviewForView> reviewById(long id) throws Exception {
         List<ReviewForView> result = new ArrayList<ReviewForView>();
-        ReviewForView rfv = ProductMapper.prepareReviewForView(controllerFactory,
+        ReviewForView rfv = reviewMapper.prepareReviewForView(controllerFactory,
                                                                controllerFactory.getReviewController().getReviewById(
                                                                        id));
         if (rfv != null) {

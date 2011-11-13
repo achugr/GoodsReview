@@ -5,7 +5,6 @@ import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.frontend.model.DetailedProductForView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class ProductManager {
     private static final Logger log = Logger.getLogger(ProductManager.class);
     private int popularCount;
     private ControllerFactory controllerFactory;
+    private ProductMapper productMapper = new ProductMapper();
 
     public void setControllerFactory(ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
@@ -32,7 +32,7 @@ public class ProductManager {
 
     public List<DetailedProductForView> productById(long id) throws Exception {
         List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
-        DetailedProductForView pfv = ProductMapper.prepareDetailedProductForView(controllerFactory,
+        DetailedProductForView pfv = productMapper.prepareDetailedProductForView(controllerFactory,
                                                                                  controllerFactory.getProductController().getProductById(
                                                                                          id));
         if (pfv != null) {
@@ -46,7 +46,7 @@ public class ProductManager {
         List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
         for (Product product : controllerFactory.getProductController().getPopularProducts(popularCount)) {
             log.debug("Product added:" + product.getName() + " Id:" + product.getId());
-            result.add(ProductMapper.prepareDetailedProductForView(controllerFactory, product));
+            result.add(productMapper.prepareDetailedProductForView(controllerFactory, product));
         }
         return result;
     }

@@ -21,7 +21,9 @@ import java.util.List;
  */
 
 public class ProductMapper {
-    public static DetailedProductForView prepareDetailedProductForView(final ControllerFactory controllerFactory,
+    private ReviewMapper reviewMapper = new ReviewMapper();
+
+    public DetailedProductForView prepareDetailedProductForView(final ControllerFactory controllerFactory,
                                                                        final Product product) throws Exception {
         if (product == null) {
             throw new Exception();
@@ -37,24 +39,10 @@ public class ProductMapper {
         List<ReviewForView> reviewsForView = new ArrayList<ReviewForView>();
         List<Review> reviews = controllerFactory.getReviewController().getReviewsByProductId(product.getId());
         for (Review review : reviews) {
-            reviewsForView.add(prepareReviewForView(controllerFactory, review));
+            reviewsForView.add(reviewMapper.prepareReviewForView(controllerFactory, review));
         }
         return new DetailedProductForView(product, category, thesesForView, reviewsForView);
     }
 
-    public static ReviewForView prepareReviewForView(final ControllerFactory controllerFactory,
-                                                     final Review review) throws Exception {
-        if (review == null) {
-            throw new Exception();
-        }
 
-        List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
-
-        List<Thesis> theses = controllerFactory.getThesisController().getThesesByReviewId(review.getId());
-        for (Thesis thesis : theses) {
-            thesesForView.add(new ThesisForView(thesis));
-        }
-
-        return new ReviewForView(review, thesesForView);
-    }
 }

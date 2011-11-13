@@ -20,7 +20,7 @@ import java.util.List;
 public class SearchManager {
     private ControllerFactory controllerFactory;
     private Searcher searcher;
-
+    private ProductMapper productMapper = new ProductMapper();
     public SearchManager() {
     }
 
@@ -33,19 +33,11 @@ public class SearchManager {
     }
 
     public List<DetailedProductForView> searchByName(String query) throws Exception {
-        //todo not working yet
         List<DetailedProductForView> products = new ArrayList<DetailedProductForView>();
         for (Product product : searcher.searchProductByName(query)) {
-            DetailedProductForView pfv = ProductMapper.prepareDetailedProductForView(controllerFactory, product);
+            DetailedProductForView pfv = productMapper.prepareDetailedProductForView(controllerFactory, product);
             products.add(pfv);
         }
         return products;
-        /* ProductDbController pdbc = new ProductDbController(jdbcTemplate);
-       List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
-       DetailedProductForView pfv = ProductMapper.prepareDetailedProductForView(jdbcTemplate, pdbc.getProductByName(query));
-       if (pfv != null) {
-           result.add(pfv);
-       }
-       return result;*/
     }
 }
