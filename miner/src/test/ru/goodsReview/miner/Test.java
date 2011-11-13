@@ -40,6 +40,6 @@ public class Test {
     }
     public static void main(String [] args){
         setJdbcTemplate();
-        printReviewByProductId(1235);
+        printReviewByProductId(1366);
     }
 }

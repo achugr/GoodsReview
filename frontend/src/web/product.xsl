@@ -9,23 +9,6 @@
     </xsl:template>
 
     <xsl:template name="main">
-       <!-- <div class="menu">
-            <div class="fill">
-                <div class="container">
-                    <ul class="nav">
-                        <li class="current">
-                            <a href="#">Популярные товары</a>
-                        </li>
-                        <li>
-                            <a href="#">Частые тезисы</a>
-                        </li>
-                        <li>
-                            <a href="#">Последние запросы</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>  -->
         <div class="productInfo">
             <xsl:for-each select="/page/data[@id='product']/collection/detailed-product-for-view">
                 <xsl:call-template name="detailed-product"/>
@@ -66,12 +49,14 @@
         <h3>Лучшие комментарии</h3>
         <xsl:for-each select="//review-for-view">
             <div class="comment">
+                <div class="text">
                 <xsl:value-of select="content"/>
                 <a>
                     <xsl:attribute name="href">review.xml?id=<xsl:value-of select="@id"/>
                     </xsl:attribute>
                     >>
                 </a>
+                </div>
             </div>
         </xsl:for-each>
     </xsl:template>

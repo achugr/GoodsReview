@@ -148,6 +148,9 @@
             background-color:whiteSmoke;
             font-size:110%;
             padding:5px 5px 5px 10px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
             }
             .donate {
             position: absolute;

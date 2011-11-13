@@ -12,7 +12,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.scheduling.timer.ScheduledTimerTask;
 //todo delete this class.
 
-public class testIndexer {
+public class TestIndexer {
     static final String DBDirectory = "database";
 
     public static void main(String[] args) throws Exception {

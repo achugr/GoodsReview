@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 
 /**
- * Class, extends DataTransformator
+ * extends DataTransformator
  * methods of this class allow to clean data from trash-content
  */
 public class CitilinkDataTransformator extends DataTransformator{
@@ -98,7 +98,7 @@ public class CitilinkDataTransformator extends DataTransformator{
     }
 
     /**
-     * method for extracting category id from source info about product
+     * extracting category id from source info about product
      * @param sourceProductInfo  source info about product
      * @return  relevant category id of this product
      */
@@ -114,7 +114,7 @@ public class CitilinkDataTransformator extends DataTransformator{
     }
 
     /**
-     * method for extracting product name from source info
+     * extracting product name from source info
      * @param sourceProductInfo source info about product
      * @return relevant product name
      */
@@ -128,8 +128,8 @@ public class CitilinkDataTransformator extends DataTransformator{
     }
 
     /**
-     * method create Product model from source info from Citilink
-     * @param sourceProductInfo - String source info
+     * create Product model from source info from Citilink
+     * @param sourceProductInfo String source info
      * @return  Product, in which fields "name" and "categoryId" are relevant
      */
     public Product createProductModelFromSource(String sourceProductInfo){
