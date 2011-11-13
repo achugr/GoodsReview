@@ -36,24 +36,24 @@ public class SearchProductYalet implements Yalet {
             return;
         }
 
+
         try {
             List<DetailedProductForView> products = searchManager.searchByName(query);
             if (products.size() != 0) {
-                Xmler.Tag queryTag = Xmler.tag("query", query);
                 Xmler.Tag resultCountTag = Xmler.tag("count", String.valueOf(products.size()));
-                res.add(queryTag);
                 res.add(resultCountTag);
                 res.add(products);
             } else {
                 log.debug("Nothing found for query " + query);
-                Xmler.Tag ans = Xmler.tag("answer", "Ничего не найдено. Query: " + query);
-                res.add(ans);
             }
+            res.add(Xmler.tag("query", query));
+            res.add(Xmler.tag("count", String.valueOf(products.size())));
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Something happens wrong with query: " + query);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось. Query: " + query);
             res.add(ans);
         }
+
     }
 }
