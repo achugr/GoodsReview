@@ -22,7 +22,7 @@
     <bean id="categoryController" class="ru.goodsReview.storage.controller.CategoryDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="productControlller" class="ru.goodsReview.storage.controller.ProductDbController">
+    <bean id="productController" class="ru.goodsReview.storage.controller.ProductDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
     <bean id="reviewController" class="ru.goodsReview.storage.controller.ReviewDbController">
@@ -83,11 +83,6 @@
             <value>5</value>
         </property>
     </bean>
-    <bean id="popularReviewManager" class="ru.goodsReview.frontend.service.PopularReviewManager">
-        <property name="count">
-            <value>5</value>
-        </property>
-    </bean>
     <bean id="reviewManager" class="ru.goodsReview.frontend.service.ReviewManager">
         <property name="popularCount">
             <value>5</value>
@@ -100,5 +95,4 @@
     <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
     <bean id="similarProductYalet" class="ru.goodsReview.frontend.yalet.SimilarProductYalet"/>
     <bean id="thesisYalet" class="ru.goodsReview.frontend.yalet.ThesisYalet"/>
-    <bean id="popularReviewYalet" class="ru.goodsReview.frontend.yalet.PopularReviewYalet"/>
 </beans>
