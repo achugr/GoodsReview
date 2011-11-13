@@ -16,7 +16,7 @@
                 <tr>
                     <td>
                         <a href="#">
-                            <img src="images/lenovo.jpg"/>
+                            <img src="images/laptopSmall.png"/>
                         </a>
                     </td>
                     <td>

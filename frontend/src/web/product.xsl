@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <div class="span5">
-                <img src="images/lenovoTabletBig.jpg"/>
+                <img src="images/laptop.png"/>
             </div>
             <div class="span3">
                 <h3>Тезисы</h3>
