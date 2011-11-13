@@ -1,11 +1,9 @@
 package ru.goodsReview.frontend.service;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.frontend.model.DetailedProductForView;
-import ru.goodsReview.frontend.util.Prepare;
-import ru.goodsReview.storage.controller.ProductDbController;
+import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.searcher.Searcher;
 
 import java.util.ArrayList;
@@ -38,13 +36,13 @@ public class SearchManager {
         //todo not working yet
         List<DetailedProductForView> products = new ArrayList<DetailedProductForView>();
         for (Product product : searcher.searchProductByName(query)) {
-            DetailedProductForView pfv = Prepare.prepareDetailedProductForView(controllerFactory, product);
+            DetailedProductForView pfv = ProductMapper.prepareDetailedProductForView(controllerFactory, product);
             products.add(pfv);
         }
         return products;
         /* ProductDbController pdbc = new ProductDbController(jdbcTemplate);
        List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
-       DetailedProductForView pfv = Prepare.prepareDetailedProductForView(jdbcTemplate, pdbc.getProductByName(query));
+       DetailedProductForView pfv = ProductMapper.prepareDetailedProductForView(jdbcTemplate, pdbc.getProductByName(query));
        if (pfv != null) {
            result.add(pfv);
        }

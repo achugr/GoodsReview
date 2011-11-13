@@ -39,6 +39,10 @@ public class SearchProductYalet implements Yalet {
         try {
             List<DetailedProductForView> products = searchManager.searchByName(query);
             if (products.size() != 0) {
+                Xmler.Tag queryTag = Xmler.tag("query", query);
+                Xmler.Tag resultCountTag = Xmler.tag("count", String.valueOf(products.size()));
+                res.add(queryTag);
+                res.add(resultCountTag);
                 res.add(products);
             } else {
                 log.debug("Nothing found for query " + query);

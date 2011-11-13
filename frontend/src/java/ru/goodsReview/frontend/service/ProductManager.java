@@ -1,12 +1,10 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
+import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.frontend.model.DetailedProductForView;
-import ru.goodsReview.frontend.util.Prepare;
-import ru.goodsReview.storage.controller.ProductDbController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +32,9 @@ public class ProductManager {
 
     public List<DetailedProductForView> productById(long id) throws Exception {
         List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
-        DetailedProductForView pfv = Prepare.prepareDetailedProductForView(controllerFactory,
-                                                                           controllerFactory.getProductController().getProductById(
-                                                                                   id));
+        DetailedProductForView pfv = ProductMapper.prepareDetailedProductForView(controllerFactory,
+                                                                                 controllerFactory.getProductController().getProductById(
+                                                                                         id));
         if (pfv != null) {
             log.debug("Added product " + pfv.getName());
             result.add(pfv);
@@ -48,7 +46,7 @@ public class ProductManager {
         List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
         for (Product product : controllerFactory.getProductController().getPopularProducts(popularCount)) {
             log.debug("Product added:" + product.getName() + " Id:" + product.getId());
-            result.add(Prepare.prepareDetailedProductForView(controllerFactory, product));
+            result.add(ProductMapper.prepareDetailedProductForView(controllerFactory, product));
         }
         return result;
     }

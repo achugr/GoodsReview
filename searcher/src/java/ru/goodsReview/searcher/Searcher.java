@@ -13,6 +13,7 @@ import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
 
 import ru.goodsReview.core.model.Product;
+import ru.goodsReview.searcher.mapper.ProductMapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,11 @@ public class Searcher {
 
     private String directoryDB;
     private IndexSearcher indexSearcherProduct;
+    private ProductMapper productMapper;
 
+    public Searcher(){
+        this.productMapper = new ProductMapper();
+    }
     public void setDirectoryDB(String directoryDB) {
         this.directoryDB = directoryDB;
     }
@@ -45,12 +50,8 @@ public class Searcher {
         List<Product> lst = new ArrayList<Product>();
         for (int i = 0; i < hits.length; i++) {
             Document doc = indexSearcherProduct.doc(hits[i].doc);
-            lst.add(productMap(doc));
+            lst.add(productMapper.mapDoc(doc));
         }
         return lst;
-    }
-
-    private Product productMap(Document doc) {
-        return new Product(Long.parseLong(doc.get("id")), doc.get("name"));
     }
 }

@@ -1,18 +1,13 @@
-package ru.goodsReview.frontend.util;
+package ru.goodsReview.frontend.mapper;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.frontend.model.DetailedProductForView;
-import ru.goodsReview.frontend.model.ProductForView;
 import ru.goodsReview.frontend.model.ReviewForView;
 import ru.goodsReview.frontend.model.ThesisForView;
-import ru.goodsReview.storage.controller.CategoryDbController;
-import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.controller.ThesisDbController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,18 +20,7 @@ import java.util.List;
  *      vans239@gmail.com
  */
 
-public class Prepare {
-    public static ProductForView prepareProductForView(final SimpleJdbcTemplate jdbcTemplate,
-                                                       final Product product) throws Exception {
-        CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
-        if (product == null) {
-            throw new Exception();
-        }
-        Category category = cdbc.getCategoryById(product.getCategoryId());
-        ProductForView pfv = new ProductForView(product, category);
-        return pfv;
-    }
-
+public class ProductMapper {
     public static DetailedProductForView prepareDetailedProductForView(final ControllerFactory controllerFactory,
                                                                        final Product product) throws Exception {
         if (product == null) {

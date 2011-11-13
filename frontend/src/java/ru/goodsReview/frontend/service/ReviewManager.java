@@ -1,11 +1,9 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.ControllerFactory;
+import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.frontend.model.ReviewForView;
-import ru.goodsReview.frontend.util.Prepare;
-import ru.goodsReview.storage.controller.ReviewDbController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +31,9 @@ public class ReviewManager {
 
     public List<ReviewForView> reviewById(long id) throws Exception {
         List<ReviewForView> result = new ArrayList<ReviewForView>();
-        ReviewForView rfv = Prepare.prepareReviewForView(controllerFactory,
-                                                         controllerFactory.getReviewController().getReviewById(id));
+        ReviewForView rfv = ProductMapper.prepareReviewForView(controllerFactory,
+                                                               controllerFactory.getReviewController().getReviewById(
+                                                                       id));
         if (rfv != null) {
             log.debug("Added product " + rfv.getId());
             result.add(rfv);

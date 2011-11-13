@@ -10,7 +10,11 @@
     </xsl:template>
 
     <xsl:template name="main">
-        <h3>Результаты поиска по запросу "<xsl:value-of select="query"/>"
+        <h3>Результаты поиска по запросу
+            "<xsl:value-of select="//query"/>"
+        </h3>
+        <h3>Найдено:
+            <xsl:value-of select="//count"/>
         </h3>
         <ul class="searchResult">
             <xsl:for-each select="//detailed-product-for-view">
