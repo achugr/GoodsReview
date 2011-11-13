@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.util;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
@@ -36,40 +37,36 @@ public class Prepare {
         return pfv;
     }
 
-    public static DetailedProductForView prepareDetailedProductForView(final SimpleJdbcTemplate jdbcTemplate,
+    public static DetailedProductForView prepareDetailedProductForView(final ControllerFactory controllerFactory,
                                                                        final Product product) throws Exception {
-        CategoryDbController cdbc = new CategoryDbController(jdbcTemplate);
         if (product == null) {
             throw new Exception();
         }
-        Category category = cdbc.getCategoryById(product.getCategoryId());
+        Category category = controllerFactory.getCategoryController().getCategoryById(product.getCategoryId());
 
         List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
-        ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
-        List<Thesis> theses = tdbc.getThesesByProductId(product.getId());
+        List<Thesis> theses = controllerFactory.getThesisController().getThesesByProductId(product.getId());
         for (Thesis thesis : theses) {
             thesesForView.add(new ThesisForView(thesis));
         }
 
         List<ReviewForView> reviewsForView = new ArrayList<ReviewForView>();
-        ReviewDbController rdbc = new ReviewDbController(jdbcTemplate);
-        List<Review> reviews = rdbc.getReviewsByProductId(product.getId());
+        List<Review> reviews = controllerFactory.getReviewController().getReviewsByProductId(product.getId());
         for (Review review : reviews) {
-            reviewsForView.add(prepareReviewForView(jdbcTemplate, review));
+            reviewsForView.add(prepareReviewForView(controllerFactory, review));
         }
         return new DetailedProductForView(product, category, thesesForView, reviewsForView);
     }
 
-    public static ReviewForView prepareReviewForView(final SimpleJdbcTemplate jdbcTemplate,
+    public static ReviewForView prepareReviewForView(final ControllerFactory controllerFactory,
                                                      final Review review) throws Exception {
-        ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
         if (review == null) {
             throw new Exception();
         }
 
         List<ThesisForView> thesesForView = new ArrayList<ThesisForView>();
 
-        List<Thesis> theses = tdbc.getThesesByReviewId(review.getId());
+        List<Thesis> theses = controllerFactory.getThesisController().getThesesByReviewId(review.getId());
         for (Thesis thesis : theses) {
             thesesForView.add(new ThesisForView(thesis));
         }

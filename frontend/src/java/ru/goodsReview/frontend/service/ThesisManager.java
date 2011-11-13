@@ -1,10 +1,9 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.frontend.model.ThesisForView;
-import ru.goodsReview.storage.controller.ThesisDbController;
+import ru.goodsReview.core.db.ControllerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +18,19 @@ import java.util.List;
 
 public class ThesisManager {
     private static final Logger log = org.apache.log4j.Logger.getLogger(ThesisManager.class);
-    private SimpleJdbcTemplate jdbcTemplate;
-
+    private ControllerFactory controllerFactory;
     public ThesisManager() {
 
     }
 
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setControllerFactory(ControllerFactory controllerFactory) {
+        this.controllerFactory = controllerFactory;
     }
 
     public List<ThesisForView> thesesByProduct(long id) {
         List<ThesisForView> result = new ArrayList<ThesisForView>();
 
-        ThesisDbController tdbc = new ThesisDbController(jdbcTemplate);
-        List<Thesis> theses = tdbc.getThesesByProductId(id);
+        List<Thesis> theses = controllerFactory.getThesisController().getThesesByProductId(id);
         for (Thesis thesis : theses) {
             log.debug("Added thesis with id " + thesis.getId() + " and content " + thesis.getId());
             result.add(new ThesisForView(thesis));

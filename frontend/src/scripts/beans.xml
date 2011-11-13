@@ -17,6 +17,28 @@
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate" lazy-init="false">
         <constructor-arg ref="dataSource"/>
     </bean>
+
+    <!--Controllers-->
+    <bean id="categoryController" class="ru.goodsReview.storage.controller.CategoryDbController">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+    <bean id="productControlller" class="ru.goodsReview.storage.controller.ProductDbController">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+    <bean id="reviewController" class="ru.goodsReview.storage.controller.ReviewDbController">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+    <bean id="sourceController" class="ru.goodsReview.storage.controller.SourceDbController">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+    <bean id="thesisController" class="ru.goodsReview.storage.controller.ThesisDbController">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+    <bean id="thesisUniqueController" class="ru.goodsReview.storage.controller.ThesisUniqueDbController">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory"/>
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 

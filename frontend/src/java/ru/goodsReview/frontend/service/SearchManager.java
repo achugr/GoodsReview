@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.service;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.util.Prepare;
@@ -19,16 +20,15 @@ import java.util.List;
  */
 
 public class SearchManager {
-    private SimpleJdbcTemplate jdbcTemplate;
+    private ControllerFactory controllerFactory;
+    private Searcher searcher;
 
     public SearchManager() {
     }
 
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setControllerFactory(ControllerFactory controllerFactory) {
+        this.controllerFactory = controllerFactory;
     }
-
-    private Searcher searcher;
 
     public void setSearcher(Searcher searcher) {
         this.searcher = searcher;
@@ -38,7 +38,7 @@ public class SearchManager {
         //todo not working yet
         List<DetailedProductForView> products = new ArrayList<DetailedProductForView>();
         for (Product product : searcher.searchProductByName(query)) {
-            DetailedProductForView pfv = Prepare.prepareDetailedProductForView(jdbcTemplate, product);
+            DetailedProductForView pfv = Prepare.prepareDetailedProductForView(controllerFactory, product);
             products.add(pfv);
         }
         return products;

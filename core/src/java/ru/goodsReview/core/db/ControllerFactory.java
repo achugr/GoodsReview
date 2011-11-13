@@ -10,7 +10,7 @@ package ru.goodsReview.core.db;
 
 import ru.goodsReview.core.db.controller.*;
 
-public class MainController {
+public class ControllerFactory {
     private CategoryController categoryController;
     private ProductController productController;
     private ReviewController reviewController;
