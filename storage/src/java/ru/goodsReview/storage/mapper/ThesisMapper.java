@@ -25,10 +25,10 @@ public class ThesisMapper implements ParameterizedRowMapper<Thesis> {
             return new Thesis(resultSet.getLong("id"), resultSet.getLong("review_id"),
                               resultSet.getLong("thesis_unique_id"), resultSet.getString("content"),
                               resultSet.getInt("frequency"), resultSet.getDouble("positivity"),
-                              resultSet.getDouble("importance"));
+                              resultSet.getDouble("importance"),resultSet.getDouble("tfidf"));
         } catch (SQLException e) {
             // Something is wrong with the base, i.e. one of column labels isn't presented.
-            return new Thesis(-1, -1, -1, "NOCONTENT", 0, 0.0, 0.0);
+            return new Thesis(-1, -1, -1, "NOCONTENT", 0, 0.0, 0.0, 0.0);
         }
     }
 }
