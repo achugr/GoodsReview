@@ -157,6 +157,11 @@
             top: 10%;
             right: 5%;
             }
+            .thesisList{
+            height:200px;
+            overflow:scroll;
+            overflow-x:hidden;
+            }
         </style>
     </xsl:template>
 

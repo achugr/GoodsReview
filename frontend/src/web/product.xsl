@@ -29,6 +29,7 @@
             </div>
             <div class="span3">
                 <h3>Тезисы</h3>
+                <div class = "thesisList">
                 <ul>
                     <xsl:for-each select="//thesis-for-view">
                         <li>
@@ -36,6 +37,7 @@
                         </li>
                     </xsl:for-each>
                 </ul>
+                </div>
             </div>
             <div class="span5">
                 <h3>Похожие товары</h3>
