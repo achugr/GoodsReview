@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ReviewController;
-import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.mapper.ReviewMapper;
 
@@ -12,13 +11,14 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Artemij
- * Date: 19.10.11
- * Time: 1:20
- * To change this template use File | Settings | File Templates.
+/*
+ *  Date: 19.10.11
+ *   Time: 1:20
+ *   Author:
+ *      Artemij Chugreev
+ *      artemij.chugreev@gmail.com
  */
+
 public class ReviewDbController implements ReviewController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ReviewMapper reviewMapper;
@@ -97,10 +97,4 @@ public class ReviewDbController implements ReviewController{
             updateReview(review);
         }
     }
-
-    // TODO(serebryakov): Uncomment this when list of reviews will be implemented properly.
-    /*public ListOfReviews getListOfReviews(int productId) {
-        ListOfReviews listOfReviews = new ListOfReviews();
-        listOfReviews.setReviewsList()= simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM review WHERE product_id = ", new Object[productId], reviewMapper);
-    } */
 }

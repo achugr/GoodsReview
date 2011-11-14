@@ -11,7 +11,6 @@ package ru.goodsReview.indexer;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.scheduling.timer.ScheduledTimerTask;
 //todo delete this class.
-
 public class TestIndexer {
     static final String DBDirectory = "database";
 
@@ -19,9 +18,5 @@ public class TestIndexer {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
                 "indexer/src/scripts/beans.xml");
         ScheduledTimerTask st = (ScheduledTimerTask) context.getBean("scheduledTask");
-/*        SimpleJdbcTemplate jdbcTemplate = (SimpleJdbcTemplate) context.getBean("jdbcTemplate");
-        Indexer indexer = new Indexer();
-		indexer.setJdbcTemplate(jdbcTemplate);
-        indexer.doProductsIndex(DBDirectory);*/
     }
 }

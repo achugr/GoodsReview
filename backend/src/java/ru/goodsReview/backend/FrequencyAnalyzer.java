@@ -1,6 +1,6 @@
 package ru.goodsReview.backend;
 
-import ru.goodsReview.core.model.ListOfReviews;
+import ru.goodsReview.core.model.Review;
 
 import java.util.*;
 
@@ -13,15 +13,15 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class FrequencyAnalyzer {
-    private ListOfReviews listOfReviews;
+    private List<Review> reviewList;
     private HashMap<String, Integer> words;
 
     public HashMap<String, Integer> getWords() {
         return this.words;
     }
 
-    public FrequencyAnalyzer(ListOfReviews listOfReviews) {
-        this.listOfReviews = listOfReviews;
+    public FrequencyAnalyzer(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
     public void printFrequencyDictionary() {
@@ -34,8 +34,13 @@ public class FrequencyAnalyzer {
 
     public void makeFrequencyDictionary() {
         this.words = new HashMap<String, Integer>();
-        List<String> listOfReviews = this.listOfReviews.getListOfComments();
-        for (Iterator<String> it = listOfReviews.iterator(); it.hasNext(); ) {
+        List<String> reviewContentList = new ArrayList<String>();
+
+        for (Review review : this.reviewList) {
+            reviewContentList.add(review.getContent());
+        }
+
+        for (Iterator<String> it = reviewContentList.iterator(); it.hasNext(); ) {
             String currentCitilinkReview = it.next();
             StringTokenizer st = new StringTokenizer(currentCitilinkReview, " ,");
             int i = 0;

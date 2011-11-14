@@ -9,7 +9,6 @@ package ru.goodsReview.backend;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.ListOfReviews;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.core.model.ThesisUnique;
@@ -18,10 +17,7 @@ import ru.goodsReview.storage.controller.ThesisDbController;
 import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
 import javax.sql.DataSource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -43,9 +39,7 @@ public class AnalyzeThesis {
     private Map<String, Integer> fillingMapOfThesisUnique( List<Review> reviewList){
 
         Map<String, Integer>  uniqueThesises = new HashMap<String, Integer>();
-        ListOfReviews listOfReviews;
-        listOfReviews = new ListOfReviews(reviewList);
-        FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(listOfReviews);
+        FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(reviewList);
         frequencyAnalyzer.makeFrequencyDictionary();
         Integer currfreq;
         for (Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()) {
@@ -82,12 +76,12 @@ public class AnalyzeThesis {
 
         ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         FrequencyAnalyzer freqAnForSingleReview;
-        ListOfReviews buffLOR = new ListOfReviews();
+        List<Review> buffLOR = new ArrayList<Review>();
         Thesis currThesis;
         // Here we got some tough stuff
         for (Review rev : listOfR) {
             buffLOR.clear();
-            buffLOR.addReview(rev);
+            buffLOR.add(rev);
             freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
             freqAnForSingleReview.makeFrequencyDictionary();
             for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {

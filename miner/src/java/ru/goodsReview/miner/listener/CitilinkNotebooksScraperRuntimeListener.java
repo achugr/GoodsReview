@@ -118,7 +118,6 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
                 reviewList.add(badFeauture);
                 reviewList.add(comment);
                 reviewDbController.addReviewList(reviewList);
-
             }
         }
     }

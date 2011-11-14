@@ -1,19 +1,16 @@
 package ru.goodsReview.backend;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Artemij
- * Date: 01.10.11
- * Time: 0:51
- * To change this template use File | Settings | File Templates.
+/*
+ *  Date: 1.10.11
+ *   Time: 0:51
+ *   Author:
+ *      Artemij Chugreev
+ *      artemij.chugreev@gmail.com
  */
 
-import ru.goodsReview.core.model.ListOfReviews;
+import ru.goodsReview.core.model.Review;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 //this class implements k-grams method
 public class KGrams {
@@ -23,8 +20,8 @@ public class KGrams {
     private int tokensNum = 0;
 
     //constructor
-    public KGrams(ListOfReviews citilinkReviews) {
-        this.kGramTableColumnsNum = citilinkReviews.getReviewsNum();
+    public KGrams(List<Review> citilinkReviews) {
+        this.kGramTableColumnsNum = citilinkReviews.size();
         this.kGramsTable = new HashMap<String, Boolean[]>();
         this.kGramsTable = extractTokens(citilinkReviews);
     }
@@ -34,7 +31,7 @@ public class KGrams {
         return this.kGramsTable;
     }
 
-    public Map<String, Boolean[]> extractTokens(ListOfReviews citilinkReviews) {
+    public Map<String, Boolean[]> extractTokens(List<Review> citilinkReviews) {
         char[] text;
         int i, j, k, n;
         int counter;
@@ -42,8 +39,8 @@ public class KGrams {
         char[] token = new char[KGrams.tokenSize];
         Boolean[] tokenIncitilinkReviews;
         // token must be realised as QUEUE ???
-        for (n = 0; n < citilinkReviews.getReviewsNum(); n++) {
-            text = citilinkReviews.getReviews().get(n).getContent().toCharArray();
+        for (n = 0; n < citilinkReviews.size(); n++) {
+            text = citilinkReviews.get(n).getContent().toCharArray();
             for (i = 0; i < text.length - KGrams.tokenSize + 1; i++) {
                 for (j = i, k = 0; j < i + KGrams.tokenSize; j++, k++) {
                     token[k] = text[j];
@@ -102,7 +99,7 @@ public class KGrams {
     }
 
 
-    public double comparecitilinkReviews() {
+    public double compareCitilinkReviews() {
         double similarity = 0;
         int i, numOfTests = this.tokensNum;
         int[][] signatureMatrix = new int[numOfTests][numOfTests];

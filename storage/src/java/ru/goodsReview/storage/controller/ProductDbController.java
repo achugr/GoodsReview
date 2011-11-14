@@ -11,10 +11,12 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * User: Artemij
- * Date: 17.10.11
- * Time: 19:04
+/*
+ *  Date: 17.10.11
+ *   Time: 19:04
+ *   Author:
+ *      Artemij Chugreev
+ *      artemij.chugreev@gmail.com
  */
 public class ProductDbController implements ProductController{
     private SimpleJdbcTemplate simpleJdbcTemplate;
