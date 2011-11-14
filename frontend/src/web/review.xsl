@@ -25,6 +25,7 @@
                     </span>
                 </div>
                 <a>
+                    <!--todo delete http from here... add this to grabbers-->
                     <xsl:attribute name="href">http://<xsl:value-of select="source-url"/>
                     </xsl:attribute>
                     Первоисточник комментария >>

@@ -22,7 +22,10 @@
         </div>
         <div class="row">
             <div class="span5">
-                <img src="images/laptop.png"/>
+                <a>
+                    <xsl:attribute name="href"></xsl:attribute>
+                    <img src="images/laptop.png"/>
+                </a>
             </div>
             <div class="span3">
                 <h3>Тезисы</h3>
