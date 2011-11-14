@@ -15,7 +15,9 @@
             <table>
                 <tr>
                     <td>
-                        <a href="#">
+                        <a>
+                            <xsl:attribute name="href">product.xml?id=<xsl:value-of select="@id"/>
+                            </xsl:attribute>
                             <img src="images/laptopSmall.png"/>
                         </a>
                     </td>
