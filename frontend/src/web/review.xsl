@@ -25,10 +25,10 @@
                     </span>
                 </div>
                 <a>
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="source-url"/>
+                    <xsl:attribute name="href">http://<xsl:value-of select="source-url"/>
                     </xsl:attribute>
                     Первоисточник комментария >>
+
                 </a>
             </div>
             <div class="thesis">
