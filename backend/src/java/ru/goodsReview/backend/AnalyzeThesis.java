@@ -7,16 +7,17 @@
 */
 package ru.goodsReview.backend;
 
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.core.model.ThesisUnique;
+import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
-import javax.sql.DataSource;
 import java.util.*;
 
 /**
@@ -26,8 +27,10 @@ import java.util.*;
  * Time: 21:57
  * To change this template use File | Settings | File Templates.
  */
-public class AnalyzeThesis {
+public class AnalyzeThesis extends TimerTask {
     private SimpleJdbcTemplate jdbcTemplate;
+    private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
+
 
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -36,9 +39,9 @@ public class AnalyzeThesis {
     public AnalyzeThesis() {
     }
 
-    private Map<String, Integer> fillingMapOfThesisUnique( List<Review> reviewList){
+    private Map<String, Integer> fillingMapOfThesisUnique(List<Review> reviewList) {
 
-        Map<String, Integer>  uniqueThesises = new HashMap<String, Integer>();
+        Map<String, Integer> uniqueThesises = new HashMap<String, Integer>();
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(reviewList);
         frequencyAnalyzer.makeFrequencyDictionary();
         Integer currfreq;
@@ -48,14 +51,10 @@ public class AnalyzeThesis {
         }
         return uniqueThesises;
     }
-    private Map<String, Long> fillMapOfThesisId(Map<String, Integer> thesisUniques){
-         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                       "storage/src/scripts/beans.xml");
-        DataSource dataSource = (DataSource) context.getBean("dataSource");
+
+    private Map<String, Long> fillMapOfThesisId(Map<String, Integer> thesisUniques) {
         Map<String, Long> tableOfId = new HashMap<String, Long>();   //
-        //ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
-        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(
-                new SimpleJdbcTemplate(dataSource));
+        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
         ThesisUnique currThesisUnique;
         ThesisUnique recievedTU;
         Date date = new Date();
@@ -68,13 +67,8 @@ public class AnalyzeThesis {
         return tableOfId;
     }
 
-    private void addThesisesToDB(List<Review> listOfR, Map<String, Long> idTable){
-         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                       "storage/src/scripts/beans.xml");
-        DataSource dataSource = (DataSource) context.getBean("dataSource");
-        //ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-
-        ThesisDbController thesisDbController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
+    private void addThesisesToDB(List<Review> listOfR, Map<String, Long> idTable) {
+        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
         FrequencyAnalyzer freqAnForSingleReview;
         List<Review> buffLOR = new ArrayList<Review>();
         Thesis currThesis;
@@ -92,13 +86,9 @@ public class AnalyzeThesis {
         }
 
     }
-    public void updateThesisByProductId(long productId) {
 
-        FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                       "storage/src/scripts/beans.xml");
-        DataSource dataSource = (DataSource) context.getBean("dataSource");
-        //ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
-        ReviewDbController reviewDbController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
+    public void updateThesisByProductId(long productId) {
+        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
         List<Review> desiredReviews;
 
         //select reviews from database by product id
@@ -111,5 +101,18 @@ public class AnalyzeThesis {
         Map<String, Long> tableOfId = fillMapOfThesisId(thesisUniques);
 
         addThesisesToDB(desiredReviews, tableOfId);
+    }
+
+    @Override
+    public void run() {
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+        List<Product> productList;
+        productList = productDbController.getAllProducts();
+        log.info("Thesis Analyzer begins work");
+        for (Product product : productList) {
+            log.info("Extracting thesis on " + product.getName());
+            updateThesisByProductId(product.getId());
+        }
+        log.info("Thesis Analyzer successful completed");
     }
 }

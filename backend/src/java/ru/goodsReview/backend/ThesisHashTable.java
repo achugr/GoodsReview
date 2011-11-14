@@ -25,7 +25,7 @@ public class ThesisHashTable {
     }
 
     public void add(Map<String, Integer> thesisTable) {
-        Integer currFreq = 0;
+        Integer currFreq;
         for (Map.Entry<String, Integer> entry : thesisTable.entrySet()) {
             currFreq = this.thesisTable.get(entry.getKey());
             this.thesisTable.put(entry.getKey(), entry.getValue() + (currFreq == null ? 0 : currFreq));
@@ -37,10 +37,5 @@ public class ThesisHashTable {
             this.add(it.next());
         }
 
-    }
-
-    public void getThesisTableFromDatabase(long productId) {
-        //this.thesisTable = Selecting Table from DB
-        //
     }
 }

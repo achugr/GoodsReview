@@ -6,6 +6,7 @@ build
 database
 data
 miner/web
+docs
 
 #checkStyle and findBugs reports#
 checkstyle_report.xml

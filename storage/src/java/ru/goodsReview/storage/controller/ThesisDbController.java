@@ -36,8 +36,6 @@ public class ThesisDbController implements ThesisController{
 
     public long addThesis(Thesis thesis) {
         try {
-            System.out.println(thesis.getReviewId());
-
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO thesis (review_id,  thesis_unique_id, content, frequency, positivity, importance) VALUES(?,?,?,?,?,?)",
                     new Object[]{thesis.getReviewId(), thesis.getThesisUniqueId(), thesis.getContent(), thesis.getFrequency(), thesis.getPositivity(), thesis.getImportance()},

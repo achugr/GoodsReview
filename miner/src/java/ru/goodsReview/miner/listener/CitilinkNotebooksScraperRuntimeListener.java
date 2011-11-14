@@ -60,6 +60,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
 
     }
+
     //TODO i will cleanse this trash at evening, soryy
     //it works, but i need distribute this code on logic-methods
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
@@ -79,46 +80,31 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
             Date date = new Date();
-            //System.out.println("product ->>> " + nameProd);
+
             CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
             Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
             //add product into DB
-            if (!(lastAddedProductName.equals(product.getName()))) {
+            if (!lastAddedProductName.equals(product.getName())) {
                 ProductDbController productDbController = new ProductDbController(jdbcTemplate);
                 System.out.println("product Name = " + product.getName());
                 lastAddedProductId = productDbController.addProduct(product);
-                Review goodFeauture = new Review(lastAddedProductId, goodFeatures, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-                Review badFeauture = new Review(lastAddedProductId, badFeatures, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-                Review comment = new Review(lastAddedProductId, comments, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
-
-//            clear reviews content from trash
-                goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
-                badFeauture = citilinkDataTransformator.clearReviewFromTrash(badFeauture);
-                comment = citilinkDataTransformator.clearReviewFromTrash(comment);
-//            add reviews in DB
-                List<Review> reviewList = new ArrayList<Review>();
-                reviewList.add(goodFeauture);
-                reviewList.add(badFeauture);
-                reviewList.add(comment);
-                reviewDbController.addReviewList(reviewList);
-
                 lastAddedProductName = product.getName();
-            } else {
-                Review goodFeauture = new Review(lastAddedProductId, goodFeatures, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-                Review badFeauture = new Review(lastAddedProductId, badFeatures, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-                Review comment = new Review(lastAddedProductId, comments, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            }
+
+            Review goodFeauture = new Review(lastAddedProductId, goodFeatures, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review badFeauture = new Review(lastAddedProductId, badFeatures, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review comment = new Review(lastAddedProductId, comments, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
 
 //            clear reviews content from trash
-                goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
-                badFeauture = citilinkDataTransformator.clearReviewFromTrash(badFeauture);
-                comment = citilinkDataTransformator.clearReviewFromTrash(comment);
+            goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
+            badFeauture = citilinkDataTransformator.clearReviewFromTrash(badFeauture);
+            comment = citilinkDataTransformator.clearReviewFromTrash(comment);
 //            add reviews in DB
-                List<Review> reviewList = new ArrayList<Review>();
-                reviewList.add(goodFeauture);
-                reviewList.add(badFeauture);
-                reviewList.add(comment);
-                reviewDbController.addReviewList(reviewList);
-            }
+            List<Review> reviewList = new ArrayList<Review>();
+            reviewList.add(goodFeauture);
+            reviewList.add(badFeauture);
+            reviewList.add(comment);
+            reviewDbController.addReviewList(reviewList);
         }
     }
 

@@ -19,7 +19,12 @@ import java.util.regex.Pattern;
  * methods of this class allow to clean data from trash-content
  */
 public class CitilinkDataTransformator extends DataTransformator {
+    private static final int MIN_WORD_LENGTH = 3;
     /**
+     * i am don't sure that enum is a good solving here, but i think that
+     * for one shop trash words don't need a dictionary and List<String> might be not
+     * very understandable
+     *
      * enum for trash words
      */
     public enum TrashWords {
@@ -96,7 +101,8 @@ public class CitilinkDataTransformator extends DataTransformator {
      */
     public Review clearReviewFromTrash(Review review) {
         String clearReview = DataTransformator.clearReviewFromTags(review.getContent());
-        clearReview = clearReview.replaceAll("^(\\s+)", "");
+        //clearReview = clearReview.replaceAll("^(\\s+)", "");
+        clearReview = clearReview.trim();
         String[] trashWords = {TrashWords.DEFECTS.getTrashWord(), TrashWords.MERIT.getTrashWord(), TrashWords.COMMENT.getTrashWord()};
         clearReview = clearReviewFromTrashString(clearReview, trashWords);
         review.setContent(clearReview);

@@ -93,19 +93,19 @@
     <!-- for checking code style -->
     <target name="checkstyle">
 
-        <delete file="codeValidation/checkstyle_report.xml"/>
-        <delete file="codeValidation/checkstyle_report.htm"/>
+        <delete file="docs/codeValidation/checkstyle_report.xml"/>
+        <delete file="docs/codeValidation/checkstyle_report.htm"/>
 
         <taskdef resource="checkstyletask.properties" classpath="${lib.dir}/checkstyle/checkstyle-5.4-all.jar"/>
-        <checkstyle config="codeValidation/checks.xml"
+        <checkstyle config="docs/codeValidation/checks.xml"
                     failureProperty="checkstyle.failure"
                     failOnViolation="false">
-            <formatter type="xml" tofile="codeValidation/checkstyle_report.xml"/>
+            <formatter type="xml" tofile="docs/codeValidation/checkstyle_report.xml"/>
             <fileset dir="${project.dir}" includes="**/*.java" excludes="**/net/**/*.java **/test/** "/>
         </checkstyle>
 
-        <xslt in="codeValidation/checkstyle_report.xml" out="codeValidation/checkstyle_report.htm"
-              style="codeValidation/checkstyle.xsl">
+        <xslt in="docs/codeValidation/checkstyle_report.xml" out="docs/codeValidation/checkstyle_report.htm"
+              style="docs/codeValidation/checkstyle.xsl">
             <outputproperty name="method" value="html"/>
             <outputproperty name="standalone" value="yes"/>
             <outputproperty name="encoding" value="iso8859_1"/>
@@ -115,14 +115,14 @@
     <!--for find bugs in code -->
     <target name="findbugs">
 
-        <delete file="codeValidation/findbugs_report.xml"/>
+        <delete file="docs/codeValidation/findbugs_report.xml"/>
 
         <taskdef name="findbugs" classpath="${lib.dir}/findbugs/findbugs-ant.jar"
                  classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
 
         <findbugs home="${lib.dir}/findbugs/"
                   output="xml"
-                  outputFile="codeValidation/findbugs_report.xml">
+                  outputFile="docs/codeValidation/findbugs_report.xml">
             <auxClasspath refid="libs"/>
             <sourcePath path="${project.dir}"/>
             <class location="${build.dir}/"/>
@@ -138,12 +138,31 @@
 
         <findbugs home="${lib.dir}/findbugs/"
                   output="html"
-                  outputFile="codeValidation/findbugs_report.html">
+                  outputFile="docs/codeValidation/findbugs_report.html">
             <auxClasspath refid="libs"/>
             <sourcePath path="${project.dir}"/>
             <class location="${build.dir}/"/>
         </findbugs>
     </target>
 
+    <target name="javadoc">
+
+        <fileset id="sources" dir="${project.dir}" includes="**/*.jar"/>
+
+        <javadoc
+                access="public"
+                destdir="docs"
+                author="true"
+                version="true"
+                use="true"
+                windowtitle="GoodsReview javadoc"
+        >
+
+            <fileset dir="${project.dir}" defaultexcludes="yes">
+                <include name="**/*.java"/>
+            </fileset>
+        </javadoc>
+
+    </target>
 </project>
 

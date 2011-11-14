@@ -33,7 +33,6 @@
             </manifest>
         </jar>
 
-
         <echo>backend building complete</echo>
     </target>
 
