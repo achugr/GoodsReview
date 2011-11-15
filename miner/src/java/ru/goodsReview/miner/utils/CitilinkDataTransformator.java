@@ -78,7 +78,6 @@ public class CitilinkDataTransformator extends DataTransformator {
 
     /**
      * Clear Sting from trash-words
-     *
      * @param review      string for clearing
      * @param trashString array of trash-words
      * @return String review content without trash-words
@@ -128,7 +127,6 @@ public class CitilinkDataTransformator extends DataTransformator {
 
     /**
      * extracting product name from source info
-     *
      * @param sourceProductInfo source info about product
      * @return relevant product name
      */

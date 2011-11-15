@@ -17,30 +17,27 @@ public class Thesis {
     private int frequency;
     private double positivity;
     private double importance;
-    private double tfidf;
 
     public Thesis(long reviewId, long thesisUniqueId, String content, int frequency, double positivity,
-                  double importance, double tfidf) {
+                  double importance) {
         this.reviewId = reviewId;
         this.thesisUniqueId = thesisUniqueId;
         this.content = content;
         this.positivity = positivity;
         this.importance = importance;
         this.frequency = frequency;
-        this.tfidf = tfidf;
     }
 
-    public Thesis(long thesisUniqueId, String content, int frequency, double positivity, double importance, double tfidf) {
+    public Thesis(long thesisUniqueId, String content, int frequency, double positivity, double importance) {
         this.thesisUniqueId = thesisUniqueId;
         this.content = content;
         this.frequency = frequency;
         this.positivity = positivity;
         this.importance = importance;
-        this.tfidf = tfidf;
     }
 
     public Thesis(long id, long reviewId, long thesisUniqueId, String content, int frequency, double positivity,
-                  double importance, double tfidf) {
+                  double importance) {
         this.id = id;
         this.reviewId = reviewId;
         this.thesisUniqueId = thesisUniqueId;
@@ -48,7 +45,6 @@ public class Thesis {
         this.frequency = frequency;
         this.positivity = positivity;
         this.importance = importance;
-        this.tfidf = tfidf;
     }
 
     public long getId() {
@@ -105,11 +101,5 @@ public class Thesis {
 
     public void setFrequency(int frequency) {
         this.frequency = frequency;
-    }
-    public double getTfidf(){
-        return tfidf;
-    }
-    public void setTfidf(double tfidf){
-        this.tfidf = tfidf;
     }
 }

@@ -116,7 +116,6 @@ CREATE TABLE thesis
   frequency Int UNSIGNED NOT NULL DEFAULT 0,
   positivity Double,
   importance Double,
-  tfidf Double,
  PRIMARY KEY (id)
 )
 ;
