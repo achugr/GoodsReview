@@ -78,7 +78,7 @@ public class DbModuleTest {
 
         ThesisDbController thesisController = new ThesisDbController(new SimpleJdbcTemplate(dataSource));
         //todo change this constructor. Sorry.
-        Thesis thesis0 = new Thesis(1, "OK thesis content", 0, 0.0, 0.0);
+        Thesis thesis0 = new Thesis(1, 1, "OK thesis content", 0, 0.0, 0.0);
         long thesis0id = thesisController.addThesis(thesis0);
         Thesis thesis1 = thesisController.getThesisById(thesis0id);
         log.debug("Thesis by ID = " + thesis0id);

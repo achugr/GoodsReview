@@ -28,18 +28,37 @@ public class Searcher {
     private IndexSearcher indexSearcherProduct;
     private ProductMapper productMapper;
 
+    /**
+     * Just constructor. Creates new object and initializes some fields.
+     */
     public Searcher(){
         this.productMapper = new ProductMapper();
     }
+
+    /**
+     * directoryDB Place where we should search.
+     * @param directoryDB
+     */
     public void setDirectoryDB(String directoryDB) {
         this.directoryDB = directoryDB;
     }
 
+    /**
+     * Creates an IndexSearcher. Should be used before trying to search something (but after index creating)!
+     * @throws IOException
+     */
     public void getReadyForSearch() throws IOException {
         indexSearcherProduct = new IndexSearcher(new SimpleFSDirectory(new File(directoryDB)));
         //  log.error("Must create index before use UI");
     }
 
+    /**
+     * Search product with specified name.
+     * @param query Name of the product.
+     * @return List of found values.
+     * @throws ParseException
+     * @throws IOException
+     */
     public List<Product> searchProductByName(String query) throws ParseException, IOException {
 
         Analyzer analyzer = new RussianAnalyzer(Version.LUCENE_34);

@@ -30,22 +30,40 @@ public class Indexer extends TimerTask {
     private IndexWriter writer;
     private SimpleJdbcTemplate jdbcTemplate;
 
+    /**
+     * Sets up jdbcTemplate for This Indexer object.
+     * @param jdbcTemplate Object of SimpleJdbcTemplate class, which has to be set by this method.
+     * @return Nothing.
+     */
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /**
+     * Creates an IndexWriter object
+     * @param directoryDB Place where writer should write an index.
+     * @return
+     */
     private void init(String directoryDB) throws Exception {
         SimpleFSDirectory directory = new SimpleFSDirectory(new File(directoryDB));
-        writer = new IndexWriter(directory,
-                                      new IndexWriterConfig(Version.LUCENE_34, new RussianAnalyzer(Version.LUCENE_34)));
+        writer = new IndexWriter(directory,new IndexWriterConfig(Version.LUCENE_34, new RussianAnalyzer(Version.LUCENE_34)));
         writer.deleteAll();
     }
 
+    /**
+     * Should be executed after indexing itself. Optimizes index and closes it.
+     * @throws IOException
+     */
     private void finish() throws IOException {
         writer.optimize();
         writer.close();
     }
 
+    /**
+     * Indexes products.
+     * @param directoryDB Place where index should be.
+     * @throws Exception
+     */
     public void doProductsIndex(String directoryDB) throws Exception {
         log.debug("Products Index creating started");
 
@@ -70,6 +88,11 @@ public class Indexer extends TimerTask {
         log.debug("Products Index creating ended");
     }
 
+    /**
+     * Indexes reviews.
+     * @param directoryDB Place where index should be.
+     * @throws Exception
+     */
     public void doReviewsIndex(String directoryDB) throws Exception {
         log.debug("Reviews Index creating started");
 
@@ -115,6 +138,11 @@ public class Indexer extends TimerTask {
         log.debug("Reviews Index creating ended");
     }
 
+    /**
+     * Indexes theses.
+     * @param directoryDB Place where index should be.
+     * @throws Exception
+     */
     public void doThesesIndex(String directoryDB) throws Exception {
         log.debug("Thesis Index creating started");
 
@@ -144,6 +172,11 @@ public class Indexer extends TimerTask {
         log.debug("Thesis Index creating ended");
     }
 
+    /**
+     * Indexes unique theses.
+     * @param directoryDB Place where index should be.
+     * @throws Exception
+     */
     public void doThesesUniqueIndex(String directoryDB) throws Exception {
         log.debug("ThesisUnique Index creating started");
         init(directoryDB);
@@ -171,6 +204,11 @@ public class Indexer extends TimerTask {
         log.debug("Thesis Unique Index creating ended");
     }
 
+    /**
+     * Indexes categories.
+     * @param directoryDB Place where index should be.
+     * @throws Exception
+     */
     public void doCategoriesIndex(String directoryDB) throws Exception {
         log.debug("Category Index creating started");
         init(directoryDB);
@@ -191,6 +229,9 @@ public class Indexer extends TimerTask {
         log.debug("Category Index creating ended");
     }
 
+    /**
+     * Launches needful indexing methods.
+     */
     public void run() {
         try {
             log.info("Index creating started");
