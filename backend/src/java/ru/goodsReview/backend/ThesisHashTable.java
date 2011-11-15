@@ -24,6 +24,10 @@ public class ThesisHashTable {
         this.thesisTable = thesisTable;
     }
 
+    public Map<String, Integer> getThesisTable() {
+        return thesisTable;
+    }
+
     public void add(Map<String, Integer> thesisTable) {
         Integer currFreq;
         for (Map.Entry<String, Integer> entry : thesisTable.entrySet()) {

@@ -72,7 +72,12 @@
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
         <inspection_tool class="AntResolveInspection" enabled="false" level="ERROR" enabled_by_default="false" />
+        <inspection_tool class="ConvertAnnotations" enabled="true" level="WARNING" enabled_by_default="true" />
+        <inspection_tool class="ConvertJavadoc" enabled="true" level="WARNING" enabled_by_default="true" />
+        <inspection_tool class="ConvertOldAnnotations" enabled="true" level="WARNING" enabled_by_default="true" />
+        <inspection_tool class="JUnitTestNG" enabled="true" level="WARNING" enabled_by_default="true" />
         <inspection_tool class="TrailingSpacesInProperty" enabled="true" level="WARNING" enabled_by_default="true" />
+        <inspection_tool class="UndeclaredTests" enabled="true" level="WARNING" enabled_by_default="true" />
       </profile>
     </profiles>
     <option name="PROJECT_PROFILE" value="Project Default" />
