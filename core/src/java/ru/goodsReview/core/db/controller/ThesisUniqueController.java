@@ -9,13 +9,14 @@ package ru.goodsReview.core.db.controller;
  */
 
 import ru.goodsReview.core.model.ThesisUnique;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 
 public interface ThesisUniqueController {
-    public long addThesisUnique(ThesisUnique thesisUnique);
+    public long addThesisUnique(ThesisUnique thesisUnique) throws StorageException;
 
-    public List<Long> addThesisUniqueList(List<ThesisUnique> thesisUniqueList);
+    public List<Long> addThesisUniqueList(List<ThesisUnique> thesisUniqueList) throws StorageException;
 
     public ThesisUnique getThesisUniqueByContent(String content);
 

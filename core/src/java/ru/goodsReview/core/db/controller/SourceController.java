@@ -9,8 +9,9 @@ package ru.goodsReview.core.db.controller;
  */
 
 import ru.goodsReview.core.model.Source;
+import ru.goodsReview.storage.exception.StorageException;
 
 public interface SourceController {
-    public long addSource(Source source);
+    public long addSource(Source source) throws StorageException;
     public Source getSourceById(long source_id);
 }

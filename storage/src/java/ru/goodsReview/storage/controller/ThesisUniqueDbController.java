@@ -13,12 +13,13 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ThesisUniqueController;
 import ru.goodsReview.core.model.ThesisUnique;
 import ru.goodsReview.storage.mapper.ThesisUniqueMapper;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThesisUniqueDbController implements ThesisUniqueController{
+public class ThesisUniqueDbController implements ThesisUniqueController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ThesisUniqueMapper thesisUniqueMapper;
     private static final Logger log = Logger.getLogger(ThesisUniqueDbController.class);
@@ -28,7 +29,7 @@ public class ThesisUniqueDbController implements ThesisUniqueController{
         this.thesisUniqueMapper = new ThesisUniqueMapper();
     }
 
-    public long addThesisUnique(ThesisUnique thesisUnique) {
+    public long addThesisUnique(ThesisUnique thesisUnique) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
@@ -38,11 +39,11 @@ public class ThesisUniqueDbController implements ThesisUniqueController{
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting thesis_unique (probably not enough permissions): " + thesisUnique);
+            throw new StorageException();
         }
-        return -1;
     }
 
-    public List<Long> addThesisUniqueList(List<ThesisUnique> thesisUniqueList) {
+    public List<Long> addThesisUniqueList(List<ThesisUnique> thesisUniqueList) throws StorageException {
         List<Long> ids = new ArrayList<Long>();
         for (ThesisUnique thesisUnique : thesisUniqueList) {
             ids.add(addThesisUnique(thesisUnique));

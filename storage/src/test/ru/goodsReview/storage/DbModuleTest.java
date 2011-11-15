@@ -7,6 +7,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.*;
 import ru.goodsReview.storage.controller.*;
+import ru.goodsReview.storage.exception.StorageException;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class DbModuleTest {
         Assert.assertEquals(4, 2 + 2);
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, StorageException {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
                 "storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");

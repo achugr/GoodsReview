@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ThesisController;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.mapper.ThesisMapper;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.sql.Types;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.List;
  * Date: 30.10.2011
  * Time: 16:52:52
  */
-public class ThesisDbController implements ThesisController{
+public class ThesisDbController implements ThesisController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ThesisMapper thesisMapper;
     private static final Logger log = Logger.getLogger(ThesisDbController.class);
@@ -34,7 +35,7 @@ public class ThesisDbController implements ThesisController{
         this.thesisMapper = new ThesisMapper();
     }
 
-    public long addThesis(Thesis thesis) {
+    public long addThesis(Thesis thesis) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO thesis (review_id,  thesis_unique_id, content, frequency, positivity, importance) VALUES(?,?,?,?,?,?)",
@@ -44,11 +45,11 @@ public class ThesisDbController implements ThesisController{
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting thesis (probably not enough permissions): " + thesis);
+            throw new StorageException();
         }
-        return -1;
     }
 
-    public List<Long> addThesisList(List<Thesis> thesisList) {
+    public List<Long> addThesisList(List<Thesis> thesisList) throws StorageException {
         List<Long> ids = new ArrayList<Long>();
         for (Thesis thesis : thesisList) {
             ids.add(addThesis(thesis));
