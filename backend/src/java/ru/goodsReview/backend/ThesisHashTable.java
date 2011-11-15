@@ -1,5 +1,6 @@
 package ru.goodsReview.backend;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -12,34 +13,30 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class ThesisHashTable {
-    private Map<String, Integer> thesisTable;
 
-    public void print() {
-        for (Map.Entry<String, Integer> ent : thesisTable.entrySet()) {
-            System.out.println(ent.getKey() + " " + ent.getValue());
+    public static void addToHolder(final Map<String, Integer> holderThesisTable,
+                                   final Map<String, Integer> thesisTable) {
+        if (holderThesisTable != null && !thesisTable.isEmpty()) {
+            for (Map.Entry<String, Integer> entry : thesisTable.entrySet()) {
+                final String word = entry.getKey();
+                Integer val = entry.getValue();
+                if (val < 0) {
+                    throw new IllegalArgumentException("negative frequency("+val+") in thesis \"" +word+ "\"");
+                }
+                final Integer holderVal = holderThesisTable.get(word);
+                if (holderVal != null) {
+                    val += holderVal;
+                }
+                holderThesisTable.put(word, val);
+            }
         }
     }
 
-    public ThesisHashTable(Map<String, Integer> thesisTable) {
-        this.thesisTable = thesisTable;
-    }
-
-    public Map<String, Integer> getThesisTable() {
-        return thesisTable;
-    }
-
-    public void add(Map<String, Integer> thesisTable) {
-        Integer currFreq;
-        for (Map.Entry<String, Integer> entry : thesisTable.entrySet()) {
-            currFreq = this.thesisTable.get(entry.getKey());
-            this.thesisTable.put(entry.getKey(), entry.getValue() + (currFreq == null ? 0 : currFreq));
-        }
-    }
-
-    public void addSeveralThesisTables(List<Map<String, Integer>> listOfThesisTables) {
+    public static HashMap<String, Integer> uniteAll(final List<Map<String, Integer>> listOfThesisTables) {
+        final HashMap<String, Integer> holder = new HashMap<String, Integer>();
         for (Iterator<Map<String, Integer>> it = listOfThesisTables.iterator(); it.hasNext(); ) {
-            this.add(it.next());
+            addToHolder(holder, it.next());
         }
-
+        return holder;
     }
 }
