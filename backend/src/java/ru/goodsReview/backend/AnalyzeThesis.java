@@ -17,6 +17,7 @@ import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 import ru.goodsReview.storage.controller.ThesisUniqueDbController;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.*;
 
@@ -60,7 +61,12 @@ public class AnalyzeThesis extends TimerTask {
         Date date = new Date();
         for (Map.Entry<String, Integer> entry : thesisUniques.entrySet()) {
             currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
-            thesisUniqueDbController.addThesisUnique(currThesisUnique);
+            try {
+                thesisUniqueDbController.addThesisUnique(currThesisUnique);
+            } catch (StorageException e) {
+                // TODO: handle this situation.
+                e.printStackTrace();
+            }
             recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
             tableOfId.put(entry.getKey(), recievedTU.getId());
         }
@@ -81,7 +87,12 @@ public class AnalyzeThesis extends TimerTask {
             for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
                 currThesis = new Thesis(rev.getId(), idTable.get(entry.getKey()), entry.getKey(),
                         entry.getValue(), 0, 0);
-                thesisDbController.addThesis(currThesis);
+                try {
+                    thesisDbController.addThesis(currThesis);
+                } catch (StorageException e) {
+                    // TODO: handle this situation.
+                    e.printStackTrace();
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 package ru.goodsReview.core.db.controller;
 
 import ru.goodsReview.core.model.Category;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 
 public interface CategoryController {
-    public long addCategory(Category category);
+    public long addCategory(Category category) throws StorageException;
 
     public List<Category> getAllCategories();
 

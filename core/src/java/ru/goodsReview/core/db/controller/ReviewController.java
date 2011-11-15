@@ -11,14 +11,15 @@ package ru.goodsReview.core.db.controller;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 
 public interface ReviewController {
 
-    public long addReview(Review review);
+    public long addReview(Review review) throws StorageException;
 
-    public List<Long> addReviewList(List<Review> reviewList);
+    public List<Long> addReviewList(List<Review> reviewList) throws StorageException;
 
     public Review getReviewById(long review_id);
 
@@ -28,7 +29,7 @@ public interface ReviewController {
 
     public List<Review> getAllReviews();
 
-    public void updateReview(Review review) throws DataAccessException;
+    public void updateReview(Review review) throws StorageException;
 
-    public void updateReviews(List<Review> reviews) throws DataAccessException;
+    public void updateReviews(List<Review> reviews) throws StorageException;
 }

@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ProductController;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.storage.mapper.ProductMapper;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.sql.Types;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
  *      Artemij Chugreev
  *      artemij.chugreev@gmail.com
  */
-public class ProductDbController implements ProductController{
+public class ProductDbController implements ProductController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ProductMapper productMapper;
     private static final Logger log = Logger.getLogger(ProductDbController.class);
@@ -28,7 +29,7 @@ public class ProductDbController implements ProductController{
         this.productMapper = new ProductMapper();
     }
 
-    public long addProduct(Product product) {
+    public long addProduct(Product product) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO product (category_id, name, description, popularity) VALUES(?,?,?,?)",
@@ -38,11 +39,11 @@ public class ProductDbController implements ProductController{
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting product (probably not enough permissions): " + product);
+            throw new StorageException();
         }
-        return -1;
     }
 
-    public List<Long> addProductList(List<Product> productList) {
+    public List<Long> addProductList(List<Product> productList) throws StorageException {
         List<Long> ids = new ArrayList<Long>();
         for (Product product : productList) {
             ids.add(addProduct(product));

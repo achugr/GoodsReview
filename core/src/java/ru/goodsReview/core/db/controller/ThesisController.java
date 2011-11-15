@@ -9,13 +9,14 @@ package ru.goodsReview.core.db.controller;
  */
 
 import ru.goodsReview.core.model.Thesis;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 
 public interface ThesisController {
-    public long addThesis(Thesis thesis);
+    public long addThesis(Thesis thesis) throws StorageException;
 
-    public List<Long> addThesisList(List<Thesis> thesisList);
+    public List<Long> addThesisList(List<Thesis> thesisList) throws StorageException;
 
     public List<Thesis> getAllTheses();
 

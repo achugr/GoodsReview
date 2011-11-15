@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.SourceController;
 import ru.goodsReview.core.model.Source;
 import ru.goodsReview.storage.mapper.SourceMapper;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.sql.Types;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
  * Date: 30.10.2011
  * Time: 23:38:57
  */
-public class SourceDbController implements SourceController{
+public class SourceDbController implements SourceController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private SourceMapper sourceMapper;
     private static final Logger log = Logger.getLogger(SourceDbController.class);
@@ -33,7 +34,7 @@ public class SourceDbController implements SourceController{
         this.sourceMapper = new SourceMapper();
     }
 
-    public long addSource(Source source) {
+    public long addSource(Source source) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("INSERT INTO source (name, main_page_url) VALUES(?,?)",
                                                           new Object[]{source.getName(), source.getMainPageUrl()},
@@ -42,8 +43,8 @@ public class SourceDbController implements SourceController{
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting source (probably not enough permissions): " + source);
+            throw new StorageException();
         }
-        return -1;
     }
 
     public Source getSourceById(long source_id) {

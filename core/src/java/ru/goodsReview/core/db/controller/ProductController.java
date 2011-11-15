@@ -1,6 +1,7 @@
 package ru.goodsReview.core.db.controller;
 
 import ru.goodsReview.core.model.Product;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ import java.util.List;
  */
 
 public interface ProductController {
-    public long addProduct(Product product);
+    public long addProduct(Product product) throws StorageException;
 
-    public List<Long> addProductList(List<Product> productList);
+    public List<Long> addProductList(List<Product> productList) throws StorageException;
 
     public List<Product> getAllProducts();
 

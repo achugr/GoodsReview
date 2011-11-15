@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
 import org.apache.log4j.Logger;
 import ru.goodsReview.storage.mapper.QueryUniqueMapper;
+import ru.goodsReview.storage.exception.StorageException;
 import ru.goodsReview.core.model.QueryUnique;
 
 import java.sql.Types;
@@ -32,7 +33,7 @@ public class QueryUniqueDbController {
         this.queryUniqueMapper = new QueryUniqueMapper();
     }
 
-    public long addQueryUnique(QueryUnique query) {
+    public long addQueryUnique(QueryUnique query) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO query_unique (id,  text, last_scan, frequency) VALUES(?,?,?,?)",
@@ -42,8 +43,8 @@ public class QueryUniqueDbController {
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting query_unique (probably not enough permissions): " + query);
+            throw new StorageException();
         }
-        return -1;
     }
 
     public QueryUnique getQueryUniqueById(long id) {

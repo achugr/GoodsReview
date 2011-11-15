@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ReviewController;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.mapper.ReviewMapper;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.sql.Types;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
  *      artemij.chugreev@gmail.com
  */
 
-public class ReviewDbController implements ReviewController{
+public class ReviewDbController implements ReviewController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
     private ReviewMapper reviewMapper;
     private static final Logger log = Logger.getLogger(ReviewDbController.class);
@@ -29,7 +30,7 @@ public class ReviewDbController implements ReviewController{
         this.reviewMapper = new ReviewMapper();
     }
 
-    public long addReview(Review review) {
+    public long addReview(Review review) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO review " + "(product_id, content, author, date, description, source_id, source_url, positivity, importance, votes_yes, votes_no) " + "VALUES(?,?,?,?,?,?,?,?,?,?,?)",
@@ -39,11 +40,11 @@ public class ReviewDbController implements ReviewController{
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting review (probably not enough permissions): " + review);
+            throw new StorageException();
         }
-        return -1;
     }
 
-    public List<Long> addReviewList(List<Review> reviewList) {
+    public List<Long> addReviewList(List<Review> reviewList) throws StorageException {
         List<Long> ids = new ArrayList<Long>();
         for (Review review : reviewList) {
             ids.add(addReview(review));
@@ -81,18 +82,18 @@ public class ReviewDbController implements ReviewController{
         return reviews;
     }
 
-    public void updateReview(Review review) throws DataAccessException {
+    public void updateReview(Review review) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("UPDATE review SET product_id = ?, content = ?, author = ?, date = ?, description = ?, source_id = ?, source_url = ?, positivity = ?, importance = ?, votes_yes = ?, votes_no = ? WHERE id = ?",
                     new Object[]{review.getProductId(), review.getContent(), review.getAuthor(), review.getDate(), review.getDescription(), review.getSourceId(), review.getSourceUrl(), review.getPositivity(), review.getImportance(), review.getVotesYes(), review.getVotesNo(), review.getId()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP, Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER, Types.INTEGER});
         } catch (DataAccessException e) {
             log.error("Error while updating review (probably not enough permissions): " + review);
-            throw e;
+            throw new StorageException();
         }
     }
 
-    public void updateReviews(List<Review> reviews) throws DataAccessException {
+    public void updateReviews(List<Review> reviews) throws StorageException {
         for (Review review : reviews) {
             updateReview(review);
         }
