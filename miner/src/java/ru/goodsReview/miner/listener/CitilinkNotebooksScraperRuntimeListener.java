@@ -18,6 +18,7 @@ import ru.goodsReview.core.model.Review;
 import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
+import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -72,10 +73,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String prodPrice = scraper.getContext().get("Price").toString();
             String reviewTime = scraper.getContext().get("ReviewTime").toString();
             String starRate = scraper.getContext().get("StarRate").toString();
-            String description = scraper.getContext().get("Description").toString();
-            String goodFeatures = scraper.getContext().get("GoodFeatures").toString();
-            String badFeatures = scraper.getContext().get("BadFeatures").toString();
-            String comments = scraper.getContext().get("Comments").toString();
+            String opinionText = scraper.getContext().get("OpinionText").toString();
             String voteYes = scraper.getContext().get("VoteYes").toString();
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
@@ -87,13 +85,18 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             if (!lastAddedProductName.equals(product.getName())) {
                 ProductDbController productDbController = new ProductDbController(jdbcTemplate);
                 System.out.println("product Name = " + product.getName());
-                lastAddedProductId = productDbController.addProduct(product);
+                try {
+                    lastAddedProductId = productDbController.addProduct(product);
+                } catch (StorageException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
                 lastAddedProductName = product.getName();
             }
 
-            Review goodFeauture = new Review(lastAddedProductId, goodFeatures, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, badFeatures, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, comments, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            //TODO: parse opinionText to bad and good
+            Review goodFeauture = new Review(lastAddedProductId, opinionText, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review badFeauture = new Review(lastAddedProductId, opinionText, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review comment = new Review(lastAddedProductId, opinionText, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
 
 //            clear reviews content from trash
             goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
@@ -104,7 +107,12 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             reviewList.add(goodFeauture);
             reviewList.add(badFeauture);
             reviewList.add(comment);
-            reviewDbController.addReviewList(reviewList);
+            try {
+                reviewDbController.addReviewList(reviewList);
+            } catch (StorageException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+            log.info("New review for " + lastAddedProductName + " with ID " + lastAddedProductId + " added.");
         }
     }
 

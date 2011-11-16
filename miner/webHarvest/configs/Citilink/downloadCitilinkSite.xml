@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-    <!--<var-def name="path">data/miner/CitilinkPages/</var-def>-->
+    <!--<var-def name="path">/tmp/CitilinkPages/</var-def>-->
 
     <!--<var-def name="path">allLinks/</var-def>-->
     <var-def name="startURL">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</var-def>
@@ -49,11 +49,21 @@
                                 </html-to-xml>
                             </var-def>
                         </file>
-
+							
+							<var-def name="numberOfReviews">
+								<xpath expression='//ul[@class="tabs"]/li[@t="t2"]/a/text()'>
+                                <html-to-xml>
+                                    <http url="http://www.citilink.ru${oneNew}?opinion"/>
+                                </html-to-xml>
+                                </xpath>
+                            </var-def>
+							
                         <file action="append" path="${path}/List.html">
                             <![CDATA[ <div> ]]>
                             <var name="oneNew"/>
-                            <![CDATA[ </div> ]]>
+                            <![CDATA[ </div> <b>]]>
+                            <var name="numberOfReviews"/>	
+                            <![CDATA[ </b>]]>
                         </file>
 
                     </empty>
