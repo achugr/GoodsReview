@@ -12,12 +12,14 @@ import java.util.StringTokenizer;
 
 public class FrequencyDictionary {
 
+    /**
+     * add word to frequency dictionary
+     * @param dictionary
+     * @param word
+     */
     public static void addWord(final HashMap<String, Integer> dictionary, final String word) {
         if (dictionary.containsKey(word)) {
             Integer val = dictionary.get(word);
-            if (val < 0) {
-                throw new IllegalArgumentException("Negative frequency (" + val + ") in word " + word);
-            }
             val++;
             dictionary.put(word, val);
         } else {
@@ -25,7 +27,11 @@ public class FrequencyDictionary {
         }
     }
 
-
+    /**
+     * crate frequency dictionary from string argument
+     * @param str
+     * @return
+     */
     public static HashMap<String, Integer> createFrequencyDictionary(final String str) {
         HashMap<String, Integer> frequencyDictionary = new HashMap<String, Integer>();
         StringTokenizer stringTokenizer = new StringTokenizer(str, " ,");
