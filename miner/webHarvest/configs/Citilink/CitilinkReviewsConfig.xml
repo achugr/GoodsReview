@@ -45,28 +45,10 @@
                                 </xpath>
                             </var-def>
 
-                            <var-def name="Description">
-                                <xpath expression="//*[@class='m']/p[1]/b/text()">
-                                    <var name="review"/>
-                                </xpath>
-                            </var-def>
-
-                            <var-def name="GoodFeatures">
-                                <xpath expression="//*[@class='m']/p[2]">
-                                    <var name="review"/>
-                                </xpath>
-                            </var-def>
-
-                            <var-def name="BadFeatures">
-                                <xpath expression="//*[@class='m']/p[3]">
-                                    <var name="review"/>
-                                </xpath>
-                            </var-def>
-
-                            <var-def name="Comments">
-                                <xpath expression="//*[@class='m']/p[4]">
-                                    <var name="review"/>
-                                </xpath>
+                            <var-def name="OpinionText">
+                                <xpath expression="//*[@class='m']/p[position()>1]/text() | //*[@class='m']/p[position()>1]/b/text()">
+            		    	        <var name="review"/>
+        			            </xpath>
                             </var-def>
 
                             <var-def name="VoteYes">
