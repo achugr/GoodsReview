@@ -2,16 +2,10 @@ package ru.goodsReview.backend;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.controller.ThesisDbController;
 
 import javax.sql.DataSource;
-import java.util.Date;
-import java.util.List;
 
 /*
  *  Date: 15.10.11
@@ -38,7 +32,7 @@ public class Test {
 
         ReviewDbController reviewDbController = new ReviewDbController(simpleJdbcTemplate);
         ProductDbController productDbController = new ProductDbController(simpleJdbcTemplate);
-
+        /*
         Product pro1 = new Product(1, "Motorola", "bad phone", 0);
         Product pro2 = new Product(1, "Motorola Razer V3", "very bad phone",0);
         productDbController.addProduct(pro1);
@@ -63,5 +57,6 @@ public class Test {
         for(Thesis thesis: thesisList){
             System.out.println(thesis.getContent());
         }
+        */
     }
 }
