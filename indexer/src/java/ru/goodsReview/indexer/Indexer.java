@@ -8,6 +8,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.*;
 import ru.goodsReview.storage.controller.*;
@@ -35,6 +36,7 @@ public class Indexer extends TimerTask {
      * @param jdbcTemplate Object of SimpleJdbcTemplate class, which has to be set by this method.
      * @return Nothing.
      */
+    @Required
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -232,6 +234,7 @@ public class Indexer extends TimerTask {
     /**
      * Launches needful indexing methods.
      */
+    @Override
     public void run() {
         try {
             log.info("Index creating started");

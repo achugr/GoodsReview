@@ -8,6 +8,7 @@
 package ru.goodsReview.backend;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
@@ -32,7 +33,7 @@ public class AnalyzeThesis extends TimerTask {
     private SimpleJdbcTemplate jdbcTemplate;
     private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
 
-
+    @Required
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }

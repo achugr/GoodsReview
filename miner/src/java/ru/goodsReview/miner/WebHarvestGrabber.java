@@ -9,6 +9,7 @@
 package ru.goodsReview.miner;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 
 import java.io.File;
 
@@ -24,14 +25,17 @@ public abstract class WebHarvestGrabber extends Grabber {
 
     public abstract void downloadPages();
 
+    @Required
     public void setDownloadConfig(String downloadConfig) {
         this.downloadConfig = downloadConfig;
     }
 
+    @Required
     public void setGrabberConfig(String grabberConfig) {
         this.grabberConfig = grabberConfig;
     }
 
+    @Required
     public void setPath(String path) {
         this.path = path;
     }
