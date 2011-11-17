@@ -1,8 +1,8 @@
 /**
  * Date: 14.11.2011
  * Time: 5:47:09
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
@@ -27,10 +27,10 @@ public class QueryMapper implements ParameterizedRowMapper<Query> {
             return new Query(resultSet.getLong("id"),
                     resultSet.getLong("query_unique_id"),
                     resultSet.getString("text"),
-                    resultSet.getTimestamp("date"));
+                    resultSet.getLong("date"));
         } catch (SQLException e) {
             // Something is wrong with the base, i.e. one of column labels isn't presented.
-            return new Query(-1, -1, "NOTEXT", new Date());
+            return new Query(-1, -1, "NOTEXT", System.currentTimeMillis());
         }
     }
 }

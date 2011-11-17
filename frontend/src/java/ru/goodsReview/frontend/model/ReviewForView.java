@@ -2,7 +2,6 @@ package ru.goodsReview.frontend.model;
 
 import ru.goodsReview.core.model.Review;
 
-import java.util.Date;
 import java.util.List;
 /*
  *  Date: 31.10.11
@@ -17,7 +16,7 @@ public class ReviewForView {
     private final long productId;
     private final String content;
     private final String author;
-    private final Date date;
+    private final long time;
     private final String description;
     private final long sourceId;
     private final String sourceUrl;
@@ -32,7 +31,7 @@ public class ReviewForView {
         this.productId = review.getProductId();
         this.content = review.getContent();
         this.author = review.getAuthor();
-        this.date = review.getDate();
+        this.time = review.getTime();
         this.description = review.getDescription();
         this.sourceId = review.getSourceId();
         this.sourceUrl = review.getSourceUrl();
@@ -60,8 +59,8 @@ public class ReviewForView {
         return author;
     }
 
-    /*public String getDate() {
-         return date.toString();
+    /*public long getTime() {
+         return time.toString();
      }*/
 
     public String getDescription() {

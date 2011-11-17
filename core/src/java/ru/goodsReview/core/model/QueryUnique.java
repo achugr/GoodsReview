@@ -1,8 +1,8 @@
 /**
  * Date: 14.11.2011
  * Time: 5:33:17
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
@@ -18,10 +18,10 @@ import java.util.Date;
 public class QueryUnique {
     private long id;
     private String text;
-    private Date lastScan;
+    private long lastScan;
     private int frequency;
 
-    public QueryUnique(long id, String text, Date last_scan, int frequency) {
+    public QueryUnique(long id, String text, long last_scan, int frequency) {
         this.id = id;
         this.text = text;
         this.lastScan = last_scan;
@@ -44,11 +44,11 @@ public class QueryUnique {
         this.text = text;
     }
 
-    public Date getLastScan() {
+    public long getLastScan() {
         return lastScan;
     }
 
-    public void setLastScan(Date lastScan) {
+    public void setLastScan(long lastScan) {
         this.lastScan = lastScan;
     }
 

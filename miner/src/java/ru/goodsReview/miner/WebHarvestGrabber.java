@@ -11,6 +11,7 @@ package ru.goodsReview.miner;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
+import ru.goodsReview.miner.exception.DeleteException;
 import java.io.File;
 
 public abstract class WebHarvestGrabber extends Grabber {
@@ -52,7 +53,7 @@ public abstract class WebHarvestGrabber extends Grabber {
         return path;
     }
 
-    public void cleanFolder(File f) {
+    public void cleanFolder(File f) throws DeleteException{
         if (!f.exists()) {
             log.info("Folder " + path + " not exist");
             return;
@@ -62,10 +63,12 @@ public abstract class WebHarvestGrabber extends Grabber {
             if (files[i].isDirectory()) {
                 cleanFolder(files[i]);
             } else {
-                files[i].delete();
+                if(!files[i].delete())
+                    throw new DeleteException("Unavailable delete file");
             }
         }
-        f.delete();
+        if(!f.delete())
+           throw new DeleteException("Unavailable delete file");
         log.info("Folder " + path + " deleted successfully");
     }
 

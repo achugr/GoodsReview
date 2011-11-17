@@ -115,7 +115,7 @@ public class Indexer extends TimerTask {
                 document.add(new Field("author", author, Field.Store.YES, Field.Index.ANALYZED));
             }
             document.add(new Field("author", review.getAuthor(), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("date", review.getDate().toString(), Field.Store.YES, Field.Index.ANALYZED));
+            document.add(new Field("date", String.valueOf(review.getTime()), Field.Store.YES, Field.Index.ANALYZED));
             String desc = review.getDescription();
             if (desc != null) {
                 document.add(new Field("description", desc, Field.Store.YES, Field.Index.NO));
@@ -194,7 +194,7 @@ public class Indexer extends TimerTask {
             }
             document.add(new Field("frequency", Integer.toString(thesisUnique.getFrequency()), Field.Store.YES,
                                    Field.Index.ANALYZED));
-            document.add(new Field("lastScan", thesisUnique.getLastScan().toString(), Field.Store.YES,
+            document.add(new Field("lastScan", String.valueOf(thesisUnique.getLastScan()), Field.Store.YES,
                                    Field.Index.ANALYZED));
             document.add(new Field("positivity", Double.toString(thesisUnique.getPositivity()), Field.Store.YES,
                                    Field.Index.ANALYZED));

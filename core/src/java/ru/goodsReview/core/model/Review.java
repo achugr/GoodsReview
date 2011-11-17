@@ -1,7 +1,5 @@
 package ru.goodsReview.core.model;
 
-import java.util.Date;
-
 /*
     Date: 16.10.11
     Time: 17:01
@@ -14,7 +12,7 @@ public class Review {
     private long productId;
     private String content;
     private String author;
-    private Date date;
+    private long time;
     private String description;
     private long sourceId;
     private String sourceUrl;
@@ -29,13 +27,13 @@ public class Review {
         this.content = content;
     }
 
-    public Review(long id, long productId, String content, String author, Date date, String description, long sourceId,
+    public Review(long id, long productId, String content, String author, long time, String description, long sourceId,
                   String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
         this.id = id;
         this.productId = productId;
         this.content = content;
         this.author = author;
-        this.date = date;
+        this.time = time;
         this.description = description;
         this.sourceId = sourceId;
         this.sourceUrl = sourceUrl;
@@ -45,11 +43,11 @@ public class Review {
         this.votesNo = votesNo;
     }
 
-    public Review(long productId, String content, String author, Date date, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
+    public Review(long productId, String content, String author, long time, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
         this.productId = productId;
         this.content = content;
         this.author = author;
-        this.date = date;
+        this.time = time;
         this.description = description;
         this.sourceId = sourceId;
         this.sourceUrl = sourceUrl;
@@ -99,12 +97,12 @@ public class Review {
         this.author = author;
     }
 
-    public Date getDate() {
-        return date;
+    public long getTime() {
+        return time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public String getDescription() {

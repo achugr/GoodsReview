@@ -59,7 +59,7 @@ public class AnalyzeThesis extends TimerTask {
         ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
         ThesisUnique currThesisUnique;
         ThesisUnique recievedTU;
-        Date date = new Date();
+        long date = System.currentTimeMillis();
         for (Map.Entry<String, Integer> entry : thesisUniques.entrySet()) {
             currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
             try {

@@ -13,11 +13,11 @@ public class ThesisUnique {
     private long id;
     private String content;
     private int frequency;
-    private Date lastScan;
+    private long lastScan;
     private double positivity;
     private double importance;
 
-    public ThesisUnique(String content, int frequency, Date lastScan, double positivity, double importance) {
+    public ThesisUnique(String content, int frequency, long lastScan, double positivity, double importance) {
         this.content = content;
         this.frequency = frequency;
         this.lastScan = lastScan;
@@ -25,7 +25,7 @@ public class ThesisUnique {
         this.importance = importance;
     }
 
-    public ThesisUnique(long id, String content, int frequency, Date lastScan, double positivity, double importance) {
+    public ThesisUnique(long id, String content, int frequency, long lastScan, double positivity, double importance) {
         this.id = id;
         this.content = content;
         this.frequency = frequency;
@@ -58,11 +58,11 @@ public class ThesisUnique {
         this.frequency = frequency;
     }
 
-    public Date getLastScan() {
+    public long getLastScan() {
         return lastScan;
     }
 
-    public void setLastScan(Date lastScan) {
+    public void setLastScan(long lastScan) {
         this.lastScan = lastScan;
     }
 

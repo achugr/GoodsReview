@@ -1,14 +1,12 @@
 /**
  * Date: 14.11.2011
  * Time: 5:28:29
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
 package ru.goodsReview.core.model;
-
-import java.util.Date;
 
 /**
  * User: Sergey Serebryakov
@@ -19,13 +17,13 @@ public class Query {
     private long id;
     private long queryUniqueId;
     private String text;
-    private Date date;
+    private long time;
 
-    public Query(long id, long queryUniqueId, String text, Date date) {
+    public Query(long id, long queryUniqueId, String text, long date) {
         this.id = id;
         this.queryUniqueId = queryUniqueId;
         this.text = text;
-        this.date = date;
+        this.time = date;
     }
 
     public long getId() {
@@ -52,11 +50,11 @@ public class Query {
         this.text = text;
     }
 
-    public Date getDate() {
-        return date;
+    public long getTime() {
+        return time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(long time) {
+        this.time = time;
     }
 }

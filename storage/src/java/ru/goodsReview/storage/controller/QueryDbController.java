@@ -1,8 +1,8 @@
 /**
  * Date: 14.11.2011
  * Time: 5:55:16
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
@@ -37,7 +37,7 @@ public class QueryDbController {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO query (id,  query_unique_id, text, date) VALUES(?,?,?,?)",
-                    new Object[]{query.getId(), query.getQueryUniqueId(), query.getText(), query.getDate()},
+                    new Object[]{query.getId(), query.getQueryUniqueId(), query.getText(), query.getTime()},
                     new int[]{Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.TIMESTAMP});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;

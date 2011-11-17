@@ -11,7 +11,6 @@ import ru.goodsReview.storage.exception.StorageException;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.Random;
 
 /*
@@ -56,7 +55,7 @@ public class DbModuleTest {
         // NOTE(serebryakov): Who wrote these two lines? Please clarify your point or remove.
         /*Product productFrom = productController.getProductById(10);
         System.out.println("PRODUCT == " + productFrom.getDescription());*/
-        
+
         SourceDbController sourceController = new SourceDbController(new SimpleJdbcTemplate(dataSource));
         Source source0 = new Source(-1, "Reliable source", "OK some url");
         long source0id = sourceController.addSource(source0);
@@ -65,13 +64,13 @@ public class DbModuleTest {
         log.debug("Source name: " + source1.getName());
 
         ReviewDbController reviewController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-        Review review0 = new Review(-1, product0id, "OK review content", "Sergey", new Date(), "OK description",
+        Review review0 = new Review(-1, product0id, "OK review content", "Sergey", System.currentTimeMillis(), "OK description",
                                     source0id, "http://url", 0.0, 0.0, 0, 0);
         long review0id = reviewController.addReview(review0);
         Review review1 = reviewController.getReviewById(review0id);
         Assert.assertEquals(review0id, review1.getId());
         log.debug("Review content: " + review1.getContent());
-        log.debug("Review date: " + review1.getDate() + ", time: " + review1.getDate().getTime());
+        log.debug("Review date: " + review1.getTime() + ", time: " + review1.getTime());
         review1.setContent("HAHAHA");
         reviewController.updateReview(review1);
         Review review2 = reviewController.getReviewById(review0id);

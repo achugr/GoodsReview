@@ -34,7 +34,7 @@ public class ReviewDbController implements ReviewController {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO review " + "(product_id, content, author, date, description, source_id, source_url, positivity, importance, votes_yes, votes_no) " + "VALUES(?,?,?,?,?,?,?,?,?,?,?)",
-                    new Object[]{review.getProductId(), review.getContent(), review.getAuthor(), review.getDate(), review.getDescription(), review.getSourceId(), review.getSourceUrl(), review.getPositivity(), review.getImportance(), review.getVotesYes(), review.getVotesNo()},
+                    new Object[]{review.getProductId(), review.getContent(), review.getAuthor(), review.getTime(), review.getDescription(), review.getSourceId(), review.getSourceUrl(), review.getPositivity(), review.getImportance(), review.getVotesYes(), review.getVotesNo()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP, Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
@@ -85,7 +85,7 @@ public class ReviewDbController implements ReviewController {
     public void updateReview(Review review) throws StorageException {
         try {
             simpleJdbcTemplate.getJdbcOperations().update("UPDATE review SET product_id = ?, content = ?, author = ?, date = ?, description = ?, source_id = ?, source_url = ?, positivity = ?, importance = ?, votes_yes = ?, votes_no = ? WHERE id = ?",
-                    new Object[]{review.getProductId(), review.getContent(), review.getAuthor(), review.getDate(), review.getDescription(), review.getSourceId(), review.getSourceUrl(), review.getPositivity(), review.getImportance(), review.getVotesYes(), review.getVotesNo(), review.getId()},
+                    new Object[]{review.getProductId(), review.getContent(), review.getAuthor(), review.getTime(), review.getDescription(), review.getSourceId(), review.getSourceUrl(), review.getPositivity(), review.getImportance(), review.getVotesYes(), review.getVotesNo(), review.getId()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP, Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER, Types.INTEGER});
         } catch (DataAccessException e) {
             log.error("Error while updating review (probably not enough permissions): " + review);
