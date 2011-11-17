@@ -11,8 +11,8 @@ package ru.goodsReview.storage.controller;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
 import org.apache.log4j.Logger;
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.storage.mapper.QueryMapper;
-import ru.goodsReview.storage.exception.StorageException;
 import ru.goodsReview.core.model.Query;
 
 import java.sql.Types;

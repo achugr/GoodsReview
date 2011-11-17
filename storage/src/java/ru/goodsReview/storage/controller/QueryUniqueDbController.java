@@ -1,8 +1,8 @@
 /**
  * Date: 14.11.2011
  * Time: 5:56:44
- * Author: 
- *   Sergey Serebryakov 
+ * Author:
+ *   Sergey Serebryakov
  *   sergey.serebryakoff@gmail.com
  */
 
@@ -11,8 +11,8 @@ package ru.goodsReview.storage.controller;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
 import org.apache.log4j.Logger;
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.storage.mapper.QueryUniqueMapper;
-import ru.goodsReview.storage.exception.StorageException;
 import ru.goodsReview.core.model.QueryUnique;
 
 import java.sql.Types;

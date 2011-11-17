@@ -8,8 +8,8 @@ package ru.goodsReview.core.db.controller;
  *     vans239@gmail.com
  */
 
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.ThesisUnique;
-import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 

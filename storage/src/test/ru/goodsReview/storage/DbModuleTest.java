@@ -5,9 +5,9 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.*;
 import ru.goodsReview.storage.controller.*;
-import ru.goodsReview.storage.exception.StorageException;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;

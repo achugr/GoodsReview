@@ -11,9 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ThesisUniqueController;
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.ThesisUnique;
 import ru.goodsReview.storage.mapper.ThesisUniqueMapper;
-import ru.goodsReview.storage.exception.StorageException;
 
 import java.sql.Types;
 import java.util.ArrayList;

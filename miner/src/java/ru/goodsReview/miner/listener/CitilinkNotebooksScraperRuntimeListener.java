@@ -13,12 +13,12 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,7 +77,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String voteYes = scraper.getContext().get("VoteYes").toString();
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
-            Date date = new Date();
+            long time = System.currentTimeMillis();
 
             CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
             Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
@@ -94,9 +94,9 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             }
 
             //TODO: parse opinionText to bad and good
-            Review goodFeauture = new Review(lastAddedProductId, opinionText, "anonim", date, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, opinionText, "anonim", date, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, opinionText, "anonim", date, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            Review goodFeauture = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review badFeauture = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review comment = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
 
 //            clear reviews content from trash
             goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);

@@ -8,10 +8,8 @@ package ru.goodsReview.core.db.controller;
  *     vans239@gmail.com
  */
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Review;
-import ru.goodsReview.storage.exception.StorageException;
 
 import java.util.List;
 
