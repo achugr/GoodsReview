@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.frontend.mapper.ReviewMapper;
@@ -23,10 +24,13 @@ public class ReviewManager {
     private ReviewMapper reviewMapper = new ReviewMapper();
     private int popularCount;
 
+
+    @Required
     public void setControllerFactory(ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }
 
+    @Required
     public void setPopularCount(int popularCount) {
         this.popularCount = popularCount;
     }

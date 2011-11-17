@@ -5,6 +5,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.service.SearchManager;
 
@@ -22,6 +23,7 @@ public class SearchProductYalet implements Yalet {
     private static final Logger log = org.apache.log4j.Logger.getLogger(SearchProductYalet.class);
     private SearchManager searchManager;
 
+    @Required
     public void setSearchManager(SearchManager searchManager) {
         this.searchManager = searchManager;
     }

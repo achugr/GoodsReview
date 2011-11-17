@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.frontend.model.ThesisForView;
 import ru.goodsReview.core.db.ControllerFactory;
@@ -23,6 +24,7 @@ public class ThesisManager {
 
     }
 
+    @Required
     public void setControllerFactory(ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }

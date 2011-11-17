@@ -12,6 +12,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
 
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.searcher.mapper.ProductMapper;
 
@@ -39,6 +40,7 @@ public class Searcher {
      * directoryDB Place where we should search.
      * @param directoryDB
      */
+    @Required
     public void setDirectoryDB(String directoryDB) {
         this.directoryDB = directoryDB;
     }

@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.service;
 
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.frontend.model.DetailedProductForView;
@@ -24,10 +25,12 @@ public class SearchManager {
     public SearchManager() {
     }
 
+    @Required
     public void setControllerFactory(ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }
 
+    @Required
     public void setSearcher(Searcher searcher) {
         this.searcher = searcher;
     }

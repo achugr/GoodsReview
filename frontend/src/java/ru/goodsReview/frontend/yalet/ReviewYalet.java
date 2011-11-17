@@ -5,6 +5,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.frontend.model.ReviewForView;
 import ru.goodsReview.frontend.service.ReviewManager;
 
@@ -23,6 +24,7 @@ public class ReviewYalet implements Yalet {
     private static final Logger log = Logger.getLogger(ProductYalet.class);
     private ReviewManager reviewManager;
 
+    @Required
     public void setReviewManager(ReviewManager reviewManager) {
         this.reviewManager = reviewManager;
     }

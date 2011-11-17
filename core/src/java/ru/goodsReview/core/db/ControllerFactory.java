@@ -8,6 +8,7 @@ package ru.goodsReview.core.db;
  *     vans239@gmail.com
  */
 
+import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.db.controller.*;
 
 public class ControllerFactory {
@@ -18,22 +19,27 @@ public class ControllerFactory {
     private ThesisController thesisController;
     private ThesisUniqueController thesisUniqueController;
 
+    @Required
     public void setCategoryController(CategoryController categoryController) {
         this.categoryController = categoryController;
     }
 
+    @Required
     public void setProductController(ProductController productController) {
         this.productController = productController;
     }
 
+    @Required
     public void setReviewController(ReviewController reviewController) {
         this.reviewController = reviewController;
     }
 
+    @Required
     public void setSourceController(SourceController sourceController) {
         this.sourceController = sourceController;
     }
 
+    @Required
     public void setThesisController(ThesisController thesisController) {
         this.thesisController = thesisController;
     }
