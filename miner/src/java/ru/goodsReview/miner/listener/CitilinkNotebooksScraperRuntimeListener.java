@@ -21,7 +21,6 @@ import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -93,10 +92,34 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
                 lastAddedProductName = product.getName();
             }
 
-            //TODO: parse opinionText to bad and good
-            Review goodFeauture = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            //takes indexes of text parts and parse opinion text
+            String goodOpinion = "";
+            String badOpinion = "";
+            String commentOpinion = "";
+
+            if (opinionText.indexOf("Комментарий:") > 0) {
+                commentOpinion = opinionText.substring(opinionText.indexOf("Комментарий:"));
+            }
+
+            if (opinionText.indexOf("Недостатки:") >= 0) {
+                if (opinionText.indexOf("Комментарий:") > 0) {
+                    badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.indexOf("Комментарий:"));
+                } else {
+                    badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.length());
+                }
+            }
+
+            if (opinionText.indexOf("Достоинства:") >= 0) {
+                if (opinionText.indexOf("Недостатки:") > 0) {
+                    goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Недостатки:"));
+                } else if (opinionText.indexOf("Комментарий:") >= 0) {
+                    goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Комментарий:"));
+                }
+            }
+
+            Review goodFeauture = new Review(lastAddedProductId, goodOpinion, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", time, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
 
 //            clear reviews content from trash
             goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
@@ -116,7 +139,8 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
         }
     }
 
-    public void onExecutionError(Scraper scraper, Exception e) {
+    public void onExecutionError
+            (Scraper scraper, Exception e) {
         if (e != null) {
             log.error("CitilinkNotebooksScraperRuntimeListener error");
         }
