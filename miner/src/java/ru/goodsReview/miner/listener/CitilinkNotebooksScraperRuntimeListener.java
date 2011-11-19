@@ -21,7 +21,6 @@ import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -66,8 +65,9 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     //it works, but i need distribute this code on logic-methods
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
 
-        if ("body".equalsIgnoreCase(
-                scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
+        if ("body".equalsIgnoreCase(scraper.getRunningProcessor()
+                                            .getElementDef()
+                                            .getShortElementName()) && (scraper.getRunningLevel() == 6)) {
 
             String nameProd = scraper.getContext().get("ProductName").toString();
             String prodPrice = scraper.getContext().get("Price").toString();
@@ -94,9 +94,39 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             }
 
             //TODO: parse opinionText to bad and good
-            Review goodFeauture = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, opinionText, "anonim", time, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            Review goodFeauture = new Review(lastAddedProductId,
+                                             opinionText,
+                                             "anonim",
+                                             time,
+                                             "",
+                                             1,
+                                             "citilink.ru",
+                                             GOOD_FEAUTURE_POSITIVITY,
+                                             0.0,
+                                             0,
+                                             0);
+            Review badFeauture = new Review(lastAddedProductId,
+                                            opinionText,
+                                            "anonim",
+                                            time,
+                                            "",
+                                            1,
+                                            "citilink.ru",
+                                            BAD_FEAUTURE_POSITIVITY,
+                                            0.0,
+                                            0,
+                                            0);
+            Review comment = new Review(lastAddedProductId,
+                                        opinionText,
+                                        "anonim",
+                                        time,
+                                        "",
+                                        1,
+                                        "citilink.ru",
+                                        0.0,
+                                        0.0,
+                                        0,
+                                        0);
 
 //            clear reviews content from trash
             goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);

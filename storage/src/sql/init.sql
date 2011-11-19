@@ -23,7 +23,7 @@ CREATE TABLE product
   popularity Int UNSIGNED
   COMMENT 'Сколько раз смотрели товар',
   description Text,
- PRIMARY KEY (id)
+  PRIMARY KEY (id)
 )
 ;
 
@@ -32,9 +32,9 @@ CREATE TABLE product
 CREATE TABLE specification_name
 (
   id Int NOT NULL AUTO_INCREMENT,
-  name Varchar(100) NOT NULL,
+  name Varchar(100) NOT NULL UNIQUE,
   unit Varchar(20),
- PRIMARY KEY (id)
+  PRIMARY KEY (id)
 )
 ;
 
@@ -46,7 +46,7 @@ CREATE TABLE specification_value
   product_id Int NOT NULL,
   spec_name_id Int NOT NULL,
   value Varchar(100) NOT NULL,
- PRIMARY KEY (id)
+  PRIMARY KEY (id)
 )
 ;
 
@@ -68,9 +68,9 @@ CREATE TABLE shop_link
 CREATE TABLE shop
 (
   id Int NOT NULL AUTO_INCREMENT,
-  name Varchar(100) NOT NULL,
-  main_page_url Varchar(100) NOT NULL,
- PRIMARY KEY (id)
+  name Varchar(100) NOT NULL UNIQUE,
+  main_page_url Varchar(100) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
 )
 ;
 
@@ -90,7 +90,7 @@ CREATE TABLE review
   importance Double,
   votes_yes Int,
   votes_no Int,
- PRIMARY KEY (id)
+  PRIMARY KEY (id)
 )
 ;
 
@@ -100,8 +100,8 @@ CREATE TABLE source
 (
   id Int NOT NULL AUTO_INCREMENT,
   name Varchar(100) NOT NULL,
-  main_page_url Varchar(100) NOT NULL,
- PRIMARY KEY (id)
+  main_page_url Varchar(100) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
 )
 ;
 
@@ -125,7 +125,7 @@ CREATE TABLE thesis
 CREATE TABLE category
 (
   id Int NOT NULL AUTO_INCREMENT,
-  name Varchar(100) NOT NULL,
+  name Varchar(100) NOT NULL UNIQUE,
   description Varchar(100) NOT NULL,
   parent_category_id Int NOT NULL,
  PRIMARY KEY (id)
@@ -149,7 +149,7 @@ CREATE TABLE query
 CREATE TABLE thesis_unique
 (
   id Int NOT NULL AUTO_INCREMENT,
-  content Varchar(100) NOT NULL
+  content Varchar(100) NOT NULL UNIQUE
   COMMENT 'acaca',
   frequency Int UNSIGNED NOT NULL,
   last_scan Timestamp NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE thesis_unique
 CREATE TABLE query_unique
 (
   id Int UNSIGNED NOT NULL AUTO_INCREMENT,
-  text Varchar(200) NOT NULL,
+  text Varchar(200) NOT NULL UNIQUE,
   last_scan Timestamp NOT NULL,
   frequency Int NOT NULL,
  PRIMARY KEY (id)

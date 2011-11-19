@@ -28,5 +28,6 @@ public class FrequencyDictionaryTest extends Assert {
 
         assertEquals(3, resultSet.get(0).get("good"));
         assertEquals(1, resultSet.get(0).get("bad"));
+
     }
 }
