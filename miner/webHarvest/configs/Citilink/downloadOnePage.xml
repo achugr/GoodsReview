@@ -2,13 +2,13 @@
 
 <config>
     <!--
-        @param pageUrl       - URL of page
+        @param pageUrl  - URL of page
         @param path     - download to
         @param name     - file name
      -->
     <function name="download-One-Page">
-        <return>
-            <file action="write" path="${path}Pages/${name}">
+        
+            <file action="write" path="${path}Pages/${name}.html">
                                 <html-to-xml>
                                     <http url="http://www.citilink.ru${pageUrl}?opinion"/>
                                 </html-to-xml>
@@ -20,7 +20,7 @@
                         	</html-to-xml>
                         </var-def>
 
-                        <file action="write" path="${path}Descriptions/${name}">
+                        <file action="write" path="${path}Descriptions/${name}.html">
                         	<var-def name="oneNewDescr">
                         		<xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
                        				<var name="oneNewDescrPage"/>
@@ -30,7 +30,15 @@
                             	</xpath>
                          	</var-def>
                          </file>
-        </return>
+        
     </function>
-</config>
 
+
+<var-def name="products">
+        <call name="download-One-Page">
+            <call-param name="pageUrl"><var name="pageUrl"/></call-param>
+            <call-param name="path"><var name ="path"/></call-param>
+            <call-param name="name"><var name="name"/></call-param>
+        </call>
+    </var-def>
+    </config>

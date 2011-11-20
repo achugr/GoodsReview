@@ -86,6 +86,8 @@ public abstract class WebHarvestGrabber extends Grabber {
             findPages();
             downloadPages();
             grabPages();
+            cleanFolder(new File(path + "Citilink/Pages/"));
+            cleanFolder(new File(path + "Citilink/Descriptions/"));
             log.info("Run succecsful");
         } catch (Exception e) {
             log.error("Cannot process run");
