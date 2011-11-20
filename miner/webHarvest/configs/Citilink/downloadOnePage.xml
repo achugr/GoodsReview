@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <!--
+        @param pageUrl       - URL of page
+        @param path     - download to
+        @param name     - file name
+     -->
+    <function name="download-One-Page">
+        <return>
+            <file action="write" path="${path}Pages/${name}">
+                                <html-to-xml>
+                                    <http url="http://www.citilink.ru${pageUrl}?opinion"/>
+                                </html-to-xml>
+             </file>
+
+                        <var-def name="oneNewDescrPage">
+                       		<html-to-xml>
+                            	<http url="http://www.citilink.ru${pageUrl}"/>
+                        	</html-to-xml>
+                        </var-def>
+
+                        <file action="write" path="${path}Descriptions/${name}">
+                        	<var-def name="oneNewDescr">
+                        		<xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
+                       				<var name="oneNewDescrPage"/>
+                    			</xpath>
+                        		<xpath expression='//tr/td[position()>1]/../td[position()=1]/p/text() | //tr/td[position()>1]/p/text()'>
+                                	<var name="oneNewDescrPage"/>
+                            	</xpath>
+                         	</var-def>
+                         </file>
+        </return>
+    </function>
+</config>
+

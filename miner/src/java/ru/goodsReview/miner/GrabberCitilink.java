@@ -11,11 +11,13 @@ import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
+import java.io.*;
+
 public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
 
     @Override
-    public void downloadPages() {
+    public void updateList() {
         try {
             //todo you shouldn't write citilink in log. It will be written by logger based on row 15
             log.info("Download pages started");
@@ -33,9 +35,45 @@ public class GrabberCitilink extends WebHarvestGrabber {
     }
 
     @Override
+    public void downloadPages(){}
+
+    @Override
+    //TODO:: not add, if review number changes, only update
     public void findPages() {
+
+
+        try {
+            FileInputStream ffstream = new FileInputStream("data/miner/Citilink/list/AllLinks.txt");
+            DataInputStream all = new DataInputStream(ffstream);
+            BufferedReader brr = new BufferedReader(new InputStreamReader(all));
+            String allLinks = "";
+            String nextLine;
+            while ((nextLine = brr.readLine()) != null) {
+                allLinks += nextLine;
+            }
+            all.close();
+            FileWriter out = new FileWriter("data/miner/Citilink/list/NewLinks.txt",false);
+
+            FileInputStream fstream = new FileInputStream("data/miner/Citilink/list/LatterLinks.txt");
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String reviewNumber;
+            String reviewURL;
+            while ((reviewURL = br.readLine()) != null && (reviewNumber = br.readLine()) != null) {
+                reviewURL = reviewURL.replace("\" \"", "");
+                int position = allLinks.indexOf(reviewURL+":::"+reviewNumber);
+                if(position == -1){
+                    out.write("\n"+reviewURL+":::"+reviewNumber);
+                    //System.out.println("AAAAdddded");
+                } else{//System.out.println("Not!AAAAdddded");
+                }
+            }
+            in.close();
+            out.close();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
-    //todo where should be path??
 
     @Override
     public void grabPages() {
@@ -44,7 +82,8 @@ public class GrabberCitilink extends WebHarvestGrabber {
             ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
             Scraper scraper = new Scraper(config, ".");
             scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
-            scraper.addVariableToContext("path", getPath()+"Citilink/Pages/");
+            scraper.addVariableToContext("path", getPath() + "Citilink/Pages/");
+            scraper.addVariableToContext("numberOfFirstReview", 0);
             scraper.setDebug(true);
             scraper.execute();
 

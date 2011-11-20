@@ -20,11 +20,12 @@ import java.util.regex.Pattern;
  */
 public class CitilinkDataTransformator extends DataTransformator {
     private static final int MIN_WORD_LENGTH = 3;
+
     /**
      * i am don't sure that enum is a good solving here, but i think that
      * for one shop trash words don't need a dictionary and List<String> might be not
      * very understandable
-     *
+     * <p/>
      * enum for trash words
      */
     public enum TrashWords {
@@ -78,6 +79,7 @@ public class CitilinkDataTransformator extends DataTransformator {
 
     /**
      * Clear Sting from trash-words
+     *
      * @param review      string for clearing
      * @param trashString array of trash-words
      * @return String review content without trash-words
@@ -127,6 +129,7 @@ public class CitilinkDataTransformator extends DataTransformator {
 
     /**
      * extracting product name from source info
+     *
      * @param sourceProductInfo source info about product
      * @return relevant product name
      */
@@ -153,4 +156,43 @@ public class CitilinkDataTransformator extends DataTransformator {
         Product product = new Product(categoryId, productName, "no description", 1);
         return product;
     }
+
+    /**
+     * takes indexes of text parts and parse opinion text
+     */
+
+    public String getGoodPartOfOpinion(String opinionText) {
+        String goodOpinion = "";
+        if (opinionText.indexOf("Достоинства:") >= 0) {
+            if (opinionText.indexOf("Недостатки:") > 0) {
+                goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Недостатки:"));
+            } else if (opinionText.indexOf("Комментарий:") >= 0) {
+                goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Комментарий:"));
+            }
+        }
+        return goodOpinion;
+    }
+
+    public String getBadPartOfOpinion(String opinionText) {
+        String badOpinion = "";
+        if (opinionText.indexOf("Недостатки:") >= 0) {
+            if (opinionText.indexOf("Комментарий:") > 0) {
+                badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.indexOf("Комментарий:"));
+            } else {
+                badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.length());
+            }
+        }
+        return badOpinion;
+    }
+
+    public String getCommentPartOfOpinion(String opinionText) {
+        String commentOpinion = "";
+
+        if (opinionText.indexOf("Комментарий:") > 0) {
+            commentOpinion = opinionText.substring(opinionText.indexOf("Комментарий:"));
+        }
+        return commentOpinion;
+    }
+
+
 }

@@ -93,29 +93,9 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             }
 
             //takes indexes of text parts and parse opinion text
-            String goodOpinion = "";
-            String badOpinion = "";
-            String commentOpinion = "";
-
-            if (opinionText.indexOf("Комментарий:") > 0) {
-                commentOpinion = opinionText.substring(opinionText.indexOf("Комментарий:"));
-            }
-
-            if (opinionText.indexOf("Недостатки:") >= 0) {
-                if (opinionText.indexOf("Комментарий:") > 0) {
-                    badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.indexOf("Комментарий:"));
-                } else {
-                    badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.length());
-                }
-            }
-
-            if (opinionText.indexOf("Достоинства:") >= 0) {
-                if (opinionText.indexOf("Недостатки:") > 0) {
-                    goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Недостатки:"));
-                } else if (opinionText.indexOf("Комментарий:") >= 0) {
-                    goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Комментарий:"));
-                }
-            }
+            String goodOpinion = citilinkDataTransformator.getGoodPartOfOpinion(opinionText);
+            String badOpinion = citilinkDataTransformator.getBadPartOfOpinion(opinionText);
+            String commentOpinion = citilinkDataTransformator.getCommentPartOfOpinion(opinionText);;
 
             Review goodFeauture = new Review(lastAddedProductId, goodOpinion, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
             Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);

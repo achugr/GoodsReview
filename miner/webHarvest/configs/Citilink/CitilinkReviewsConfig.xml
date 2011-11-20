@@ -1,5 +1,8 @@
 <config>
-    <!--<var-def name="path">data/miner/CitilinkPages/</var-def>-->
+    <!--<var-def name="path">data/miner/CitilinkPages/</var-def>
+
+        @numberOfFirstReview - number of first review in this product, must be downloaded-->
+
     <var-def name="files">
         <file action="list" path="${path}" listdirs="no" listfilter="*.html"/>
     </var-def>
@@ -25,7 +28,7 @@
 
                 <loop item="review" index="j">
                     <list>
-                        <xpath expression='//div[@class="opinion row1"]'>
+                        <xpath expression='//div[@class="opinion row1" and position()>=(${numberOfFirstReview})]'>
                             <file action="read" path="${file}"/>
                         </xpath>
                     </list>
