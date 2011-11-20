@@ -33,10 +33,28 @@ public class DbModuleTest {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
                 "storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
+        SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
 
         log.error("PRIVET");
         log.info("PRIVET");
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        ThesisDbController thesisDbController = new ThesisDbController(simpleJdbcTemplate);
+        {
+            Thesis thesis = new Thesis(2, 1,"thesis", 1, 1.0, 1.0);
+            thesisDbController.addThesis(thesis);
+        }
+        {
+            Thesis thesis = new Thesis(1, 1,"thesis", 1, 1.0, 1.0);
+            thesisDbController.addThesis(thesis);
+        }
 
+
+    }
+
+    public static void controllerUsingExample() throws StorageException {
+        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
+                "storage/src/scripts/beans.xml");
+        DataSource dataSource = (DataSource) context.getBean("dataSource");
         /* NOTE(serebryakov): I recommend to run this test on the clean database. */
         CategoryDbController categoryController = new CategoryDbController(new SimpleJdbcTemplate(dataSource));
         Category category0 = new Category(-1, "Mobile phones", "PHONES", 1);

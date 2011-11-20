@@ -49,7 +49,8 @@ CREATE TABLE specification_value
   PRIMARY KEY (id)
 )
 ;
-
+-- we mustn't have duplicates in pair (product_id, spec_name_id), because one product have only one unique specification
+ALTER TABLE specification_value ADD CONSTRAINT  unique_pair_product_spec UNIQUE (product_id, spec_name_id);
 -- Table shop_link
 
 CREATE TABLE shop_link
@@ -57,12 +58,13 @@ CREATE TABLE shop_link
   id Int NOT NULL AUTO_INCREMENT,
   product_id Int NOT NULL,
   shop_id Int NOT NULL,
-  url Varchar(300) NOT NULL,
+  url Varchar(300) NOT NULL UNIQUE,
   price Double,
  PRIMARY KEY (id)
 )
 ;
-
+-- in one shop we have only one unique product
+ALTER TABLE shop_link ADD CONSTRAINT  unique_pair_product_shop UNIQUE (product_id, shop_id);
 -- Table shop
 
 CREATE TABLE shop
@@ -119,7 +121,8 @@ CREATE TABLE thesis
  PRIMARY KEY (id)
 )
 ;
-
+-- we have field frequency => we mustn't have duplicates (content, review_id)
+ALTER TABLE thesis ADD CONSTRAINT thesis_constraint UNIQUE (review_id, content);
 -- Table category
 
 CREATE TABLE category
@@ -149,8 +152,7 @@ CREATE TABLE query
 CREATE TABLE thesis_unique
 (
   id Int NOT NULL AUTO_INCREMENT,
-  content Varchar(100) NOT NULL UNIQUE
-  COMMENT 'acaca',
+  content Varchar(100) NOT NULL UNIQUE,
   frequency Int UNSIGNED NOT NULL,
   last_scan Timestamp NOT NULL,
   positivity Double,

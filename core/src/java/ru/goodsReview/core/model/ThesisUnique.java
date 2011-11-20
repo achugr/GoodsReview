@@ -7,17 +7,17 @@ package ru.goodsReview.core.model;
  *      artemij.chugreev@gmail.com
  */
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class ThesisUnique {
     private long id;
     private String content;
     private int frequency;
-    private long lastScan;
+    private Timestamp lastScan;
     private double positivity;
     private double importance;
 
-    public ThesisUnique(String content, int frequency, long lastScan, double positivity, double importance) {
+    public ThesisUnique(String content, int frequency, Timestamp lastScan, double positivity, double importance) {
         this.content = content;
         this.frequency = frequency;
         this.lastScan = lastScan;
@@ -25,7 +25,7 @@ public class ThesisUnique {
         this.importance = importance;
     }
 
-    public ThesisUnique(long id, String content, int frequency, long lastScan, double positivity, double importance) {
+    public ThesisUnique(long id, String content, int frequency, Timestamp lastScan, double positivity, double importance) {
         this.id = id;
         this.content = content;
         this.frequency = frequency;
@@ -58,11 +58,11 @@ public class ThesisUnique {
         this.frequency = frequency;
     }
 
-    public long getLastScan() {
+    public Timestamp getLastScan() {
         return lastScan;
     }
 
-    public void setLastScan(long lastScan) {
+    public void setLastScan(Timestamp lastScan) {
         this.lastScan = lastScan;
     }
 

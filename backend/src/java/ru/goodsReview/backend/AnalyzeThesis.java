@@ -20,6 +20,7 @@ import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -59,7 +60,7 @@ public class AnalyzeThesis extends TimerTask {
         ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
         ThesisUnique currThesisUnique;
         ThesisUnique recievedTU;
-        long date = System.currentTimeMillis();
+        Timestamp date = new Timestamp(System.currentTimeMillis());
         for (Map.Entry<String, Integer> entry : thesisUniques.entrySet()) {
             currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), date, 0, 0);
             try {
