@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-    <!--<var-def name="path">/tmp/CitilinkPages/</var-def>-->
+   <!-- <var-def name="path">/tmp/CitilinkPages/</var-def>-->
 
     <!--<var-def name="path">allLinks/</var-def>-->
     <var-def name="startURL">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</var-def>
@@ -50,7 +50,24 @@
                                 </html-to-xml>
                             </var-def>
                         </file>
-							
+                        
+                        <var-def name="oneNewDescrPage">
+                       		<html-to-xml>
+                            	<http url="http://www.citilink.ru${oneNew}"/>
+                        	</html-to-xml>
+                        </var-def>
+                        
+                        <file action="write" path="${path}/Citilink/Descriptions/${i.toInt()}_d_${j}.html">    
+                        	<var-def name="oneNewDescr">
+                        		<xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
+                       				<var name="oneNewDescrPage"/>
+                    			</xpath>
+                        		<xpath expression='//tr/td[position()>1]/../td[position()=1]/p/text() | //tr/td[position()>1]/p/text()'>
+                                	<var name="oneNewDescrPage"/>
+                            	</xpath>
+                         	</var-def>
+                         </file>
+                        	
 							<var-def name="numberOfReviews">
 								<xpath expression='//ul[@class="tabs"]/li[@t="t2"]/a/text()'>
                                 <html-to-xml>
