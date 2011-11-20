@@ -87,7 +87,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
                 try {
                     lastAddedProductId = productDbController.addProduct(product);
                 } catch (StorageException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
                 lastAddedProductName = product.getName();
             }
@@ -133,7 +133,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             try {
                 reviewDbController.addReviewList(reviewList);
             } catch (StorageException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
             log.info("New review for " + lastAddedProductName + " with ID " + lastAddedProductId + " added.");
         }
