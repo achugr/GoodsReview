@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.miner.exception.DeleteException;
 
 import java.io.File;
+import java.io.IOException;
 
 public abstract class WebHarvestGrabber extends Grabber {
     private static final Logger log = Logger.getLogger(WebHarvestGrabber.class);
@@ -21,11 +22,13 @@ public abstract class WebHarvestGrabber extends Grabber {
     private String grabberConfig;
     private String path;
 
-    public abstract void findPages();
+    public abstract void findPages() throws IOException;
 
     public abstract void grabPages();
 
     public abstract void downloadPages();
+
+    public abstract void updateList();
 
     @Required
     public void setDownloadConfig(String downloadConfig) {
@@ -56,7 +59,7 @@ public abstract class WebHarvestGrabber extends Grabber {
 
     public void cleanFolder(File f) throws DeleteException {
         if (!f.exists()) {
-            log.info("Folder " + path + "Citilink/Pages/" + " not exist");
+            log.info("Cleaning Folder " + path + " not exist");
             return;
         }
         File[] files = f.listFiles();
@@ -70,7 +73,7 @@ public abstract class WebHarvestGrabber extends Grabber {
         }
         if (!f.delete())
             throw new DeleteException("Unavailable delete file");
-        log.info("Folder " + path + "Citilink/Pages/" + " deleted successfully");
+        log.info(" Cleaning Folder " + path + " deleted successfully");
     }
 
     @Override
@@ -78,6 +81,8 @@ public abstract class WebHarvestGrabber extends Grabber {
         try {
             log.info("Run started");
             cleanFolder(new File(path + "Citilink/Pages/"));
+            cleanFolder(new File(path + "Citilink/Descriptions/"));
+            updateList();
             findPages();
             downloadPages();
             grabPages();

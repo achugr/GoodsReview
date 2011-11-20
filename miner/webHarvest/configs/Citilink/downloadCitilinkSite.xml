@@ -16,10 +16,11 @@
     </var-def>
 
 
-        <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
+       <!-- <file action="write" path="${path}/Citilink/list/LatterLinks.xml">
             <![CDATA[ <body> ]]>
+        </file>  -->
+       <file action="write" path="${path}/Citilink/list/LatterLinks.txt">
         </file>
-
 
     <while condition="${MaxPage.toInt() + 1>i.toInt()}" index="i">
         <empty>
@@ -42,32 +43,6 @@
                 </list>
                 <body>
                     <empty>
-
-                        <file action="write" path="${path}/Citilink/Pages/${i.toInt()}_${j}.html">
-                            <var-def name="oneNewURL">
-                                <html-to-xml>
-                                    <http url="http://www.citilink.ru${oneNew}?opinion"/>
-                                </html-to-xml>
-                            </var-def>
-                        </file>
-                        
-                        <var-def name="oneNewDescrPage">
-                       		<html-to-xml>
-                            	<http url="http://www.citilink.ru${oneNew}"/>
-                        	</html-to-xml>
-                        </var-def>
-                        
-                        <file action="write" path="${path}/Citilink/Descriptions/${i.toInt()}_d_${j}.html">    
-                        	<var-def name="oneNewDescr">
-                        		<xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
-                       				<var name="oneNewDescrPage"/>
-                    			</xpath>
-                        		<xpath expression='//tr/td[position()>1]/../td[position()=1]/p/text() | //tr/td[position()>1]/p/text()'>
-                                	<var name="oneNewDescrPage"/>
-                            	</xpath>
-                         	</var-def>
-                         </file>
-                        	
 							<var-def name="numberOfReviews">
 								<xpath expression='//ul[@class="tabs"]/li[@t="t2"]/a/text()'>
                                 <html-to-xml>
@@ -76,10 +51,14 @@
                                 </xpath>
                             </var-def>
 							
-                        <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
-                            <![CDATA[ <page opinionnum="]]><var name="numberOfReviews"/><![CDATA[">]]>
+                        <file action="append" path="${path}/Citilink/list/LatterLinks.txt">
+                           <!-- <![CDATA[ <page opinionnum="]]><var name="numberOfReviews"/><![CDATA[">]]>
                             <var name="oneNew"/>
-                            <![CDATA[ </page>]]>
+                            <![CDATA[ </page>]]>   -->
+                            <var name="oneNew"/>
+                            <text> </text>
+                            <var name="numberOfReviews"/>
+                            <text>" "</text>
                         </file>
 
                     </empty>
@@ -88,7 +67,7 @@
         </empty>
     </while>
 
-    <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
+   <!-- <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
         <![CDATA[ </body> ]]>
-    </file>
+    </file>   -->
 </config>
