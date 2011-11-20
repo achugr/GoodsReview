@@ -1,11 +1,3 @@
-/**
- * Date: 20.11.2011
- * Time: 23:28:27
- * Author: 
- *   Sergey Serebryakov 
- *   sergey.serebryakoff@gmail.com
- */
-
 package ru.goodsReview.miner.utils;
 
 import ru.goodsReview.core.db.controller.ProductController;
@@ -22,17 +14,21 @@ import java.util.List;
 import java.io.*;
 
 /**
- * User: Sergey Serebryakov
  * Date: 20.11.2011
  * Time: 23:28:27
+ * Author:
+ *   Sergey Serebryakov
+ *   sergey.serebryakoff@gmail.com
  */
+
 // TODO: Think out a good name for this class.
 public class ReviewFileWriter {
     private static final String FILENAME = "data/miner/comments.txt";
-    private static final String BEFORE_PRODUCT_DELIMITER = "******************************";
-    private static final String AFTER_PRODUCT_DELIMITER = "******************************";
-    private static final String BEFORE_REVIEW_DELIMITER = "";
-    private static final String AFTER_REVIEW_DELIMITER = "------------------------------";
+    private static final String BEFORE_PRODUCT_DELIMITER = "<product>";
+    private static final String AFTER_PRODUCT_DELIMITER = "</product>";
+    private static final String BEFORE_REVIEW_DELIMITER = "<review>";
+    private static final String AFTER_REVIEW_DELIMITER = "</review>";
+    private static final String SPACE = "    ";
 
 
     private static final Logger log = Logger.getLogger(ReviewFileWriter.class);
@@ -47,14 +43,16 @@ public class ReviewFileWriter {
 
             for (Product product : products) {
                 out.println(BEFORE_PRODUCT_DELIMITER);
-                out.println(product.getName());
+                out.println(SPACE + product.getName());
                 out.println(AFTER_PRODUCT_DELIMITER);
 
                 List<Review> reviews = reviewController.getReviewsByProductId(product.getId());
                 for (Review review : reviews) {
-                    out.println(BEFORE_REVIEW_DELIMITER);
-                    out.println(review.getContent());
-                    out.println(AFTER_REVIEW_DELIMITER);
+                    if(review.getContent().length()>3){
+                        out.println(SPACE + BEFORE_REVIEW_DELIMITER);
+                        out.println(SPACE + SPACE + review.getContent()+"<=>");
+                        out.println(SPACE + AFTER_REVIEW_DELIMITER);
+                    }
                 }
             }
 

@@ -62,7 +62,6 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
 
     }
 
-    //TODO i will cleanse this trash at evening, soryy
     //it works, but i need distribute this code on logic-methods
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
 
@@ -84,7 +83,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             //add product into DB
             if (!lastAddedProductName.equals(product.getName())) {
                 ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-                System.out.println("product Name = " + product.getName());
+                log.info("product Name = " + product.getName());
                 try {
                     lastAddedProductId = productDbController.addProduct(product);
                 } catch (StorageException e) {
@@ -92,11 +91,10 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
                 }
                 lastAddedProductName = product.getName();
             }
-
             //takes indexes of text parts and parse opinion text
             String goodOpinion = citilinkDataTransformator.getGoodPartOfOpinion(opinionText);
             String badOpinion = citilinkDataTransformator.getBadPartOfOpinion(opinionText);
-            String commentOpinion = citilinkDataTransformator.getCommentPartOfOpinion(opinionText);;
+            String commentOpinion = citilinkDataTransformator.getCommentPartOfOpinion(opinionText);
 
             Review goodFeauture = new Review(lastAddedProductId, goodOpinion, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
             Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);

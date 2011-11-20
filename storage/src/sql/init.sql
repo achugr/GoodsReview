@@ -58,7 +58,7 @@ CREATE TABLE shop_link
   id Int NOT NULL AUTO_INCREMENT,
   product_id Int NOT NULL,
   shop_id Int NOT NULL,
-  url Varchar(300) NOT NULL UNIQUE,
+  url Varchar(250) NOT NULL UNIQUE,
   price Double,
  PRIMARY KEY (id)
 )
