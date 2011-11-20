@@ -44,7 +44,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
             ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
             Scraper scraper = new Scraper(config, ".");
             scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
-            scraper.addVariableToContext("path", getPath());
+            scraper.addVariableToContext("path", getPath()+"Citilink/Pages/");
             scraper.setDebug(true);
             scraper.execute();
 
