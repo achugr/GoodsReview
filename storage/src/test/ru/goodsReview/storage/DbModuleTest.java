@@ -11,6 +11,7 @@ import ru.goodsReview.storage.controller.*;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Random;
 
 /*
@@ -64,7 +65,9 @@ public class DbModuleTest {
         log.debug("Source name: " + source1.getName());
 
         ReviewDbController reviewController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
-        Review review0 = new Review(-1, product0id, "OK review content", "Sergey", System.currentTimeMillis(), "OK description",
+        Review review0 = new Review(-1, product0id, "OK review content", "Sergey",
+                                    new Timestamp(System.currentTimeMillis()),
+                                    "OK description",
                                     source0id, "http://url", 0.0, 0.0, 0, 0);
         long review0id = reviewController.addReview(review0);
         Review review1 = reviewController.getReviewById(review0id);
