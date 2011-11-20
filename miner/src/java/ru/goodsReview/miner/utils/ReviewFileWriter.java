@@ -22,9 +22,11 @@ import java.util.List;
 import java.io.*;
 
 /**
- * User: Sergey Serebryakov
- * Date: 20.11.2011
- * Time: 23:28:27
+ * Date: 21.11.2011
+ * Time: 23:28
+ * Author:
+ * Sergey Serebryakov
+ * sergey.serebryakoff@gmail.com
  */
 // TODO: Think out a good name for this class.
 public class ReviewFileWriter {

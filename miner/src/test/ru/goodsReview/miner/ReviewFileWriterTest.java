@@ -1,11 +1,3 @@
-/**
- * Date: 21.11.2011
- * Time: 0:08:07
- * Author: 
- *   Sergey Serebryakov 
- *   sergey.serebryakoff@gmail.com
- */
-
 package ru.goodsReview.miner;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -17,9 +9,11 @@ import ru.goodsReview.miner.utils.ReviewFileWriter;
 import java.io.IOException;
 
 /**
- * User: Sergey Serebryakov
  * Date: 21.11.2011
- * Time: 0:08:07
+ * Time: 0:08
+ * Author:
+ * Sergey Serebryakov
+ * sergey.serebryakoff@gmail.com
  */
 public class ReviewFileWriterTest {
     public static void main(String[] args) {
