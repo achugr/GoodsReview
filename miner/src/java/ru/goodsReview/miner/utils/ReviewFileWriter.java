@@ -42,16 +42,20 @@ public class ReviewFileWriter {
             List<Product> products = productController.getAllProducts();
 
             for (Product product : products) {
-                out.println(BEFORE_PRODUCT_DELIMITER);
+                /*out.println(BEFORE_PRODUCT_DELIMITER);
                 out.println(SPACE + product.getName());
-                out.println(AFTER_PRODUCT_DELIMITER);
+                out.println(AFTER_PRODUCT_DELIMITER); */
+                out.println(BEFORE_PRODUCT_DELIMITER + product.getName() + AFTER_PRODUCT_DELIMITER);
 
                 List<Review> reviews = reviewController.getReviewsByProductId(product.getId());
                 for (Review review : reviews) {
                     if(review.getContent().length()>3){
-                        out.println(SPACE + BEFORE_REVIEW_DELIMITER);
-                        out.println(SPACE + SPACE + review.getContent()+"<=>");
-                        out.println(SPACE + AFTER_REVIEW_DELIMITER);
+                        String str = review.getContent().replaceAll("\\n", "");
+                        out.println(SPACE + BEFORE_REVIEW_DELIMITER + str + AFTER_REVIEW_DELIMITER);
+                        /*out.println(SPACE + BEFORE_REVIEW_DELIMITER);
+                        out.println(SPACE + SPACE + review.getContent());
+                        out.println(SPACE + AFTER_REVIEW_DELIMITER);  */
+                        out.println();
                     }
                 }
             }
