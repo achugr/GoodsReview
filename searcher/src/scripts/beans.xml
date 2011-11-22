@@ -7,7 +7,7 @@
 
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
-    <bean id="searcher" class="ru.goodsReview.searcher.Searcher">
+    <bean id="searcher" class="ru.goodsReview.searcher.SimpleSearcher">
         <property name="directoryDB" value="data/index/products"/>
     </bean>
 </beans>

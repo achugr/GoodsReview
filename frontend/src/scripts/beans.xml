@@ -71,8 +71,8 @@
 
     <bean id="singleYaletProcessor" class="net.sf.xfresh.core.impl.DefaultSingleYaletProcessor"/>
 
-    <!--Searcher-->
-    <bean id="searcher" class="ru.goodsReview.searcher.Searcher" init-method="getReadyForSearch">
+    <!--SimpleSearcher-->
+    <bean id="searcher" class="ru.goodsReview.searcher.SimpleSearcher" init-method="getReadyForSearch">
         <property name="directoryDB" value="data/index/products"/>
     </bean>
     <!--Managers-->

@@ -27,7 +27,7 @@ public class SearchProductYalet implements Yalet {
     public void setSearchManager(SearchManager searchManager) {
         this.searchManager = searchManager;
     }
-
+    //todo parse answer!!!
     public void process(InternalRequest req, InternalResponse res) {
         String query = req.getParameter("query");
         log.debug("Request search query:" + query);
