@@ -3,9 +3,14 @@
 database
 out
 build
-database
 data
 miner/web
+
+docs/*.html
+docs/ru
+docs/resources
+docs/*.css
+docs/package-list
 
 #checkStyle and findBugs reports#
 checkstyle_report.xml
