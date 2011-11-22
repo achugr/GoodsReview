@@ -100,7 +100,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
                 reviewURL = reviewURL.replace("\" \"", "");
                 int position = allLinks.indexOf(reviewURL + ":::" + reviewNumber);
                 if (position == -1) {
-                    out.write("\n" + reviewURL + ":::" + reviewNumber);
+                    out.write(reviewURL + ":::" + reviewNumber+"\n");
                     //System.out.println("AAAAdddded");
                 } else {//System.out.println("Not!AAAAdddded");
                 }

@@ -181,8 +181,7 @@ public class CitilinkDataTransformator extends DataTransformator {
             if (opinionText.indexOf("Комментарий:") > 0) {
                 badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.indexOf("Комментарий:"));
             } else {
-                badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"),
-                                                   opinionText.indexOf("Недостатки:") + 1);
+                badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"));
             }
         }
         return badOpinion;
