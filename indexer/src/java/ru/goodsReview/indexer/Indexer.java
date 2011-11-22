@@ -74,16 +74,14 @@ public class Indexer extends TimerTask {
         Document document;
         for (Product product : products) {
             document = new Document();
-            document.add(new Field("id", Long.toString(product.getId()), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("category_id", Long.toString(product.getCategoryId()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("name", product.getName(), Field.Store.YES, Field.Index.ANALYZED));
+            document.add(addField("id", Long.toString(product.getId())));
+            document.add(addField("category_id", Long.toString(product.getCategoryId())));
+            document.add(addField("name", product.getName()));
             String desc = product.getDescription();
             if (desc != null) {
-                document.add(new Field("description", desc, Field.Store.YES, Field.Index.ANALYZED));
+                document.add(addField("description", desc));
             }
-            document.add(new Field("popularity", Integer.toString(product.getPopularity()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("popularity", Integer.toString(product.getPopularity())));
             writer.addDocument(document);
         }
         finish();
@@ -103,37 +101,31 @@ public class Indexer extends TimerTask {
         Document document;
         for (Review review : reviews) {
             document = new Document();
-            document.add(new Field("id", Long.toString(review.getId()), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("productId", Long.toString(review.getProductId()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("id", Long.toString(review.getId())));
+            document.add(addField("productId", Long.toString(review.getProductId())));
             String content = review.getContent();
             if (content != null) {
-                document.add(new Field("content", content, Field.Store.YES, Field.Index.ANALYZED));
+                document.add(addField("content", content));
             }
             String author = review.getContent();
             if (author != null) {
-                document.add(new Field("author", author, Field.Store.YES, Field.Index.ANALYZED));
+                document.add(addField("author", author));
             }
-            document.add(new Field("author", review.getAuthor(), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("date", String.valueOf(review.getTime()), Field.Store.YES, Field.Index.ANALYZED));
+            document.add(addField("author", review.getAuthor()));
+            document.add(addField("date", String.valueOf(review.getTime())));
             String desc = review.getDescription();
             if (desc != null) {
-                document.add(new Field("description", desc, Field.Store.YES, Field.Index.NO));
+                document.add(addField("description", desc));
             }
-            document.add(new Field("sourceId", Long.toString(review.getSourceId()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("sourceId", Long.toString(review.getSourceId())));
             String sourceURL = review.getSourceUrl();
             if (sourceURL != null) {
-                document.add(new Field("sourceUrl", sourceURL, Field.Store.YES, Field.Index.NO));
+                document.add(addField("sourceUrl", sourceURL));
             }
-            document.add(new Field("positivity", Double.toString(review.getPositivity()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("importance", Double.toString(review.getImportance()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("votesYes", Integer.toString(review.getVotesYes()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("votesNo", Integer.toString(review.getVotesNo()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("positivity", Double.toString(review.getPositivity())));
+            document.add(addField("importance", Double.toString(review.getImportance())));
+            document.add(addField("votesYes", Integer.toString(review.getVotesYes())));
+            document.add(addField("votesNo", Integer.toString(review.getVotesNo())));
             writer.addDocument(document);
         }
         finish();
@@ -153,21 +145,16 @@ public class Indexer extends TimerTask {
         Document document;
         for (Thesis thesis : theses) {
             document = new Document();
-            document.add(new Field("id", Long.toString(thesis.getId()), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("reviewId", Long.toString(thesis.getReviewId()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("thesisUniqueId", Long.toString(thesis.getThesisUniqueId()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("id", Long.toString(thesis.getId())));
+            document.add(addField("reviewId", Long.toString(thesis.getReviewId())));
+            document.add(addField("thesisUniqueId", Long.toString(thesis.getThesisUniqueId())));
             String content = thesis.getContent();
             if (content != null) {
-                document.add(new Field("content", content, Field.Store.YES, Field.Index.ANALYZED));
+                document.add(addField("content", content));
             }
-            document.add(new Field("frequency", Integer.toString(thesis.getFrequency()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("positivity", Double.toString(thesis.getPositivity()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("importance", Double.toString(thesis.getImportance()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("frequency", Integer.toString(thesis.getFrequency())));
+            document.add(addField("positivity", Double.toString(thesis.getPositivity())));
+            document.add(addField("importance", Double.toString(thesis.getImportance())));
             writer.addDocument(document);
         }
         finish();
@@ -187,19 +174,15 @@ public class Indexer extends TimerTask {
         for (ThesisUnique thesisUnique : thesesUnique) {
             document = new Document();
             document.add(
-                    new Field("id", Long.toString(thesisUnique.getId()), Field.Store.YES, Field.Index.ANALYZED));
+                    addField("id", Long.toString(thesisUnique.getId())));
             String content = thesisUnique.getContent();
             if (content != null) {
-                document.add(new Field("content", content, Field.Store.YES, Field.Index.ANALYZED));
+                document.add(addField("content", content));
             }
-            document.add(new Field("frequency", Integer.toString(thesisUnique.getFrequency()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("lastScan", String.valueOf(thesisUnique.getLastScan()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("positivity", Double.toString(thesisUnique.getPositivity()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("importance", Double.toString(thesisUnique.getImportance()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
+            document.add(addField("frequency", Integer.toString(thesisUnique.getFrequency())));
+            document.add(addField("lastScan", String.valueOf(thesisUnique.getLastScan())));
+            document.add(addField("positivity", Double.toString(thesisUnique.getPositivity())));
+            document.add(addField("importance", Double.toString(thesisUnique.getImportance())));
             writer.addDocument(document);
         }
         finish();
@@ -218,17 +201,20 @@ public class Indexer extends TimerTask {
         Document document;
         for (Category category : categories) {
             document = new Document();
-            document.add(new Field("id", Long.toString(category.getId()), Field.Store.YES, Field.Index.ANALYZED));
-            document.add(new Field("parentCategoryId", Long.toString(category.getParentCategoryId()), Field.Store.YES,
-                                   Field.Index.ANALYZED));
-            document.add(new Field("name", category.getName(), Field.Store.YES, Field.Index.ANALYZED));
+            document.add(addField("id", Long.toString(category.getId())));
+            document.add(addField("parentCategoryId", Long.toString(category.getParentCategoryId())));
+            document.add(addField("name", category.getName()));
             String desc = category.getDescription();
             if (desc != null) {
-                document.add(new Field("description", desc, Field.Store.YES, Field.Index.ANALYZED));
+                document.add(addField("description", desc));
             }
         }
         finish();
         log.debug("Category Index creating ended");
+    }
+
+    private Field addField(String name, String value){
+        return new Field(name, value, Field.Store.YES, Field.Index.ANALYZED);
     }
 
     /**

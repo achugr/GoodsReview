@@ -11,7 +11,7 @@ public class TestSearcher {
     public static void main(String[] args) throws Exception {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
                 "searcher/src/scripts/beans.xml");
-        Searcher searcher = (Searcher) context.getBean("searcher");
+        SimpleSearcher searcher = (SimpleSearcher) context.getBean("searcher");
         searcher.getReadyForSearch();
         List<Product> products = searcher.searchProductByName("eee");
 

@@ -6,6 +6,7 @@ import ru.goodsReview.core.model.Product;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.searcher.Searcher;
+import ru.goodsReview.searcher.SimpleSearcher;
 
 import java.util.ArrayList;
 import java.util.List;
