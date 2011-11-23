@@ -1,5 +1,7 @@
 package ru.goodsReview.core.model;
 
+import ru.goodsReview.backend.Document.Document;
+
 import java.sql.Timestamp;
 
 /*
@@ -9,7 +11,7 @@ import java.sql.Timestamp;
         Artemij Chugreev
         artemij.chugreev@gmail.com
 */
-public class Review {
+public class Review implements Document {
     private long id;
     private long productId;
     private String content;
@@ -28,6 +30,7 @@ public class Review {
         this.productId = productId;
         this.content = content;
     }
+
 
     public Review(long id, long productId, String content, String author, Timestamp time, String description, long sourceId,
                   String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {

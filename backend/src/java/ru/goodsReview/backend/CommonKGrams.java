@@ -1,29 +1,28 @@
 package ru.goodsReview.backend;
-
 /*
- *  Date: 1.10.11
- *   Time: 0:51
- *   Author:
- *      Artemij Chugreev
+ *  Date: 23.11.11
+ *   Time: 11:26
+ *   Author: 
+ *      Artemij Chugreev 
  *      artemij.chugreev@gmail.com
  */
 
-import ru.goodsReview.core.model.Review;
+import ru.goodsReview.backend.Document.Document;
 
 import java.util.*;
 
 //this class implements k-grams method
-public class KGrams {
+public class CommonKGrams {
     private Map<String, Boolean[]> kGramsTable;
     private static final int tokenSize = 2;
     private int kGramTableColumnsNum;
     private int tokensNum = 0;
 
     //constructor
-    public KGrams(List<Review> reviewList) {
-        this.kGramTableColumnsNum = reviewList.size();
+    public CommonKGrams(List<Document> documentList) {
+        this.kGramTableColumnsNum = documentList.size();
         this.kGramsTable = new HashMap<String, Boolean[]>();
-        this.kGramsTable = extractTokens(reviewList);
+        this.kGramsTable = extractTokens(documentList);
     }
 
     //return matrix of tokens and contains
@@ -31,58 +30,74 @@ public class KGrams {
         return this.kGramsTable;
     }
 
-    public Map<String, Boolean[]> extractTokens(List<Review> citilinkReviews) {
+    public Map<String, Boolean[]> extractTokens(List<Document> documentList) {
         char[] text;
         int i, j, k, n;
         int counter;
         String tokenS;
-        char[] token = new char[KGrams.tokenSize];
-        Boolean[] tokenIncitilinkReviews;
+        char[] token = new char[CommonKGrams.tokenSize];
+        Boolean[] tokenIsInDocument;
         // token must be realised as QUEUE ???
-        for (n = 0; n < citilinkReviews.size(); n++) {
-            text = citilinkReviews.get(n).getContent().toCharArray();
-            for (i = 0; i < text.length - KGrams.tokenSize + 1; i++) {
-                for (j = i, k = 0; j < i + KGrams.tokenSize; j++, k++) {
+        //for (n = 0; n < reviewList.size(); n++) {
+        n=0;
+        for(Document document : documentList){
+            //get content of document as char array
+            text = document.getContent().toCharArray();
+            for (i = 0; i < text.length - CommonKGrams.tokenSize + 1; i++) {
+                //select k-grams block of characters
+                for (j = i, k = 0; j < i + CommonKGrams.tokenSize; j++, k++) {
                     token[k] = text[j];
                 }
                 tokenS = new String(token);
                 if (this.kGramsTable.containsKey(tokenS)) {
-                    tokenIncitilinkReviews = this.kGramsTable.get(tokenS);
-                    tokenIncitilinkReviews[n] = true;
+//                    get info about in which document token is already find
+                    tokenIsInDocument = this.kGramsTable.get(tokenS);
+//                    set that this token is now in document #n
+                    tokenIsInDocument[n] = true;
                     System.out.print("\nthis token is already in map: " + tokenS + " ");
                     for (int m = 0; m < this.kGramTableColumnsNum; m++) {
-                        System.out.print(tokenIncitilinkReviews[m] + " -- ");
+                        System.out.print(tokenIsInDocument[m] + " -- ");
                     }
-
-                    this.kGramsTable.put(tokenS, tokenIncitilinkReviews);
+//                    update info about in which documents this token is find
+                    this.kGramsTable.put(tokenS, tokenIsInDocument);
                 } else {
-                    tokenIncitilinkReviews = new Boolean[this.kGramTableColumnsNum];
-                    tokenIncitilinkReviews[n] = true;
+//                    this token is new
+                    tokenIsInDocument = new Boolean[this.kGramTableColumnsNum];
+//                    set num of document in which this token is find
+                    tokenIsInDocument[n] = true;
                     System.out.print("\n" + tokenS + " ");
                     for (int m = 0; m < this.kGramTableColumnsNum; m++) {
-                        System.out.print(tokenIncitilinkReviews[m] + " -- ");
+                        System.out.print(tokenIsInDocument[m] + " -- ");
                     }
-                    this.kGramsTable.put(tokenS, tokenIncitilinkReviews);
+                    this.kGramsTable.put(tokenS, tokenIsInDocument);
                 }
 
             }
+            n++;
         }
+
+//        go on kGramsTable
+//        tokenIsInDocument - Bool array, that specified that any token is exist in any document
+//        if some value of tokenIsInDocument is NULL, set FALSE at this position
         Iterator tokens = this.kGramsTable.keySet().iterator();
-        Boolean[] isTokenIncitilinkReview;
         while (tokens.hasNext()) {
             this.tokensNum++;
             tokenS = tokens.next().toString();
-            isTokenIncitilinkReview = this.kGramsTable.get(tokenS);
+            tokenIsInDocument = this.kGramsTable.get(tokenS);
             for (i = 0; i < this.kGramTableColumnsNum; i++) {
-                if (isTokenIncitilinkReview[i] == null) {
-                    isTokenIncitilinkReview[i] = false;
+                if (tokenIsInDocument[i] == null) {
+                    tokenIsInDocument[i] = false;
                 }
-                this.kGramsTable.put(tokenS, isTokenIncitilinkReview);
+                this.kGramsTable.put(tokenS, tokenIsInDocument);
             }
         }
         return this.kGramsTable;
     }
 
+
+    /**
+     * @return String array representation of key set
+     */
     private String[] getKeys() {
         String[] tokens = new String[this.tokensNum];
         Iterator token = this.kGramsTable.keySet().iterator();
@@ -92,6 +107,11 @@ public class KGrams {
         return tokens;
     }
 
+    /**
+     *
+     @param token some String sequence
+     @return Boolean array that specified in which documents this token is exist
+     */
     private Boolean[] getValues(String token) {
         Boolean[] values;
         values = this.kGramsTable.get(token);
@@ -99,7 +119,7 @@ public class KGrams {
     }
 
 
-    public double compareCitilinkReviews() {
+    public double compareDocuments() {
         double similarity = 0;
         int i, numOfTests = this.tokensNum;
         int[][] signatureMatrix = new int[numOfTests][numOfTests];
@@ -129,11 +149,15 @@ public class KGrams {
         for (int i = 0; i < this.kGramTableColumnsNum; i++) {
             row[i] = -1;
         }
-        Boolean[] values;
+        Boolean[] tokenIsInDocument;
+//        go on array of random indexes(go on all tokens in random ??)
         for (int i = 0; i < randomIndexes.length; i++) {
-            values = this.getValues(tokens[randomIndexes[i]]);
+//           get bool array which specified, in which documents this token is exist
+            tokenIsInDocument = this.getValues(tokens[randomIndexes[i]]);
+//            go on all documents
             for (int j = 0; j < this.kGramTableColumnsNum; j++) {
-                if (values[j] && (row[j] == -1)) {
+//                if token exist in some document set in row of signature matrix
+                if (tokenIsInDocument[j] && (row[j] == -1)) {
                     row[j] = i;
                 }
             }
@@ -141,6 +165,11 @@ public class KGrams {
         return row;
     }
 
+    /**
+     creating random indexes
+     @param arraySize size of array
+     @return int array of random indexes
+     */
     public static int[] createRandomIndexes(int arraySize) {
         int[] randomIndexes = new int[arraySize];
         int i, tmp, rand1, rand2;
