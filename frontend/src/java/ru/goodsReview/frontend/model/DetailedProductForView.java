@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.model;
 
+import org.jetbrains.annotations.NotNull;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 
@@ -17,18 +18,19 @@ public class DetailedProductForView extends ProductForView {
     private List<ThesisForView> theses;
     private List<ReviewForView> reviews;
 
-    public DetailedProductForView(Product product, Category category, List<ThesisForView> theses,
-                                  List<ReviewForView> reviews) throws Exception {
+    public DetailedProductForView(@NotNull Product product, @NotNull Category category,
+                                  @NotNull List<ThesisForView> theses,
+                                  @NotNull List<ReviewForView> reviews) throws Exception {
         super(product, category);
         this.theses = theses;
         this.reviews = reviews;
     }
 
-    public List<ThesisForView> getTheses() {
+    public @NotNull List<ThesisForView> getTheses() {
         return theses;
     }
 
-    public List<ReviewForView> getReviews() {
+    public @NotNull List<ReviewForView> getReviews() {
         return reviews;
     }
 }

@@ -5,6 +5,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.service.SearchManager;
@@ -24,7 +25,7 @@ public class SearchProductYalet implements Yalet {
     private SearchManager searchManager;
 
     @Required
-    public void setSearchManager(SearchManager searchManager) {
+    public void setSearchManager(@NotNull SearchManager searchManager) {
         this.searchManager = searchManager;
     }
     //todo parse answer!!!
@@ -52,7 +53,7 @@ public class SearchProductYalet implements Yalet {
             res.add(Xmler.tag("count", String.valueOf(products.size())));
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("Something happens wrong with query: " + query);
+            log.error("Something happens wrong with query: " + query, e);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось. Query: " + query);
             res.add(ans);
         }

@@ -42,7 +42,7 @@ public class QueryUniqueDbController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            log.error("Error while inserting query_unique (probably not enough permissions): " + query);
+            log.error("Error while inserting query_unique (probably not enough permissions): " + query, e);
             throw new StorageException();
         }
     }

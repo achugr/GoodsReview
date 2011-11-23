@@ -29,8 +29,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
             log.info("Update list succecsful");
         } catch (Exception e) {
-            log.error("Cannot process update list");
-            log.error(e);
+            log.error("Cannot process update list", e);
         }
     }
 
@@ -69,15 +68,14 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
             log.info("Download pages succecsful");
         } catch (Exception e) {
-            log.error("Cannot process download pages");
-            log.error(e);
+            log.error("Cannot process download pages", e);
         }
     }
 
     @Override
     //TODO:: not add, if review number changes, only update
     public void findPages() {
-
+            this.updateList();
             log.info("Find pages started");
         try {
             FileInputStream ffstream = new FileInputStream("data/miner/Citilink/list/AllLinks.txt");
@@ -100,7 +98,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
                 reviewURL = reviewURL.replace("\" \"", "");
                 int position = allLinks.indexOf(reviewURL + ":::" + reviewNumber);
                 if (position == -1) {
-                    out.write("\n" + reviewURL + ":::" + reviewNumber);
+                    out.write(reviewURL + ":::" + reviewNumber+"\n");
                     //System.out.println("AAAAdddded");
                 } else {//System.out.println("Not!AAAAdddded");
                 }
@@ -109,8 +107,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
             out.close();
             log.info("Find pages succesful");
         } catch (Exception e) {
-            log.error("Cannot process find pages");
-            log.error(e);
+            log.error("Cannot process find pages", e);
         }
     }
 
@@ -128,8 +125,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
             log.info("Grabbing ended succecsful");
         } catch (Exception e) {
-            log.error("Cannot process grabber");
-            log.error(e);
+        log.error("Cannot process grabber", e);
         }
     }
 

@@ -35,8 +35,6 @@ public class DbModuleTest {
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
 
-        log.error("PRIVET");
-        log.info("PRIVET");
         Timestamp time = new Timestamp(System.currentTimeMillis());
         ThesisDbController thesisDbController = new ThesisDbController(simpleJdbcTemplate);
         {

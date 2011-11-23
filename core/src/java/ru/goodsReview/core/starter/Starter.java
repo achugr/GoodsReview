@@ -11,24 +11,37 @@ package ru.goodsReview.core.starter;
 import org.apache.log4j.Logger;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Starter {
     private static final Logger log = Logger.getLogger(Starter.class);
+    private final List<String> paths = new ArrayList<String>();
 
-    public static void main(final String[] args) {
-        if (args.length == 1) {
-            log.info("Module started");
-            final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
-            while (context.isRunning()){
-                ;
-            }
-            log.info("Module ended");
-        } else {
-            log.info("Project started");
-            final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext("/indexer/src/scripts/beans.xml");
-            final FileSystemXmlApplicationContext miner = new FileSystemXmlApplicationContext("/miner/src/scripts/beans.xml");
-            final FileSystemXmlApplicationContext backend = new FileSystemXmlApplicationContext("/backend/src/scripts/beans.xml");
-            final FileSystemXmlApplicationContext frontend = new FileSystemXmlApplicationContext("/frontend/src/scripts/beans.xml");
-            log.info("Project ended");
+    public Starter(List<String> paths){
+        this.paths.addAll(paths);
+    }
+
+    public void run(){
+        for(String path :paths){
+            final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(path);
         }
+    }
+
+    public static void main(final String[] args) throws InterruptedException{
+        List<String> paths = new ArrayList<String>();
+        if (args.length > 0) {
+            for(String s : args)
+                paths.add(s);
+
+        } else {
+            paths.add("/indexer/src/scripts/beans.xml");
+            paths.add("/miner/src/scripts/beans.xml");
+            paths.add("/backend/src/scripts/beans.xml");
+            paths.add("/frontend/src/scripts/beans.xml");
+        }
+        log.info("Project started");
+        new Starter(paths).run();
+        log.info("Project ended");
     }
 }

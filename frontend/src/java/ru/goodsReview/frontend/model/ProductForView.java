@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.model;
 
+import org.jetbrains.annotations.NotNull;
 import ru.goodsReview.core.model.Category;
 import ru.goodsReview.core.model.Product;
 
@@ -19,7 +20,7 @@ public class ProductForView {
     private final long categoryId;
     private final long popularity;
 
-    public ProductForView(Product product, Category category) throws Exception {
+    public ProductForView(@NotNull Product product, @NotNull Category category) throws Exception {
         name = product.getName();
         description = product.getDescription();
         id = product.getId();
