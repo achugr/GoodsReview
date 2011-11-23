@@ -77,7 +77,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
     @Override
     //TODO:: not add, if review number changes, only update
     public void findPages() {
-
+            this.updateList();
             log.info("Find pages started");
         try {
             FileInputStream ffstream = new FileInputStream("data/miner/Citilink/list/AllLinks.txt");
@@ -130,6 +130,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
         } catch (Exception e) {
             log.error("Cannot process grabber");
             log.error(e);
+            e.printStackTrace();
         }
     }
 

@@ -84,7 +84,6 @@ public abstract class WebHarvestGrabber extends Grabber {
                 cleanFolder(new File(path + "Citilink/Pages/"));
                 cleanFolder(new File(path + "Citilink/Descriptions/"));
             }
-            updateList();
             findPages();
             downloadPages();
             grabPages();

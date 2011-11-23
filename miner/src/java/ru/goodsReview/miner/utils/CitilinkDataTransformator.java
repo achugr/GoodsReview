@@ -164,9 +164,9 @@ public class CitilinkDataTransformator extends DataTransformator {
     public String getGoodPartOfOpinion(String opinionText) {
         String goodOpinion = "";
         if (opinionText.indexOf("Достоинства:") > 0) {
-            if (opinionText.indexOf("Недостатки:") > 0) {
+            if (opinionText.indexOf("Недостатки:") > 0 && (opinionText.indexOf("Достоинства:") < opinionText.indexOf("Недостатки:"))) {
                 goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Недостатки:"));
-            } else if (opinionText.indexOf("Комментарий:") > 0) {
+            } else if (opinionText.indexOf("Комментарий:") > 0 && (opinionText.indexOf("Достоинства:") < opinionText.indexOf("Комментарий:"))) {
                 goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"), opinionText.indexOf("Комментарий:"));
             } else {
                 goodOpinion = opinionText.substring(opinionText.indexOf("Достоинства:"));
@@ -178,8 +178,9 @@ public class CitilinkDataTransformator extends DataTransformator {
     public String getBadPartOfOpinion(String opinionText) {
         String badOpinion = "";
         if (opinionText.indexOf("Недостатки:") > 0) {
-            if (opinionText.indexOf("Комментарий:") > 0) {
+            if (opinionText.indexOf("Комментарий:") > 0 && opinionText.indexOf("Недостатки:") < opinionText.indexOf("Комментарий:")) {
                 badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"), opinionText.indexOf("Комментарий:"));
+
             } else {
                 badOpinion = opinionText.substring(opinionText.indexOf("Недостатки:"));
             }
