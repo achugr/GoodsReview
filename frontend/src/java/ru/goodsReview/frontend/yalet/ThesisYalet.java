@@ -5,6 +5,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.frontend.model.ThesisForView;
 import ru.goodsReview.frontend.service.ThesisManager;
@@ -24,7 +25,7 @@ public class ThesisYalet implements Yalet {
     private ThesisManager thesisManager;
 
     @Required
-    public void setThesisManager(ThesisManager thesisManager) {
+    public void setThesisManager(@NotNull ThesisManager thesisManager) {
         this.thesisManager = thesisManager;
     }
 

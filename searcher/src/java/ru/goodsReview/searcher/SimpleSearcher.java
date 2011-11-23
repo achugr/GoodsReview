@@ -12,6 +12,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.searcher.mapper.ProductMapper;
@@ -41,7 +42,7 @@ public class SimpleSearcher implements Searcher{
      * @param directoryDB
      */
     @Required
-    public void setDirectoryDB(String directoryDB) {
+    public void setDirectoryDB(@NotNull String directoryDB) {
         this.directoryDB = directoryDB;
     }
 
@@ -61,7 +62,8 @@ public class SimpleSearcher implements Searcher{
      * @throws ParseException
      * @throws IOException
      */
-    public List<Product> searchProductByName(String query) throws ParseException, IOException {
+
+    public @NotNull List<Product> searchProductByName(@NotNull String query) throws ParseException, IOException {
 
         Analyzer analyzer = new RussianAnalyzer(Version.LUCENE_34);
         QueryParser parser = new QueryParser(Version.LUCENE_34, "name", analyzer);

@@ -8,11 +8,12 @@ package ru.goodsReview.searcher;
  */
 
 import org.apache.lucene.queryParser.ParseException;
+import org.jetbrains.annotations.NotNull;
 import ru.goodsReview.core.model.Product;
 
 import java.io.IOException;
 import java.util.List;
 
 public interface Searcher {
-    public List<Product> searchProductByName(String query) throws ParseException, IOException;
+    public @NotNull List<Product> searchProductByName(@NotNull String query) throws ParseException, IOException;
 }

@@ -8,6 +8,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.*;
@@ -37,7 +38,7 @@ public class Indexer extends TimerTask {
      * @return Nothing.
      */
     @Required
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+    public void setJdbcTemplate(@NotNull SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -46,7 +47,7 @@ public class Indexer extends TimerTask {
      * @param directoryDB Place where writer should write an index.
      * @return
      */
-    private void init(String directoryDB) throws Exception {
+    private void init(@NotNull String directoryDB) throws Exception {
         SimpleFSDirectory directory = new SimpleFSDirectory(new File(directoryDB));
         writer = new IndexWriter(directory,new IndexWriterConfig(Version.LUCENE_34, new RussianAnalyzer(Version.LUCENE_34)));
         writer.deleteAll();
@@ -66,7 +67,7 @@ public class Indexer extends TimerTask {
      * @param directoryDB Place where index should be.
      * @throws Exception
      */
-    public void doProductsIndex(String directoryDB) throws Exception {
+    public void doProductsIndex(@NotNull String directoryDB) throws Exception {
         log.debug("Products Index creating started");
 
         init(directoryDB);
@@ -93,7 +94,7 @@ public class Indexer extends TimerTask {
      * @param directoryDB Place where index should be.
      * @throws Exception
      */
-    public void doReviewsIndex(String directoryDB) throws Exception {
+    public void doReviewsIndex(@NotNull String directoryDB) throws Exception {
         log.debug("Reviews Index creating started");
 
         init(directoryDB);
@@ -137,7 +138,7 @@ public class Indexer extends TimerTask {
      * @param directoryDB Place where index should be.
      * @throws Exception
      */
-    public void doThesesIndex(String directoryDB) throws Exception {
+    public void doThesesIndex(@NotNull String directoryDB) throws Exception {
         log.debug("Thesis Index creating started");
 
         init(directoryDB);
@@ -166,7 +167,7 @@ public class Indexer extends TimerTask {
      * @param directoryDB Place where index should be.
      * @throws Exception
      */
-    public void doThesesUniqueIndex(String directoryDB) throws Exception {
+    public void doThesesUniqueIndex(@NotNull String directoryDB) throws Exception {
         log.debug("ThesisUnique Index creating started");
         init(directoryDB);
         List<ThesisUnique> thesesUnique = new ThesisUniqueDbController(jdbcTemplate).getAllThesesUnique();
@@ -194,7 +195,7 @@ public class Indexer extends TimerTask {
      * @param directoryDB Place where index should be.
      * @throws Exception
      */
-    public void doCategoriesIndex(String directoryDB) throws Exception {
+    public void doCategoriesIndex(@NotNull String directoryDB) throws Exception {
         log.debug("Category Index creating started");
         init(directoryDB);
         List<Category> categories = new CategoryDbController(jdbcTemplate).getAllCategories();
@@ -213,7 +214,7 @@ public class Indexer extends TimerTask {
         log.debug("Category Index creating ended");
     }
 
-    private Field addField(String name, String value){
+    private Field addField(@NotNull String name, @NotNull String value){
         return new Field(name, value, Field.Store.YES, Field.Index.ANALYZED);
     }
 

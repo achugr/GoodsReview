@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.service;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
@@ -27,7 +28,7 @@ public class SearchManager {
     }
 
     @Required
-    public void setControllerFactory(ControllerFactory controllerFactory) {
+    public void setControllerFactory(@NotNull ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }
 
@@ -36,7 +37,7 @@ public class SearchManager {
         this.searcher = searcher;
     }
 
-    public List<DetailedProductForView> searchByName(String query) throws Exception {
+    public @NotNull List<DetailedProductForView> searchByName(String query) throws Exception {
         List<DetailedProductForView> products = new ArrayList<DetailedProductForView>();
         for (Product product : searcher.searchProductByName(query)) {
             DetailedProductForView pfv = productMapper.prepareDetailedProductForView(controllerFactory, product);

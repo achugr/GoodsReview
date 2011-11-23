@@ -2,13 +2,14 @@ package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
+import org.jetbrains.annotations.*;
+
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.frontend.mapper.ProductMapper;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import java.util.ArrayList;
 import java.util.List;
-
 /*
  *  Date: 30.10.11
  *   Time: 14:12
@@ -25,7 +26,7 @@ public class ProductManager {
 
 
     @Required
-    public void setControllerFactory(ControllerFactory controllerFactory) {
+    public void setControllerFactory(@NotNull ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }
 
@@ -46,7 +47,7 @@ public class ProductManager {
         return result;
     }
 
-    public List<DetailedProductForView> popularProducts() throws Exception {
+    public @NotNull List<DetailedProductForView> popularProducts() throws Exception {
         List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
         for (Product product : controllerFactory.getProductController().getPopularProducts(popularCount)) {
             log.debug("Product added:" + product.getName() + " Id:" + product.getId());

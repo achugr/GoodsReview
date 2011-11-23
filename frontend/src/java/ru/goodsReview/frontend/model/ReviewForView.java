@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.model;
 
+import org.jetbrains.annotations.NotNull;
 import ru.goodsReview.core.model.Review;
 
 import java.sql.Timestamp;
@@ -27,7 +28,7 @@ public class ReviewForView {
     private final int votesNo;
     private final List<ThesisForView> theses;
 
-    public ReviewForView(Review review, List<ThesisForView> theses) {
+    public ReviewForView(@NotNull Review review, @NotNull List<ThesisForView> theses) {
         this.id = review.getId();
         this.productId = review.getProductId();
         this.content = review.getContent();
