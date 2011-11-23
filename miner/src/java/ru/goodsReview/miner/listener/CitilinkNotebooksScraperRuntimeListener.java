@@ -121,7 +121,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     public void onExecutionError
             (Scraper scraper, Exception e) {
         if (e != null) {
-            log.error("CitilinkNotebooksScraperRuntimeListener error");
+            log.error("CitilinkNotebooksScraperRuntimeListener error", e);
         }
     }
 }

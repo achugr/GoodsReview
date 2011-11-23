@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.frontend.mapper.ProductMapper;
@@ -26,7 +27,7 @@ public class ReviewManager {
 
 
     @Required
-    public void setControllerFactory(ControllerFactory controllerFactory) {
+    public void setControllerFactory(@NotNull ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }
 
@@ -35,7 +36,7 @@ public class ReviewManager {
         this.popularCount = popularCount;
     }
 
-    public List<ReviewForView> reviewById(long id) throws Exception {
+    public @NotNull List<ReviewForView> reviewById(long id) throws Exception {
         List<ReviewForView> result = new ArrayList<ReviewForView>();
         ReviewForView rfv = reviewMapper.prepareReviewForView(controllerFactory,
                                                                controllerFactory.getReviewController().getReviewById(

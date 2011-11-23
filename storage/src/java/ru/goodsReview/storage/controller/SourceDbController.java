@@ -42,7 +42,7 @@ public class SourceDbController implements SourceController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            log.error("Error while inserting source (probably not enough permissions): " + source);
+            log.error("Error while inserting source (probably not enough permissions): " + source, e);
             throw new StorageException();
         }
     }

@@ -1,6 +1,7 @@
 package ru.goodsReview.frontend.service;
 
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.frontend.model.ThesisForView;
@@ -25,11 +26,11 @@ public class ThesisManager {
     }
 
     @Required
-    public void setControllerFactory(ControllerFactory controllerFactory) {
+    public void setControllerFactory(@NotNull ControllerFactory controllerFactory) {
         this.controllerFactory = controllerFactory;
     }
 
-    public List<ThesisForView> thesesByProduct(long id) {
+    public @NotNull List<ThesisForView> thesesByProduct(long id) {
         List<ThesisForView> result = new ArrayList<ThesisForView>();
 
         List<Thesis> theses = controllerFactory.getThesisController().getThesesByProductId(id);

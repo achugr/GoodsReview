@@ -5,6 +5,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.frontend.model.DetailedProductForView;
 import ru.goodsReview.frontend.service.ProductManager;
@@ -24,7 +25,7 @@ public class PopularProductsYalet implements Yalet {
     private ProductManager productManager;
 
     @Required
-    public void setProductManager(ProductManager productManager) {
+    public void setProductManager(@NotNull ProductManager productManager) {
         this.productManager = productManager;
     }
 
@@ -41,7 +42,7 @@ public class PopularProductsYalet implements Yalet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("Something happens wrong");
+            log.error("Something happens wrong", e);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось.");
             res.add(ans);
         }

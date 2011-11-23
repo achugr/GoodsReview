@@ -1,5 +1,6 @@
 package ru.goodsReview.frontend.model;
 
+import org.jetbrains.annotations.NotNull;
 import ru.goodsReview.core.model.Thesis;
 
 /*
@@ -20,7 +21,7 @@ public class ThesisForView {
     private final double positivity;
     private final double importance;
 
-    public ThesisForView(Thesis thesis) {
+    public ThesisForView(@NotNull Thesis thesis) {
         this.id = thesis.getId();
         this.reviewId = thesis.getReviewId();
         this.content = thesis.getContent();

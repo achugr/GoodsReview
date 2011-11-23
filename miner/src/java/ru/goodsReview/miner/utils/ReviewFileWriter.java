@@ -58,7 +58,7 @@ public class ReviewFileWriter {
 
             out.close();
         } catch (IOException e) {
-            log.error("I/O error when trying to write to file: " + FILENAME);
+            log.error("I/O error when trying to write to file: " + FILENAME, e);
             throw e;
         }
     }

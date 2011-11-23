@@ -5,6 +5,7 @@ import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
 import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.frontend.model.ReviewForView;
 import ru.goodsReview.frontend.service.ReviewManager;
@@ -25,7 +26,7 @@ public class ReviewYalet implements Yalet {
     private ReviewManager reviewManager;
 
     @Required
-    public void setReviewManager(ReviewManager reviewManager) {
+    public void setReviewManager(@NotNull ReviewManager reviewManager) {
         this.reviewManager = reviewManager;
     }
 
@@ -44,7 +45,7 @@ public class ReviewYalet implements Yalet {
                 res.add(ans);
             }
         } catch (Exception e) {
-            log.error("Something happens wrong with id: " + id);
+            log.error("Something happens wrong with id: " + id, e);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось. Id: " + id);
             res.add(ans);
         }

@@ -29,8 +29,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
             log.info("Update list succecsful");
         } catch (Exception e) {
-            log.error("Cannot process update list");
-            log.error(e);
+            log.error("Cannot process update list", e);
         }
     }
 
@@ -69,8 +68,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
             log.info("Download pages succecsful");
         } catch (Exception e) {
-            log.error("Cannot process download pages");
-            log.error(e);
+            log.error("Cannot process download pages", e);
         }
     }
 
@@ -109,8 +107,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
             out.close();
             log.info("Find pages succesful");
         } catch (Exception e) {
-            log.error("Cannot process find pages");
-            log.error(e);
+            log.error("Cannot process find pages", e);
         }
     }
 
@@ -128,9 +125,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
             log.info("Grabbing ended succecsful");
         } catch (Exception e) {
-            log.error("Cannot process grabber");
-            log.error(e);
-            e.printStackTrace();
+        log.error("Cannot process grabber", e);
         }
     }
 

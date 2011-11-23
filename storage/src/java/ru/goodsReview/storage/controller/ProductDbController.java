@@ -38,7 +38,7 @@ public class ProductDbController implements ProductController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            log.error("Error while inserting product (probably not enough permissions): " + product);
+            log.error("Error while inserting product (probably not enough permissions): " + product, e);
             throw new StorageException();
         }
     }
