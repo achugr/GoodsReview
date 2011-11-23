@@ -38,7 +38,7 @@ public class ThesisUniqueDbController implements ThesisUniqueController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            log.error("Error while inserting thesis_unique (probably not enough permissions): " + thesisUnique);
+            log.error("Error while inserting thesis_unique (probably not enough permissions): " + thesisUnique, e);
             throw new StorageException();
         }
     }

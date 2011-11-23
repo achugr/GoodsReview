@@ -232,7 +232,7 @@ public class Indexer extends TimerTask {
             doThesesUniqueIndex("data/index/theseUnique");
             log.info("Index creating ended started");
         } catch (Exception e) {
-            log.error(e);
+            log.error("Index may be ended bad", e);
         }
     }
 }

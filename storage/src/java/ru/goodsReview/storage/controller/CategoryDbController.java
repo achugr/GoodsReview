@@ -38,7 +38,7 @@ public class CategoryDbController implements CategoryController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            log.error("Error while inserting category (probably not enough permissions): " + category);
+            log.error("Error while inserting category (probably not enough permissions): " + category, e);
             throw new StorageException();
         }
     }

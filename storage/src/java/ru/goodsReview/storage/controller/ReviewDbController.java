@@ -39,7 +39,7 @@ public class ReviewDbController implements ReviewController {
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
-            log.error("Error while inserting review (probably not enough permissions): " + review);
+            log.error("Error while inserting review (probably not enough permissions): " + review, e);
             throw new StorageException();
         }
     }
@@ -88,7 +88,7 @@ public class ReviewDbController implements ReviewController {
                     new Object[]{review.getProductId(), review.getContent(), review.getAuthor(), review.getTime(), review.getDescription(), review.getSourceId(), review.getSourceUrl(), review.getPositivity(), review.getImportance(), review.getVotesYes(), review.getVotesNo(), review.getId()},
                     new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP, Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.INTEGER, Types.INTEGER, Types.INTEGER});
         } catch (DataAccessException e) {
-            log.error("Error while updating review (probably not enough permissions): " + review);
+            log.error("Error while updating review (probably not enough permissions): " + review, e);
             throw new StorageException();
         }
     }

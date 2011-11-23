@@ -42,7 +42,7 @@ public class PopularProductsYalet implements Yalet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("Something happens wrong");
+            log.error("Something happens wrong", e);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось.");
             res.add(ans);
         }

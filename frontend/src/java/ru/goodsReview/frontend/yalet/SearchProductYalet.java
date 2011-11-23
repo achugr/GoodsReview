@@ -53,7 +53,7 @@ public class SearchProductYalet implements Yalet {
             res.add(Xmler.tag("count", String.valueOf(products.size())));
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("Something happens wrong with query: " + query);
+            log.error("Something happens wrong with query: " + query, e);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось. Query: " + query);
             res.add(ans);
         }

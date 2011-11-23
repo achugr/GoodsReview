@@ -45,7 +45,7 @@ public class ReviewYalet implements Yalet {
                 res.add(ans);
             }
         } catch (Exception e) {
-            log.error("Something happens wrong with id: " + id);
+            log.error("Something happens wrong with id: " + id, e);
             Xmler.Tag ans = Xmler.tag("answer", "Все сломалось. Id: " + id);
             res.add(ans);
         }

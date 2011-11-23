@@ -92,8 +92,7 @@ public abstract class WebHarvestGrabber extends Grabber {
             cleanFolder(new File(path + "Citilink/Descriptions/"));
             log.info("Run succecsful");
         } catch (Exception e) {
-            log.error("Cannot process run");
-            log.error(e);
+            log.error("Cannot process run", e);
         }
     }
 }
