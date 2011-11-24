@@ -33,12 +33,29 @@ public class ThesisUniqueDbController implements ThesisUniqueController {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
-                    new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique.getPositivity(), thesisUnique.getImportance()},
+                    new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique
+                            .getPositivity(), thesisUnique.getImportance()},
                     new int[]{Types.VARCHAR, Types.INTEGER, Types.DATE, Types.DOUBLE, Types.DOUBLE});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
             return lastId;
         } catch (DataAccessException e) {
             log.error("Error while inserting thesis_unique (probably not enough permissions): " + thesisUnique, e);
+            throw new StorageException();
+        }
+    }
+
+    public void updateThesisUniqueByContent(String content, int frequency) throws StorageException {
+
+        ThesisUnique thesisUnique = getThesisUniqueByContent(content);
+        frequency += thesisUnique.getFrequency();
+        log.info("thesis = " + thesisUnique.getContent());
+        try {
+            simpleJdbcTemplate.getJdbcOperations().update(
+                    "UPDATE thesis_unique SET frequency = ? WHERE content = ?",
+                    new Object[]{frequency, content});
+        } catch (DataAccessException e) {
+            log.error("Error while updating thesis_unique (probably not enough permissions) with content : " +
+                              content, e);
             throw new StorageException();
         }
     }
@@ -59,7 +76,8 @@ public class ThesisUniqueDbController implements ThesisUniqueController {
     }
 
     public List<ThesisUnique> getAllThesesUnique() {
-        List<ThesisUnique> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis_unique", thesisUniqueMapper);
+        List<ThesisUnique> products = simpleJdbcTemplate.getJdbcOperations()
+                                                        .query("SELECT * FROM thesis_unique", thesisUniqueMapper);
         return products;
     }
 
