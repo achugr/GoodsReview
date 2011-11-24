@@ -2,10 +2,15 @@ package ru.goodsReview.backend;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.exception.StorageException;
+import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
+import ru.goodsReview.storage.controller.ThesisDbController;
 
 import javax.sql.DataSource;
+import java.util.List;
+import java.util.Map;
 
 /*
  *  Date: 15.10.11
@@ -22,7 +27,7 @@ public class Test {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StorageException {
 
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
                        "storage/src/scripts/beans.xml");
@@ -32,6 +37,24 @@ public class Test {
 
         ReviewDbController reviewDbController = new ReviewDbController(simpleJdbcTemplate);
         ProductDbController productDbController = new ProductDbController(simpleJdbcTemplate);
+        ThesisDbController th = new ThesisDbController(simpleJdbcTemplate);
+
+        Review rev1 = new Review(1, "beer vodka tequila");
+        Review rev2 = new Review(1, "vodka cogniac beer vodka");
+
+        //reviewDbController.addReview(rev1);
+        //reviewDbController.addReview(rev2);
+        List<Review> list = reviewDbController.getReviewsByProductId(1);
+
+        AnalyzeThesis analyzeThesis = new AnalyzeThesis(simpleJdbcTemplate);
+        //Map<String, Integer> map =  analyzeThesis.simpleAdditionOfThesis(list);
+        //Map<String, Long> map2 = analyzeThesis.simpleFillingTU(map);
+        //analyzeThesis.simpleFillingTUIdField(map2);
+        Map<Long, Double> map = analyzeThesis.mapOfTFIDF(list);
+        for(Map.Entry<Long, Double> entry : map.entrySet()){
+            System.out.println(entry.getValue());
+        }
+
         /*
         Product pro1 = new Product(1, "Motorola", "bad phone", 0);
         Product pro2 = new Product(1, "Motorola Razer V3", "very bad phone",0);

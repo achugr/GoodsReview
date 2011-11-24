@@ -23,6 +23,12 @@ public class Review {
     private int votesYes;
     private int votesNo;
 
+
+    public Review(long productId, String content) {
+        this.productId = productId;
+        this.content = content;
+    }
+
     public Review(long id, long productId, String content) {
         this.id = id;
         this.productId = productId;
