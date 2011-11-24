@@ -37,15 +37,18 @@ public class DbModuleTest {
 
         Timestamp time = new Timestamp(System.currentTimeMillis());
         ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(simpleJdbcTemplate);
-        /*{
+        {
             ThesisUnique thesisUnique = new ThesisUnique("good", 2, time, 1.0, 1.0);
             thesisUniqueDbController.addThesisUnique(thesisUnique);
         }
         {
-            ThesisUnique thesisUnique = new ThesisUnique("bad", 0, time, 1.0, 1.0);
+            ThesisUnique thesisUnique = new ThesisUnique("bad", 5, time, 1.0, 1.0);
             thesisUniqueDbController.addThesisUnique(thesisUnique);
-        }  */
-        thesisUniqueDbController.updateThesisUniqueByContent("good", 8);
+        }
+        {
+            ThesisUnique thesisUnique = new ThesisUnique("uuuu", 20, time, 1.0, 1.0);
+            thesisUniqueDbController.addThesisUnique(thesisUnique);
+        }
 
 
     }

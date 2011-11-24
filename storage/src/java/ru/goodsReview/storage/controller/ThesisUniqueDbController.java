@@ -30,17 +30,23 @@ public class ThesisUniqueDbController implements ThesisUniqueController {
     }
 
     public long addThesisUnique(ThesisUnique thesisUnique) throws StorageException {
-        try {
-            simpleJdbcTemplate.getJdbcOperations().update(
-                    "INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
-                    new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique
-                            .getPositivity(), thesisUnique.getImportance()},
-                    new int[]{Types.VARCHAR, Types.INTEGER, Types.DATE, Types.DOUBLE, Types.DOUBLE});
-            long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
-            return lastId;
-        } catch (DataAccessException e) {
-            log.error("Error while inserting thesis_unique (probably not enough permissions): " + thesisUnique, e);
-            throw new StorageException();
+        if(getThesisUniqueByContent(thesisUnique.getContent())==null){
+            try {
+                simpleJdbcTemplate.getJdbcOperations().update(
+                        "INSERT INTO thesis_unique (content, frequency, last_scan, positivity, importance) VALUES(?,?,?,?,?)",
+                        new Object[]{thesisUnique.getContent(), thesisUnique.getFrequency(), thesisUnique.getLastScan(), thesisUnique
+                                .getPositivity(), thesisUnique.getImportance()},
+                        new int[]{Types.VARCHAR, Types.INTEGER, Types.DATE, Types.DOUBLE, Types.DOUBLE});
+                long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
+                return lastId;
+            } catch (DataAccessException e) {
+                log.error("Error while inserting thesis_unique (probably not enough permissions): " + thesisUnique, e);
+                throw new StorageException();
+            }
+        } else {
+            updateThesisUniqueByContent(thesisUnique.getContent(), thesisUnique.getFrequency());
+            //TODO must we fix this?
+            return -1;
         }
     }
 
@@ -72,7 +78,12 @@ public class ThesisUniqueDbController implements ThesisUniqueController {
         List<ThesisUnique> theses = simpleJdbcTemplate.getJdbcOperations().query(
                 "SELECT * FROM thesis_unique WHERE content = ?", new Object[]{content}, new int[]{Types.VARCHAR},
                 thesisUniqueMapper);
-        return theses.get(0);
+        //TODO is it good practice?
+        if(theses.size()>0){
+            return theses.get(0);
+        } else {
+            return null;
+        }
     }
 
     public List<ThesisUnique> getAllThesesUnique() {
