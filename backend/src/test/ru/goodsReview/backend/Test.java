@@ -3,14 +3,12 @@ package ru.goodsReview.backend;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.Review;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 
 import javax.sql.DataSource;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
  *  Date: 15.10.11
@@ -20,6 +18,7 @@ import java.util.Map;
  *      artemij.chugreev@gmail.com
  */
 
+
 public class Test {
     private static SimpleJdbcTemplate jdbcTemplate;
 
@@ -27,6 +26,11 @@ public class Test {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public List SortMap(Map<Long, Double> map){
+        List list = new ArrayList(map.entrySet());
+        Collections.sort(list, new ValueComparator());
+        return list;
+    }
     public static void main(String[] args) throws StorageException {
 
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
@@ -39,22 +43,30 @@ public class Test {
         ProductDbController productDbController = new ProductDbController(simpleJdbcTemplate);
         ThesisDbController th = new ThesisDbController(simpleJdbcTemplate);
 
-        Review rev1 = new Review(1, "beer vodka tequila");
-        Review rev2 = new Review(1, "vodka cogniac beer vodka");
 
         //reviewDbController.addReview(rev1);
         //reviewDbController.addReview(rev2);
-        List<Review> list = reviewDbController.getReviewsByProductId(1);
 
         AnalyzeThesis analyzeThesis = new AnalyzeThesis(simpleJdbcTemplate);
-        //Map<String, Integer> map =  analyzeThesis.simpleAdditionOfThesis(list);
-        //Map<String, Long> map2 = analyzeThesis.simpleFillingTU(map);
-        //analyzeThesis.simpleFillingTUIdField(map2);
-        Map<Long, Double> map = analyzeThesis.mapOfTFIDF(list);
+        /*
+        int size =  productDbController.getAllProducts().size();
+        for(int i = 1; i < size; i++){
+             analyzeThesis.updateThesisByProductId(i);
+        }
+        */
+        Map<Long, Double> nums = analyzeThesis.mapOfTFIDF(reviewDbController.getAllReviews());
+        Test test = new Test();
+        List list = test.SortMap(nums);
+        for(int i = 0; i < list.size(); ++i){
+            System.out.println(list.get(i));
+        }
+        /*
+        Map<Long, Double> map = analyzeThesis.mapOfTFIDF(reviewDbController.getAllReviews());
         for(Map.Entry<Long, Double> entry : map.entrySet()){
+            System.out.print(entry.getKey() + ' ');
             System.out.println(entry.getValue());
         }
-
+        */
         /*
         Product pro1 = new Product(1, "Motorola", "bad phone", 0);
         Product pro2 = new Product(1, "Motorola Razer V3", "very bad phone",0);

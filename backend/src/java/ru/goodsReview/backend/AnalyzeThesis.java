@@ -63,7 +63,7 @@ public class AnalyzeThesis extends TimerTask {
         trash57("или"), trash58("1"),trash59("хоть"), trash60("чуть"), trash61("тут"),
         trash62("во"),trash63("еще"), trash64("да"), trash65("уже"), trash66("всё"), trash67("чем"),
         trash68("1."), trash69("2."),trash70("3."),trash71("4."),trash73("5."), trash74("пока"), trash75("нём"),
-        trash76("него"), trash77("вот"), trash78("через"), trash79("под");
+        trash76("него"), trash77("вот"), trash78("через"), trash79("под"),trash80("ли"), trash81("почти");
 
         private final String trash;
 
@@ -330,6 +330,7 @@ public class AnalyzeThesis extends TimerTask {
             } catch (StorageException e) {
                 // TODO: handle this situation.
                 e.printStackTrace();
+                System.out.print(entry.getKey());
             }
             recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
             tableOfId.put(entry.getKey(), recievedTU.getId());
@@ -343,10 +344,10 @@ public class AnalyzeThesis extends TimerTask {
      * filling TUid parametrs in each thesis
      * @param tableOfId - map, where key - thesisUnique content, value - its id in table
      */
-    private void FillingTUIdParam(Map<String, Long> tableOfId){
+    private void FillingTUIdParam(Map<String, Long> tableOfId, long productId){
         //считываем из базы все тезисы и дописываем в них поля!
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-        List<Thesis> listOfThesis = thesisDbController.getAllTheses();
+        List<Thesis> listOfThesis = thesisDbController.getThesesByProductId(productId);
         for(Thesis thesis : listOfThesis){
             thesisDbController.setThesisUniqueId(thesis.getId(), tableOfId.get(thesis.getContent()));
         }
@@ -377,13 +378,13 @@ public class AnalyzeThesis extends TimerTask {
         return mapOfTFIDF;
     }
 
-    private void updateThesisByProductId(long productId) throws StorageException {
+    public void updateThesisByProductId(long productId) throws StorageException {
         ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
         List<Review> desiredReviews;
         desiredReviews = reviewDbController.getReviewsByProductId(productId);
-        Map<String, Integer> map = additioningOfThesisesAndGettingOfTUs(desiredReviews);
-        Map<String, Long> map2 = AdditionOffTUtoDb(map);
-        FillingTUIdParam(map2);
+        Map<String, Integer> pairsTUandFreq = additioningOfThesisesAndGettingOfTUs(desiredReviews);
+        Map<String, Long> pairsTUandId = AdditionOffTUtoDb(pairsTUandFreq);
+        FillingTUIdParam(pairsTUandId, productId);
     }
     @Override
     public void run() {
