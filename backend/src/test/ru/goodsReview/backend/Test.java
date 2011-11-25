@@ -26,8 +26,8 @@ public class Test {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List SortMap(Map<Long, Double> map){
-        List list = new ArrayList(map.entrySet());
+    public List<Map.Entry<Long, Double>> SortMap(Map<Long, Double> map){
+        List<Map.Entry<Long, Double>> list = new ArrayList(map.entrySet());
         Collections.sort(list, new ValueComparator());
         return list;
     }
@@ -56,10 +56,12 @@ public class Test {
         */
         Map<Long, Double> nums = analyzeThesis.mapOfTFIDF(reviewDbController.getAllReviews());
         Test test = new Test();
-        List list = test.SortMap(nums);
-        for(int i = 0; i < list.size(); ++i){
-            System.out.println(list.get(i));
+        List<Map.Entry<Long, Double>> list = test.SortMap(nums);
+        for(int i = 0; i < 10; ++i){
+            //System.out.println(th.getThesisById(list.get(i).getKey()).getContent());
         }
+
+        //System.out.println(th.getThesisById(675).getContent());
         /*
         Map<Long, Double> map = analyzeThesis.mapOfTFIDF(reviewDbController.getAllReviews());
         for(Map.Entry<Long, Double> entry : map.entrySet()){
