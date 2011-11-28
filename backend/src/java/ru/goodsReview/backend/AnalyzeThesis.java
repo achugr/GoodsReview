@@ -85,7 +85,7 @@ public class AnalyzeThesis extends TimerTask {
         String str = string.toLowerCase();
         str = str.replaceAll("\\s+", "").trim();
         for(int i = 0; i < trashWords.length; ++i){
-            if(str.equals(trashWords[i].getTrash())){
+            if(str.equals(trashWords[i].getTrash()) || (!Character.isLetter(str.charAt(0)))){
                 return true;
             }
         }

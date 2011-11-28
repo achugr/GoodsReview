@@ -22,33 +22,19 @@ import java.util.*;
 public class Test {
     private static SimpleJdbcTemplate jdbcTemplate;
 
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List SortMap(Map<Long, Double> map) {
-        List list = new ArrayList(map.entrySet());
+    public List<Map.Entry<Long, Double>> SortMap(Map<Long, Double> map){
+        List<Map.Entry<Long, Double>> list = new ArrayList(map.entrySet());
         Collections.sort(list, new ValueComparator());
         return list;
     }
-
-    public static void kGramsTest() {
-        List<String> list = new ArrayList<String>();
-        {
-            list.add("lenovo thinkpad x220");
-        }
-        {
-            list.add("lenovo ideapad");
-        }
-        KGrams kGrams = new KGrams(list);
-        kGrams.compareDocuments();
-
-    }
-
     public static void main(String[] args) throws StorageException {
 
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                "storage/src/scripts/beans.xml");
+                       "storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
 
@@ -70,10 +56,12 @@ public class Test {
         */
         Map<Long, Double> nums = analyzeThesis.mapOfTFIDF(reviewDbController.getAllReviews());
         Test test = new Test();
-        List list = test.SortMap(nums);
-        for (int i = 0; i < list.size(); ++i) {
-            System.out.println(list.get(i));
+        List<Map.Entry<Long, Double>> list = test.SortMap(nums);
+        for(int i = 0; i < 10; ++i){
+            //System.out.println(th.getThesisById(list.get(i).getKey()).getContent());
         }
+
+        //System.out.println(th.getThesisById(675).getContent());
         /*
         Map<Long, Double> map = analyzeThesis.mapOfTFIDF(reviewDbController.getAllReviews());
         for(Map.Entry<Long, Double> entry : map.entrySet()){

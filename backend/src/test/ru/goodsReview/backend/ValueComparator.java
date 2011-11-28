@@ -23,6 +23,6 @@ public class ValueComparator implements Comparator{
            Map.Entry me2 = (Map.Entry) object2;
            Comparable comparable1 = (Comparable) me1.getValue();
            Comparable comparable2 = (Comparable) me2.getValue();
-           return comparable1.compareTo(comparable2);
+           return comparable2.compareTo(comparable1);
        }
 }
