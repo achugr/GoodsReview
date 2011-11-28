@@ -47,6 +47,9 @@ public class Thesis {
         this.importance = importance;
     }
 
+    public Thesis() {
+    }
+
     public long getId() {
         return id;
     }
