@@ -5,7 +5,7 @@
 * Artemij Chugreev
 * artemij.chugreev@gmail.com
 */
-package ru.goodsReview.backend;
+package ru.goodsReview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;

@@ -1,4 +1,4 @@
-package ru.goodsReview.backend;
+package ru.goodsReview.analyzer;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;

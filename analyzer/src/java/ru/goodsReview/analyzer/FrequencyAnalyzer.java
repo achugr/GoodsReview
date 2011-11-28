@@ -1,4 +1,4 @@
-package ru.goodsReview.backend;
+package ru.goodsReview.analyzer;
 
 import ru.goodsReview.core.model.Review;
 

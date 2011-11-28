@@ -1,4 +1,4 @@
-package ru.goodsReview.backend;
+package ru.goodsReview.analyzer;
 /*
  *  Date: 16.11.11
  *   Time: 12:26
