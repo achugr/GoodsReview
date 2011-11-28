@@ -28,7 +28,8 @@
              includes="ru/goodsReview/searcher/**/*.* net/sf/xfresh/**/*.*">
             <manifest>
                 <attribute name="Built-By" value="searcher: build.xml"/>
-                <!--<attribute name="Main-Class" value="ru.goodsReview.backend.Test"/> -->  <!--это класс который запускается при запуске джарника-->
+                <!--<attribute name="Main-Class" value="ru.goodsReview.analyzer.Test"/> -->  <!--это класс который
+                запускается при запуске джарника-->
             </manifest>
         </jar>
 

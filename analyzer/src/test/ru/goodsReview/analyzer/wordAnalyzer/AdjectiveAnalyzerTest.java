@@ -1,4 +1,4 @@
-package ru.goodsReview.backend.wordAnalyzer;
+package ru.goodsReview.analyzer.wordAnalyzer;
 
 /*
     Date: 26.11.11

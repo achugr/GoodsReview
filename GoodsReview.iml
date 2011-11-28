@@ -8,7 +8,7 @@
     <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="module" module-name="indexer" exported="" />
     <orderEntry type="module" module-name="frontend" exported="" />
-    <orderEntry type="module" module-name="backend" exported="" />
+    <orderEntry type="module" module-name="analyzer" exported="" />
     <orderEntry type="module" module-name="searcher" exported="" />
     <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="module" module-name="storage" exported="" />
