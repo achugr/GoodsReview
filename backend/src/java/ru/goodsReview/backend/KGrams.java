@@ -234,18 +234,7 @@ public class KGrams {
             }
         }
     }
-
-    public static void main(String [] args){
-        List<String> list = new ArrayList<String>();
-        {
-            list.add("lenovo thinkpad x220");
-        }
-        {
-            list.add("lenovo ideapad");
-        }
-        KGrams kGrams = new KGrams(list);
-        kGrams.compareDocuments();
-
-    }
 }
+
+
 
