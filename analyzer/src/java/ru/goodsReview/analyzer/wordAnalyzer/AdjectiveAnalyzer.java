@@ -17,10 +17,10 @@ public class AdjectiveAnalyzer {
      */
     public static boolean isAdjective (String word) {
         word = word.trim();
-        if (word.indexOf(" ") != 1) {
+        if (word.indexOf(" ") != -1) {
             throw new IllegalArgumentException("Word mustn't have a spaces.");
         } else if (word.length() < 3) {
-            throw new IllegalArgumentException("Too small word.");
+            return false;
         } else {
             String end = word.substring(word.length() - 2, word.length());
             if ((end.equals("ой")) || (end.equals("го"))
