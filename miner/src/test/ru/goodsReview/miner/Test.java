@@ -22,11 +22,11 @@ public class Test {
     private static SimpleJdbcTemplate simpleJdbcTemplate;
 
     /**
-     * here i use beans.xml from backend, because it contains all i need, but doesn't start downloading pages from citilink
+     * here i use beans.xml from analyzer, because it contains all i need, but doesn't start downloading pages from citilink
      */
     public static void setJdbcTemplate(){
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                "backend/src/scripts/beans.xml");
+                "analyzer/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
     }

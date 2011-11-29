@@ -228,7 +228,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoodsReview.iml" filepath="$PROJECT_DIR$/GoodsReview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/backend/analyzer.iml" filepath="$PROJECT_DIR$/backend/analyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/analyzer/analyzer.iml" filepath="$PROJECT_DIR$/analyzer/analyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/src/core.iml" filepath="$PROJECT_DIR$/core/src/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/indexer/indexer.iml" filepath="$PROJECT_DIR$/indexer/indexer.iml" />

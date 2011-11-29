@@ -7,14 +7,14 @@
         <fileset dir="${dist.dir}" includes="**/*.jar"/>
     </path>
 
-    <property name="src.backend.dir" location="${project.dir}/backend/src/java/"/>
+    <property name="src.analyzer.dir" location="${project.dir}/analyzer/src/java/"/>
     <pathconvert pathsep=" " property="libs_manifest" refid="libs"/>
     <!--classpath для jar-архива-->
 
     <target name="all">
 
         <!--class-файлы создаются в папку build/classes-->
-        <javac srcdir="${src.backend.dir}"
+        <javac srcdir="${src.analyzer.dir}"
                destdir="${build.dir}/classes"
                debug="true"
                deprecation="true"
@@ -24,16 +24,16 @@
         </javac>
 
         <!--собирается архив с классом, у которого есть метод main в папку dist-->
-        <jar destfile="${dist.dir}/backend.jar" basedir="${classes.dir}"
-             includes="ru/goodsReview/backend/**/*.* net/sf/xfresh/**/*.*">
+        <jar destfile="${dist.dir}/analyzer.jar" basedir="${classes.dir}"
+             includes="ru/goodsReview/analyzer/**/*.* net/sf/xfresh/**/*.*">
             <manifest>
                 <attribute name="Built-By" value="core: build.xml"/>
-                <attribute name="Main-Class" value="ru.goodsReview.backend.Test"/>
+                <attribute name="Main-Class" value="ru.goodsReview.analyzer.Test"/>
                 <!--это класс который запускается при запуске джарника-->
             </manifest>
         </jar>
 
-        <echo>backend building complete</echo>
+        <echo>analyzer building complete</echo>
     </target>
 
 </project>

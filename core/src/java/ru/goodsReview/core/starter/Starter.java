@@ -18,16 +18,20 @@ public class Starter {
         if (args.length == 1) {
             log.info("Module started");
             final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
-            while (context.isRunning()){
+            while (context.isRunning()) {
                 ;
             }
             log.info("Module ended");
         } else {
             log.info("Project started");
-            final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext("/indexer/src/scripts/beans.xml");
-            final FileSystemXmlApplicationContext miner = new FileSystemXmlApplicationContext("/miner/src/scripts/beans.xml");
-            final FileSystemXmlApplicationContext backend = new FileSystemXmlApplicationContext("/backend/src/scripts/beans.xml");
-            final FileSystemXmlApplicationContext frontend = new FileSystemXmlApplicationContext("/frontend/src/scripts/beans.xml");
+            final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext(
+                    "/indexer/src/scripts/beans.xml");
+            final FileSystemXmlApplicationContext miner = new FileSystemXmlApplicationContext(
+                    "/miner/src/scripts/beans.xml");
+            final FileSystemXmlApplicationContext analyzer = new FileSystemXmlApplicationContext(
+                    "/analyzer/src/scripts/beans.xml");
+            final FileSystemXmlApplicationContext frontend = new FileSystemXmlApplicationContext(
+                    "/frontend/src/scripts/beans.xml");
             log.info("Project ended");
         }
     }

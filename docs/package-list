@@ -1,6 +1,8 @@
 ru.goodsReview.backend
+ru.goodsReview.backend.wordAnalyzer
 ru.goodsReview.core.db
 ru.goodsReview.core.db.controller
+ru.goodsReview.core.db.exception
 ru.goodsReview.core.model
 ru.goodsReview.core.starter
 ru.goodsReview.frontend.mapper
@@ -9,6 +11,7 @@ ru.goodsReview.frontend.service
 ru.goodsReview.frontend.yalet
 ru.goodsReview.indexer
 ru.goodsReview.miner
+ru.goodsReview.miner.exception
 ru.goodsReview.miner.listener
 ru.goodsReview.miner.utils
 ru.goodsReview.searcher
