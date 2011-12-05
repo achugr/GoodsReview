@@ -28,8 +28,8 @@ public class Thesis {
         this.frequency = frequency;
     }
 
-    public Thesis(long thesisUniqueId, String content, int frequency, double positivity, double importance) {
-        this.thesisUniqueId = thesisUniqueId;
+    public Thesis(long reviewId, String content, int frequency, double positivity, double importance) {
+        this.reviewId = reviewId;
         this.content = content;
         this.frequency = frequency;
         this.positivity = positivity;

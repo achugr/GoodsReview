@@ -3,7 +3,6 @@ package ru.goodsReview.frontend.model;
 import org.jetbrains.annotations.NotNull;
 import ru.goodsReview.core.model.Review;
 
-import java.sql.Timestamp;
 import java.util.List;
 /*
  *  Date: 31.10.11
@@ -18,7 +17,7 @@ public class ReviewForView {
     private final long productId;
     private final String content;
     private final String author;
-    private final Timestamp time;
+    private final long time;
     private final String description;
     private final long sourceId;
     private final String sourceUrl;

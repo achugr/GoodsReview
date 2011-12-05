@@ -8,6 +8,7 @@ package ru.goodsReview.miner.exception;
  *     vans239@gmail.com
  */
 
+
 public class DeleteException extends Exception {
     public DeleteException(String message) {
         super(message);

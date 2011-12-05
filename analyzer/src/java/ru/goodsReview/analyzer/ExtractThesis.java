@@ -1,4 +1,4 @@
-package ru.goodsReview.backend;
+package ru.goodsReview.analyzer;
 
 /*
     Date: 28.11.11
@@ -8,33 +8,51 @@ package ru.goodsReview.backend;
         SkudarnovYI@gmail.com
 */
 
-import ru.goodsReview.backend.wordAnalyzer.AdjectiveAnalyzer;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.analyzer.wordAnalyzer.AdjectiveAnalyzer;
+import ru.goodsReview.core.db.exception.StorageException;
+import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.core.utils.EditDistance;
+import ru.goodsReview.storage.controller.ProductDbController;
+import ru.goodsReview.storage.controller.ReviewDbController;
+import ru.goodsReview.storage.controller.ThesisDbController;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.TimerTask;
 
-public class ExtractThesis {
+public class ExtractThesis extends TimerTask{
 
-    private List<String> dictionaryWords;
+    private static List<String> dictionaryWords = new ArrayList<String>();
+    private static SimpleJdbcTemplate jdbcTemplate;
+    private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
+
+
+    @Required
+    public void setJdbcTemplate(SimpleJdbcTemplate simpleJdbcTemplate){
+        this.jdbcTemplate = simpleJdbcTemplate;
+    }
 
     /**
      * Check if words are similar, using Levenshtein distance. Should work great, I suppose.
+     *
      * @param word1 — firstWord
      * @param word2 — secondWord
      * @return true if words are similar enough, false — otherwise
      */
-    private boolean areSimilar(String word1, String word2) {
+    private static boolean areSimilar(String word1, String word2) {
 
-        double ed = EditDistance.editDist(word1,word2);
+        double ed = EditDistance.editDist(word1, word2);
 
-        int minLength = Math.min(word1.length(),word2.length());
-        int maxLength = Math.max(word1.length(),word2.length());
+        int minLength = Math.min(word1.length(), word2.length());
+        int maxLength = Math.max(word1.length(), word2.length());
 
-        if ((ed/minLength <= 0.25) && ((ed/maxLength <= 0.35))) {
+        if ((ed / minLength <= 0.25) && ((ed / maxLength <= 0.35))) {
             return true;
         } else {
             return false;
@@ -45,7 +63,7 @@ public class ExtractThesis {
     /**
      * Filling dictionary with words, huh.
      */
-    public void fillDictionary() {
+    public static void fillDictionary() {
         dictionaryWords.add("клавиатура");
         dictionaryWords.add("клава");
         dictionaryWords.add("клавиши");
@@ -131,10 +149,11 @@ public class ExtractThesis {
 
     /**
      * Checking if word is in dictionary
+     *
      * @param word
      * @return true if word is here. false — otherwise
      */
-    public boolean isInDictionary(String word) {
+    public static boolean isInDictionary(String word) {
         for (String variant : dictionaryWords) {
             if (areSimilar(word, variant)) {
                 return true;
@@ -145,9 +164,105 @@ public class ExtractThesis {
 
     /**
      * Extract theses from review. Now uses just a simple rule "adj + noun" or "noun + adj". Probably, will get tougher.
+     *
+     * @param review Review with theses had to be extracted.
+     * @return List of theses.
+     */
+    public static List<Thesis> doExtraction(Review review) {
+        List<Thesis> extractedThesisList = new ArrayList<Thesis>();
+        fillDictionary();
+        String content = review.getContent();
+
+        StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
+        String currToken;
+        String nextToken;
+        while(st.hasMoreElements()){
+//            get current token
+            currToken = st.nextToken();
+//            if it's an adjective
+            if(AdjectiveAnalyzer.isAdjective(currToken)){
+//                go on review
+                while (st.hasMoreElements()){
+                    nextToken = st.nextToken();
+//                    if next token is a noun from dictionary
+                    if(isInDictionary(nextToken)){
+//                        create Thesis, which content = nextToken(noun from dictionary) + currentToken(adjective)
+                        extractedThesisList.add(new Thesis(review.getId(),9, nextToken +" "+ currToken, 0, 0.0, 0.0));
+                        break;
+                    }
+                }
+            } else {
+//                if current token is noun from dictionary
+                    if(isInDictionary(currToken)){
+//                        go on review
+                        while (st.hasMoreElements()){
+                            nextToken = st.nextToken();
+//                            if nextToken is an adjective
+                            if(AdjectiveAnalyzer.isAdjective(nextToken)){
+//                              create Thesis, which content = currToken(adjective) + nextToken(noun from dictionary)
+                                extractedThesisList.add(new Thesis(review.getId(),9, currToken +" "+ nextToken, 0, 0.0, 0.0));
+                                break;
+                            }
+                        }
+                    }
+            }
+        }
+        return extractedThesisList;
+    }
+
+
+    public static void extractThesisOnProduct(long productId) {
+        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+
+        List<Review> reviews = reviewDbController.getReviewsByProductId(productId);
+        for(Review review : reviews){
+            try {
+                thesisDbController.addThesisList(doExtraction(review));
+            } catch (StorageException e) {
+                log.error("something wrong with this thesis (probably it's already exist in db)", e);
+            }
+        }
+    }
+
+    public static void showThesisOnProduct(long productId){
+        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+        List<Thesis> thesisList = thesisDbController.getThesesByProductId(productId);
+        for(Thesis thesis : thesisList){
+            log.info("thesis --> "+ thesis.getContent());
+        }
+    }
+
+    public static void showThesisOnAllProducts(){
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+        List<Product> list = productDbController.getAllProducts();
+        for(Product product : list){
+            showThesisOnProduct(product.getId());
+        }
+    }
+
+    public static void extractThesisOnAllProducts() {
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+        List<Product> list = productDbController.getAllProducts();
+        for(Product product : list){
+            extractThesisOnProduct(product.getId());
+        }
+    }
+    
+    @Override
+    public void run(){
+        extractThesisOnAllProducts();
+        showThesisOnAllProducts();
+        log.info("extraction is complete");
+    }
+
+//    Yaroslav version
+  /**
+     * Extract theses from review. Now uses just a simple rule "adj + noun" or "noun + adj". Probably, will get tougher.
      * @param rev Review with theses had to be extracted.
      * @return List of theses.
      */
+    /*
     public List<Thesis> doExtraction(Review rev) {
         List<Thesis> result = new ArrayList<Thesis>();
 
@@ -172,11 +287,12 @@ public class ExtractThesis {
                     }
                 }
                 prevWasAdj = false;
-            currToken = st.nextToken().trim();
+                currToken = st.nextToken().trim();
             }
         }
 
         return result;
 
     }
+    */
 }

@@ -23,7 +23,7 @@ public class AdjectiveAnalyzer {
             return false;
         } else {
             String end = word.substring(word.length() - 2, word.length());
-            if ((end.equals("ой")) || (end.equals("го"))
+            if ((end.equals("ой"))
                     || (end.equals("му")) || (end.equals("им"))
                     || (end.equals("ом")) || (end.equals("ий"))
                     || (end.equals("ем")) || (end.equals("ым"))

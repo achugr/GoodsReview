@@ -1,14 +1,17 @@
 package ru.goodsReview.analyzer;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 
 import javax.sql.DataSource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /*
  *  Date: 15.10.11
@@ -22,6 +25,8 @@ import java.util.*;
 public class Test {
     private static SimpleJdbcTemplate jdbcTemplate;
 
+    private static final Logger log = Logger.getLogger(Test.class);
+
     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -31,10 +36,11 @@ public class Test {
         Collections.sort(list, new ValueComparator());
         return list;
     }
-    public static void main(String[] args) throws StorageException {
 
+    //TODO Ruslan, please fix this code
+    public void  testTfIdf(){
         FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(
-                       "storage/src/scripts/beans.xml");
+                "storage/src/scripts/beans.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
 
@@ -96,4 +102,5 @@ public class Test {
         }
         */
     }
+
 }

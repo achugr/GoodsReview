@@ -86,7 +86,7 @@ public class DbModuleTest {
 
         ReviewDbController reviewController = new ReviewDbController(new SimpleJdbcTemplate(dataSource));
         Review review0 = new Review(-1, product0id, "OK review content", "Sergey",
-                                    new Timestamp(System.currentTimeMillis()),
+                                    System.currentTimeMillis(),
                                     "OK description",
                                     source0id, "http://url", 0.0, 0.0, 0, 0);
         long review0id = reviewController.addReview(review0);

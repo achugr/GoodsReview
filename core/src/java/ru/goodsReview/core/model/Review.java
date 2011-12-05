@@ -1,7 +1,5 @@
 package ru.goodsReview.core.model;
 
-import java.sql.Timestamp;
-
 /*
     Date: 16.10.11
     Time: 17:01
@@ -14,7 +12,7 @@ public class Review {
     private long productId;
     private String content;
     private String author;
-    private Timestamp time;
+    private long time;
     private String description;
     private long sourceId;
     private String sourceUrl;
@@ -35,7 +33,7 @@ public class Review {
         this.content = content;
     }
 
-    public Review(long id, long productId, String content, String author, Timestamp time, String description, long sourceId,
+    public Review(long id, long productId, String content, String author, long time, String description, long sourceId,
                   String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
         this.id = id;
         this.productId = productId;
@@ -51,7 +49,7 @@ public class Review {
         this.votesNo = votesNo;
     }
 
-    public Review(long productId, String content, String author, Timestamp time, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
+    public Review(long productId, String content, String author, long time, String description, long sourceId, String sourceUrl, double positivity, double importance, int votesYes, int votesNo) {
         this.productId = productId;
         this.content = content;
         this.author = author;
@@ -105,11 +103,11 @@ public class Review {
         this.author = author;
     }
 
-    public Timestamp getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

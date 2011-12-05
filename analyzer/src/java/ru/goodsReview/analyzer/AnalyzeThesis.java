@@ -386,6 +386,7 @@ public class AnalyzeThesis extends TimerTask {
         Map<String, Long> pairsTUandId = AdditionOffTUtoDb(pairsTUandFreq);
         FillingTUIdParam(pairsTUandId, productId);
     }
+
     @Override
     public void run() {
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
@@ -402,4 +403,5 @@ public class AnalyzeThesis extends TimerTask {
         }
         log.info("Thesis Analyzer successful completed");
     }
+
 }
