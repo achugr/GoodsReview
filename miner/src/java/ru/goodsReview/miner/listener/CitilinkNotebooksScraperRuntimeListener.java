@@ -20,7 +20,6 @@ import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +75,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String voteYes = scraper.getContext().get("VoteYes").toString();
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
-            long time = new Timestamp(System.currentTimeMillis());
+            long time = System.currentTimeMillis();
 
             CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
             Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);

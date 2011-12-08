@@ -122,7 +122,6 @@ public class GrabberCitilink extends WebHarvestGrabber {
             scraper.addVariableToContext("numberOfFirstReview", 0);
             scraper.setDebug(true);
             scraper.execute();
-
             log.info("Grabbing ended succecsful");
         } catch (Exception e) {
         log.error("Cannot process grabber", e);

@@ -80,15 +80,15 @@ public abstract class WebHarvestGrabber extends Grabber {
     public void run() {
         try {
             log.info("Run started");
-            if (new File(path + "Citilink/Pages/").exists()) {
-                cleanFolder(new File(path + "Citilink/Pages/"));
-                cleanFolder(new File(path + "Citilink/Descriptions/"));
-            }
-            findPages();
-            downloadPages();
+//            if (new File(path + "Citilink/Pages/").exists()) {
+//                cleanFolder(new File(path + "Citilink/Pages/"));
+//                cleanFolder(new File(path + "Citilink/Descriptions/"));
+//            }
+//            findPages();
+//            downloadPages();
             grabPages();
-            cleanFolder(new File(path + "Citilink/Pages/"));
-            cleanFolder(new File(path + "Citilink/Descriptions/"));
+//            cleanFolder(new File(path + "Citilink/Pages/"));
+//            cleanFolder(new File(path + "Citilink/Descriptions/"));
             log.info("Run succecsful");
         } catch (Exception e) {
             log.error("Cannot process run", e);

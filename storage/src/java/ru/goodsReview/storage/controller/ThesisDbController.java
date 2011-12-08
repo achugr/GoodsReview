@@ -39,6 +39,15 @@ public class ThesisDbController implements ThesisController {
         try {
             simpleJdbcTemplate.getJdbcOperations().update(
                     "INSERT INTO thesis (review_id,  thesis_unique_id, content, frequency, positivity, importance) VALUES(?,?,?,?,?,?)",
+                   /* new PreparedStatementSetter() {
+                        public void setValues(final PreparedStatement ps) throws SQLException {
+                            ps.setInt();
+                            ps.setObject(1, );
+
+                        }
+                    })   */
+
+//                    TODO Types.OTHER
                     new Object[]{thesis.getReviewId(), thesis.getThesisUniqueId(), thesis.getContent(), thesis.getFrequency(), thesis.getPositivity(), thesis.getImportance()},
                     new int[]{Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.INTEGER, Types.DOUBLE, Types.DOUBLE});
             long lastId = simpleJdbcTemplate.getJdbcOperations().queryForLong("SELECT LAST_INSERT_ID()");
