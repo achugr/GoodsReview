@@ -21,6 +21,7 @@ import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 import ru.goodsReview.storage.controller.ThesisDbController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -176,6 +177,7 @@ public class ExtractThesis extends TimerTask{
         StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
         String currToken;
         String nextToken;
+        try {
         while(st.hasMoreElements()){
 //            get current token
             currToken = st.nextToken();
@@ -207,11 +209,14 @@ public class ExtractThesis extends TimerTask{
                     }
             }
         }
+        } catch (IOException e) {
+
+        }
         return extractedThesisList;
     }
 
 
-    public static void extractThesisOnProduct(long productId) {
+    public static void extractThesisOnProduct(long productId) throws IOException {
         ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
 
@@ -241,7 +246,7 @@ public class ExtractThesis extends TimerTask{
         }
     }
 
-    public static void extractThesisOnAllProducts() {
+    public static void extractThesisOnAllProducts() throws IOException {
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         List<Product> list = productDbController.getAllProducts();
         for(Product product : list){
@@ -250,8 +255,11 @@ public class ExtractThesis extends TimerTask{
     }
     
     @Override
-    public void run(){
-        extractThesisOnAllProducts();
+    public void run() {
+        try {
+            extractThesisOnAllProducts();
+        } catch (IOException e) {
+        }
         showThesisOnAllProducts();
         log.info("extraction is complete");
     }
