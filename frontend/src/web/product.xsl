@@ -59,7 +59,6 @@
                 <a>
                     <xsl:attribute name="href">review.xml?id=<xsl:value-of select="@id"/>
                     </xsl:attribute>
-                    >>
                 </a>
                 </div>
             </div>

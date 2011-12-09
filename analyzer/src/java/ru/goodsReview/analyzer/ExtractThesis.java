@@ -221,6 +221,7 @@ public class ExtractThesis extends TimerTask{
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
 
         List<Review> reviews = reviewDbController.getReviewsByProductId(productId);
+        log.info("extracting thesis on " + productId);
         for(Review review : reviews){
             try {
                 thesisDbController.addThesisList(doExtraction(review));
@@ -250,6 +251,7 @@ public class ExtractThesis extends TimerTask{
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         List<Product> list = productDbController.getAllProducts();
         for(Product product : list){
+            log.info("progress..");
             extractThesisOnProduct(product.getId());
         }
     }

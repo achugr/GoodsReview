@@ -20,7 +20,6 @@ import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 import ru.goodsReview.storage.controller.ProductDbController;
 import ru.goodsReview.storage.controller.ReviewDbController;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +75,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String voteYes = scraper.getContext().get("VoteYes").toString();
             String voteNo = scraper.getContext().get("VoteNo").toString();
 
-            //long time = new Timestamp(System.currentTimeMillis());
+            long time = System.currentTimeMillis();
 
             CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
             Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
@@ -96,9 +95,9 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String badOpinion = citilinkDataTransformator.getBadPartOfOpinion(opinionText);
             String commentOpinion = citilinkDataTransformator.getCommentPartOfOpinion(opinionText);
 
-            Review goodFeauture = new Review(lastAddedProductId, goodOpinion, "anonim", 0, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", 0, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", 0, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            Review goodFeauture = new Review(lastAddedProductId, goodOpinion, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", time, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
 
 //            clear reviews content from trash
             goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
