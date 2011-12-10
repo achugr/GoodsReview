@@ -8,7 +8,8 @@ package ru.goodsReview.analyzer.wordAnalyzer;
         SkudarnovYI@gmail.com
 */
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class AdjectiveAnalyzer {
@@ -28,6 +29,14 @@ public class AdjectiveAnalyzer {
             return Runtime.getRuntime().exec("mystem -nig -e " + charset);
         } catch (IOException e) {
             return null;
+        }
+    }
+
+    public static boolean isRussianLetter (char letter) {
+        if ((letter >= 0x0410) && (letter <= 0x044F)) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -54,6 +63,19 @@ public class AdjectiveAnalyzer {
         //return false;
         //}
         //}
+
+        int wl = word.length(); boolean b = true;
+        for (int i = 0; i < wl; ++i) {
+            if (!isRussianLetter(word.charAt(i))) {
+                b = false;
+                break;
+            }
+        }
+
+        if (!b) {
+            return false;
+        }
+
         Scanner sc = new Scanner(analyzer.getInputStream(),charset);
         PrintStream ps = new PrintStream(analyzer.getOutputStream(),true,charset);
 
