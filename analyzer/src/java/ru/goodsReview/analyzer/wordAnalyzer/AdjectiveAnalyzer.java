@@ -8,31 +8,43 @@ package ru.goodsReview.analyzer.wordAnalyzer;
         SkudarnovYI@gmail.com
 */
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public class AdjectiveAnalyzer {
     
-    static final String charset = "cp1251"; //Works for windows only.
+    private static AdjectiveAnalyzer instance;
+    private static final Logger log = Logger.getLogger(AdjectiveAnalyzer.class);
 
-    /**
-     * Checks if word is an adjective.
-     * @param word Word which is tested for being adjective.
-     * @return True if word is an adjective, false — otherwise.
-     */
+    static final String charset = "UTF8";
 
-    private static Process analyzer = initAnalyzer();
+    private Process analyzer;
 
-    private static Process initAnalyzer() {
-        try {
-            return Runtime.getRuntime().exec("mystem -nig -e " + charset);
-        } catch (IOException e) {
-            return null;
-        }
+    private AdjectiveAnalyzer() throws IOException {
+        analyzer = Runtime.getRuntime().exec("mystem -nig -e " + charset);
     }
 
-    public static boolean isRussianLetter (char letter) {
+    public static AdjectiveAnalyzer instance() throws IOException {
+        try {
+            if (instance == null) {
+                instance = new AdjectiveAnalyzer();
+            }
+        } catch (IOException e) {
+            log.error("Caution! Analyzer wasn't created. Check if mystem is installed", e);
+            throw new IOException();
+        }
+        return instance;
+    }
+
+    /**
+     * Checks if letter belongs to russian alphabet.
+     * @param letter The letter itself.
+     * @return True if letter is russian, false — otherwise.
+     */
+    private static boolean isRussianLetter (char letter) {
         if ((letter >= 0x0410) && (letter <= 0x044F)) {
             return true;
         } else {
@@ -40,6 +52,11 @@ public class AdjectiveAnalyzer {
         }
     }
 
+    /**
+     * Checks if word is an adjective.
+     * @param word Word which is tested for being adjective.
+     * @return True if word is an adjective, false — otherwise.
+     */
     public static boolean isAdjective (String word) throws IOException {
 
         //word = word.trim();
@@ -64,6 +81,8 @@ public class AdjectiveAnalyzer {
         //}
         //}
 
+        instance = AdjectiveAnalyzer.instance();
+
         int wl = word.length(); boolean b = true;
         for (int i = 0; i < wl; ++i) {
             if (!isRussianLetter(word.charAt(i))) {
@@ -76,8 +95,8 @@ public class AdjectiveAnalyzer {
             return false;
         }
 
-        Scanner sc = new Scanner(analyzer.getInputStream(),charset);
-        PrintStream ps = new PrintStream(analyzer.getOutputStream(),true,charset);
+        Scanner sc = new Scanner(instance.analyzer.getInputStream(),charset);
+        PrintStream ps = new PrintStream(instance.analyzer.getOutputStream(),true,charset);
 
         ps.println(word);
         String wordCharacteristic = sc.nextLine();
