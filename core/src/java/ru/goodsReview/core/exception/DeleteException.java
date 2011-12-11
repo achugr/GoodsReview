@@ -1,4 +1,4 @@
-package ru.goodsReview.miner.exception;
+package ru.goodsReview.core.exception;
 
 /*
  *  Date: 17.11.11
