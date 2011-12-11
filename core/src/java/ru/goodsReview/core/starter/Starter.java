@@ -18,10 +18,6 @@ public class Starter {
         if (args.length == 1) {
             log.info("Module started");
             final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext(args[0]);
-            while (context.isRunning()) {
-                ;
-            }
-            log.info("Module ended");
         } else {
             log.info("Project started");
             final FileSystemXmlApplicationContext indexer = new FileSystemXmlApplicationContext(
@@ -32,7 +28,6 @@ public class Starter {
                     "/analyzer/src/scripts/beans.xml");
             final FileSystemXmlApplicationContext frontend = new FileSystemXmlApplicationContext(
                     "/frontend/src/scripts/beans.xml");
-            log.info("Project ended");
         }
     }
 }
