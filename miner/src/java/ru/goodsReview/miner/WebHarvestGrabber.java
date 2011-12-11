@@ -75,14 +75,13 @@ public abstract class WebHarvestGrabber extends Grabber {
             throw new DeleteException("Unavailable delete file");
         log.info(" Cleaning Folder " + path + " deleted successfully");
     }
-
     @Override
     public void run() {
         try {
             log.info("Run started");
             if (new File(path + "Citilink/Pages/").exists()) {
-                cleanFolder(new File(path + "Citilink/Pages/"));
-                cleanFolder(new File(path + "Citilink/Descriptions/"));
+               cleanFolder(new File(path + "Citilink/Pages/"));
+               cleanFolder(new File(path + "Citilink/Descriptions/"));
             }
             findPages();
             downloadPages();
