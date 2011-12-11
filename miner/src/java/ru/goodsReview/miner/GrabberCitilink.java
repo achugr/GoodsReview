@@ -9,25 +9,42 @@ package ru.goodsReview.miner;
 import org.apache.log4j.Logger;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
+import ru.goodsReview.core.exception.DeleteException;
+import ru.goodsReview.core.utils.FileUtil;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
+    private static final String site = "http://www.citilink.ru";
 
     @Override
-    public void updateList() {
+    protected void cleanFolders() throws DeleteException {
+        FileUtil.cleanFolder(new File(getPath() + "Pages/"));
+        FileUtil.cleanFolder(new File(getPath() + "Descriptions/"));
+    }
+
+    @Override
+    protected void createFolders() throws IOException {
+        new File(getPath() + "Pages").mkdirs();
+        new File(getPath() + "Descriptions").mkdirs();
+        new File(getPath() + "list").mkdirs();
+    }
+
+    @Override
+    protected void updateList() {
         try {
-            //todo you shouldn't write citilink in log. It will be written by logger based on row 15
             log.info("Update list started");
             ScraperConfiguration config = new ScraperConfiguration(getDownloadConfig());
             Scraper scraper = new Scraper(config, ".");
             scraper.addVariableToContext("path", getPath());
             scraper.setDebug(true);
             scraper.execute();
-
-            log.info("Update list succecsful");
+            log.info("Update list successful");
         } catch (Exception e) {
             log.error("Cannot process update list", e);
         }
@@ -35,38 +52,27 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
     @Override
     //TODO: use RandomAcessFile and update lines with old product, but new reviews
-    public void downloadPages() {
+    protected void downloadPages() {
         try {
-            log.info("Download pages started");
+            log.info("Adding download pages started");
+            Scanner scanner = new Scanner(new File(getPath() + "list/NewLinks.txt"));
+            FileWriter out = new FileWriter(getPath() + "list/AllLinks.txt", true);
 
+            List<String> linksToDownload = new ArrayList<String>();
+            while (scanner.hasNext()) {
+                String productUrl = scanner.next();
+                String reviewNumber = scanner.next();
 
-            ScraperConfiguration config = new ScraperConfiguration("miner/webHarvest/configs/Citilink/downloadOnePage.xml");
-            Scraper scraper = new Scraper(config, ".");
-            scraper.setDebug(true);
-
-            FileInputStream ffstream = new FileInputStream("data/miner/Citilink/list/NewLinks.txt");
-            DataInputStream all = new DataInputStream(ffstream);
-            BufferedReader brr = new BufferedReader(new InputStreamReader(all));
-            String product = brr.readLine();
-
-            FileWriter out = new FileWriter("data/miner/Citilink/list/AllLinks.txt", true);
-
-            long i = 1;
-            while ((product = brr.readLine()) != null) {
-                String productURl = product.substring(0, product.indexOf(":::"));
-                scraper.addVariableToContext("path", getPath() + "Citilink/");
-                scraper.addVariableToContext("pageUrl", productURl);
-                scraper.addVariableToContext("name", i);
-                scraper.execute();
-                out.write("\n" + product);
-                i++;
-
-                //System.out.println(productURl + " "+ s +" "+getPath());
+                String url = site + productUrl + "?opinion";
+                //downloadOneLink( url, getPath() + "Pages/" + i + ".html"  );
+                linksToDownload.add(url);
+                out.write(productUrl + " " + reviewNumber + "\n");
             }
-            all.close();
+            Downloader.getInstance().addLinks(linksToDownload, getPath() + "Pages", "windows-1251");
+            scanner.close();
             out.close();
 
-            log.info("Download pages succecsful");
+            log.info("Adding download pages successful");
         } catch (Exception e) {
             log.error("Cannot process download pages", e);
         }
@@ -74,59 +80,52 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
     @Override
     //TODO:: not add, if review number changes, only update
-    public void findPages() {
-            this.updateList();
-            log.info("Find pages started");
-        try {
-            FileInputStream ffstream = new FileInputStream("data/miner/Citilink/list/AllLinks.txt");
-            DataInputStream all = new DataInputStream(ffstream);
-            BufferedReader brr = new BufferedReader(new InputStreamReader(all));
-            String allLinks = "";
-            String nextLine;
-            while ((nextLine = brr.readLine()) != null) {
-                allLinks += nextLine;
-            }
-            all.close();
-            FileWriter out = new FileWriter("data/miner/Citilink/list/NewLinks.txt", false);
+    protected void findPages() throws IOException {
+        log.info("Find pages started");
 
-            FileInputStream fstream = new FileInputStream("data/miner/Citilink/list/LatterLinks.txt");
-            DataInputStream in = new DataInputStream(fstream);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        //what links we visited before and count of reviews
+        String allLinks = new String();
+        File allLinksFile = new File(getPath() + "list/AllLinks.txt");
+        if (allLinksFile.exists()) {
+            StringBuilder links = new StringBuilder();
+            BufferedReader br = new BufferedReader(new FileReader(allLinksFile));
+            String nextLine;
+            while ((nextLine = br.readLine()) != null) {
+                links.append(nextLine);
+            }
+
+            allLinks = links.toString();
+            br.close();
+        }
+        {
+            FileWriter out = new FileWriter(getPath() + "list/NewLinks.txt", false);
+            Scanner scanner = new Scanner(new FileReader(getPath() + "list/LatterLinks.txt"));
             String reviewNumber;
-            String reviewURL;
-            while ((reviewURL = br.readLine()) != null && (reviewNumber = br.readLine()) != null) {
-                reviewURL = reviewURL.replace("\" \"", "");
-                int position = allLinks.indexOf(reviewURL + ":::" + reviewNumber);
+            String reviewUrl;
+            while(scanner.hasNext()){
+                reviewUrl = scanner.next();
+                reviewNumber = scanner.next();
+                int position = allLinks.indexOf(reviewUrl + " " + reviewNumber);
                 if (position == -1) {
-                    out.write(reviewURL + ":::" + reviewNumber+"\n");
-                    //System.out.println("AAAAdddded");
-                } else {//System.out.println("Not!AAAAdddded");
+                    out.write(reviewUrl + " " + reviewNumber + "\n");
                 }
             }
-            in.close();
             out.close();
-            log.info("Find pages succesful");
-        } catch (Exception e) {
-            log.error("Cannot process find pages", e);
+            scanner.close();
         }
+        log.info("Find pages successful");
     }
 
     @Override
-    public void grabPages() {
-        try {
-            log.info("Grabbing started");
-            ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
-            Scraper scraper = new Scraper(config, ".");
-            scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
-            scraper.addVariableToContext("path", getPath() + "Citilink/Pages/");
-            scraper.addVariableToContext("numberOfFirstReview", 0);
-            scraper.setDebug(true);
-            scraper.execute();
-            log.info("Grabbing ended succecsful");
-        } catch (Exception e) {
-        log.error("Cannot process grabber", e);
-        }
+    protected void grabPages() throws IOException{
+        log.info("Grabbing started");
+        ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
+        Scraper scraper = new Scraper(config, ".");
+        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
+        scraper.addVariableToContext("path", getPath() + "Pages/");
+        scraper.addVariableToContext("numberOfFirstReview", 0);
+        scraper.setDebug(true);
+        scraper.execute();
+        log.info("Grabbing ended successful");
     }
-
-
 }

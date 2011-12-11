@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 /*
  *  Date: 11.11.11
  *   Time: 23:54
- *   Author: 
- *      Artemij Chugreev 
+ *   Author:
+ *      Artemij Chugreev
  *      artemij.chugreev@gmail.com
  */
 
@@ -91,6 +91,7 @@ public class CitilinkDataTransformator extends DataTransformator {
         return review;
     }
 
+
     /**
      * Clear review content
      * from trash words("Недостатки: ", "Достоинства: "),
@@ -101,7 +102,9 @@ public class CitilinkDataTransformator extends DataTransformator {
      * @return Review without trash in content
      */
     public Review clearReviewFromTrash(Review review) {
-        String clearReview = DataTransformator.clearReviewFromTags(review.getContent());
+        String clearReview = clearReviewFromTags(review.getContent());
+        clearReview = clearBadSymbols(clearReview);
+
         //clearReview = clearReview.replaceAll("^(\\s+)", "");
         clearReview = clearReview.trim();
         String[] trashWords = {TrashWords.DEFECTS.getTrashWord(), TrashWords.MERIT.getTrashWord(), TrashWords.COMMENT.getTrashWord()};
