@@ -273,30 +273,29 @@ public class AnalyzeThesis extends TimerTask {
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+        // Достаём все товары
         List<Product> listOfProducts = productDbController.getAllProducts();
-        //Map<Long, Double> mapOftfidf = mapOfTFIDF(reviewDbController.getAllReviews());
         for(Product product : listOfProducts)
         {
+            // Теперь для каждого товара пишем его имя..
             System.out.println("<product name =" + product.getName() + '"' + ">");
-            List<Review> reviewList = new ArrayList<Review>();
-            reviewList = reviewDbController.getReviewsByProductId(product.getId());
-            //Достаём список отзывов на товар
+            //...Достаём все отзывы на него...
+            List<Review> reviewList = reviewDbController.getReviewsByProductId(product.getId());
             for(Review review : reviewList)
             {
-                //////////   ПИШЕМ САМ ОТЗЫВ
+                //...и теперь для каждого отзыва пишем его содержание...
                 System.out.println("<review>");
                 System.out.println(review.getContent());
                 System.out.println("</review>");
                 System.out.println("<info>");
-
-                List<Thesis> thesisList = new ArrayList<Thesis>();
-                thesisList = thesisDbController.getThesesByReviewId(review.getId());
+                //...и достаём из базы список нетрэшевых тезисов из него (отзыва)
+                List<Thesis> thesisList =  thesisDbController.getThesesByReviewId(review.getId());
                 for(Thesis thesis : thesisList)
                 {
+                    //и теперь для каждого тезиса выводим его содержимое и tfidf
                     System.out.print(thesis.getContent() + ' ');
                     System.out.println(mapOfTFIDF.get(thesis.getId()));
                 }
-
                 System.out.println("</info>");
             }
             System.out.println("</product>");
