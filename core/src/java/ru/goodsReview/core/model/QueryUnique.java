@@ -8,8 +8,6 @@
 
 package ru.goodsReview.core.model;
 
-import java.util.Date;
-
 /**
  * User: Sergey Serebryakov
  * Date: 14.11.2011
