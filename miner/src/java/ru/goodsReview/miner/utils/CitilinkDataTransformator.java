@@ -140,9 +140,9 @@ public class CitilinkDataTransformator extends DataTransformator {
         Pattern p = Pattern.compile("\"\\s(.+?),");
         Matcher m = p.matcher(sourceProductInfo);
         if (m.find()) {
-            //System.out.println("product name  == " + m.group(1));
+            return m.group(1);
         }
-        return m.group(1);
+        return sourceProductInfo;
     }
 
     /**

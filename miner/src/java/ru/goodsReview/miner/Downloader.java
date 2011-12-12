@@ -85,7 +85,7 @@ public class Downloader implements Runnable {
                     for(String url : task.links){
                         try{
                             downloadOneLink( url, task.path + '/' + i + ".html", task.encoding);
-                            log.debug("Downloaded " + i + " of " + size + " url:" + url);
+                            log.debug("Downloaded " + i + " of " + size + " url: " + url);
                             ++i;
                         } catch(IOException e){
                             log.error("Problem with loading url downloading", e);
