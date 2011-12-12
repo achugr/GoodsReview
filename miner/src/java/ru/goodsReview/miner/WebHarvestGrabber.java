@@ -81,7 +81,6 @@ public abstract class WebHarvestGrabber extends Grabber {
     public void grabber() throws IOException {
         grabPages();
     }
-
     @Override
     public void run() {
         try {
