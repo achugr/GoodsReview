@@ -12,24 +12,28 @@
         </list>
         <body>
             <empty>
-
+                <var-def name="content">
+                    <html-to-xml>
+                        <file action="read" path="${file}"/>
+                    </html-to-xml>
+                </var-def>
 
                 <var-def name="ProductName">
                     <xpath expression='//div[@class="item-inner"]/h1[1]/text()'>
-                        <file action="read" path="${file}"/>
+                        <var name="content"/>
                     </xpath>
                 </var-def>
 
                 <var-def name="Price">
                     <xpath expression='//div[@class="price"]/text()'>
-                        <file action="read" path="${file}"/>
+                        <var name="content"/>
                     </xpath>
                 </var-def>
 
                 <loop item="review" index="j">
                     <list>
                         <xpath expression='//div[@class="opinion row1" and position()>=(${numberOfFirstReview})]'>
-                            <file action="read" path="${file}"/>
+                            <var name="content"/>
                         </xpath>
                     </list>
 
@@ -40,26 +44,21 @@
                                     <var name="review"/>
                                 </xpath>
                             </var-def>
-
-
                             <var-def name="StarRate">
                                 <xpath expression="//*[@class='m']/p[1]/img/@alt">
                                     <var name="review"/>
                                 </xpath>
                             </var-def>
-
                             <var-def name="OpinionText">
                                 <xpath expression="//*[@class='m']/p[position()>1]/text() | //*[@class='m']/p[position()>1]/b/text()">
             		    	        <var name="review"/>
         			            </xpath>
                             </var-def>
-
                             <var-def name="VoteYes">
                                 <xpath expression="//*[@class='vote']/p/span[3]/text()">
                                     <var name="review"/>
                                 </xpath>
                             </var-def>
-
                             <var-def name="VoteNo">
                                 <xpath expression="//*[@class='vote']/p/span[6]/text()">
                                     <var name="review"/>

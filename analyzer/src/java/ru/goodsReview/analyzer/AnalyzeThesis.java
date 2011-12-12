@@ -117,56 +117,6 @@ public class AnalyzeThesis extends TimerTask {
         }
         return answer;
     }
-
-
-    /**
-     * For each non trash word in @param counts it frequency
-     * @param reviewList - list of review
-     * @return Map of pairs (word, it's frequency in @param)
-     */
-    /*
-    private Map<String, Integer> fillingMapOfThesisUnique(List<Review> reviewList) {
-
-        Map<String, Integer> uniqueThesises = new HashMap<String, Integer>();
-        FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer(reviewList);
-        frequencyAnalyzer.makeFrequencyDictionary();
-        Integer currfreq;
-        for (Map.Entry<String, Integer> entry : frequencyAnalyzer.getWords().entrySet()) {
-            if(!isInTrashWords(entry.getKey())){
-                currfreq = uniqueThesises.get(entry.getKey());
-                uniqueThesises.put(entry.getKey(), entry.getValue() + (currfreq == null ? 0 : currfreq));
-            }
-        }
-        return uniqueThesises;
-    }
-    */
-    /**
-     * Fills the table of ThesisUniques;
-     * Counts the Map of ThesisUnique"s content and id - to fill the thesis_unique_id field in thesis table
-     * @param thesisUniques  Map of unique thesises
-     * @return  Map of pairs (thesisUnique.content,  thesisUnique.id)
-     */
-    /*
-    private Map<String, Long> fillMapOfThesisId(Map<String, Integer> thesisUniques) {
-        Map<String, Long> tableOfId = new HashMap<String, Long>();   //
-        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
-        ThesisUnique currThesisUnique;
-        ThesisUnique recievedTU;
-        Timestamp time = new Timestamp(System.currentTimeMillis());
-        for (Map.Entry<String, Integer> entry : thesisUniques.entrySet()) {
-            currThesisUnique = new ThesisUnique(entry.getKey(), entry.getValue(), time, 0, 0);
-            try {
-                thesisUniqueDbController.addThesisUnique(currThesisUnique);
-            } catch (StorageException e) {
-                // TODO: handle this situation.
-                e.printStackTrace();
-            }
-            recievedTU = thesisUniqueDbController.getThesisUniqueByContent(entry.getKey());
-            tableOfId.put(entry.getKey(), recievedTU.getId());
-        }
-        return tableOfId;
-    }
-    */
     /**
      * For each thesis counts the number of
      * reviews it belongs to
@@ -196,45 +146,6 @@ public class AnalyzeThesis extends TimerTask {
         return answ;
     }
     /**
-     * Adds thesises to DB
-     * @param listOfReviews  - list of review we get thesises from
-     * @param idTable - Map of pairs (thesisUnique.content, thesisUnique.id)
-     */
-    /*
-    private void addThesisesToDB(List<Review> listOfReviews, Map<String, Long> idTable) throws StorageException {
-       ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-       ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
-       FrequencyAnalyzer freqAnForSingleReview;
-       List<Review> buffLOR = new ArrayList<Review>();
-       Thesis currThesis;
-       //double sumFreq = (double) thesisUniqueDbController.getSumFrequency();
-       double numOfWordsInCurrReview;
-       double numOfReviews = (double) reviewDbController.getAllReviews().size();
-       Map<String, Integer> NumOfReviewsContainsParticularThesis = getNumOfReviewsContainsParticularThesis(listOfReviews);
-       Map<Long, Integer> NonTrashWordsInReviews =  numOfNonTrashWordsInReviews(listOfReviews);
-       double tf, idf;
-       // Here we got some tough stuff
-       for (Review rev : listOfReviews) {
-           buffLOR.clear();
-           numOfWordsInCurrReview = NonTrashWordsInReviews.get(rev.getId());
-           buffLOR.add(rev);
-           freqAnForSingleReview = new FrequencyAnalyzer(buffLOR);
-           freqAnForSingleReview.makeFrequencyDictionary();
-           for (Map.Entry<String, Integer> entry : freqAnForSingleReview.getWords().entrySet()) {
-               if(!isInTrashWords(entry.getKey())){
-                   currThesis = new Thesis(rev.getId(), idTable.get(entry.getKey()), entry.getKey(),
-                           entry.getValue(), 0, 0);
-                   tf = countTF(entry.getValue(),numOfWordsInCurrReview);
-                   idf = countIDF(numOfReviews, NumOfReviewsContainsParticularThesis.get(entry.getKey()));
-                   //currThesis.setTfidf(tf * idf);
-                   thesisDbController.addThesis(currThesis);
-               }
-           }
-       }
-
-    }
-    */
-    /**
      * counts TF
      * @param frequency - frequency of particular thesisUnique in particular review
      * @param sumFrequency - number of non trash words in review
@@ -253,28 +164,6 @@ public class AnalyzeThesis extends TimerTask {
     private double countIDF(double numOfReviews, double numOfReviewsContainsTU){
         return Math.log(numOfReviews/numOfReviewsContainsTU);
     }
-    /*
-    public void updateThesisByProductId(long productId) throws StorageException {
-        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
-        List<Review> desiredReviews;
-
-        //select reviews from database by product id
-        desiredReviews = reviewDbController.getReviewsByProductId(productId);
-
-        //filling map of unique thesis
-        Map<String, Integer> thesisUniques = fillingMapOfThesisUnique(desiredReviews);
-
-        // Создаём таблицу thesis_unique
-        Map<String, Long> tableOfId = fillMapOfThesisId(thesisUniques);
-
-        addThesisesToDB(desiredReviews, tableOfId);
-    }
-    */
-
-    //Хотим метод,который тупо кладёт в БД немусорные тезисы.
-    //Добавление поля tfidf - потом
-    //Добавление поля thesisUnique - потом
-
     /**
      * Additioning of thesises in DB (non of  them are Trashword)
      * Each thesis hasn't thesisUniqueId field
@@ -309,9 +198,6 @@ public class AnalyzeThesis extends TimerTask {
        }
         return thesisUniques;
     }
-
-    //Теперь хотим заполнить уникальныне тезисы!
-
     /**
      * Additioning of thesisUniques in DB
      * @param thesisUniques - map, where key - a word and value - its frequency
@@ -337,9 +223,6 @@ public class AnalyzeThesis extends TimerTask {
         }
         return tableOfId;
     }
-
-    // Теперь надо дозаполнять поля thesisUniqueId и
-
     /**
      * filling TUid parametrs in each thesis
      * @param tableOfId - map, where key - thesisUnique content, value - its id in table
@@ -352,7 +235,6 @@ public class AnalyzeThesis extends TimerTask {
             thesisDbController.setThesisUniqueId(thesis.getId(), tableOfId.get(thesis.getContent()));
         }
     }
-
     /**
      * computing tfidf for each thesis in DB
      * @param listOfReviews
@@ -385,6 +267,39 @@ public class AnalyzeThesis extends TimerTask {
         Map<String, Integer> pairsTUandFreq = additioningOfThesisesAndGettingOfTUs(desiredReviews);
         Map<String, Long> pairsTUandId = AdditionOffTUtoDb(pairsTUandFreq);
         FillingTUIdParam(pairsTUandId, productId);
+    }
+    public void printTFIDF(Map<Long, Double> mapOfTFIDF)
+    {
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+        // Достаём все товары
+        List<Product> listOfProducts = productDbController.getAllProducts();
+        for(Product product : listOfProducts)
+        {
+            // Теперь для каждого товара пишем его имя..
+            System.out.println("<product name =" + product.getName() + '"' + ">");
+            //...Достаём все отзывы на него...
+            List<Review> reviewList = reviewDbController.getReviewsByProductId(product.getId());
+            for(Review review : reviewList)
+            {
+                //...и теперь для каждого отзыва пишем его содержание...
+                System.out.println("<review>");
+                System.out.println(review.getContent());
+                System.out.println("</review>");
+                System.out.println("<info>");
+                //...и достаём из базы список нетрэшевых тезисов из него (отзыва)
+                List<Thesis> thesisList =  thesisDbController.getThesesByReviewId(review.getId());
+                for(Thesis thesis : thesisList)
+                {
+                    //и теперь для каждого тезиса выводим его содержимое и tfidf
+                    System.out.print(thesis.getContent() + ' ');
+                    System.out.println(mapOfTFIDF.get(thesis.getId()));
+                }
+                System.out.println("</info>");
+            }
+            System.out.println("</product>");
+        }
     }
 
     @Override

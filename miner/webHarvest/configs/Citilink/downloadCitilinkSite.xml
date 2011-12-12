@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-   <!-- <var-def name="path">/tmp/CitilinkPages/</var-def>-->
+    <!-- <var-def name="path">/tmp/CitilinkPages/</var-def>-->
 
     <!--<var-def name="path">allLinks/</var-def>-->
     <var-def name="startURL">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</var-def>
@@ -16,11 +16,11 @@
     </var-def>
 
 
-       <!-- <file action="write" path="${path}/Citilink/list/LatterLinks.xml">
-            <![CDATA[ <body> ]]>
-        </file>  -->
-       <file action="write" path="${path}/Citilink/list/LatterLinks.txt">
-        </file>
+    <!-- <file action="write" path="${path}/Citilink/list/LatterLinks.xml">
+      <![CDATA[ <body> ]]>
+  </file>  -->
+    <file action="write" path="${path}/list/LatterLinks.txt">
+    </file>
 
     <while condition="${MaxPage.toInt() + 1>i.toInt()}" index="i">
         <empty>
@@ -43,31 +43,23 @@
                 </list>
                 <body>
                     <empty>
-							<var-def name="numberOfReviews">
-								<xpath expression='//ul[@class="tabs"]/li[@t="t2"]/a/text()'>
+                        <var-def name="numberOfReviews">
+                            <xpath expression='count(//div/div[@class="opinion row1"])'>
                                 <html-to-xml>
                                     <http url="http://www.citilink.ru${oneNew}?opinion"/>
                                 </html-to-xml>
-                                </xpath>
-                            </var-def>
-							
-                        <file action="append" path="${path}/Citilink/list/LatterLinks.txt">
-                           <!-- <![CDATA[ <page opinionnum="]]><var name="numberOfReviews"/><![CDATA[">]]>
-                            <var name="oneNew"/>
-                            <![CDATA[ </page>]]>   -->
-                            <var name="oneNew"/>
-                            <text> </text>
-                            <var name="numberOfReviews"/>
-                            <text>" "</text>
+                            </xpath>
+                        </var-def>
+                        <file action="append" path="${path}/list/LatterLinks.txt">
+                            <template>${oneNew} ${numberOfReviews}${sys.cr}${sys.lf}</template>
                         </file>
-
                     </empty>
                 </body>
             </loop>
         </empty>
     </while>
 
-   <!-- <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
-        <![CDATA[ </body> ]]>
-    </file>   -->
+    <!-- <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
+     <![CDATA[ </body> ]]>
+ </file>   -->
 </config>
