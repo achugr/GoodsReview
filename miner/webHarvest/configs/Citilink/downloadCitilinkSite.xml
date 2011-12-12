@@ -15,11 +15,15 @@
         </xpath>
     </var-def>
 
-
-    <!-- <file action="write" path="${path}/Citilink/list/LatterLinks.xml">
-      <![CDATA[ <body> ]]>
-  </file>  -->
-    <file action="write" path="${path}/list/LatterLinks.txt">
+    <var-def name="filePath">
+        <template>
+            ${path}/list/LatterLinks.xml
+        </template>
+    </var-def>
+    <file action="write" path="${filePath}">
+        <template>
+            &lt;objects&gt;${sys.cr}${sys.lf}
+        </template>
     </file>
 
     <while condition="${MaxPage.toInt() + 1>i.toInt()}" index="i">
@@ -50,8 +54,12 @@
                                 </html-to-xml>
                             </xpath>
                         </var-def>
-                        <file action="append" path="${path}/list/LatterLinks.txt">
-                            <template>${oneNew} ${numberOfReviews}${sys.cr}${sys.lf}</template>
+                        <file action="append" path="${filePath}">
+                            <!--<object value="3">abcd</object>-->
+                            <template>
+                                &lt;object value=&quot;${numberOfReviews}&quot;&gt;${oneNew}&lt;/object&gt;
+                                ${sys.cr}${sys.lf}
+                            </template>
                         </file>
                     </empty>
                 </body>
@@ -59,7 +67,9 @@
         </empty>
     </while>
 
-    <!-- <file action="append" path="${path}/Citilink/list/LatterLinks.xml">
-     <![CDATA[ </body> ]]>
- </file>   -->
+    <file action="append" path="${filePath}">
+        <template>
+            &lt;/objects&gt;${sys.cr}${sys.lf}
+        </template>
+    </file>
 </config>

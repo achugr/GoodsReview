@@ -9,14 +9,16 @@ package ru.goodsReview.miner;
 import org.apache.log4j.Logger;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
+import org.xml.sax.SAXException;
 import ru.common.FileUtil;
+import ru.common.Serializer;
 import ru.goodsReview.core.exception.DeleteException;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
@@ -55,22 +57,27 @@ public class GrabberCitilink extends WebHarvestGrabber {
     protected void downloadPages() {
         try {
             log.info("Adding download pages started");
-            Scanner scanner = new Scanner(new File(getPath() + "list/NewLinks.txt"));
-            FileWriter out = new FileWriter(getPath() + "list/AllLinks.txt", true);
+
+            File newLinksFile = new File(getPath() + "list/NewLinks.xml");
+            Map<String, Integer> newLinksMap = Serializer.instance().readMap(newLinksFile);
+
+            File allLinksFile = new File(getPath() + "list/AllLinks.xml");
+            Map<String, Integer> allLinksMap = new HashMap<String, Integer>();
+            if (allLinksFile.exists()) {
+                allLinksMap = Serializer.instance().readMap(allLinksFile);
+            }
 
             List<String> linksToDownload = new ArrayList<String>();
-            while (scanner.hasNext()) {
-                String productUrl = scanner.next();
-                String reviewNumber = scanner.next();
-
+            Iterator<String> iterator = newLinksMap.keySet().iterator();
+            while (iterator.hasNext()) {
+                String productUrl = iterator.next();
+                Integer reviewNumber = newLinksMap.get(productUrl);
                 String url = site + productUrl + "?opinion";
                 linksToDownload.add(url);
-                out.write(productUrl + " " + reviewNumber + "\n");
             }
+            allLinksMap.putAll(newLinksMap);
+            Serializer.instance().write(allLinksMap, allLinksFile);
             Downloader.getInstance().addLinks(linksToDownload, getPath() + "Pages", "windows-1251");
-            scanner.close();
-            out.close();
-
             log.info("Adding download pages successful");
         } catch (Exception e) {
             log.error("Cannot process download pages", e);
@@ -79,44 +86,34 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
     @Override
     //TODO:: not add, if review number changes, only update
-    protected void findPages() throws IOException {
+    protected void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException {
         log.info("Find pages started");
 
         //what links we visited before and count of reviews
-        String allLinks = new String();
-        File allLinksFile = new File(getPath() + "list/AllLinks.txt");
+        File allLinksFile = new File(getPath() + "list/AllLinks.xml");
+        Map<String, Integer> allLinksMap = new HashMap<String, Integer>();
         if (allLinksFile.exists()) {
-            StringBuilder links = new StringBuilder();
-            BufferedReader br = new BufferedReader(new FileReader(allLinksFile));
-            String nextLine;
-            while ((nextLine = br.readLine()) != null) {
-                links.append(nextLine);
-            }
+            allLinksMap = Serializer.instance().readMap(allLinksFile);
+        }
 
-            allLinks = links.toString();
-            br.close();
-        }
-        {
-            FileWriter out = new FileWriter(getPath() + "list/NewLinks.txt", false);
-            Scanner scanner = new Scanner(new FileReader(getPath() + "list/LatterLinks.txt"));
-            String reviewNumber;
-            String reviewUrl;
-            while(scanner.hasNext()){
-                reviewUrl = scanner.next();
-                reviewNumber = scanner.next();
-                int position = allLinks.indexOf(reviewUrl + " " + reviewNumber);
-                if (position == -1) {
-                    out.write(reviewUrl + " " + reviewNumber + "\n");
-                }
+        File latterLinksFile = new File(getPath() + "list/LatterLinks.xml");
+        Map<String, Integer> latterLinksMap = Serializer.instance().readMap(latterLinksFile);
+        Iterator<String> iterator = latterLinksMap.keySet().iterator();
+        Map<String, Integer> newLinksMap = new HashMap<String, Integer>();
+        while (iterator.hasNext()) {
+            String reviewUrl = iterator.next();
+            Integer reviewNumber = latterLinksMap.get(reviewUrl);
+            // if new url or added review
+            if (!allLinksMap.containsKey(reviewUrl) || allLinksMap.get(reviewUrl) != reviewNumber) {
+                newLinksMap.put(reviewUrl, reviewNumber);
             }
-            out.close();
-            scanner.close();
         }
+        Serializer.instance().write(newLinksMap, new File(getPath() + "list/NewLinks.xml"));
         log.info("Find pages successful");
     }
 
     @Override
-    protected void grabPages() throws IOException{
+    protected void grabPages() throws IOException {
         log.info("Grabbing started");
         ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
         Scraper scraper = new Scraper(config, ".");

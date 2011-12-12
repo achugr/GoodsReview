@@ -81,11 +81,12 @@ public class Downloader implements Runnable {
                 if(!tasks.isEmpty()){
                     Task task = tasks.remove();
                     int i = 1;
+                    int size = task.links.size();
                     for(String url : task.links){
                         try{
                             downloadOneLink( url, task.path + '/' + i + ".html", task.encoding);
+                            log.debug("Downloaded " + i + " of " + size + " url:" + url);
                             ++i;
-                            log.debug("Downloaded " + url);
                         } catch(IOException e){
                             log.error("Problem with loading url downloading", e);
                         }
