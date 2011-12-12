@@ -85,7 +85,7 @@ public abstract class WebHarvestGrabber extends Grabber {
     public void run() {
         try {
             log.info("Run started");
-            downloader();
+            //downloader();
             //this method should be one for all grabbers
             Thread thread = new Thread(Downloader.getInstance());
             thread.start();

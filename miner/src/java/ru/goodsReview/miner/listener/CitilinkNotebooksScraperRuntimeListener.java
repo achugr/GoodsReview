@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
+import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
@@ -34,13 +35,10 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     private static String lastAddedProductName = "";
     private static long lastAddedProductId = 0;
 
-    protected SimpleJdbcTemplate jdbcTemplate;
-    protected ReviewDbController reviewDbController;
-    protected ProductDbController productDbController;
+    protected ControllerFactory controllerFactory;
 
-    public CitilinkNotebooksScraperRuntimeListener(SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-        reviewDbController = new ReviewDbController(jdbcTemplate);
+    public CitilinkNotebooksScraperRuntimeListener(ControllerFactory controllerFactory) {
+        this.controllerFactory = controllerFactory;
     }
 
     public void onExecutionStart(Scraper scraper) {}
@@ -77,9 +75,8 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
         CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
         Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
         if (!lastAddedProductName.equals(product.getName())) {
-            ProductDbController productDbController = new ProductDbController(jdbcTemplate);
             try {
-                lastAddedProductId = productDbController.addProduct(product);
+                lastAddedProductId = controllerFactory.getProductController().addProduct(product);
                 log.info("New product Name = " + product.getName());
             } catch (StorageException e) {
                 log.error("Error, while add review in db", e);
@@ -121,7 +118,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             reviewList.add(badFeauture);
             reviewList.add(comment);
             try {
-                reviewDbController.addReviewList(reviewList);
+                controllerFactory.getReviewController().addReviewList(reviewList);
             } catch (StorageException e) {
                 log.error("Error, while add review in db", e);
             }

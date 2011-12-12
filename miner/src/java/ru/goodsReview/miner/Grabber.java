@@ -7,17 +7,18 @@
 package ru.goodsReview.miner;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.ControllerFactory;
 
 import java.util.TimerTask;
 
 
 public abstract class Grabber extends TimerTask {
-    protected SimpleJdbcTemplate jdbcTemplate;
+    protected ControllerFactory controllerFactory;
 
     @Override
     public abstract void run();
 
-    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
-        this.jdbcTemplate = jdbcTemplate;
+    public void setControllerFactory(ControllerFactory controllerFactory){
+        this.controllerFactory = controllerFactory;
     }
 }

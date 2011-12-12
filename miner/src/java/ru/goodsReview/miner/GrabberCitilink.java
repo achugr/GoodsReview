@@ -117,7 +117,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
         log.info("Grabbing started");
         ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
         Scraper scraper = new Scraper(config, ".");
-        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(jdbcTemplate));
+        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(controllerFactory));
         scraper.addVariableToContext("path", getPath() + "Pages/");
         scraper.addVariableToContext("numberOfFirstReview", 0);
         scraper.setDebug(true);
