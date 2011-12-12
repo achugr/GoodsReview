@@ -11,11 +11,8 @@ package ru.goodsReview.miner;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.exception.DeleteException;
-import ru.goodsReview.core.utils.FileUtil;
 
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
 
 public abstract class WebHarvestGrabber extends Grabber {
     private static final Logger log = Logger.getLogger(WebHarvestGrabber.class);

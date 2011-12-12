@@ -1,4 +1,4 @@
-package ru.goodsReview.core.utils;
+package ru.common;
 
 /*
  *  Date: 11.12.11

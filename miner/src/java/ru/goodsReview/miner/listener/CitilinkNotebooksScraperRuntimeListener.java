@@ -82,11 +82,11 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             //add product into DB
             if (!lastAddedProductName.equals(product.getName())) {
                 ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-                log.info("product Name = " + product.getName());
                 try {
                     lastAddedProductId = productDbController.addProduct(product);
+                    log.info("New product Name = " + product.getName());
                 } catch (StorageException e) {
-                    e.printStackTrace();
+                    log.error("Error, while add review in db", e);
                 }
                 lastAddedProductName = product.getName();
             }
@@ -111,7 +111,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             try {
                 reviewDbController.addReviewList(reviewList);
             } catch (StorageException e) {
-                e.printStackTrace();
+                log.error("Error, while add review in db", e);
             }
             log.info("New review for " + lastAddedProductName + " with ID " + lastAddedProductId + " added.");
         }

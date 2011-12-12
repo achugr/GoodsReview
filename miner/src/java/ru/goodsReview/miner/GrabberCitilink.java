@@ -9,8 +9,8 @@ package ru.goodsReview.miner;
 import org.apache.log4j.Logger;
 import org.webharvest.definition.ScraperConfiguration;
 import org.webharvest.runtime.Scraper;
+import ru.common.FileUtil;
 import ru.goodsReview.core.exception.DeleteException;
-import ru.goodsReview.core.utils.FileUtil;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
 import java.io.*;
@@ -64,7 +64,6 @@ public class GrabberCitilink extends WebHarvestGrabber {
                 String reviewNumber = scanner.next();
 
                 String url = site + productUrl + "?opinion";
-                //downloadOneLink( url, getPath() + "Pages/" + i + ".html"  );
                 linksToDownload.add(url);
                 out.write(productUrl + " " + reviewNumber + "\n");
             }
