@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 public class AdjectiveAnalyzerTest {
+    private static AdjectiveAnalyzer aa;
+
     public static void main (String[] args) throws IOException {
         String testPhrases = "Предел функции (предельное значение функции) в заданной точке, предельной для области определения функции, — такая величина, к которой стремится рассматриваемая функция при стремлении её аргумента к данной точке." +
                 "Предел функции является обобщением понятия предела последовательности: изначально, под пределом функции в точке понимали предел последовательности элементов области значений функции, составленной из образов точек последовательности элементов области определения функции, сходящейся к заданной точке (предел в которой рассматривается); если такой предел существует, то говорят, что функция сходится к указанному значению; если такого предела не существует, то говорят, что функция расходится." +
@@ -25,7 +27,7 @@ public class AdjectiveAnalyzerTest {
 
         while (st.hasMoreTokens()) {
             currToken = st.nextToken().trim();
-            if (AdjectiveAnalyzer.isAdjective(currToken)) {
+            if (aa.isAdjective(currToken)) {
                 System.out.println(currToken + " is an adjective!");
             }
         }
