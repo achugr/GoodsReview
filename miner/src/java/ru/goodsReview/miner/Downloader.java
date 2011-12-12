@@ -89,6 +89,7 @@ public class Downloader implements Runnable {
                         } catch(IOException e){
                             log.error("Problem with loading url downloading", e);
                         }
+                        Thread.sleep(time);
                     }
                 }
                 Thread.sleep(time);
