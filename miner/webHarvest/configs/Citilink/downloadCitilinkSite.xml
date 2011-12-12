@@ -15,11 +15,11 @@
         </xpath>
     </var-def>
 
-    <var-def name="filePath">
+    <!--<var-def name="filePath">
         <template>
             ${path}/list/LatterLinks.xml
         </template>
-    </var-def>
+    </var-def>-->
     <file action="write" path="${filePath}">
         <template>
             &lt;objects&gt;${sys.cr}${sys.lf}
