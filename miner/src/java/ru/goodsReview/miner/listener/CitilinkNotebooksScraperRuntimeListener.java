@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
+import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
@@ -34,40 +35,57 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     private static String lastAddedProductName = "";
     private static long lastAddedProductId = 0;
 
-    protected SimpleJdbcTemplate jdbcTemplate;
-    protected ReviewDbController reviewDbController;
-    protected ProductDbController productDbController;
+    protected ControllerFactory controllerFactory;
 
-    public CitilinkNotebooksScraperRuntimeListener(SimpleJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-        reviewDbController = new ReviewDbController(jdbcTemplate);
+    public CitilinkNotebooksScraperRuntimeListener(ControllerFactory controllerFactory) {
+        this.controllerFactory = controllerFactory;
     }
 
-    public void onExecutionStart(Scraper scraper) {
+    public void onExecutionStart(Scraper scraper) {}
 
-    }
+    public void onExecutionPaused(Scraper scraper) {}
 
-    public void onExecutionPaused(Scraper scraper) {
-    }
+    public void onExecutionContinued(Scraper scraper) {}
 
-    public void onExecutionContinued(Scraper scraper) {
-    }
+    public void onNewProcessorExecution(Scraper scraper, BaseProcessor baseProcessor) {}
 
-    public void onNewProcessorExecution(Scraper scraper, BaseProcessor baseProcessor) {
-    }
+    public void onExecutionEnd(Scraper scraper) {}
 
-    public void onExecutionEnd(Scraper scraper) {
-
-
-    }
-
-    //it works, but i need distribute this code on logic-methods
     public void onProcessorExecutionFinished(Scraper scraper, BaseProcessor baseProcessor, Map map) {
+        if ("body".equalsIgnoreCase(scraper.getRunningProcessor()
+                .getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 3)) {
+            //add product into DB
+            addProduct(scraper);
+        }
+        if ("body".equalsIgnoreCase(scraper.getRunningProcessor()
+                .getElementDef()
+                .getShortElementName()) && (scraper.getRunningLevel() == 6)) {
+            addReviews(scraper);
+        }
+    }
 
-        if ("body".equalsIgnoreCase(
-                scraper.getRunningProcessor().getElementDef().getShortElementName()) && (scraper.getRunningLevel() == 6)) {
+    public void onExecutionError(Scraper scraper, Exception e) {
+        if (e != null) {
+            log.error("CitilinkNotebooksScraperRuntimeListener error", e);
+        }
+    }
 
-            String nameProd = scraper.getContext().get("ProductName").toString();
+    private void addProduct(Scraper scraper) {
+        String nameProd = scraper.getContext().get("ProductName").toString();
+        CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
+        Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
+        if (!lastAddedProductName.equals(product.getName())) {
+            try {
+                lastAddedProductId = controllerFactory.getProductController().addProduct(product);
+                log.info("New product Name = " + product.getName());
+            } catch (StorageException e) {
+                log.error("Error, while add review in db", e);
+            }
+            lastAddedProductName = product.getName();
+        }
+    }
+    private void addReviews(Scraper scraper) {
+        String nameProd = scraper.getContext().get("ProductName").toString();
             String prodPrice = scraper.getContext().get("Price").toString();
             String reviewTime = scraper.getContext().get("ReviewTime").toString();
             String starRate = scraper.getContext().get("StarRate").toString();
@@ -78,26 +96,17 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             long time = System.currentTimeMillis();
 
             CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
-            Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
-            //add product into DB
-            if (!lastAddedProductName.equals(product.getName())) {
-                ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-                try {
-                    lastAddedProductId = productDbController.addProduct(product);
-                    log.info("New product Name = " + product.getName());
-                } catch (StorageException e) {
-                    log.error("Error, while add review in db", e);
-                }
-                lastAddedProductName = product.getName();
-            }
             //takes indexes of text parts and parse opinion text
             String goodOpinion = citilinkDataTransformator.getGoodPartOfOpinion(opinionText);
             String badOpinion = citilinkDataTransformator.getBadPartOfOpinion(opinionText);
             String commentOpinion = citilinkDataTransformator.getCommentPartOfOpinion(opinionText);
 
-            Review goodFeauture = new Review(lastAddedProductId, goodOpinion, "anonim", time, "", 1, "citilink.ru", GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru", BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", time, "", 1, "citilink.ru", 0.0, 0.0, 0, 0);
+            Review goodFeauture = new Review(lastAddedProductId, goodOpinion,"anonim", time, "", 1, "citilink.ru",
+                    GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru",
+                    BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
+            Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", time, "", 1, "citilink.ru",
+                    0.0, 0.0, 0, 0);
 
 //            clear reviews content from trash
             goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
@@ -109,18 +118,10 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             reviewList.add(badFeauture);
             reviewList.add(comment);
             try {
-                reviewDbController.addReviewList(reviewList);
+                controllerFactory.getReviewController().addReviewList(reviewList);
             } catch (StorageException e) {
                 log.error("Error, while add review in db", e);
             }
             log.info("New review for " + lastAddedProductName + " with ID " + lastAddedProductId + " added.");
-        }
-    }
-
-    public void onExecutionError
-            (Scraper scraper, Exception e) {
-        if (e != null) {
-            log.error("CitilinkNotebooksScraperRuntimeListener error", e);
-        }
     }
 }

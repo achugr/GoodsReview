@@ -15,28 +15,27 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class AdjectiveAnalyzer {
-    
-    private static AdjectiveAnalyzer instance;
+
     private static final Logger log = Logger.getLogger(AdjectiveAnalyzer.class);
 
     static final String charset = "UTF8";
 
     private Process analyzer;
+    private Scanner sc;
+    private PrintStream ps;
 
-    private AdjectiveAnalyzer() throws IOException {
-        analyzer = Runtime.getRuntime().exec("mystem -nig -e " + charset);
-    }
-
-    public static AdjectiveAnalyzer instance() throws IOException {
+    public AdjectiveAnalyzer() throws IOException {
         try {
-            if (instance == null) {
-                instance = new AdjectiveAnalyzer();
-            }
+            analyzer = Runtime.getRuntime().exec("mystem -nig -e " + charset);
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if mystem is installed", e);
             throw new IOException();
         }
-        return instance;
+
+    }
+
+    public void close() {
+        analyzer.destroy();
     }
 
     /**
@@ -57,7 +56,7 @@ public class AdjectiveAnalyzer {
      * @param word Word which is tested for being adjective.
      * @return True if word is an adjective, false — otherwise.
      */
-    public static boolean isAdjective (String word) throws IOException {
+    public boolean isAdjective (String word) throws IOException {
 
         //word = word.trim();
         //if (word.indexOf(" ") != -1) {
@@ -81,8 +80,6 @@ public class AdjectiveAnalyzer {
         //}
         //}
 
-        instance = AdjectiveAnalyzer.instance();
-
         int wl = word.length(); boolean b = true;
         for (int i = 0; i < wl; ++i) {
             if (!isRussianLetter(word.charAt(i))) {
@@ -95,8 +92,8 @@ public class AdjectiveAnalyzer {
             return false;
         }
 
-        Scanner sc = new Scanner(instance.analyzer.getInputStream(),charset);
-        PrintStream ps = new PrintStream(instance.analyzer.getOutputStream(),true,charset);
+        sc = new Scanner(analyzer.getInputStream(),charset);
+        ps = new PrintStream(analyzer.getOutputStream(),true,charset);
 
         ps.println(word);
         String wordCharacteristic = sc.nextLine();

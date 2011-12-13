@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 
+import java.io.IOException;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
@@ -27,7 +28,7 @@ public class ExtractThesisTest {
     }
 
     @org.junit.Test
-    public void thesisExtractionTest(){
+    public void thesisExtractionTest() throws IOException {
         {
             long  time = System.currentTimeMillis();
             Review review = new Review(2, "ноутбук очень мощный, ну просто отличная клавиатура", "anonim", time, "", 1, null, 1.0, 1.0, 1,1);

@@ -51,8 +51,8 @@
                             </var-def>
                             <var-def name="OpinionText">
                                 <xpath expression="//*[@class='m']/p[position()>1]/text() | //*[@class='m']/p[position()>1]/b/text()">
-            		    	        <var name="review"/>
-        			            </xpath>
+                                    <var name="review"/>
+                                </xpath>
                             </var-def>
                             <var-def name="VoteYes">
                                 <xpath expression="//*[@class='vote']/p/span[3]/text()">

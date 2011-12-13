@@ -169,7 +169,7 @@ public class ExtractThesis extends TimerTask{
      * @param review Review with theses had to be extracted.
      * @return List of theses.
      */
-    public static List<Thesis> doExtraction(Review review) {
+    public static List<Thesis> doExtraction(Review review) throws IOException {
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
         fillDictionary();
         String content = review.getContent();
@@ -177,12 +177,12 @@ public class ExtractThesis extends TimerTask{
         StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
         String currToken;
         String nextToken;
-        try {
+        AdjectiveAnalyzer aa = new AdjectiveAnalyzer();
         while(st.hasMoreElements()){
 //            get current token
             currToken = st.nextToken();
 //            if it's an adjective
-            if(AdjectiveAnalyzer.isAdjective(currToken)){
+            if(aa.isAdjective(currToken)){
 //                go on review
                 while (st.hasMoreElements()){
                     nextToken = st.nextToken();
@@ -200,7 +200,7 @@ public class ExtractThesis extends TimerTask{
                         while (st.hasMoreElements()){
                             nextToken = st.nextToken();
 //                            if nextToken is an adjective
-                            if(AdjectiveAnalyzer.isAdjective(nextToken)){
+                            if(aa.isAdjective(nextToken)){
 //                              create Thesis, which content = currToken(adjective) + nextToken(noun from dictionary)
                                 extractedThesisList.add(new Thesis(review.getId(),1, currToken +" "+ nextToken, 0, 0.0, 0.0));
                                 break;
@@ -209,9 +209,8 @@ public class ExtractThesis extends TimerTask{
                     }
             }
         }
-        } catch (IOException e) {
 
-        }
+        aa.close();
         return extractedThesisList;
     }
 

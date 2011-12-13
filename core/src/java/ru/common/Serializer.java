@@ -44,22 +44,21 @@ public class Serializer {
         return instance;
     }
 
-    private void write(Document doc, String path) throws TransformerException {
+    private void write(Document doc, File file) throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new File(path));
+        StreamResult result = new StreamResult(file);
         transformer.transform(source, result);
         log.info("File saved!");
     }
 
-    public void write(Map<String, Integer> map, String path) throws TransformerException {
+    public void write(Map<String, Integer> map, File file) throws TransformerException {
         Document doc = docBuilder.newDocument();
         Element rootElement = doc.createElement("objects");
         doc.appendChild(rootElement);
 
-        Set<String> set = map.keySet();
-        Iterator<String> iterator = set.iterator();
+        Iterator<String> iterator = map.keySet().iterator();
         while (iterator.hasNext()) {
             String object = iterator.next();
             Integer value = map.get(object);
@@ -72,11 +71,11 @@ public class Serializer {
             objectElement.appendChild(doc.createTextNode(object));
             rootElement.appendChild(objectElement);
         }
-        write(doc, path);
+        write(doc, file);
     }
 
-    public Map<String, Integer> readMap(String path) throws IOException, SAXException {
-        Document doc = docBuilder.parse(new File(path));
+    public Map<String, Integer> readMap(File file) throws IOException, SAXException {
+        Document doc = docBuilder.parse(file);
         doc.getDocumentElement().normalize();
 
         NodeList nodelist = doc.getElementsByTagName("object");
@@ -92,7 +91,7 @@ public class Serializer {
         return map;
     }
 
-    public void write(List<String> list, String path) throws TransformerException {
+    public void write(List<String> list, File file) throws TransformerException {
         Document doc = docBuilder.newDocument();
         Element rootElement = doc.createElement("objects");
         doc.appendChild(rootElement);
@@ -103,11 +102,11 @@ public class Serializer {
             objectElement.appendChild(doc.createTextNode(object));
             rootElement.appendChild(objectElement);
         }
-        write(doc, path);
+        write(doc, file);
     }
 
-    public List<String> readList(String path) throws IOException, SAXException {
-        Document doc = docBuilder.parse(new File(path));
+    public List<String> readList( File file) throws IOException, SAXException {
+        Document doc = docBuilder.parse(file);
         doc.getDocumentElement().normalize();
 
         NodeList nodelist = doc.getElementsByTagName("object");
@@ -121,4 +120,8 @@ public class Serializer {
         }
         return list;
     }
+    /*public static void main(String argv[]) throws Exception{
+        Map map = Serializer.instance().readMap(new File("data/miner/Citilink/list/LatterLinks.xml"));
+        System.out.print(1);
+    }*/
 }
