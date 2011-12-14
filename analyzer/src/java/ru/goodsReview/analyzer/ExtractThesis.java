@@ -259,10 +259,10 @@ public class ExtractThesis extends TimerTask{
     
     @Override
     public void run() {
-//        try {
-//            extractThesisOnAllProducts();
-//        } catch (IOException e) {
-//        }
+        try {
+            extractThesisOnAllProducts();
+        } catch (IOException e) {
+        }
         showThesisOnAllProducts();
         log.info("extraction is complete");
     }

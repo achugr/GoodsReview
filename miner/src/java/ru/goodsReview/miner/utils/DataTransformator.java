@@ -1,5 +1,7 @@
 package ru.goodsReview.miner.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 /*
     Date: 10/26/11
     Time: 06:23
@@ -13,11 +15,11 @@ public abstract class DataTransformator {
      * @param review string for clearing
      * @return String without html-tags
      */
-    protected static String clearReviewFromTags(String review){
+    protected static String clearReviewFromTags(@NotNull String review){
         return review.replaceAll("\\<.*?\\>", "");
     }
 
-    protected static String clearBadSymbols(String s){
+    protected static String clearBadSymbols(@NotNull String s){
         //it is not simple space symbols
         s = s.replaceAll("['\\u00A0''\\u2007''\\u202F']", " ");
         s = s.replaceAll("['\u0097']", "-");

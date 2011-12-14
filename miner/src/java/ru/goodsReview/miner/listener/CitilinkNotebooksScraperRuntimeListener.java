@@ -9,7 +9,6 @@ package ru.goodsReview.miner.listener;
 
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
@@ -18,8 +17,6 @@ import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.miner.utils.CitilinkDataTransformator;
-import ru.goodsReview.storage.controller.ProductDbController;
-import ru.goodsReview.storage.controller.ReviewDbController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +81,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             lastAddedProductName = product.getName();
         }
     }
+
     private void addReviews(Scraper scraper) {
         String nameProd = scraper.getContext().get("ProductName").toString();
             String prodPrice = scraper.getContext().get("Price").toString();
@@ -100,23 +98,28 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
             String goodOpinion = citilinkDataTransformator.getGoodPartOfOpinion(opinionText);
             String badOpinion = citilinkDataTransformator.getBadPartOfOpinion(opinionText);
             String commentOpinion = citilinkDataTransformator.getCommentPartOfOpinion(opinionText);
-
-            Review goodFeauture = new Review(lastAddedProductId, goodOpinion,"anonim", time, "", 1, "citilink.ru",
+            List<Review> reviewList = new ArrayList<Review>();
+            if(goodOpinion != null){
+                Review goodFeauture = new Review(lastAddedProductId, goodOpinion,"anonim", time, "", 1, "citilink.ru",
                     GOOD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru",
+                goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
+                reviewList.add(goodFeauture);
+            }
+            if(badOpinion != null){
+                Review badFeauture = new Review(lastAddedProductId, badOpinion, "anonim", time, "", 1, "citilink.ru",
                     BAD_FEAUTURE_POSITIVITY, 0.0, 0, 0);
-            Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", time, "", 1, "citilink.ru",
+                badFeauture = citilinkDataTransformator.clearReviewFromTrash(badFeauture);
+                reviewList.add(badFeauture);
+            }
+            if(commentOpinion != null){
+                Review comment = new Review(lastAddedProductId, commentOpinion, "anonim", time, "", 1, "citilink.ru",
                     0.0, 0.0, 0, 0);
+                comment = citilinkDataTransformator.clearReviewFromTrash(comment);
+                reviewList.add(comment);
+            }
 
 //            clear reviews content from trash
-            goodFeauture = citilinkDataTransformator.clearReviewFromTrash(goodFeauture);
-            badFeauture = citilinkDataTransformator.clearReviewFromTrash(badFeauture);
-            comment = citilinkDataTransformator.clearReviewFromTrash(comment);
 //            add reviews in DB
-            List<Review> reviewList = new ArrayList<Review>();
-            reviewList.add(goodFeauture);
-            reviewList.add(badFeauture);
-            reviewList.add(comment);
             try {
                 controllerFactory.getReviewController().addReviewList(reviewList);
             } catch (StorageException e) {
