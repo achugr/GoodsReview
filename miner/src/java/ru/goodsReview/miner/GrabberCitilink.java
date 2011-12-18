@@ -23,18 +23,36 @@ import java.util.*;
 public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
     private static final String site = "http://www.citilink.ru";
+    private static final String encoding = "windows-1251";
+
+    private String pagesPath;
+    private String descriptionPath;
+    private String listPath;
+    private String allLinksPath;
+    private String newLinksPath;
+    private String latterLinksPath;
+
+    @Override
+    public void init() {
+        pagesPath = getPath() + "reviews/";
+        descriptionPath = getPath() + "descriptions/";
+        listPath = getPath() + "list/";
+        allLinksPath = listPath + "allLinks.xml";
+        newLinksPath = listPath + "newLinks.xml";
+        latterLinksPath = listPath + "latterLinks.xml";
+    }
 
     @Override
     protected void cleanFolders() throws DeleteException {
-        FileUtil.cleanFolder(new File(getPath() + "Pages/"));
-        FileUtil.cleanFolder(new File(getPath() + "Descriptions/"));
+        FileUtil.cleanFolder(new File(pagesPath));
+        FileUtil.cleanFolder(new File(descriptionPath));
     }
 
     @Override
     protected void createFolders() throws IOException {
-        new File(getPath() + "Pages").mkdirs();
-        new File(getPath() + "Descriptions").mkdirs();
-        new File(getPath() + "list").mkdirs();
+        new File(pagesPath).mkdirs();
+        new File(descriptionPath).mkdirs();
+        new File(listPath).mkdirs();
     }
 
     @Override
@@ -44,6 +62,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
             ScraperConfiguration config = new ScraperConfiguration(getDownloadConfig());
             Scraper scraper = new Scraper(config, ".");
             scraper.addVariableToContext("path", getPath());
+            scraper.addVariableToContext("filePath", latterLinksPath);
             scraper.setDebug(true);
             scraper.execute();
             log.info("Update list successful");
@@ -58,10 +77,10 @@ public class GrabberCitilink extends WebHarvestGrabber {
         try {
             log.info("Adding download pages started");
 
-            File newLinksFile = new File(getPath() + "list/NewLinks.xml");
+            File newLinksFile = new File(newLinksPath);
             Map<String, Integer> newLinksMap = Serializer.instance().readMap(newLinksFile);
 
-            File allLinksFile = new File(getPath() + "list/AllLinks.xml");
+            File allLinksFile = new File(allLinksPath);
             Map<String, Integer> allLinksMap = new HashMap<String, Integer>();
             if (allLinksFile.exists()) {
                 allLinksMap = Serializer.instance().readMap(allLinksFile);
@@ -77,7 +96,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
             }
             allLinksMap.putAll(newLinksMap);
             Serializer.instance().write(allLinksMap, allLinksFile);
-            Downloader.getInstance().addLinks(linksToDownload, getPath() + "Pages", "windows-1251");
+            Downloader.getInstance().addLinks(linksToDownload, pagesPath, encoding);
             log.info("Adding download pages successful");
         } catch (Exception e) {
             log.error("Cannot process download pages", e);
@@ -90,13 +109,13 @@ public class GrabberCitilink extends WebHarvestGrabber {
         log.info("Find pages started");
 
         //what links we visited before and count of reviews
-        File allLinksFile = new File(getPath() + "list/AllLinks.xml");
+        File allLinksFile = new File(allLinksPath);
         Map<String, Integer> allLinksMap = new HashMap<String, Integer>();
         if (allLinksFile.exists()) {
             allLinksMap = Serializer.instance().readMap(allLinksFile);
         }
 
-        File latterLinksFile = new File(getPath() + "list/LatterLinks.xml");
+        File latterLinksFile = new File(latterLinksPath);
         Map<String, Integer> latterLinksMap = Serializer.instance().readMap(latterLinksFile);
         Iterator<String> iterator = latterLinksMap.keySet().iterator();
         Map<String, Integer> newLinksMap = new HashMap<String, Integer>();
@@ -108,7 +127,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
                 newLinksMap.put(reviewUrl, reviewNumber);
             }
         }
-        Serializer.instance().write(newLinksMap, new File(getPath() + "list/NewLinks.xml"));
+        Serializer.instance().write(newLinksMap, new File(newLinksPath));
         log.info("Find pages successful");
     }
 
@@ -118,7 +137,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
         ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
         Scraper scraper = new Scraper(config, ".");
         scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(controllerFactory));
-        scraper.addVariableToContext("path", getPath() + "Pages/");
+        scraper.addVariableToContext("path", pagesPath);
         scraper.addVariableToContext("numberOfFirstReview", 0);
         scraper.setDebug(true);
         scraper.execute();

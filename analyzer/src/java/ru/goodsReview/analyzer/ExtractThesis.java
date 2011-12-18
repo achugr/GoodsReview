@@ -188,7 +188,7 @@ public class ExtractThesis extends TimerTask{
 //                    if next token is a noun from dictionary
                     if(isInDictionary(nextToken)){
 //                        create Thesis, which content = nextToken(noun from dictionary) + currentToken(adjective)
-                        extractedThesisList.add(new Thesis(review.getId(),9, nextToken +" "+ currToken, 0, 0.0, 0.0));
+                        extractedThesisList.add(new Thesis(review.getId(),1, nextToken +" "+ currToken, 0, 0.0, 0.0));
                         break;
                     }
                 }
@@ -201,7 +201,7 @@ public class ExtractThesis extends TimerTask{
 //                            if nextToken is an adjective
                             if(aa.isAdjective(nextToken)){
 //                              create Thesis, which content = currToken(adjective) + nextToken(noun from dictionary)
-                                extractedThesisList.add(new Thesis(review.getId(),9, currToken +" "+ nextToken, 0, 0.0, 0.0));
+                                extractedThesisList.add(new Thesis(review.getId(),1, currToken +" "+ nextToken, 0, 0.0, 0.0));
                                 break;
                             }
                         }
@@ -233,7 +233,8 @@ public class ExtractThesis extends TimerTask{
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
         List<Thesis> thesisList = thesisDbController.getThesesByProductId(productId);
         for(Thesis thesis : thesisList){
-            log.info("thesis --> "+ thesis.getContent());
+            System.out.println("    <thesis> " +thesis.getContent().replaceAll("\\s+", " ")+ " </thesis>");
+//            log.info("thesis --> "+ thesis.getContent());
         }
     }
 
@@ -241,6 +242,7 @@ public class ExtractThesis extends TimerTask{
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         List<Product> list = productDbController.getAllProducts();
         for(Product product : list){
+            System.out.println("<product name=\""+product.getName()+"\">");
             showThesisOnProduct(product.getId());
         }
     }

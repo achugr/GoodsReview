@@ -23,6 +23,8 @@ public abstract class WebHarvestGrabber extends Grabber {
     private String grabberConfig;
     private String path;
 
+    protected abstract void init();
+
     protected abstract void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException;
 
     protected abstract void grabPages() throws IOException;
@@ -85,12 +87,15 @@ public abstract class WebHarvestGrabber extends Grabber {
     public void run() {
         try {
             log.info("Run started");
-            //downloader();
+            init();
+
+//            downloader();
             //this method should be one for all grabbers
             Thread thread = new Thread(Downloader.getInstance());
             thread.start();
             thread.join();
             grabber();
+
             log.info("Run successful");
         } catch (Exception e) {
             log.error("Cannot process run", e);
