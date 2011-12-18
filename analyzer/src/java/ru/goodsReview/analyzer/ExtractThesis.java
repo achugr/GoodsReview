@@ -32,7 +32,7 @@ public class ExtractThesis extends TimerTask{
     private static List<String> dictionaryWords = new ArrayList<String>();
     private static SimpleJdbcTemplate jdbcTemplate;
     private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
-
+    private static AdjectiveAnalyzer aa;
 
     @Required
     public void setJdbcTemplate(SimpleJdbcTemplate simpleJdbcTemplate){
@@ -177,7 +177,6 @@ public class ExtractThesis extends TimerTask{
         StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
         String currToken;
         String nextToken;
-        AdjectiveAnalyzer aa = new AdjectiveAnalyzer();
         while(st.hasMoreElements()){
 //            get current token
             currToken = st.nextToken();
@@ -210,7 +209,7 @@ public class ExtractThesis extends TimerTask{
             }
         }
 
-        aa.close();
+        //aa.close();
         return extractedThesisList;
     }
 
@@ -258,7 +257,9 @@ public class ExtractThesis extends TimerTask{
     @Override
     public void run() {
         try {
+            aa = new AdjectiveAnalyzer();
             extractThesisOnAllProducts();
+            aa.close();
         } catch (IOException e) {
         }
         showThesisOnAllProducts();
