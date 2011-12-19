@@ -177,16 +177,16 @@ public class ExtractThesis extends TimerTask{
         StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
         String currToken;
         String nextToken;
-        while(st.hasMoreElements()){
+        while (st.hasMoreElements()) {
 //            get current token
             currToken = st.nextToken();
 //            if it's an adjective
-            if(aa.isAdjective(currToken)){
+            if (aa.isAdjective(currToken)) {
 //                go on review
-                while (st.hasMoreElements()){
+                while (st.hasMoreElements()) {
                     nextToken = st.nextToken();
 //                    if next token is a noun from dictionary
-                    if(isInDictionary(nextToken)){
+                    if(isInDictionary(nextToken)) {
 //                        create Thesis, which content = nextToken(noun from dictionary) + currentToken(adjective)
                         extractedThesisList.add(new Thesis(review.getId(),1, nextToken +" "+ currToken, 0, 0.0, 0.0));
                         break;
@@ -194,12 +194,12 @@ public class ExtractThesis extends TimerTask{
                 }
             } else {
 //                if current token is noun from dictionary
-                    if(isInDictionary(currToken)){
+                    if (isInDictionary(currToken)) {
 //                        go on review
-                        while (st.hasMoreElements()){
+                        while (st.hasMoreElements()) {
                             nextToken = st.nextToken();
 //                            if nextToken is an adjective
-                            if(aa.isAdjective(nextToken)){
+                            if (aa.isAdjective(nextToken)) {
 //                              create Thesis, which content = currToken(adjective) + nextToken(noun from dictionary)
                                 extractedThesisList.add(new Thesis(review.getId(),1, currToken +" "+ nextToken, 0, 0.0, 0.0));
                                 break;
@@ -220,7 +220,7 @@ public class ExtractThesis extends TimerTask{
 
         List<Review> reviews = reviewDbController.getReviewsByProductId(productId);
         log.info("extracting thesis on " + productId);
-        for(Review review : reviews){
+        for (Review review : reviews){
             try {
                 thesisDbController.addThesisList(doExtraction(review));
             } catch (StorageException e) {
@@ -232,16 +232,16 @@ public class ExtractThesis extends TimerTask{
     public static void showThesisOnProduct(long productId){
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
         List<Thesis> thesisList = thesisDbController.getThesesByProductId(productId);
-        for(Thesis thesis : thesisList){
+        for (Thesis thesis : thesisList){
             System.out.println("    <thesis> " +thesis.getContent().replaceAll("\\s+", " ")+ " </thesis>");
 //            log.info("thesis --> "+ thesis.getContent());
         }
     }
 
-    public static void showThesisOnAllProducts(){
+    public static void showThesisOnAllProducts() {
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         List<Product> list = productDbController.getAllProducts();
-        for(Product product : list){
+        for (Product product : list){
             System.out.println("<product name=\""+product.getName()+"\">");
             showThesisOnProduct(product.getId());
         }
@@ -250,12 +250,50 @@ public class ExtractThesis extends TimerTask{
     public static void extractThesisOnAllProducts() throws IOException {
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         List<Product> list = productDbController.getAllProducts();
-        for(Product product : list){
+        for (Product product : list){
             log.info("progress..");
             extractThesisOnProduct(product.getId());
         }
     }
-    
+
+    public static double averageWordsInAllReviews() throws IOException {
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        List<Product> products = productDbController.getAllProducts();
+
+        double words = wordsInAllReviews(), revs = 0;
+
+        for (Product product : products) {
+            List<Review> reviews = reviewDbController.getReviewsByProductId(product.getId());
+            for (Review review : reviews) {
+                revs++;
+            }
+        }
+
+        return words/revs;
+    }
+
+    public static int wordsInAllReviews() throws IOException {
+        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
+        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        List<Product> products = productDbController.getAllProducts();
+
+        int result = 0;
+
+        for (Product product : products) {
+            List<Review> reviews = reviewDbController.getReviewsByProductId(product.getId());
+            for (Review review : reviews) {
+                StringTokenizer st = new StringTokenizer(review.getContent()," .,-—:;()+\'\"\\«»");
+                while (st.hasMoreTokens()) {
+                    result++;
+                    st.nextToken();
+                }
+            }
+        }
+
+        return result;
+    }
+
     @Override
     public void run() {
         try {
