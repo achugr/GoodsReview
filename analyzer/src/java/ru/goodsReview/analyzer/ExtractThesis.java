@@ -11,6 +11,7 @@ package ru.goodsReview.analyzer;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.analyzer.utils.XMLUtils;
 import ru.goodsReview.analyzer.wordAnalyzer.AdjectiveAnalyzer;
 import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
@@ -233,7 +234,7 @@ public class ExtractThesis extends TimerTask{
         ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
         List<Thesis> thesisList = thesisDbController.getThesesByProductId(productId);
         for (Thesis thesis : thesisList){
-            System.out.println("    <thesis> " +thesis.getContent().replaceAll("\\s+", " ")+ " </thesis>");
+            System.out.println("    <thesis> " + thesis.getContent().replaceAll("\\s+", " ") + " </thesis>");
 //            log.info("thesis --> "+ thesis.getContent());
         }
     }
@@ -242,7 +243,7 @@ public class ExtractThesis extends TimerTask{
         ProductDbController productDbController = new ProductDbController(jdbcTemplate);
         List<Product> list = productDbController.getAllProducts();
         for (Product product : list){
-            System.out.println("<product name=\""+product.getName()+"\">");
+            System.out.println("<product name=\"" + product.getName() + "\">");
             showThesisOnProduct(product.getId());
         }
     }
@@ -304,6 +305,9 @@ public class ExtractThesis extends TimerTask{
         }
         showThesisOnAllProducts();
         log.info("extraction is complete");
+
+        //Put all reviews and theses into xml file
+        XMLUtils.createXML(jdbcTemplate);
     }
 
 //    Yaroslav version
