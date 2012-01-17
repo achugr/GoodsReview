@@ -32,7 +32,6 @@ public class GrabberCitilink extends WebHarvestGrabber {
     private String newLinksPath;
     private String latterLinksPath;
 
-    @Override
     public void init() {
         pagesPath = getPath() + "reviews/";
         descriptionPath = getPath() + "descriptions/";
@@ -42,13 +41,11 @@ public class GrabberCitilink extends WebHarvestGrabber {
         latterLinksPath = listPath + "latterLinks.xml";
     }
 
-    @Override
     protected void cleanFolders() throws DeleteException {
         FileUtil.cleanFolder(new File(pagesPath));
         FileUtil.cleanFolder(new File(descriptionPath));
     }
 
-    @Override
     protected void createFolders() throws IOException {
         new File(pagesPath).mkdirs();
         new File(descriptionPath).mkdirs();
@@ -56,7 +53,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
     }
 
     @Override
-    protected void updateList() {
+    public void updateList() {
         try {
             log.info("Update list started");
             ScraperConfiguration config = new ScraperConfiguration(getDownloadConfig());
@@ -73,7 +70,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
     @Override
     //TODO: use RandomAcessFile and update lines with old product, but new reviews
-    protected void downloadPages() {
+    public void downloadPages() {
         try {
             log.info("Adding download pages started");
 
@@ -105,7 +102,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
 
     @Override
     //TODO:: not add, if review number changes, only update
-    protected void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException {
+    public void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException {
         log.info("Find pages started");
 
         //what links we visited before and count of reviews
@@ -132,7 +129,7 @@ public class GrabberCitilink extends WebHarvestGrabber {
     }
 
     @Override
-    protected void grabPages() throws IOException {
+    public void grabPages() throws FileNotFoundException {
         log.info("Grabbing started");
         ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
         Scraper scraper = new Scraper(config, ".");
