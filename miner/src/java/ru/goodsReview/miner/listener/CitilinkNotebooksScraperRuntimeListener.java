@@ -117,7 +117,6 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
                 comment = citilinkDataTransformator.clearReviewFromTrash(comment);
                 reviewList.add(comment);
             }
-
 //            clear reviews content from trash
 //            add reviews in DB
             try {

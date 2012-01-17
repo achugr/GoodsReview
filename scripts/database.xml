@@ -2,9 +2,21 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans.dtd">
 
-<beans default-autowire="byName">
+<beans default-autowire="byName" default-init-method="afterPropertiesSet">
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
+    <!--Factory-->
+    <!--<bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory"/>    -->
+
+    <bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory">
+        <property name="categoryController" ref="categoryDbController"/>
+        <property name="productController" ref="productDbController"/>
+        <property name="reviewController" ref="reviewDbController"/>
+        <property name="thesisController" ref="thesisDbController"/>
+        <property name="thesisUniqueController" ref="thesisUniqueDbController"/>
+        <property name="sourceController" ref="sourceDbController"/>
+    </bean>
 
     <!--Database-->
     <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" lazy-init="false">
@@ -21,25 +33,23 @@
     </bean>
 
     <!--Controllers-->
-    <bean id="categoryController" class="ru.goodsReview.storage.controller.CategoryDbController">
+    <bean id="categoryDbController" class="ru.goodsReview.storage.controller.CategoryDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="productController" class="ru.goodsReview.storage.controller.ProductDbController">
+    <bean id="productDbController" class="ru.goodsReview.storage.controller.ProductDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="reviewController" class="ru.goodsReview.storage.controller.ReviewDbController">
+    <bean id="reviewDbController" class="ru.goodsReview.storage.controller.ReviewDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="sourceController" class="ru.goodsReview.storage.controller.SourceDbController">
+    <bean id="sourceDbController" class="ru.goodsReview.storage.controller.SourceDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="thesisController" class="ru.goodsReview.storage.controller.ThesisDbController">
+    <bean id="thesisDbController" class="ru.goodsReview.storage.controller.ThesisDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="thesisUniqueController" class="ru.goodsReview.storage.controller.ThesisUniqueDbController">
+    <bean id="thesisUniqueDbController" class="ru.goodsReview.storage.controller.ThesisUniqueDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
 
-    <!--Factory-->
-    <bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory"/>
 </beans>

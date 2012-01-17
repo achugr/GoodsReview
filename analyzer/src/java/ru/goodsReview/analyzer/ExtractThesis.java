@@ -10,16 +10,16 @@ package ru.goodsReview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.analyzer.wordAnalyzer.AdjectiveAnalyzer;
+import ru.goodsReview.core.db.ControllerFactory;
+import ru.goodsReview.core.db.controller.ProductController;
+import ru.goodsReview.core.db.controller.ReviewController;
+import ru.goodsReview.core.db.controller.ThesisController;
 import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.core.utils.EditDistance;
-import ru.goodsReview.storage.controller.ProductDbController;
-import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.controller.ThesisDbController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,13 +30,22 @@ import java.util.TimerTask;
 public class ExtractThesis extends TimerTask{
 
     private static List<String> dictionaryWords = new ArrayList<String>();
-    private static SimpleJdbcTemplate jdbcTemplate;
     private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
-
+    private static ControllerFactory controllerFactory;
+    private static ProductController productController;
+    private static ThesisController thesisController;
+    private static ReviewController reviewController;
 
     @Required
-    public void setJdbcTemplate(SimpleJdbcTemplate simpleJdbcTemplate){
-        this.jdbcTemplate = simpleJdbcTemplate;
+    public void setControllerFactory(ControllerFactory controllerFactory1){
+        this.controllerFactory = controllerFactory1;
+        setControllers();
+    }
+
+    public static void setControllers(){
+        productController = controllerFactory.getProductController();
+        reviewController = controllerFactory.getReviewController();
+        thesisController = controllerFactory.getThesisController();
     }
 
     /**
@@ -214,56 +223,61 @@ public class ExtractThesis extends TimerTask{
         return extractedThesisList;
     }
 
-
+    /**
+     * Extract thesis from all reviews on this product. (Run method doExtraction for all reviews on product).
+     * @param productId
+     * @throws IOException
+     */
     public static void extractThesisOnProduct(long productId) throws IOException {
-        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
-        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-
-        List<Review> reviews = reviewDbController.getReviewsByProductId(productId);
+        List<Review> reviews = reviewController.getReviewsByProductId(productId);
         log.info("extracting thesis on " + productId);
         for(Review review : reviews){
             try {
-                thesisDbController.addThesisList(doExtraction(review));
+                System.out.println("<review id = \"" + review.getId() + "\">");
+                thesisController.addThesisList(doExtraction(review));
             } catch (StorageException e) {
                 log.error("something wrong with this thesis (probably it's already exist in db)", e);
             }
         }
     }
 
-    public static void showThesisOnProduct(long productId){
-        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-        List<Thesis> thesisList = thesisDbController.getThesesByProductId(productId);
-        for(Thesis thesis : thesisList){
-            System.out.println("    <thesis> " +thesis.getContent().replaceAll("\\s+", " ")+ " </thesis>");
-//            log.info("thesis --> "+ thesis.getContent());
-        }
-    }
-
-    public static void showThesisOnAllProducts(){
-        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-        List<Product> list = productDbController.getAllProducts();
-        for(Product product : list){
-            System.out.println("<product name=\""+product.getName()+"\">");
-            showThesisOnProduct(product.getId());
-        }
-    }
-
+    /**
+     * Extract thesis on all products from database
+     * @throws IOException
+     */
     public static void extractThesisOnAllProducts() throws IOException {
-        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-        List<Product> list = productDbController.getAllProducts();
+        List<Product> list = productController.getAllProducts();
         for(Product product : list){
             log.info("progress..");
             extractThesisOnProduct(product.getId());
         }
     }
-    
+
+    /**
+     * print thesis on all products
+     */
+    public void showThesisOnAllProducts(){
+        List<Product> list = productController.getAllProducts();
+        for(Product product : list){
+            System.out.println("<product id=\"" +product.getId() + "\"name=\""+product.getName()+"\">");
+            List<Review> reviews = reviewController.getReviewsByProductId(product.getId());
+            for(Review review : reviews){
+                System.out.println("    <review content=\"" + review.getId() + "\">");
+                List<Thesis> thesises = thesisController.getThesesByReviewId(review.getId());
+                for(Thesis thesis : thesises){
+                    System.out.println("        <thesis> " + thesis.getContent().replaceAll("\\s+", " ") + " </thesis>");
+                }
+            }
+        }
+    }
+
     @Override
     public void run() {
         try {
             extractThesisOnAllProducts();
         } catch (IOException e) {
         }
-        showThesisOnAllProducts();
+//        showThesisOnAllProducts();
         log.info("extraction is complete");
     }
 

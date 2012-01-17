@@ -14,6 +14,7 @@ import java.util.List;
  */
 
 public interface ProductController {
+
     public long addProduct(Product product) throws StorageException;
 
     public List<Long> addProductList(List<Product> productList) throws StorageException;

@@ -10,15 +10,16 @@ package ru.goodsReview.analyzer;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.ControllerFactory;
+import ru.goodsReview.core.db.controller.ProductController;
+import ru.goodsReview.core.db.controller.ReviewController;
+import ru.goodsReview.core.db.controller.ThesisController;
+import ru.goodsReview.core.db.controller.ThesisUniqueController;
 import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 import ru.goodsReview.core.model.ThesisUnique;
-import ru.goodsReview.storage.controller.ProductDbController;
-import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.controller.ThesisDbController;
-import ru.goodsReview.storage.controller.ThesisUniqueDbController;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -34,10 +35,11 @@ import java.util.*;
 public class AnalyzeThesis extends TimerTask {
     private SimpleJdbcTemplate jdbcTemplate;
     private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
+    private ControllerFactory controllerFactory;
 
     @Required
-    public void setJdbcTemplate() {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setControllerFactory(ControllerFactory controllerFactory1){
+        this.controllerFactory = controllerFactory1;
     }
 
     public AnalyzeThesis(SimpleJdbcTemplate jdbcTemplate) {
@@ -172,7 +174,7 @@ public class AnalyzeThesis extends TimerTask {
      * @throws StorageException
      */
     private Map<String, Integer> additioningOfThesisesAndGettingOfTUs(List<Review> listOfReviews) throws StorageException {
-       ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+       ThesisController thesisDbController = controllerFactory.getThesisController();
        FrequencyAnalyzer freqAnForSingleReview;
        List<Review> buffLOR = new ArrayList<Review>();
        Thesis currThesis;
@@ -205,7 +207,7 @@ public class AnalyzeThesis extends TimerTask {
      */
     private Map<String, Long> AdditionOffTUtoDb(Map<String, Integer> thesisUniques){
         Map<String, Long> tableOfId = new HashMap<String, Long>();
-        ThesisUniqueDbController thesisUniqueDbController = new ThesisUniqueDbController(jdbcTemplate);
+        ThesisUniqueController thesisUniqueDbController = controllerFactory.getThesisUniqueController();
         ThesisUnique currThesisUnique;
         ThesisUnique recievedTU;
         Timestamp time = new Timestamp(System.currentTimeMillis());
@@ -229,7 +231,7 @@ public class AnalyzeThesis extends TimerTask {
      */
     private void FillingTUIdParam(Map<String, Long> tableOfId, long productId){
         //считываем из базы все тезисы и дописываем в них поля!
-        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+        ThesisController thesisDbController = controllerFactory.getThesisController();
         List<Thesis> listOfThesis = thesisDbController.getThesesByProductId(productId);
         for(Thesis thesis : listOfThesis){
             thesisDbController.setThesisUniqueId(thesis.getId(), tableOfId.get(thesis.getContent()));
@@ -243,8 +245,8 @@ public class AnalyzeThesis extends TimerTask {
     public Map<Long, Double> mapOfTFIDF(List<Review> listOfReviews){
         Map<Long, Double> mapOfTFIDF = new HashMap<Long, Double>();
         //перебираем все тезисы
-        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
-        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        ThesisController thesisDbController = controllerFactory.getThesisController();
+        ReviewController reviewDbController = controllerFactory.getReviewController();
         List<Thesis> listOfThesis = thesisDbController.getAllTheses();
         double numOfWordsInCurrReview;
         double numOfReviews = (double) reviewDbController.getAllReviews().size();
@@ -261,18 +263,19 @@ public class AnalyzeThesis extends TimerTask {
     }
 
     public void updateThesisByProductId(long productId) throws StorageException {
-        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
+        ReviewController reviewDbController = controllerFactory.getReviewController();
         List<Review> desiredReviews;
         desiredReviews = reviewDbController.getReviewsByProductId(productId);
         Map<String, Integer> pairsTUandFreq = additioningOfThesisesAndGettingOfTUs(desiredReviews);
         Map<String, Long> pairsTUandId = AdditionOffTUtoDb(pairsTUandFreq);
         FillingTUIdParam(pairsTUandId, productId);
     }
+
     public void printTFIDF(Map<Long, Double> mapOfTFIDF)
     {
-        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-        ReviewDbController reviewDbController = new ReviewDbController(jdbcTemplate);
-        ThesisDbController thesisDbController = new ThesisDbController(jdbcTemplate);
+        ProductController productDbController = controllerFactory.getProductController();
+        ReviewController reviewDbController = controllerFactory.getReviewController();
+        ThesisController thesisDbController = controllerFactory.getThesisController();
         // Достаём все товары
         List<Product> listOfProducts = productDbController.getAllProducts();
         for(Product product : listOfProducts)
@@ -304,9 +307,8 @@ public class AnalyzeThesis extends TimerTask {
 
     @Override
     public void run() {
-        ProductDbController productDbController = new ProductDbController(jdbcTemplate);
-        List<Product> productList;
-        productList = productDbController.getAllProducts();
+        ProductController productDbController = controllerFactory.getProductController();
+        List<Product> productList = productDbController.getAllProducts();
         log.info("Thesis Analyzer begins work");
         for (Product product : productList) {
             log.info("Extracting thesis on " + product.getName());

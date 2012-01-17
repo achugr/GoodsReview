@@ -8,8 +8,12 @@ package ru.common;
  *     vans239@gmail.com
  */
 
-import java.io.File;
-import java.io.IOException;
+import org.apache.log4j.Logger;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,11 +23,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.apache.log4j.Logger;
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class Serializer {
@@ -120,8 +121,8 @@ public class Serializer {
         }
         return list;
     }
-    /*public static void main(String argv[]) throws Exception{
+    public static void main(String argv[]) throws Exception{
         Map map = Serializer.instance().readMap(new File("data/miner/Citilink/list/LatterLinks.xml"));
         System.out.print(1);
-    }*/
+    }
 }

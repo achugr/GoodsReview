@@ -5,7 +5,7 @@ out
 build
 data
 miner/web
-
+*.txt
 docs/*.html
 docs/ru
 docs/resources

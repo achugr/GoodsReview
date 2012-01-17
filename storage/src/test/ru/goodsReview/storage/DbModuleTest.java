@@ -65,19 +65,19 @@ public class DbModuleTest {
         Assert.assertEquals(category0id, category1.getId());
 
         String productName = "Motorola RND" + (new Random().nextInt(1000000000));
-        ProductDbController productController = new ProductDbController(new SimpleJdbcTemplate(dataSource));
+        //ProductDbController productController = new ProductDbController();
         Product product0 = new Product(-1 /* any ID */, category0id, productName, "хороший товар", 10);
-        long product0id = productController.addProduct(product0);
-        Product product1 = productController.getProductByName(productName);
-        log.debug("Product name: " + product1.getName());
-        log.debug("Product desc: " + product1.getDescription());
-        log.debug("[id when insert: " + product0id + ", id when select: " + product1.getId() + "]");
+//        long product0id = productController.addProduct(product0);
+//        Product product1 = productController.getProductByName(productName);
+//        log.debug("Product name: " + product1.getName());
+//        log.debug("Product desc: " + product1.getDescription());
+//        log.debug("[id when insert: " + product0id + ", id when select: " + product1.getId() + "]");
 
         // NOTE(serebryakov): Who wrote these two lines? Please clarify your point or remove.
         /*Product productFrom = productController.getProductById(10);
         System.out.println("PRODUCT == " + productFrom.getDescription());*/
 
-        SourceDbController sourceController = new SourceDbController(new SimpleJdbcTemplate(dataSource));
+/*        SourceDbController sourceController = new SourceDbController(new SimpleJdbcTemplate(dataSource));
         Source source0 = new Source(-1, "Reliable source", "OK some url");
         long source0id = sourceController.addSource(source0);
         Source source1 = sourceController.getSourceById(source0id);
@@ -129,4 +129,6 @@ public class DbModuleTest {
 
        baseController.addProductList(productsList);
  }   */
+
+    }
 }

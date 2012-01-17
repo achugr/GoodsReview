@@ -1,6 +1,7 @@
 package ru.goodsReview.storage.controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import ru.goodsReview.core.db.controller.ProductController;
@@ -21,12 +22,16 @@ import java.util.List;
  */
 public class ProductDbController implements ProductController {
     private SimpleJdbcTemplate simpleJdbcTemplate;
-    private ProductMapper productMapper;
+    private ProductMapper productMapper = new ProductMapper();
     private static final Logger log = Logger.getLogger(ProductDbController.class);
 
-    public ProductDbController(SimpleJdbcTemplate simpleJdbcTemplate) {
-        this.simpleJdbcTemplate = simpleJdbcTemplate;
-        this.productMapper = new ProductMapper();
+    @Required
+    public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate){
+        this.simpleJdbcTemplate = jdbcTemplate;
+    }
+
+    public ProductDbController(SimpleJdbcTemplate simpleJdbcTemplate1){
+        this.simpleJdbcTemplate = simpleJdbcTemplate1;
     }
 
     public long addProduct(Product product) throws StorageException {

@@ -1,19 +1,5 @@
 package ru.goodsReview.analyzer;
 
-import org.apache.log4j.Logger;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.storage.controller.ProductDbController;
-import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.controller.ThesisDbController;
-
-import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 /*
  *  Date: 15.10.11
  *   Time: 0:32
@@ -24,7 +10,7 @@ import java.util.Map;
 
 
 public class Test {
-    private static SimpleJdbcTemplate jdbcTemplate;
+   /* private static SimpleJdbcTemplate jdbcTemplate;
 
     private static final Logger log = Logger.getLogger(Test.class);
 
@@ -47,7 +33,7 @@ public class Test {
 
 
         ReviewDbController reviewDbController = new ReviewDbController(simpleJdbcTemplate);
-        ProductDbController productDbController = new ProductDbController(simpleJdbcTemplate);
+        ProductDbController productDbController = new ProductDbController();
         ThesisDbController th = new ThesisDbController(simpleJdbcTemplate);
 
         AnalyzeThesis analyzeThesis = new AnalyzeThesis(simpleJdbcTemplate);
@@ -61,5 +47,5 @@ public class Test {
     public static void main(String [] args) throws StorageException {
         testTfIdf();
     }
-
+     */
 }

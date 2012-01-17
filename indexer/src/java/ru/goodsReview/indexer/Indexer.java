@@ -11,8 +11,8 @@ import org.apache.lucene.util.Version;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.model.*;
-import ru.goodsReview.storage.controller.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +28,14 @@ import java.util.TimerTask;
  */
 public class Indexer extends TimerTask {
     private static final Logger log = org.apache.log4j.Logger.getLogger(Indexer.class);
-
+    private ControllerFactory controllerFactory;
     private IndexWriter writer;
     private SimpleJdbcTemplate jdbcTemplate;
 
+    @Required
+    public void setControllerFactory(ControllerFactory controllerFactory1){
+        this.controllerFactory = controllerFactory1;
+    }
     /**
      * Sets up jdbcTemplate for This Indexer object.
      * @param jdbcTemplate Object of SimpleJdbcTemplate class, which has to be set by this method.
@@ -40,9 +44,9 @@ public class Indexer extends TimerTask {
     @Required
     public void setJdbcTemplate(@NotNull SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
+     }
 
-    /**
+     /**
      * Creates an IndexWriter object
      * @param directoryDB Place where writer should write an index.
      * @return
@@ -71,7 +75,7 @@ public class Indexer extends TimerTask {
         log.debug("Products Index creating started");
 
         init(directoryDB);
-        List<Product> products = new ProductDbController(jdbcTemplate).getAllProducts();
+        List<Product> products = controllerFactory.getProductController().getAllProducts();
         Document document;
         for (Product product : products) {
             document = new Document();
@@ -98,7 +102,7 @@ public class Indexer extends TimerTask {
         log.debug("Reviews Index creating started");
 
         init(directoryDB);
-        List<Review> reviews = new ReviewDbController(jdbcTemplate).getAllReviews();
+        List<Review> reviews = controllerFactory.getReviewController().getAllReviews();
         Document document;
         for (Review review : reviews) {
             document = new Document();
@@ -142,7 +146,7 @@ public class Indexer extends TimerTask {
         log.debug("Thesis Index creating started");
 
         init(directoryDB);
-        List<Thesis> theses = new ThesisDbController(jdbcTemplate).getAllTheses();
+        List<Thesis> theses = controllerFactory.getThesisController().getAllTheses();
         Document document;
         for (Thesis thesis : theses) {
             document = new Document();
@@ -170,7 +174,7 @@ public class Indexer extends TimerTask {
     public void doThesesUniqueIndex(@NotNull String directoryDB) throws Exception {
         log.debug("ThesisUnique Index creating started");
         init(directoryDB);
-        List<ThesisUnique> thesesUnique = new ThesisUniqueDbController(jdbcTemplate).getAllThesesUnique();
+        List<ThesisUnique> thesesUnique = controllerFactory.getThesisUniqueController().getAllThesesUnique();
         Document document;
         for (ThesisUnique thesisUnique : thesesUnique) {
             document = new Document();
@@ -198,7 +202,7 @@ public class Indexer extends TimerTask {
     public void doCategoriesIndex(@NotNull String directoryDB) throws Exception {
         log.debug("Category Index creating started");
         init(directoryDB);
-        List<Category> categories = new CategoryDbController(jdbcTemplate).getAllCategories();
+        List<Category> categories = controllerFactory.getCategoryController().getAllCategories();
         Document document;
         for (Category category : categories) {
             document = new Document();
