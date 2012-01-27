@@ -100,7 +100,6 @@ public class ThesisExtractionDocument {
         out.close();
     }
 
-
     public static void main(String [] args) throws FileNotFoundException {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("scripts/database.xml");
         out = new PrintWriter("ThesisExtractionDocument.txt");

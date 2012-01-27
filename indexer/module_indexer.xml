@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_indexer" default="compile.module.indexer">
+  <dirname property="module.indexer.basedir" file="${ant.file.module_indexer}"/>
+  
+  <property name="module.jdk.home.indexer" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.indexer" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.indexer" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.indexer" value="${compiler.args}"/>
+  
+  <property name="indexer.output.dir" value="${module.indexer.basedir}/../out/production/indexer"/>
+  <property name="indexer.testoutput.dir" value="${module.indexer.basedir}/../out/test/indexer"/>
+  
+  <path id="indexer.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="indexer.module.production.classpath">
+    <path refid="${module.jdk.classpath.indexer}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+  </path>
+  
+  <path id="indexer.runtime.production.module.classpath">
+    <pathelement location="${indexer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="analyzer.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="indexer.module.classpath">
+    <path refid="${module.jdk.classpath.indexer}"/>
+    <pathelement location="${indexer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${analyzer.testoutput.dir}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+  </path>
+  
+  <path id="indexer.runtime.module.classpath">
+    <pathelement location="${indexer.testoutput.dir}"/>
+    <pathelement location="${indexer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="analyzer.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.indexer">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.indexer">
+    <patternset refid="excluded.from.module.indexer"/>
+  </patternset>
+  
+  <path id="indexer.module.sourcepath">
+    <dirset dir="${module.indexer.basedir}">
+      <include name="src/java"/>
+      <include name="src/scripts"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.indexer" depends="compile.module.indexer.production,compile.module.indexer.tests" description="Compile module indexer"/>
+  
+  <target name="compile.module.indexer.production" depends="register.custom.compilers,compile.module.analyzer" description="Compile module indexer; production classes">
+    <mkdir dir="${indexer.output.dir}"/>
+    <javac2 destdir="${indexer.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.indexer}/javac">
+      <compilerarg line="${compiler.args.indexer}"/>
+      <bootclasspath refid="indexer.module.bootclasspath"/>
+      <classpath refid="indexer.module.production.classpath"/>
+      <src refid="indexer.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.indexer"/>
+    </javac2>
+    
+    <copy todir="${indexer.output.dir}">
+      <fileset dir="${module.indexer.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.indexer.basedir}/src/scripts">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.indexer.tests" depends="register.custom.compilers,compile.module.indexer.production" description="compile module indexer; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.indexer" description="cleanup module">
+    <delete dir="${indexer.output.dir}"/>
+    <delete dir="${indexer.testoutput.dir}"/>
+  </target>
+</project>

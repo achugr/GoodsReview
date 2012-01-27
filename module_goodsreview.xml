@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_goodsreview" default="compile.module.goodsreview">
+  <dirname property="module.goodsreview.basedir" file="${ant.file.module_goodsreview}"/>
+  
+  <property name="module.jdk.home.goodsreview" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.goodsreview" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.goodsreview" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.goodsreview" value="${compiler.args}"/>
+  
+  <property name="goodsreview.output.dir" value="${module.goodsreview.basedir}/out/production/GoodsReview"/>
+  <property name="goodsreview.testoutput.dir" value="${module.goodsreview.basedir}/out/test/GoodsReview"/>
+  
+  <path id="goodsreview.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="goodsreview.module.production.classpath">
+    <path refid="${module.jdk.classpath.goodsreview}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <pathelement location="${indexer.output.dir}"/>
+    <pathelement location="${frontend.output.dir}"/>
+    <pathelement location="${searcher.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${miner.output.dir}"/>
+  </path>
+  
+  <path id="goodsreview.runtime.production.module.classpath">
+    <pathelement location="${goodsreview.output.dir}"/>
+    <path refid="analyzer.runtime.production.module.classpath"/>
+    <path refid="indexer.runtime.production.module.classpath"/>
+    <path refid="frontend.runtime.production.module.classpath"/>
+    <path refid="searcher.runtime.production.module.classpath"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="miner.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="goodsreview.module.classpath">
+    <path refid="${module.jdk.classpath.goodsreview}"/>
+    <pathelement location="${goodsreview.output.dir}"/>
+    <pathelement location="${analyzer.testoutput.dir}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <pathelement location="${indexer.testoutput.dir}"/>
+    <pathelement location="${indexer.output.dir}"/>
+    <pathelement location="${frontend.testoutput.dir}"/>
+    <pathelement location="${frontend.output.dir}"/>
+    <pathelement location="${searcher.testoutput.dir}"/>
+    <pathelement location="${searcher.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${miner.testoutput.dir}"/>
+    <pathelement location="${miner.output.dir}"/>
+  </path>
+  
+  <path id="goodsreview.runtime.module.classpath">
+    <pathelement location="${goodsreview.testoutput.dir}"/>
+    <pathelement location="${goodsreview.output.dir}"/>
+    <path refid="analyzer.runtime.module.classpath"/>
+    <path refid="indexer.runtime.module.classpath"/>
+    <path refid="frontend.runtime.module.classpath"/>
+    <path refid="searcher.runtime.module.classpath"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="miner.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.goodsreview">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.goodsreview">
+    <patternset refid="excluded.from.module.goodsreview"/>
+  </patternset>
+  
+  
+  <target name="compile.module.goodsreview" depends="compile.module.goodsreview.production,compile.module.goodsreview.tests" description="Compile module GoodsReview"/>
+  
+  <target name="compile.module.goodsreview.production" depends="register.custom.compilers,compile.module.analyzer,compile.module.indexer,compile.module.frontend,compile.module.searcher,compile.module.miner" description="Compile module GoodsReview; production classes"/>
+  
+  <target name="compile.module.goodsreview.tests" depends="register.custom.compilers,compile.module.goodsreview.production" description="compile module GoodsReview; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.goodsreview" description="cleanup module">
+    <delete dir="${goodsreview.output.dir}"/>
+    <delete dir="${goodsreview.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_frontend" default="compile.module.frontend">
+  <dirname property="module.frontend.basedir" file="${ant.file.module_frontend}"/>
+  
+  <property name="module.jdk.home.frontend" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.frontend" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.frontend" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.frontend" value="${compiler.args}"/>
+  
+  <property name="frontend.output.dir" value="${module.frontend.basedir}/../out/production/frontend"/>
+  <property name="frontend.testoutput.dir" value="${module.frontend.basedir}/../out/test/frontend"/>
+  
+  <path id="frontend.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="frontend.module.production.classpath">
+    <path refid="${module.jdk.classpath.frontend}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <path refid="library.xfresh.classpath"/>
+    <pathelement location="${searcher.output.dir}"/>
+  </path>
+  
+  <path id="frontend.runtime.production.module.classpath">
+    <pathelement location="${frontend.output.dir}"/>
+    <path refid="analyzer.runtime.production.module.classpath"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.xfresh.classpath"/>
+    <path refid="searcher.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="frontend.module.classpath">
+    <path refid="${module.jdk.classpath.frontend}"/>
+    <pathelement location="${frontend.output.dir}"/>
+    <pathelement location="${analyzer.testoutput.dir}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <path refid="library.xfresh.classpath"/>
+    <pathelement location="${searcher.testoutput.dir}"/>
+    <pathelement location="${searcher.output.dir}"/>
+  </path>
+  
+  <path id="frontend.runtime.module.classpath">
+    <pathelement location="${frontend.testoutput.dir}"/>
+    <pathelement location="${frontend.output.dir}"/>
+    <path refid="analyzer.runtime.module.classpath"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.xfresh.classpath"/>
+    <path refid="searcher.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.frontend">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.frontend">
+    <patternset refid="excluded.from.module.frontend"/>
+  </patternset>
+  
+  <path id="frontend.module.sourcepath">
+    <dirset dir="${module.frontend.basedir}">
+      <include name="src/java"/>
+      <include name="src/scripts"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.frontend" depends="compile.module.frontend.production,compile.module.frontend.tests" description="Compile module frontend"/>
+  
+  <target name="compile.module.frontend.production" depends="register.custom.compilers,compile.module.analyzer,compile.module.searcher" description="Compile module frontend; production classes">
+    <mkdir dir="${frontend.output.dir}"/>
+    <javac2 destdir="${frontend.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.frontend}/javac">
+      <compilerarg line="${compiler.args.frontend}"/>
+      <bootclasspath refid="frontend.module.bootclasspath"/>
+      <classpath refid="frontend.module.production.classpath"/>
+      <src refid="frontend.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.frontend"/>
+    </javac2>
+    
+    <copy todir="${frontend.output.dir}">
+      <fileset dir="${module.frontend.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.frontend.basedir}/src/scripts">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.frontend.tests" depends="register.custom.compilers,compile.module.frontend.production" description="compile module frontend; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.frontend" description="cleanup module">
+    <delete dir="${frontend.output.dir}"/>
+    <delete dir="${frontend.testoutput.dir}"/>
+  </target>
+</project>

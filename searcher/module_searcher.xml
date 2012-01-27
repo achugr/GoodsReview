@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_searcher" default="compile.module.searcher">
+  <dirname property="module.searcher.basedir" file="${ant.file.module_searcher}"/>
+  
+  <property name="module.jdk.home.searcher" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.searcher" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.searcher" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.searcher" value="${compiler.args}"/>
+  
+  <property name="searcher.output.dir" value="${module.searcher.basedir}/../out/production/searcher"/>
+  <property name="searcher.testoutput.dir" value="${module.searcher.basedir}/../out/test/searcher"/>
+  
+  <path id="searcher.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="searcher.module.production.classpath">
+    <path refid="${module.jdk.classpath.searcher}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${indexer.output.dir}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+  </path>
+  
+  <path id="searcher.runtime.production.module.classpath">
+    <pathelement location="${searcher.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="indexer.runtime.production.module.classpath"/>
+    <path refid="analyzer.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="searcher.module.classpath">
+    <path refid="${module.jdk.classpath.searcher}"/>
+    <pathelement location="${searcher.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${indexer.testoutput.dir}"/>
+    <pathelement location="${indexer.output.dir}"/>
+    <pathelement location="${analyzer.testoutput.dir}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+  </path>
+  
+  <path id="searcher.runtime.module.classpath">
+    <pathelement location="${searcher.testoutput.dir}"/>
+    <pathelement location="${searcher.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="indexer.runtime.module.classpath"/>
+    <path refid="analyzer.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.searcher">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.searcher">
+    <patternset refid="excluded.from.module.searcher"/>
+  </patternset>
+  
+  <path id="searcher.module.sourcepath">
+    <dirset dir="${module.searcher.basedir}">
+      <include name="src/java"/>
+    </dirset>
+  </path>
+  
+  <path id="searcher.module.test.sourcepath">
+    <dirset dir="${module.searcher.basedir}">
+      <include name="src/test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.searcher" depends="compile.module.searcher.production,compile.module.searcher.tests" description="Compile module searcher"/>
+  
+  <target name="compile.module.searcher.production" depends="register.custom.compilers,compile.module.indexer,compile.module.analyzer" description="Compile module searcher; production classes">
+    <mkdir dir="${searcher.output.dir}"/>
+    <javac2 destdir="${searcher.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.searcher}/javac">
+      <compilerarg line="${compiler.args.searcher}"/>
+      <bootclasspath refid="searcher.module.bootclasspath"/>
+      <classpath refid="searcher.module.production.classpath"/>
+      <src refid="searcher.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.searcher"/>
+    </javac2>
+    
+    <copy todir="${searcher.output.dir}">
+      <fileset dir="${module.searcher.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.searcher.tests" depends="register.custom.compilers,compile.module.searcher.production" description="compile module searcher; test classes" unless="skip.tests">
+    <mkdir dir="${searcher.testoutput.dir}"/>
+    <javac2 destdir="${searcher.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.searcher}/javac">
+      <compilerarg line="${compiler.args.searcher}"/>
+      <bootclasspath refid="searcher.module.bootclasspath"/>
+      <classpath refid="searcher.module.classpath"/>
+      <src refid="searcher.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.searcher"/>
+    </javac2>
+    
+    <copy todir="${searcher.testoutput.dir}">
+      <fileset dir="${module.searcher.basedir}/src/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.searcher" description="cleanup module">
+    <delete dir="${searcher.output.dir}"/>
+    <delete dir="${searcher.testoutput.dir}"/>
+  </target>
+</project>

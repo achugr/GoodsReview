@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_analyzer" default="compile.module.analyzer">
+  <dirname property="module.analyzer.basedir" file="${ant.file.module_analyzer}"/>
+  
+  <property name="module.jdk.home.analyzer" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.analyzer" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.analyzer" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.analyzer" value="${compiler.args}"/>
+  
+  <property name="analyzer.output.dir" value="${module.analyzer.basedir}/../out/production/analyzer"/>
+  <property name="analyzer.testoutput.dir" value="${module.analyzer.basedir}/../out/test/analyzer"/>
+  
+  <path id="analyzer.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="analyzer.module.production.classpath">
+    <path refid="${module.jdk.classpath.analyzer}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${basedir}/core"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <path refid="library.mysql.classpath"/>
+    <pathelement location="${basedir}/analyzer"/>
+  </path>
+  
+  <path id="analyzer.runtime.production.module.classpath">
+    <pathelement location="${analyzer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${basedir}/core"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <path refid="library.mysql.classpath"/>
+    <pathelement location="${basedir}/analyzer"/>
+  </path>
+  
+  <path id="analyzer.module.classpath">
+    <path refid="${module.jdk.classpath.analyzer}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${basedir}/core"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <path refid="library.mysql.classpath"/>
+    <pathelement location="${basedir}/analyzer"/>
+  </path>
+  
+  <path id="analyzer.runtime.module.classpath">
+    <pathelement location="${analyzer.testoutput.dir}"/>
+    <pathelement location="${analyzer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <pathelement location="${basedir}/core"/>
+    <pathelement location="${basedir}/lib/lucene-core-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/saxon"/>
+    <pathelement location="${basedir}/lib/jakarta-commons"/>
+    <pathelement location="${basedir}/lib/httpclient"/>
+    <pathelement location="${basedir}/lib/webharvest"/>
+    <pathelement location="${basedir}/lib/xfresh"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+    <pathelement location="${basedir}/lib/xalan"/>
+    <pathelement location="${basedir}/lib/junit-4.0.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.18-bin.jar"/>
+    <pathelement location="${basedir}/lib/rhino"/>
+    <pathelement location="${basedir}/lib/lucene-analyzers-3.4.0.jar"/>
+    <pathelement location="${basedir}/lib/spring"/>
+    <pathelement location="${basedir}/lib/jetty"/>
+    <pathelement location="${basedir}/lib/jetbrains"/>
+    <path refid="library.mysql.classpath"/>
+    <pathelement location="${basedir}/analyzer"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.analyzer">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  <patternset id="excluded.from.module.core">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  <patternset id="excluded.from.module.storage">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.analyzer">
+    <patternset refid="excluded.from.module.analyzer"/>
+    <patternset refid="excluded.from.module.core"/>
+    <patternset refid="excluded.from.module.storage"/>
+  </patternset>
+  
+  <path id="analyzer.module.sourcepath">
+    <dirset dir="${module.analyzer.basedir}">
+      <include name="src/java"/>
+      <include name="src/scripts"/>
+    </dirset>
+    <dirset dir="${module.analyzer.basedir}/../core">
+      <include name="src/java"/>
+    </dirset>
+    <dirset dir="${module.analyzer.basedir}/../storage">
+      <include name="src/java"/>
+      <include name="src/scripts"/>
+    </dirset>
+  </path>
+  
+  <path id="analyzer.module.test.sourcepath">
+    <dirset dir="${module.analyzer.basedir}">
+      <include name="src/test"/>
+    </dirset>
+    <dirset dir="${module.analyzer.basedir}/../storage">
+      <include name="src/test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.analyzer" depends="compile.module.analyzer.production,compile.module.analyzer.tests" description="Compile modules analyzer"/>
+  
+  <target name="compile.module.analyzer.production" depends="register.custom.compilers" description="Compile modules analyzer; production classes">
+    <mkdir dir="${analyzer.output.dir}"/>
+    <javac2 destdir="${analyzer.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.analyzer}/javac">
+      <compilerarg line="${compiler.args.analyzer}"/>
+      <bootclasspath refid="analyzer.module.bootclasspath"/>
+      <classpath refid="analyzer.module.production.classpath"/>
+      <src refid="analyzer.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.analyzer"/>
+    </javac2>
+    
+    <copy todir="${analyzer.output.dir}">
+      <fileset dir="${module.analyzer.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.analyzer.basedir}/src/scripts">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.analyzer.basedir}/../core/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.analyzer.basedir}/../storage/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.analyzer.basedir}/../storage/src/scripts">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.analyzer.tests" depends="register.custom.compilers,compile.module.analyzer.production" description="compile modules analyzer; test classes" unless="skip.tests">
+    <mkdir dir="${analyzer.testoutput.dir}"/>
+    <javac2 destdir="${analyzer.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.analyzer}/javac">
+      <compilerarg line="${compiler.args.analyzer}"/>
+      <bootclasspath refid="analyzer.module.bootclasspath"/>
+      <classpath refid="analyzer.module.classpath"/>
+      <src refid="analyzer.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.analyzer"/>
+    </javac2>
+    
+    <copy todir="${analyzer.testoutput.dir}">
+      <fileset dir="${module.analyzer.basedir}/src/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.analyzer.basedir}/../storage/src/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.analyzer" description="cleanup module">
+    <delete dir="${analyzer.output.dir}"/>
+    <delete dir="${analyzer.testoutput.dir}"/>
+  </target>
+</project>
