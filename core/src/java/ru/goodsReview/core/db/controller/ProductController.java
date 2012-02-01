@@ -32,4 +32,8 @@ public interface ProductController {
     public List<Product> getProductsByName(String product_name);
 
     public List<Product> getProductsByCategoryId(long category_id);
+    
+    public List<Product> getProductsMostComments(int n);
+
+    public List<Product> getProductsOrderByCommentsNum();
 }

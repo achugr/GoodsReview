@@ -73,6 +73,29 @@ public class ProductDbController implements ProductController {
         return products;
     }
 
+    /**
+     * get n products, ordered by count of reviews on it
+     * @param n
+     * @return
+     */
+    public List<Product> getProductsMostComments(int n) {
+        List<Product> products = simpleJdbcTemplate.getJdbcOperations().query(
+                "select * from product where id in ( select product_id from review group by product_id order by count(*)) LIMIT ?", new Object[]{n}, new int[]{Types.INTEGER},
+                productMapper);
+        return products;
+    }
+
+    /**
+     * get all products, ordered by number of comments
+     * @return
+     */
+    public List<Product> getProductsOrderByCommentsNum() {
+        List<Product> products = simpleJdbcTemplate.getJdbcOperations().query(
+                "select * from product where id in ( select product_id from review group by product_id order by count(*))",
+                productMapper);
+        return products;
+    }
+
     public Product getProductById(long product_id) {
         List<Product> products = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM product WHERE id = ?",
                                                                               new Object[]{product_id},

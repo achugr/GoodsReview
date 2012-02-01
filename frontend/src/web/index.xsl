@@ -26,12 +26,22 @@
                 </div>
             </div>
         </div>  -->
-        <ul class="popularProducts">
+        <!--<ul class="popularProducts">
             <xsl:call-template name="popular"/>
         </ul>
     </xsl:template>
     <xsl:template name="popular">
         <xsl:for-each select="/page/data[@id='popularProducts']/collection/detailed-product-for-view">
+            <xsl:call-template name="product"/>
+        </xsl:for-each>
+        <hr/>
+    </xsl:template> -->
+        <ul class="popularProducts">
+            <xsl:call-template name="popular"/>
+        </ul>
+    </xsl:template>
+    <xsl:template name="popular">
+        <xsl:for-each select="/page/data[@id='mostCommentsProduct']/collection/detailed-product-for-view">
             <xsl:call-template name="product"/>
         </xsl:for-each>
         <hr/>

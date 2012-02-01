@@ -55,4 +55,13 @@ public class ProductManager {
         }
         return result;
     }
+
+    public @NotNull List<DetailedProductForView> productsMostNumberOfComments() throws Exception {
+        List<DetailedProductForView> result = new ArrayList<DetailedProductForView>();
+        for (Product product : controllerFactory.getProductController().getProductsMostComments(popularCount)) {
+            log.debug("Product added:" + product.getName() + " Id:" + product.getId());
+            result.add(productMapper.prepareDetailedProductForView(controllerFactory, product));
+        }
+        return result;
+    }
 }

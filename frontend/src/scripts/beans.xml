@@ -85,7 +85,7 @@
     </bean>
     <bean id="reviewManager" class="ru.goodsReview.frontend.service.ReviewManager">
         <property name="popularCount">
-            <value>5</value>
+            <value>10</value>
         </property>
     </bean>
     <!--Yalets-->
@@ -95,4 +95,5 @@
     <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
     <bean id="similarProductYalet" class="ru.goodsReview.frontend.yalet.SimilarProductYalet"/>
     <bean id="thesisYalet" class="ru.goodsReview.frontend.yalet.ThesisYalet"/>
+    <bean id="mostCommentsProductYalet" class="ru.goodsReview.frontend.yalet.MostCommentsProductYalet"/>
 </beans>
