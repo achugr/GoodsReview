@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.utils;
+package ru.goodsReview.analyzer.util;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
