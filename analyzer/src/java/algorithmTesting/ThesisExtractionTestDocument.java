@@ -2,7 +2,7 @@ package algorithmTesting;
 
 /**
  * Created by IntelliJ IDEA.
- * User: Ilya
+ * User: IlyaMakeev
  * Date: 05.02.12
  * Time: 18:12
  * To change this template use File | Settings | File Templates.
@@ -39,7 +39,6 @@ public class ThesisExtractionTestDocument {
 
             if (s.contains("<product id=")) {
                 if(!productId.equals("null")){
-
                     reviewsList.add(new Review(r, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                     r = "null";
@@ -52,7 +51,6 @@ public class ThesisExtractionTestDocument {
 
             if (s.contains("<review")) {
                 if (!r.equals("null")) {
-
                     reviewsList.add(new Review(r, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                 }
@@ -74,8 +72,8 @@ public class ThesisExtractionTestDocument {
     }
 
 
-    static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis) throws IOException {
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CompareThesis.txt")));
+    static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis, String filePath) throws IOException {
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
 
         for (int i = 0; i < humProThesis.size(); i++) {
             comparator(humProThesis.get(i), algoProThesis.get(i), out);
@@ -100,12 +98,13 @@ public class ThesisExtractionTestDocument {
             out.println("   <review id=\"" + r1.get(k).review + "\">");
             ArrayList<String> t1 = r1.get(k).thesis;
             ArrayList<String> t2 = r2.get(k).thesis;
+            int dist = 3;
 
             for (int i = 0; i < t1.size(); i++) {
                 String s1 = t1.get(i).trim();
                 for (int j = 0; j < t2.size(); j++) {
                     String s2 = t2.get(j).trim();
-                    if (editdist(s1, s2) < 3) {
+                    if (editdist(s1, s2) < dist) {
                         out.println("      <OK>" + s1 + "</OK>");
                     }
                 }
@@ -116,7 +115,7 @@ public class ThesisExtractionTestDocument {
                 String s1 = t1.get(i).trim();
                 for (int j = 0; j < t2.size(); j++) {
                     String s2 = t2.get(j).trim();
-                    if (editdist(s1, s2) < 3) {
+                    if (editdist(s1, s2) < dist) {
                         t = true;
                     }
                 }
@@ -130,7 +129,7 @@ public class ThesisExtractionTestDocument {
                 String s1 = t2.get(i).trim();
                 for (int j = 0; j < t1.size(); j++) {
                     String s2 = t1.get(j).trim();
-                    if (editdist(s1, s2) < 3) {
+                    if (editdist(s1, s2) < dist) {
                         t = true;
                     }
                 }
@@ -144,16 +143,16 @@ public class ThesisExtractionTestDocument {
 
 
     static int editdist(String s1, String s2) {
-        int m = s1.length(), n = s2.length();
-        int[] D1 = new int[n + 1];
-        int[] D2 = new int[n + 1];
+        int m = s1.length();
+        int n = s2.length();
 
+        int[] D2 = new int[n + 1];
         for (int i = 0; i <= n; i++) {
             D2[i] = i;
         }
 
         for (int i = 1; i <= m; i++) {
-            D1 = D2;
+            int[] D1 = D2;
             D2 = new int[n + 1];
             for (int j = 0; j <= n; j++) {
                 if (j == 0) {
@@ -177,32 +176,12 @@ public class ThesisExtractionTestDocument {
     }
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildThesisList("ThesisExtractionDocument.txt",  "utf8");
-        ArrayList<Product> humProThesis = buildThesisList("handMade.txt", "windows-1251");
+        ArrayList<Product> algoProThesis = buildThesisList("analyzer/ThesisExtractionDocument.txt",  "utf8");
+        ArrayList<Product> humProThesis = buildThesisList("analyzer/handMade.txt", "windows-1251");
 
+        compare(algoProThesis, humProThesis, "analyzer/CompareThesis.txt");
 
-        compare(algoProThesis, humProThesis);
-
-
-
-        //System.out.println(abstracts.get(0));
-
-        /*
-          for (int i = 0; i < 10; i++) {
-              System.out.println(humProThesis.get(i).name);
-
-              for (int j = 0; j < humProThesis.get(i).reviews.size(); j++) {
-                  System.out.println("     "+humProThesis.get(i).reviews.get(j).rev);
-                  for (int j2 = 0; j2 < humProThesis.get(i).reviews.get(j).thesis.size(); j2++) {
-                      System.out.println("           "+humProThesis.get(i).reviews.get(j).thesis.get(j2));
-                  }
-
-              }
-
-          }
-          */
-
-
+             /*
         for (int i = 0; i < 80; i++) {
             System.out.println(algoProThesis.get(i).name);
             System.out.println(humProThesis.get(i).name);
@@ -218,7 +197,7 @@ public class ThesisExtractionTestDocument {
 
             }
 
-        }
+        } */
 
     }
 }

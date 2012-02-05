@@ -2,7 +2,7 @@ package algorithmTesting;
 
 /**
  * Created by IntelliJ IDEA.
- * User: Ilya
+ * User: IlyaMakeev
  * Date: 05.02.12
  * Time: 18:15
  * To change this template use File | Settings | File Templates.
