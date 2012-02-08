@@ -10,7 +10,7 @@ package ru.goodsReview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.analyzer.wordAnalyzer.AdjectiveAnalyzer;
+import ru.goodsReview.analyzer.wordAnalyzer.WordAnalyzer;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.controller.ProductController;
 import ru.goodsReview.core.db.controller.ReviewController;
@@ -27,7 +27,13 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.TimerTask;
 
-public class ExtractThesis extends TimerTask{
+/**
+ * first version of thesis extraction algorithm
+ * 1) find noun from dictionary
+ * 2) find nearest adjective
+ * 3) extract this pair
+ */
+public class ExtractThesisVersion1 extends TimerTask{
 
     private static List<String> dictionaryWords = new ArrayList<String>();
     private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
@@ -186,7 +192,7 @@ public class ExtractThesis extends TimerTask{
         StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
         String currToken;
         String nextToken;
-        AdjectiveAnalyzer aa = new AdjectiveAnalyzer();
+        WordAnalyzer aa = new WordAnalyzer();
         while(st.hasMoreElements()){
 //            get current token
             currToken = st.nextToken();
@@ -270,14 +276,23 @@ public class ExtractThesis extends TimerTask{
             }
         }
     }
+    public void showAllReviews(){
+         List<Review> reviews = reviewController.getAllReviews();
+        for(Review review : reviews){
+            System.out.println("<review id = " + review.getId() + " >");
+            System.out.println("    "+review.getContent().replaceAll("\\s+", " "));
+            System.out.println("</review>");
+        }
+    }
 
     @Override
     public void run() {
-        try {
+      /*  try {
             extractThesisOnAllProducts();
         } catch (IOException e) {
-        }
+        } */
 //        showThesisOnAllProducts();
+        showAllReviews();
         log.info("extraction is complete");
     }
 
@@ -299,7 +314,7 @@ public class ExtractThesis extends TimerTask{
         String prevToken = "123456789";
 
         while (st.hasMoreTokens()) {
-            if (AdjectiveAnalyzer.isAdjective(currToken = st.nextToken())) {
+            if (WordAnalyzer.isAdjective(currToken = st.nextToken())) {
                 if (isInDictionary(prevToken)) {
                     Thesis temp = new Thesis(rev.getId(),0,prevToken + " " + currToken,0,0,0);
                     result.add(temp);
