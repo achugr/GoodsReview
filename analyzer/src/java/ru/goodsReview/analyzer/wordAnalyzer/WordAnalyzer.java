@@ -106,7 +106,8 @@ public class WordAnalyzer {
      * @throws UnsupportedEncodingException
      */
     public boolean isNoun(String word) throws UnsupportedEncodingException {
-        if(this.wordCharacteristic(word).equals(NOUN)){
+        String wordCharacteristic = this.wordCharacteristic(word);
+        if(wordCharacteristic != null && wordCharacteristic.equals(NOUN)){
             return true;
         }
         return false;

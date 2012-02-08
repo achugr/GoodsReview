@@ -7,6 +7,8 @@ package ru.goodsReview.analyzer.util.dictionary;
  *      artemij.chugreev@gmail.com
  */
 
+import ru.goodsReview.analyzer.wordAnalyzer.PorterStemmer;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -40,6 +42,22 @@ public class Dictionary {
         for(String word : words){
             System.out.println(word);
         }
+    }
+
+    /**
+     * Checking if word is in dictionary
+     *
+     * @param word
+     * @return true if word is here. false — otherwise
+     */
+    public boolean containsWhether(String word){
+        PorterStemmer porterStemmer = new PorterStemmer();
+        for(String dictionaryWord : this.words){
+            if(dictionaryWord.equals(porterStemmer.stem(word).toLowerCase())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void main(String [] args){
