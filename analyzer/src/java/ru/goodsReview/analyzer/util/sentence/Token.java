@@ -9,7 +9,7 @@ package ru.goodsReview.analyzer.util.sentence;
 
 public class Token {
     private String token;
-    private MystemPartOfSpeech mystemPartOfSpeech;
+    private PartOfSpeech mystemPartOfSpeech;
 //  private LemmatizerPartOfSpeech lemmatizerPartOfSpeech;
 
     public Token(String token) {
@@ -24,11 +24,11 @@ public class Token {
         this.token = token;
     }
 
-    public MystemPartOfSpeech getMystemPartOfSpeech() {
+    public PartOfSpeech getMystemPartOfSpeech() {
         return mystemPartOfSpeech;
     }
 
-    public void setMystemPartOfSpeech(MystemPartOfSpeech mystemPartOfSpeech) {
+    public void setMystemPartOfSpeech(PartOfSpeech mystemPartOfSpeech) {
         this.mystemPartOfSpeech = mystemPartOfSpeech;
     }
 }

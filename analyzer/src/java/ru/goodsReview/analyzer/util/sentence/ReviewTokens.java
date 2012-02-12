@@ -7,6 +7,10 @@ package ru.goodsReview.analyzer.util.sentence;
  *      artemij.chugreev@gmail.com
  */
 
+import ru.goodsReview.analyzer.util.dictionary.Dictionary;
+import ru.goodsReview.analyzer.wordAnalyzer.WordAnalyzer;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,18 +23,34 @@ public class ReviewTokens implements Iterable<Token> {
     private int currentPosition=-1;
     //    "pointer" for traverse next/previous by currentPosition
     private int traversePosition = currentPosition;
+
+    private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt");
+
     /**
      * create new ReviewTokens from review
      *
      * @param review source String
      */
-    public ReviewTokens(String review) {
+    public ReviewTokens(String review) throws IOException {
         Token token;
         tokensList = new ArrayList<Token>();
         StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;()+\'\"\\«»");
         while (stringTokenizer.hasMoreElements()) {
-            token = new Token(stringTokenizer.nextToken());
+            String currToken  = stringTokenizer.nextToken();
+            token = new Token(currToken);
+
 //            token.setMystemPartOfSpeech, and other parameters
+            WordAnalyzer wordAnalyzer = new WordAnalyzer();
+            if (opinionDictionary.containsWhether(currToken)) {
+                token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
+            } else {
+                if (wordAnalyzer.isNoun(currToken)){
+                    token.setMystemPartOfSpeech(PartOfSpeech.NOUN);
+                } else {
+                    token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+                }
+            }
+
             tokensList.add(token);
         }
     }
@@ -80,7 +100,11 @@ public class ReviewTokens implements Iterable<Token> {
         if(traversePosition < currentPosition){
             traversePosition = currentPosition;
         }
-        return tokensList.get(++traversePosition);
+        if(traversePosition < tokensList.size() - 1){
+            return tokensList.get(++traversePosition);
+        }  else{
+            return null;
+        }
     }
 
     /**
@@ -91,10 +115,15 @@ public class ReviewTokens implements Iterable<Token> {
         if(traversePosition > currentPosition){
             traversePosition = currentPosition;
         }
-        return tokensList.get(--traversePosition);
+        if(traversePosition > 0){
+            return tokensList.get(--traversePosition);
+        } else{
+            return null;
+        }
+
     }
 
-    public static void main(String [] args){
+    public static void main(String [] args) throws IOException {
         ReviewTokens reviewTokens = new ReviewTokens("When I find myself in times of trouble");
 //        System.out.println(reviewTokens.getNext().getToken());
 //        System.out.println(reviewTokens.getPrevious().getToken());
