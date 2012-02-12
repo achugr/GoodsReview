@@ -85,7 +85,7 @@ public class WordAnalyzer {
         while (Character.isUpperCase(wordCharacteristic.charAt(pos2))) {
             pos2++;
         }
-        return wordCharacteristic.substring(pos1, pos2); 
+        return wordCharacteristic.substring(pos1, pos2);
     }
     /**
      * Checks if word is an adjective.
