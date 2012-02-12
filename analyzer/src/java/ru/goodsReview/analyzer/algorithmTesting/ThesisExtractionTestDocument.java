@@ -8,6 +8,8 @@ package ru.goodsReview.analyzer.algorithmTesting;
  * ilya.makeev@gmail.com
  */
 
+import ru.goodsReview.core.utils.EditDistance;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -18,7 +20,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class ThesisExtractionTestDocument {
-
 
     static ArrayList<Product> buildThesisList(String filePath, String encoding) throws IOException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
@@ -104,7 +105,7 @@ public class ThesisExtractionTestDocument {
                 String s1 = t1.get(i).trim();
                 for (int j = 0; j < t2.size(); j++) {
                     String s2 = t2.get(j).trim();
-                    if (editdist(s1, s2) < dist) {
+                    if (EditDistance.editDist(s1, s2) < dist) {
                         out.println("      <OK>" + s1 + "</OK>");
                     }
                 }
@@ -115,7 +116,7 @@ public class ThesisExtractionTestDocument {
                 String s1 = t1.get(i).trim();
                 for (int j = 0; j < t2.size(); j++) {
                     String s2 = t2.get(j).trim();
-                    if (editdist(s1, s2) < dist) {
+                    if (EditDistance.editDist(s1, s2) < dist) {
                         t = true;
                     }
                 }
@@ -129,7 +130,7 @@ public class ThesisExtractionTestDocument {
                 String s1 = t2.get(i).trim();
                 for (int j = 0; j < t1.size(); j++) {
                     String s2 = t1.get(j).trim();
-                    if (editdist(s1, s2) < dist) {
+                    if (EditDistance.editDist(s1, s2) < dist) {
                         t = true;
                     }
                 }
@@ -141,39 +142,6 @@ public class ThesisExtractionTestDocument {
         }
     }
 
-
-    static int editdist(String s1, String s2) {
-        int m = s1.length();
-        int n = s2.length();
-
-        int[] D2 = new int[n + 1];
-        for (int i = 0; i <= n; i++) {
-            D2[i] = i;
-        }
-
-        for (int i = 1; i <= m; i++) {
-            int[] D1 = D2;
-            D2 = new int[n + 1];
-            for (int j = 0; j <= n; j++) {
-                if (j == 0) {
-                    D2[j] = i;
-                } else {
-                    int cost = (s1.charAt(i - 1) != s2.charAt(j - 1)) ? 1 : 0;
-                    if (D2[j - 1] < D1[j] && D2[j - 1] < D1[j - 1] + cost) {
-                        D2[j] = D2[j - 1] + 1;
-                    } else {
-                        if (D1[j] < D1[j - 1] + cost) {
-                            D2[j] = D1[j] + 1;
-                        } else {
-                            D2[j] = D1[j - 1] + cost;
-                        }
-                    }
-                }
-            }
-        }
-
-        return D2[n];
-    }
 
     public static void main(String[] args) throws IOException {
         ArrayList<Product> algoProThesis = buildThesisList("analyzer/ThesisExtractionDocument.txt",  "utf8");
