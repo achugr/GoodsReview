@@ -10,12 +10,20 @@ package ru.goodsReview.analyzer.algorithmTesting;
 import java.util.ArrayList;
 
 public class Product {
-    String name;
-    ArrayList<Review> reviews;
+    private String name;
+    private ArrayList<Review> reviews;
 
     public Product(String name, ArrayList<Review> reviews) {
         this.name = name;
         this.reviews = reviews;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public ArrayList<Review> getReviews(){
+        return reviews;
     }
 
 }

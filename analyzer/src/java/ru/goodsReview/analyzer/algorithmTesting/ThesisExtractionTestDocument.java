@@ -20,8 +20,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class ThesisExtractionTestDocument {
+    private static double successExtract = 0;
+    private static double numAlgo = 0;
+    private static double numHum = 0;
 
-    static ArrayList<Product> buildThesisList(String filePath, String encoding) throws IOException {
+    //   build list of Products
+    static ArrayList<Product> buildProductList(String filePath, String encoding) throws IOException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
 
         FileInputStream fis = new FileInputStream(filePath);
@@ -72,65 +76,57 @@ public class ThesisExtractionTestDocument {
         return ProductList;
     }
 
-
+   // comparison of thesis for two products lists
     static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis, String filePath) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
 
         for (int i = 0; i < humProThesis.size(); i++) {
-            comparator(humProThesis.get(i), algoProThesis.get(i), out);
+            comparator(algoProThesis.get(i), humProThesis.get(i), out);
         }
 
         out.flush();
     }
 
-
-    static void comparator(Product p1, Product p2, PrintWriter out){
-        out.println("<product id=\"" + p1.name + "\">");
-        if (p1.reviews.size() > 0 && !p1.reviews.get(0).review.equals("null")) {
-            compareThesisLists(p1.reviews, p2.reviews, out);
+    // comparison of thesis for two products
+    static void comparator(Product algoProduct, Product humProduct, PrintWriter out){
+        out.println("<product id=\"" + algoProduct.getName() + "\">");
+        if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("null")) {
+            compareThesisLists(algoProduct.getReviews(), humProduct.getReviews(), out);
         }
 
         out.println("</product>");
     }
 
+    // comparison of thesis for two Review lists
+    static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out){
+        int editDist = 3;
 
-    static void compareThesisLists(ArrayList<Review> r1, ArrayList<Review> r2, PrintWriter out){
-        for (int k = 0; k < r1.size(); k++) {
-            out.println("   <review id=\"" + r1.get(k).review + "\">");
-            ArrayList<String> t1 = r1.get(k).thesis;
-            ArrayList<String> t2 = r2.get(k).thesis;
-            int dist = 3;
+        for (int k = 0; k < algoReview.size(); k++) {
+            out.println("   <review id=\"" + algoReview.get(k).getReview() + "\">");
 
-            for (int i = 0; i < t1.size(); i++) {
-                String s1 = t1.get(i).trim();
-                for (int j = 0; j < t2.size(); j++) {
-                    String s2 = t2.get(j).trim();
-                    if (EditDistance.editDist(s1, s2) < dist) {
+            ArrayList<String> algoThesis = algoReview.get(k).getThesis();
+            ArrayList<String> humThesis = humReview.get(k).getThesis();
+
+            numAlgo += algoThesis.size();
+            numHum += humThesis.size();
+
+            for (int i = 0; i < algoThesis.size(); i++) {
+                String s1 = algoThesis.get(i).trim();
+                for (int j = 0; j < humThesis.size(); j++) {
+                    String s2 = humThesis.get(j).trim();
+                    if (EditDistance.editDist(s1, s2) < editDist) {
                         out.println("      <OK>" + s1 + "</OK>");
+                        successExtract++;
                     }
                 }
             }
 
-            for (int i = 0; i < t1.size(); i++) {
+            for (int i = 0; i < algoThesis.size(); i++) {
                 boolean t = false;
-                String s1 = t1.get(i).trim();
-                for (int j = 0; j < t2.size(); j++) {
-                    String s2 = t2.get(j).trim();
-                    if (EditDistance.editDist(s1, s2) < dist) {
-                        t = true;
-                    }
-                }
-                if (t == false) {
-                    out.println("      <hum>" + s1 + "</hum>");
-                }
-            }
-
-            for (int i = 0; i < t2.size(); i++) {
-                boolean t = false;
-                String s1 = t2.get(i).trim();
-                for (int j = 0; j < t1.size(); j++) {
-                    String s2 = t1.get(j).trim();
-                    if (EditDistance.editDist(s1, s2) < dist) {
+                String s1 = algoThesis.get(i).trim();
+                for (int j = 0; j < humThesis.size(); j++) {
+                    String s2 = humThesis.get(j).trim();
+                    if (EditDistance.editDist(s1, s2) < editDist) {
                         t = true;
                     }
                 }
@@ -138,34 +134,36 @@ public class ThesisExtractionTestDocument {
                     out.println("      <algo>" + s1 + "</algo>");
                 }
             }
+
+            for (int i = 0; i < humThesis.size(); i++) {
+                boolean t = false;
+                String s1 = humThesis.get(i).trim();
+                for (int j = 0; j < algoThesis.size(); j++) {
+                    String s2 = algoThesis.get(j).trim();
+                    if (EditDistance.editDist(s1, s2) < editDist) {
+                        t = true;
+                    }
+                }
+                if (t == false) {
+                    out.println("      <hum>" + s1 + "</hum>");
+                }
+            }
             //out.println("   </review>");
         }
     }
 
 
+
+
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildThesisList("analyzer/ThesisExtractionDocument.txt",  "utf8");
-        ArrayList<Product> humProThesis = buildThesisList("analyzer/handMade.txt", "windows-1251");
+        ArrayList<Product> algoProThesis = buildProductList("analyzer/ThesisExtractionDocument.txt", "utf8");
+        ArrayList<Product> humProThesis = buildProductList("analyzer/handMade.txt", "windows-1251");
 
-        compare(algoProThesis, humProThesis, "analyzer/CompareThesis.txt");
+      compare(algoProThesis, humProThesis, "analyzer/CompareThesis.txt");
 
-             /*
-        for (int i = 0; i < 80; i++) {
-            System.out.println(algoProThesis.get(i).name);
-            System.out.println(humProThesis.get(i).name);
-            for (int j = 0; j < algoProThesis.get(i).reviews.size(); j++) {
-                System.out.println("     "+algoProThesis.get(i).reviews.get(j).review);
-                System.out.println("     "+humProThesis.get(i).reviews.get(j).review);
-                for (int j2 = 0; j2 < algoProThesis.get(i).reviews.get(j).thesis.size(); j2++) {
-                    System.out.println("           "+algoProThesis.get(i).reviews.get(j).thesis.get(j2));
-                }
-                for (int j2 = 0; j2 < humProThesis.get(i).reviews.get(j).thesis.size(); j2++) {
-                    System.out.println("         "+humProThesis.get(i).reviews.get(j).thesis.get(j2));
-                }
-
-            }
-
-        } */
+        System.out.println(successExtract);
+        System.out.println(numAlgo);
+        System.out.println(numHum);
 
     }
 }

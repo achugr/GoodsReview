@@ -10,12 +10,20 @@ package ru.goodsReview.analyzer.algorithmTesting;
 import java.util.ArrayList;
 
 public class Review implements Cloneable{
-    String review;
-    ArrayList<String> thesis;
+   private String review;
+   private ArrayList<String> thesis;
 
     public Review(String review, ArrayList<String> thesis) {
         this.review = review;
         this.thesis = thesis;
+    }
+
+    public String getReview(){
+        return review;
+    }
+
+    public ArrayList<String> getThesis(){
+        return thesis;
     }
 
     public Object clone() {
