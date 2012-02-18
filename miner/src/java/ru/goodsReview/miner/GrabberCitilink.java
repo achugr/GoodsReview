@@ -24,17 +24,21 @@ public class GrabberCitilink extends WebHarvestGrabber {
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
     private static final String site = "http://www.citilink.ru";
     private static final String encoding = "windows-1251";
+    private static final String notebooksPath = "notebooks/";
+    private static final String compactphotoPath = "compactphoto/";
+    private static final String tvPath = "tv/";
 
     private String pagesPath;
     private String descriptionPath;
     private String listPath;
     private String allLinksPath;
     private String newLinksPath;
+
     private String latterLinksPath;
 
     public void init() {
-        pagesPath = getPath() + "reviews/";
-        descriptionPath = getPath() + "descriptions/";
+        pagesPath = getPath() + "reviews/" + tvPath;
+        descriptionPath = getPath() + "descriptions/" + tvPath;
         listPath = getPath() + "list/";
         allLinksPath = listPath + "allLinks.xml";
         newLinksPath = listPath + "newLinks.xml";

@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-    <var-def name="startURL">http://www.citilink.ru/catalog/computers_and_notebooks/notebooks/</var-def>
+
+    <var-def name="startURL">http://www.citilink.ru/catalog/</var-def>
+
+    <var-def name="Link1">computers_and_notebooks/notebooks/</var-def>
+    <var-def name="Link2">photo_and_video/compactphoto/</var-def>
+    <var-def name="Link3">audio_and_digits/tv/</var-def>
+
+    <!--
+    WARNING: Choose one of three links (Link1, Link2, Link3) and specify it
+    in two different places in the code (see below)
+    -->
 
     <var-def name="MaxPage">
         <xpath expression="//div[@class='cat_nav top']/div[@class='b']/a[last()]/text()">
             <html-to-xml>
-                <http url="${startURL}"/>
+                <!--Specify link here-->
+                <http url="${startURL}${Link3}"/>
             </html-to-xml>
         </xpath>
     </var-def>
@@ -21,7 +32,8 @@
             <var-def name="items">
                 <xpath expression='//table[@class = "item"]'>
                     <html-to-xml>
-                        <http url="${startURL}?p=${i.toInt()}"/>
+                        <!--Specify link here-->
+                        <http url="${startURL}/${Link3}?p=${i.toInt()}"/>
                     </html-to-xml>
                 </xpath>
             </var-def>
@@ -68,5 +80,6 @@
         <template>
             &lt;/objects&gt;${sys.cr}${sys.lf}
         </template>
+
     </file>
 </config>
