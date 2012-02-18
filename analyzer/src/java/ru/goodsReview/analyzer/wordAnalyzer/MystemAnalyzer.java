@@ -87,39 +87,23 @@ public class MystemAnalyzer {
         }
         return wordCharacteristic.substring(pos1, pos2);
     }
-    /**
-     * Checks if word is an adjective.
-     * @param word Word which is tested for being adjective.
-     * @return True if word is an adjective, false — otherwise.
-     */
-    public boolean isAdjective (String word) throws UnsupportedEncodingException {
-        if(this.wordCharacteristic(word).equals(ADJECTIVE)){
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Checks if word is an adjective.
-     * @param word Word which is tested for being noun.
-     * @return  True if word is an noun, false — otherwise.
-     * @throws UnsupportedEncodingException
-     */
-    public boolean isNoun(String word) throws UnsupportedEncodingException {
-        String wordCharacteristic = this.wordCharacteristic(word);
-        if(wordCharacteristic != null && wordCharacteristic.equals(NOUN)){
-            return true;
-        }
-        return false;
-    }
 
     public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
-        String wordCharacteristic = this.wordCharacteristic(word);
-        if(wordCharacteristic.equals("A")){
-            return PartOfSpeech.ADJECTIVE;
-        } else if(wordCharacteristic.equals("S")){
-            return PartOfSpeech.NOUN;
+        switch (this.wordCharacteristic(word)) {
+            case "A":
+                return PartOfSpeech.ADJECTIVE;
+            case "S":
+                return PartOfSpeech.NOUN;
+            case "ADV":
+                return PartOfSpeech.ADVERB;
+            case "V":
+                return PartOfSpeech.VERB;
+            case "PR":
+                return PartOfSpeech.PREPOSITION;
+            case "PART":
+                return PartOfSpeech.PARTICLE;
         }
+//        throw new UnknownPartOfSpeechException();
         return PartOfSpeech.UNKNOWN;
     }
 

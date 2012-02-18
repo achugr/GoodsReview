@@ -8,7 +8,7 @@ package ru.goodsReview.analyzer.util.sentence;
  */
 
 import ru.goodsReview.analyzer.util.dictionary.Dictionary;
-import ru.goodsReview.analyzer.wordAnalyzer.WordAnalyzer;
+import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +26,8 @@ public class ReviewTokens implements Iterable<Token> {
 
     private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt");
 
+    private MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
+
     /**
      * create new ReviewTokens from review
      *
@@ -34,25 +36,21 @@ public class ReviewTokens implements Iterable<Token> {
     public ReviewTokens(String review) throws IOException {
         Token token;
         tokensList = new ArrayList<Token>();
-        StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;()+\'\"\\«»");
+        StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
         while (stringTokenizer.hasMoreElements()) {
             String currToken  = stringTokenizer.nextToken();
             token = new Token(currToken);
 
 //            token.setMystemPartOfSpeech, and other parameters
-            WordAnalyzer wordAnalyzer = new WordAnalyzer();
-            if (opinionDictionary.containsWhether(currToken)) {
+//            WordAnalyzer wordAnalyzer = new WordAnalyzer();
+            if (opinionDictionary.contains(currToken)) {
                 token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
             } else {
-                if (wordAnalyzer.isNoun(currToken)){
-                    token.setMystemPartOfSpeech(PartOfSpeech.NOUN);
-                } else {
-                    token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
-                }
+                token.setMystemPartOfSpeech(mystemAnalyzer.partOfSpeech(currToken));
             }
-
             tokensList.add(token);
         }
+        mystemAnalyzer.close();
     }
 
     /**
@@ -124,22 +122,9 @@ public class ReviewTokens implements Iterable<Token> {
     }
 
     public static void main(String [] args) throws IOException {
-        ReviewTokens reviewTokens = new ReviewTokens("When I find myself in times of trouble");
-//        System.out.println(reviewTokens.getNext().getToken());
-//        System.out.println(reviewTokens.getPrevious().getToken());
-//        System.out.println(reviewTokens.getNext().getToken());
-        Iterator<Token> iterator = reviewTokens.iterator();
-        iterator.next();
-        iterator.next();
-        while (iterator.hasNext()){
-            Token token = iterator.next();
-            for (int i=0; i< 2; i++){
-                System.out.println(reviewTokens.getPrevious().getToken());
-            }
-//            System.out.println(reviewTokens.getPrevious().getToken() +" "+ token.getToken() +" "+reviewTokens.getNext
-//                    ().getToken() );
-
+        ReviewTokens reviewTokens = new ReviewTokens("этот ноут просто клевый! купил и не жалею, клавиатура просто отличная");
+        for(Token token : reviewTokens){
+            System.out.println(token.getContent() + " -> " + token.getMystemPartOfSpeech());
         }
-
     }
 }

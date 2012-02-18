@@ -41,6 +41,10 @@ public class WordAnalyzer {
         analyzer.destroy();
     }
 
+    public Process getAnalyzer() {
+        return analyzer;
+    }
+
     /**
      * Checks if letter belongs to russian alphabet.
      * @param letter The letter itself.
@@ -85,8 +89,14 @@ public class WordAnalyzer {
         while (Character.isUpperCase(wordCharacteristic.charAt(pos2))) {
             pos2++;
         }
-        return wordCharacteristic.substring(pos1, pos2);
+        String wordCharact = wordCharacteristic.substring(pos1, pos2);
+        if( wordCharact == null ){
+            return "";
+        }
+        return wordCharact;
     }
+
+
     /**
      * Checks if word is an adjective.
      * @param word Word which is tested for being adjective.

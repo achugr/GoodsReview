@@ -8,20 +8,20 @@ package ru.goodsReview.analyzer.util.sentence;
  */
 
 public class Token {
-    private String token;
+    private String content;
     private PartOfSpeech mystemPartOfSpeech;
 //  private LemmatizerPartOfSpeech lemmatizerPartOfSpeech;
 
     public Token(String token) {
-        this.token = token;
+        this.content = token;
     }
 
-    public String getToken() {
-        return token;
+    public String getContent() {
+        return content;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public PartOfSpeech getMystemPartOfSpeech() {
