@@ -17,6 +17,7 @@ import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -75,7 +76,7 @@ public class ThesisExtractionDocument {
         }
         out.close();
     }
-
+      /*
     public void createExtractionThesisDocument(){
         PrintWriter out = null;
         try {
@@ -98,11 +99,25 @@ public class ThesisExtractionDocument {
             }
         }
         out.close();
+    }   */
+
+    public static String nextNameOfDocument(String filePath) {
+        String list[] = new File(filePath).list();
+        int max = 0;
+        String str =  "ThesisExtractionDocument";
+        for (int i = 0; i < list.length; i++) {
+            String s = list[i];
+            if (s.contains(str)) {
+                max = Math.max(Integer.parseInt(s.substring(str.length(), s.indexOf("."))), max);
+            }
+        }
+
+        return "ThesisExtractionDocument" + Integer.toString(max + 1) + ".txt";
     }
 
     public static void main(String [] args) throws FileNotFoundException {
         final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("scripts/database.xml");
-        out = new PrintWriter("ThesisExtractionDocument.txt");
+        out = new PrintWriter(nextNameOfDocument("/algoReport"));
         showThesisOnAllProducts();
         out.close();
     }
