@@ -57,6 +57,9 @@ public class ThesisPattern {
         mystemAnalyzer = new MystemAnalyzer();
     }
 
+    public PartOfSpeech get(int i){
+        return pattern.get(i);
+    }
     /**
      * matches with this pattern
      * @param sourceThesis possibly this is thesis

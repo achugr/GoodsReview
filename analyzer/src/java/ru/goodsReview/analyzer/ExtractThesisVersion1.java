@@ -186,9 +186,7 @@ public class ExtractThesisVersion1 extends TimerTask{
      */
     public static List<Thesis> doExtraction(Review review) throws IOException {
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
-        fillDictionary();
         String content = review.getContent();
-
         StringTokenizer st = new StringTokenizer(content, " .,-—:;()+\'\"\\«»");
         String currToken;
         String nextToken;
@@ -224,7 +222,6 @@ public class ExtractThesisVersion1 extends TimerTask{
                     }
             }
         }
-
         aa.close();
         return extractedThesisList;
     }
