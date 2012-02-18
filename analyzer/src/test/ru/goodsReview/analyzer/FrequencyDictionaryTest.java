@@ -8,6 +8,7 @@ package ru.goodsReview.analyzer;
  */
 
 import org.junit.Assert;
+import ru.goodsReview.analyzer.util.FrequencyDictionary;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -10,6 +10,7 @@ package ru.goodsReview.analyzer;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import ru.goodsReview.analyzer.util.FrequencyAnalyzer;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.controller.ProductController;
 import ru.goodsReview.core.db.controller.ReviewController;
