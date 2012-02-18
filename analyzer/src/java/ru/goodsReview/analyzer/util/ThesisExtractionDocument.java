@@ -7,8 +7,9 @@ package ru.goodsReview.analyzer.util;
  *      artemij.chugreev@gmail.com
  */
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import ru.goodsReview.analyzer.AnalyzeThesis;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.controller.ProductController;
 import ru.goodsReview.core.db.controller.ReviewController;
@@ -21,13 +22,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.TimerTask;
 
-public class ThesisExtractionDocument {
+public class ThesisExtractionDocument extends TimerTask{
     private static PrintWriter out;
     private static ControllerFactory controllerFactory;
     private static ProductController productController;
     private static ThesisController thesisController;
     private static ReviewController reviewController;
+
+    private static final Logger log = org.apache.log4j.Logger.getLogger(AnalyzeThesis.class);
 
     @Required
     public void setControllerFactory(ControllerFactory controllerFactory1){
@@ -44,7 +48,7 @@ public class ThesisExtractionDocument {
     public static void showThesisOnAllProducts(){
         List<Product> list = productController.getAllProducts();
         for(Product product : list){
-            out.println("<product name=\""+product.getName()+"\">");
+            out.println("<product id=\"" + product.getId() + "\" name=\""+product.getName()+"\">");
             List<Review> reviews = reviewController.getReviewsByProductId(product.getId());
             for(Review review : reviews){
                 out.println("    <review content=\"" + review.getId() + "\">");
@@ -115,11 +119,20 @@ public class ThesisExtractionDocument {
         return "ThesisExtractionDocument" + Integer.toString(max + 1) + ".txt";
     }
 
-    public static void main(String [] args) throws FileNotFoundException {
-        final FileSystemXmlApplicationContext context = new FileSystemXmlApplicationContext("scripts/database.xml");
-        out = new PrintWriter(nextNameOfDocument("/algoReport"));
-        showThesisOnAllProducts();
-        out.close();
+    public void run(){
+        try {
+            String fileName = nextNameOfDocument("algoReport");
+            out = new PrintWriter("algoReport/" + fileName);
+            showThesisOnAllProducts();
+            log.info("complete");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            out.close();
+        }
+
     }
+
+
 
 }
