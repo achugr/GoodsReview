@@ -19,16 +19,24 @@ import java.util.List;
  */
 public class ThesisPattern {
 //    list of part of speech - this is pattern
-    List<PartOfSpeech> pattern;
-    MystemAnalyzer mystemAnalyzer;
+   private ArrayList<PartOfSpeech> pattern;
+   private MystemAnalyzer mystemAnalyzer;
 
     /**
      * create new pattern
      * @param pattern
      */
-    public ThesisPattern(List<PartOfSpeech> pattern) throws IOException {
+    public ThesisPattern(ArrayList<PartOfSpeech> pattern) throws IOException {
         this.pattern = pattern;
         mystemAnalyzer = new MystemAnalyzer();
+    }
+
+    public List<PartOfSpeech> getPattren(){
+        return pattern;
+    }
+
+    public MystemAnalyzer getMystemAnalyzer(){
+        return mystemAnalyzer;
     }
 
     /**

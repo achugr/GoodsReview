@@ -55,21 +55,37 @@ public class ExtractThesis {
     public static List<Thesis> doExtraction(Review review) throws IOException {
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
         String content = review.getContent();
+
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADVERB));
+
         ReviewTokens reviewTokens = new ReviewTokens(content);
-
+        ArrayList<Token> tokensList = reviewTokens.getTokensList();
+        
         for(ThesisPattern thesisPattern : thesisPatternList){
-            for (Token token : reviewTokens){
+            ThesisPattern pattern = thesisPattern;
 
+            String token1 = null;
+            PartOfSpeech part1 = pattern.getPattren().get(0);
+            PartOfSpeech part2 = pattern.getPattren().get(1);
+            for (int i = 0; i < tokensList.size(); i++) {
+                Token currToken = tokensList.get(i);
+
+                if (currToken.getMystemPartOfSpeech().equals(part1)) {
+                    token1 = currToken.getContent();
+                }
+                if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
+                    String token2 = currToken.getContent();
+                    extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
+                    token1 = null;
+                }
             }
         }
-// extractedThesisList.add(new Thesis(review.getId(), 1, noun + " " + adj, 0, 0.0, 0.0));
 
-           
-
-     
         return extractedThesisList;
     }
+
+
+
 }

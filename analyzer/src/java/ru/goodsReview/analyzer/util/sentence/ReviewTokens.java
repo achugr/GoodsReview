@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
 
 public class ReviewTokens implements Iterable<Token> {
     //    list of tokens
-    private List<Token> tokensList;
+    private ArrayList<Token> tokensList;
     //    position of current token
     private int currentPosition=-1;
     //    "pointer" for traverse next/previous by currentPosition
@@ -51,6 +51,10 @@ public class ReviewTokens implements Iterable<Token> {
             tokensList.add(token);
         }
         mystemAnalyzer.close();
+    }
+
+    public ArrayList<Token>  getTokensList(){
+        return tokensList;
     }
 
     /**
