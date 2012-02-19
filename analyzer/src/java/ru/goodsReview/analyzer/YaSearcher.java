@@ -58,7 +58,7 @@ public class YaSearcher {
     public static void main(String[] args) throws IOException {
         final String user = "achugr";
         final String key = "03.105654139:7880f50b7f5479448228e3f18571cec8";
-        final String query = "world";
+        final String query = args[0];
         final int page = 0;
 
         LineNumberReader lineReader = null;
@@ -70,7 +70,7 @@ public class YaSearcher {
             String line = lineReader.readLine();
             while (line!= null) {
                 if(line.contains("found priority=\"all\"")){
-                    String s1 =  line.substring(line.indexOf("found priority=\"all\"")-1);
+                    String s1 = line.substring(line.indexOf("found priority=\"all\"")-1);
                     System.out.println(s1.substring(0,s1.indexOf("/found")-1));
                 }
                 line = lineReader.readLine();

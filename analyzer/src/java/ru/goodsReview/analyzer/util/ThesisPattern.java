@@ -31,7 +31,7 @@ public class ThesisPattern {
         mystemAnalyzer = new MystemAnalyzer();
     }
 
-    public List<PartOfSpeech> getPattren(){
+    public List<PartOfSpeech> getPattern(){
         return pattern;
     }
 

@@ -69,8 +69,9 @@ public class MystemAnalyzer {
             }
         }
 
+//        TODO fix this (split by !, but отличный! - returns ""
         if (!b) {
-            return null;
+            return "";
         }
 
         sc = new Scanner(analyzer.getInputStream(),CHARSET);
@@ -85,7 +86,11 @@ public class MystemAnalyzer {
         while (Character.isUpperCase(wordCharacteristic.charAt(pos2))) {
             pos2++;
         }
-        return wordCharacteristic.substring(pos1, pos2);
+        String wordCharact = wordCharacteristic.substring(pos1, pos2);
+        if(wordCharact == null){
+            return "";
+        }
+        return wordCharact;
     }
 
     public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
@@ -102,6 +107,8 @@ public class MystemAnalyzer {
                 return PartOfSpeech.PREPOSITION;
             case "PART":
                 return PartOfSpeech.PARTICLE;
+            case "":
+                return PartOfSpeech.UNKNOWN;
         }
 //        throw new UnknownPartOfSpeechException();
         return PartOfSpeech.UNKNOWN;
@@ -109,12 +116,8 @@ public class MystemAnalyzer {
 
     public static void main(String [] args){
         try {
-            WordAnalyzer wordAnalyzer = new WordAnalyzer();
-            if(wordAnalyzer.isNoun("компьютер")){
-                System.out.println("noun!");
-            } else {
-                System.out.println("not noun!");
-            }
+            MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
+            System.out.println(mystemAnalyzer.partOfSpeech("отличный!"));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
