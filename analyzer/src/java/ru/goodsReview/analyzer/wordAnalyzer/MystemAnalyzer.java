@@ -15,13 +15,14 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
-public class MystemAnalyzer {
+/**
+ * Class for the analysis of words, using mystem program http://company.yandex.ru/technologies/mystem/
+ */
+public class MystemAnalyzer implements WordAnalyzer{
 
-    private static final Logger log = Logger.getLogger(WordAnalyzer.class);
+    private static final Logger log = Logger.getLogger(MystemAnalyzer.class);
 
     private static final String CHARSET = "UTF8";
-    private static final String ADJECTIVE = "A";
-    private static final String NOUN = "S";
 
     private Process analyzer;
     private Scanner sc;
@@ -93,6 +94,12 @@ public class MystemAnalyzer {
         return wordCharact;
     }
 
+    /**
+     * method for determine part of speech of word by means of Mystem
+     * @param word which part of speech we want know
+     * @return Part of speech
+     * @throws UnsupportedEncodingException
+     */
     public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
         switch (this.wordCharacteristic(word)) {
             case "A":

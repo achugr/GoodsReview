@@ -9,4 +9,3 @@ public enum PartOfSpeech {
     PREPOSITION,
     UNKNOWN;
 }
-
