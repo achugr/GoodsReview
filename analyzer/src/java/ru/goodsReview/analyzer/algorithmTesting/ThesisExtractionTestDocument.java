@@ -34,8 +34,8 @@ public class ThesisExtractionTestDocument {
 
         ArrayList<Review> reviewsList = new ArrayList<Review>();
         ArrayList<String> thesisList = new ArrayList<String>();
-        String reviewID = "null";
-        String productId = "null";
+        String reviewID = "-1";
+        String productId = "-1";
         String s = in.readLine();
 
         while (s != null) {
@@ -43,10 +43,10 @@ public class ThesisExtractionTestDocument {
             s = s.toLowerCase();
 
             if (s.contains("<product id=")) {
-                if (!productId.equals("null")) {
+                if (!productId.equals("-1")) {
                     reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
-                    reviewID = "null";
+                    reviewID = "-1";
 
                     ProductList.add(new Product(productId, (ArrayList<Review>) reviewsList.clone()));
                     reviewsList.clear();
@@ -55,7 +55,7 @@ public class ThesisExtractionTestDocument {
             }
 
             if (s.contains("<review")) {
-                if (!reviewID.equals("null")) {
+                if (!reviewID.equals("-1")) {
                     reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                 }
