@@ -34,7 +34,7 @@ public class ThesisExtractionTestDocument {
 
         ArrayList<Review> reviewsList = new ArrayList<Review>();
         ArrayList<String> thesisList = new ArrayList<String>();
-        String r = "null";
+        String reviewID = "null";
         String productId = "null";
         String s = in.readLine();
 
@@ -44,9 +44,9 @@ public class ThesisExtractionTestDocument {
 
             if (s.contains("<product id=")) {
                 if (!productId.equals("null")) {
-                    reviewsList.add(new Review(r, (ArrayList<String>) thesisList.clone()));
+                    reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
-                    r = "null";
+                    reviewID = "null";
 
                     ProductList.add(new Product(productId, (ArrayList<Review>) reviewsList.clone()));
                     reviewsList.clear();
@@ -55,25 +55,48 @@ public class ThesisExtractionTestDocument {
             }
 
             if (s.contains("<review")) {
-                if (!r.equals("null")) {
-                    reviewsList.add(new Review(r, (ArrayList<String>) thesisList.clone()));
+                if (!reviewID.equals("null")) {
+                    reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                 }
-                r = s.substring(s.indexOf("\"") + 1, s.lastIndexOf("\""));
+                reviewID = s.substring(s.indexOf("\"") + 1, s.lastIndexOf("\""));
             }
 
-            if (s.contains("<thesis>")) {
-                String t = s.substring(s.indexOf("<thesis>") + 8, s.indexOf("</thesis>")).trim();
-                thesisList.add(t);
+            if (s.contains("##")) {
+                String t = s.substring(0, s.indexOf("##")).trim();
+
+                if (!t.equals("")) {
+                    if (t.contains(",")) {
+                        String[] arr = t.split(",");
+                        for (int i = 0; i < arr.length; i++) {
+                            String s1 = arr[i];
+                            s1 = s1.trim();
+                            s1 = splitBracket(s1);
+                            if (!thesisList.contains(s1)) {
+                                thesisList.add(s1);
+                            }
+                        }
+                    } else {
+                        thesisList.add(splitBracket(t));
+                    }
+                }
+
             }
 
             s = in.readLine();
         }
 
-        reviewsList.add(new Review(r, thesisList));
+        reviewsList.add(new Review(reviewID, thesisList));
         ProductList.add(new Product(productId, reviewsList));
 
         return ProductList;
+    }
+
+    static  String splitBracket(String s){
+        if(s.contains("[")){
+            s = s.substring(0, s.indexOf("["));
+        }
+        return  s;
     }
 
     // comparison of thesis for two products lists
@@ -117,6 +140,7 @@ public class ThesisExtractionTestDocument {
                     if (EditDistance.editDist(s1, s2) < editDist) {
                         out.println("      <OK>" + s1 + "</OK>");
                         successExtract++;
+                        break;
                     }
                 }
             }
