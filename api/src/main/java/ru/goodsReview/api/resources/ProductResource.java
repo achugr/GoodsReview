@@ -21,6 +21,7 @@ import java.util.List;
 @Path("/Product/{name}")
 public class ProductResource {
 
+//    TODO it's harcode
     public static List<String> thesisByProductId(Integer id) throws Exception {
         java.util.Properties prop = new java.util.Properties();
         prop.put("charSet", "utf-8");
