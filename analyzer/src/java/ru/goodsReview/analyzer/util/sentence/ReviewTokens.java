@@ -24,22 +24,16 @@ public class ReviewTokens {
 
     private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt");
 
-    private static MystemAnalyzer mystemAnalyzer;
+//    private static MystemAnalyzer mystemAnalyzer =  new MystemAnalyzer();
 
-    static {
-        try {
-            mystemAnalyzer = new MystemAnalyzer();
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
+
 
     /**
      * create new ReviewTokens from review
      *
      * @param review source String
      */
-    public ReviewTokens(String review) throws IOException {
+    public ReviewTokens(String review, MystemAnalyzer mystemAnalyzer) throws IOException {
         Token token;
         tokensList = new ArrayList<Token>();
         StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");

@@ -28,12 +28,12 @@ public class MystemAnalyzer implements WordAnalyzer{
     private Scanner sc;
     private PrintStream ps;
 
-    public MystemAnalyzer() throws IOException {
+    public MystemAnalyzer() {
         try {
             analyzer = Runtime.getRuntime().exec("mystem -nig -e " + CHARSET);
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if mystem is installed", e);
-            throw new IOException();
+//            throw new IOException();
         }
 
     }

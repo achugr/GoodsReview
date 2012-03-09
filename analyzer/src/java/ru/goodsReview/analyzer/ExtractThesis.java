@@ -13,6 +13,7 @@ import ru.goodsReview.analyzer.util.ThesisPattern;
 import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
 import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
 import ru.goodsReview.analyzer.util.sentence.Token;
+import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.controller.ProductController;
 import ru.goodsReview.core.db.controller.ReviewController;
@@ -33,7 +34,6 @@ public class ExtractThesis extends TimerTask{
     private static ProductController productController;
     private static ThesisController thesisController;
     private static ReviewController reviewController;
-
 
     @Required
     public void setControllerFactory(ControllerFactory controllerFactory1){
@@ -60,9 +60,9 @@ public class ExtractThesis extends TimerTask{
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
-        thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
-
-        ReviewTokens reviewTokens = new ReviewTokens(content);
+        //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
+        MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
+        ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
         ArrayList<Token> tokensList = reviewTokens.getTokensList();
         
         for(ThesisPattern thesisPattern : thesisPatternList){
