@@ -63,6 +63,7 @@ public class ExtractThesis extends TimerTask{
         //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
         MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
         ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
+        mystemAnalyzer.close();
         ArrayList<Token> tokensList = reviewTokens.getTokensList();
         
         for(ThesisPattern thesisPattern : thesisPatternList){
