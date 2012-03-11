@@ -17,10 +17,11 @@ import java.util.List;
 /**
  * class to represent thesis patterns
  */
+//TODO fix this class. are mystemAnalyzer used here? why?
 public class ThesisPattern {
 //    list of part of speech - this is pattern
    private ArrayList<PartOfSpeech> pattern;
-   private MystemAnalyzer mystemAnalyzer;
+//   private MystemAnalyzer mystemAnalyzer;
 
     /**
      * create new pattern
@@ -28,15 +29,11 @@ public class ThesisPattern {
      */
     public ThesisPattern(ArrayList<PartOfSpeech> pattern) throws IOException {
         this.pattern = pattern;
-        mystemAnalyzer = new MystemAnalyzer();
+//        mystemAnalyzer = new MystemAnalyzer();
     }
 
     public List<PartOfSpeech> getPattern(){
         return pattern;
-    }
-
-    public MystemAnalyzer getMystemAnalyzer(){
-        return mystemAnalyzer;
     }
 
     /**
@@ -48,7 +45,7 @@ public class ThesisPattern {
         pattern = new ArrayList<PartOfSpeech>();
         pattern.add(p1);
         pattern.add(p2);
-        mystemAnalyzer = new MystemAnalyzer();
+//        mystemAnalyzer = new MystemAnalyzer();
     }
 
     /**
@@ -62,7 +59,7 @@ public class ThesisPattern {
         pattern.add(p1);
         pattern.add(p2);
         pattern.add(p3);
-        mystemAnalyzer = new MystemAnalyzer();
+//        mystemAnalyzer = new MystemAnalyzer();
     }
 
     public PartOfSpeech get(int i){
@@ -74,7 +71,7 @@ public class ThesisPattern {
      * @return true if sourceThesis matches with pattern, false - otherwise
      * @throws IOException
      */
-    public boolean match(List<String> sourceThesis) throws IOException {
+   /* public boolean match(List<String> sourceThesis) throws IOException {
         if(sourceThesis.size() != pattern.size()){
             return false;
         }
@@ -86,10 +83,10 @@ public class ThesisPattern {
             i++;
         }
         return true;
-    }
+    }  */
     
     public static void main(String [] args){
-        ThesisPattern thesisPattern = null;
+       /* ThesisPattern thesisPattern = null;
         try {
             thesisPattern = new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE);
         } catch (IOException e) {
@@ -114,6 +111,6 @@ public class ThesisPattern {
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
-        }
+        }  */
     }
 }
