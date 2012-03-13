@@ -27,4 +27,6 @@ public interface ThesisController {
     public List<Thesis> getThesesByReviewId(long review_id);
 
     public List<Thesis> getThesesByProductId(long product_id);
+
+    public void updateImportance(long id, double importance);
 }

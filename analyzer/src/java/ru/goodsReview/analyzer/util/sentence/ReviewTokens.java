@@ -33,7 +33,7 @@ public class ReviewTokens {
      *
      * @param review source String
      */
-    public ReviewTokens(String review, MystemAnalyzer mystemAnalyzer) throws IOException {
+    public ReviewTokens(String review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         Token token;
         tokensList = new ArrayList<Token>();
         StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
