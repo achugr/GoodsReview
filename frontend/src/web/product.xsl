@@ -29,15 +29,41 @@
             </div>
             <div class="span3">
                 <h3>Тезисы</h3>
-                <div class = "thesisList">
+                <xsl:variable name="theMax" select="thesis-for-view[not(importance &lt; ../thesis-for-view/importance)]/importance" />
+                <xsl:value-of>theMax</xsl:value-of>   <!--some kind of debug output-->
+                <xsl:variable name="theMin" select="thesis-for-view[not(importance &gt; ../thesis-for-view/importance)]/importance" />
+                <xsl:value-of>theMin</xsl:value-of>
+                <xsl:variable name="perc100" select="$theMax - number($theMin)"/>
+                <xsl:variable name="perc1">
+                    <xsl:choose>
+                        <xsl:when test="$perc100 = 0">100</xsl:when>
+                        <xsl:otherwise><xsl:value-of select="100 div $perc100"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="maxFont">24</xsl:variable>
+                <xsl:variable name="minFont">12</xsl:variable>
+                <xsl:variable name="font" select="$maxFont - $minFont"/>
+                <div class="thesisList">
                 <ul>
                     <xsl:for-each select="//thesis-for-view">
                         <li>
-                            <xsl:value-of select="content"/>
+                            <xsl:variable name="size" select="$minFont + ceiling($font div 100 * ((weight - number($theMin)) * $perc1))"/>
+                            <span style="font-size: {$size}px">
+                                <xsl:value-of select="content" />
+                            </span>
                         </li>
                     </xsl:for-each>
                 </ul>
                 </div>
+                <!--<div class = "thesisList">
+                <ul>
+                    <xsl:for-each select="//thesis-for-view">
+                        <li>
+
+                        </li>
+                    </xsl:for-each>
+                </ul>
+                </div>-->
             </div>
             <div class="span5">
                 <h3>Похожие товары</h3>
