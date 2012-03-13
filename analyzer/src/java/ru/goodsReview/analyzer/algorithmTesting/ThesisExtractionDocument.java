@@ -50,7 +50,7 @@ public class ThesisExtractionDocument extends TimerTask{
             out.println("<product id=\"" + product.getId() + "\"" + " name=\""+product.getName()+"\">");
             List<Review> reviews = reviewController.getReviewsByProductId(product.getId());
             for(Review review : reviews){
-                out.println("    <review content=\"" + review.getId() + "\">");
+                out.println("    <review id=\"" + review.getId() + "\">");
                 List<Thesis> thesises = thesisController.getThesesByReviewId(review.getId());
                 for(Thesis thesis : thesises){
                     out.println("        <thesis> " + thesis.getContent().replaceAll("\\s+", " ") + " </thesis>");
@@ -83,22 +83,25 @@ public class ThesisExtractionDocument extends TimerTask{
     public void createExtractionThesisDocument(){
         PrintWriter out = null;
         try {
-            out = new PrintWriter("ThesisExtractionDocument.txt");
+            out = new PrintWriter("analyzer/ThesisExtractionDocument.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         List<Product> list = productController.getAllProducts();
         for(Product product : list){
-            out.println("<product id=\""+product.getId() + "\">");
+            out.println("<product id=\""+product.getId() + "\" name=\""+ product.getName() + "\">");
             List<Review> reviews = reviewController.getReviewsByProductId(product.getId());
             for(Review review : reviews){
-                out.println("    <review id=\"" + review.getId() + "\">");
-                out.println("       " + review.getContent().trim());
-                out.println("   </review>");
                 List<Thesis> thesises = thesisController.getThesesByReviewId(review.getId());
+                StringBuilder sb = new StringBuilder();
                 for(Thesis thesis : thesises){
-                    out.println("        <thesis> " + thesis.getContent().replaceAll("\\s+", " ") + " </thesis>");
+                    String [] thesisArray = thesis.getContent().split(" ");
+                    sb.append(thesisArray[0]);
+                    sb.append(", ");
                 }
+                out.println("    <review id=\"" + review.getId() + "\">");
+                out.println("       "+sb.toString()+"##"+ review.getContent().trim());
+                out.println("   </review>");
             }
         }
         out.close();
@@ -111,7 +114,7 @@ public class ThesisExtractionDocument extends TimerTask{
         } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        showThesisOnAllProducts();
+        createExtractionThesisDocument();
         out.close();
         log.info("thesis extraction document is created");
     }

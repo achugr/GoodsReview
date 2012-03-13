@@ -8,15 +8,7 @@ package ru.goodsReview.analyzer.algorithmTesting;
  * ilya.makeev@gmail.com
  */
 
-import ru.goodsReview.core.utils.EditDistance;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ThesisExtractionTestDocument {
@@ -103,13 +95,27 @@ public class ThesisExtractionTestDocument {
     // comparison of thesis for two products lists
     static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis, String filePath) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
-
         for (int i = 0; i < humProThesis.size(); i++) {
             Product humProduct = humProThesis.get(i);
 
             for (int j = 0; j < algoProThesis.size(); j++) {
                 Product algoProduct = algoProThesis.get(j);
+                
                 if(editDist(algoProduct.getName(), humProduct.getName())<2){
+                    System.out.println("--------------------new product----------------");
+                    for(Review review : algoProduct.getReviews()){
+                        System.out.println(review.getReview());
+                        for(String thesis : review.getThesis()){
+                            System.out.println(thesis);
+                        }
+                    }
+                    System.out.println("--------------------");
+                    for(Review review : humProduct.getReviews()){
+                        System.out.println(review.getReview());
+                        for(String thesis : review.getThesis()){
+                            System.out.println(thesis);
+                        }
+                    }
                     comparator(algoProduct, humProduct, out);
                     break;
                 }
@@ -134,7 +140,7 @@ public class ThesisExtractionTestDocument {
     static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out) {
         int editDist = 3;
 
-        for (int k = 0; k < algoReview.size(); k++) {
+        for (int k = 0; k < Math.min(algoReview.size(), humReview.size()); k++) {
             String reviewID = algoReview.get(k).getReview();
 
             if(!reviewID.equals("-1")){
@@ -224,7 +230,7 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildProductList("analyzer/ThesisExtractionDocument_1329467711755.txt", "utf8");
+        ArrayList<Product> algoProThesis = buildProductList("analyzer/ThesisExtractionDocument.txt", "utf8");
         ArrayList<Product> humProThesis = buildProductList("analyzer/handMade.txt", "utf8");
 
         compare(algoProThesis, humProThesis, "analyzer/CompareThesis_2.txt");
@@ -238,4 +244,3 @@ public class ThesisExtractionTestDocument {
 
     }
 }
-

@@ -8,7 +8,10 @@ package ru.goodsReview.analyzer.wordAnalyzer;
         SkudarnovYI@gmail.com
 */
 
+import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.StringTokenizer;
 
 public class AdjectiveAnalyzerTest {
@@ -16,11 +19,12 @@ public class AdjectiveAnalyzerTest {
     private static WordAnalyzer aa2;
 
     static {
-        try {
-            aa2 = new WordAnalyzer();
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        aa2 = new WordAnalyzer() {
+            @Override
+            public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
+                return null;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+        };
     }
 
     public static void main(String[] args) throws IOException {
@@ -38,7 +42,7 @@ public class AdjectiveAnalyzerTest {
             currToken = st.nextToken().trim();
 
             boolean r1 = aa.isAdjective(currToken);
-            boolean r2 = aa2.isAdjective(currToken);
+            boolean r2 = aa2.partOfSpeech(currToken).equals(PartOfSpeech.ADJECTIVE);
 
             if (r1 != r2) {
                 System.out.println("Diff results for " + currToken);
