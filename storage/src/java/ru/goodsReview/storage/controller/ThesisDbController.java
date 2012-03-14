@@ -76,6 +76,12 @@ public class ThesisDbController implements ThesisController {
                                                       new Object[]{thesisUniqueId, thesisId});
     }
 
+    public void updateImportance(long thesisId, double importance) {
+        int code = simpleJdbcTemplate.update("UPDATE thesis SET importance = ? where id = ?",
+                importance, thesisId);
+        log.info("code = " + code);
+    }
+
     public Thesis getThesisById(long id) {
         List<Thesis> theses = simpleJdbcTemplate.getJdbcOperations().query("SELECT * FROM thesis WHERE id = ?",
                                                                            new Object[]{id}, new int[]{Types.INTEGER},

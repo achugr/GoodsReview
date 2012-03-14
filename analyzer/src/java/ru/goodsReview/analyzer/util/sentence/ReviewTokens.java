@@ -47,7 +47,7 @@ public class ReviewTokens {
             }
             tokensList.add(token);
         }
-        mystemAnalyzer.close();
+//        mystemAnalyzer.close();
     }
 
     public ArrayList<Token>  getTokensList(){
