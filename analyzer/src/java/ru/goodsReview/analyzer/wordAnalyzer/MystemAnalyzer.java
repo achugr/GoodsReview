@@ -18,7 +18,7 @@ import java.util.Scanner;
 /**
  * Class for the analysis of words, using mystem program http://company.yandex.ru/technologies/mystem/
  */
-public class MystemAnalyzer implements WordAnalyzer {
+public class MystemAnalyzer implements WordAnalyzer{
 
     private static final Logger log = Logger.getLogger(MystemAnalyzer.class);
 
@@ -44,11 +44,10 @@ public class MystemAnalyzer implements WordAnalyzer {
 
     /**
      * Checks if letter belongs to russian alphabet.
-     *
      * @param letter The letter itself.
      * @return True if letter is russian, false — otherwise.
      */
-    private static boolean isRussianLetter(char letter) {
+    private static boolean isRussianLetter (char letter) {
         if ((letter >= 0x0410) && (letter <= 0x044F)) {
             return true;
         } else {
@@ -58,15 +57,12 @@ public class MystemAnalyzer implements WordAnalyzer {
 
     /**
      * Extract word
-     *
      * @param word
      * @return
      * @throws java.io.UnsupportedEncodingException
-     *
      */
     public String wordCharacteristic(String word) throws UnsupportedEncodingException {
-        int wl = word.length();
-        boolean b = true;
+        int wl = word.length(); boolean b = true;
         for (int i = 0; i < wl; ++i) {
             if (!isRussianLetter(word.charAt(i))) {
                 b = false;
@@ -79,20 +75,20 @@ public class MystemAnalyzer implements WordAnalyzer {
             return "";
         }
 
-        sc = new Scanner(analyzer.getInputStream(), CHARSET);
-        ps = new PrintStream(analyzer.getOutputStream(), true, CHARSET);
+        sc = new Scanner(analyzer.getInputStream(),CHARSET);
+        ps = new PrintStream(analyzer.getOutputStream(),true,CHARSET);
 
         ps.println(word);
         String wordCharacteristic = sc.nextLine();
 
-        int pos1, pos2;
+        int pos1,pos2;
 
         pos2 = (pos1 = (wordCharacteristic.indexOf('=') + 1));
         while (Character.isUpperCase(wordCharacteristic.charAt(pos2))) {
             pos2++;
         }
         String wordCharact = wordCharacteristic.substring(pos1, pos2);
-        if (wordCharact == null) {
+        if(wordCharact == null){
             return "";
         }
         return wordCharact;
@@ -100,30 +96,37 @@ public class MystemAnalyzer implements WordAnalyzer {
 
     /**
      * method for determine part of speech of word by means of Mystem
-     *
      * @param word which part of speech we want know
      * @return Part of speech
      * @throws UnsupportedEncodingException
      */
     public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
-//        TODO fix this with enum!
-        if (this.wordCharacteristic(word).equals("A")) {
+        if(this.wordCharacteristic(word).equals("A")){
             return PartOfSpeech.ADJECTIVE;
         }
-        if (this.wordCharacteristic(word).equals("S")) {
+        if(this.wordCharacteristic(word).equals("S")){
             return PartOfSpeech.NOUN;
         }
-        if (this.wordCharacteristic(word).equals("ADV")) {
+        if(this.wordCharacteristic(word).equals("ADV")){
             return PartOfSpeech.ADVERB;
         }
-        if (this.wordCharacteristic(word).equals("V")) {
+        if(this.wordCharacteristic(word).equals("V")){
             return PartOfSpeech.VERB;
         }
-//        throw new UnknownPartOfSpeechException();
+        if(this.wordCharacteristic(word).equals("PR")){
+            return PartOfSpeech.PREPOSITION;
+        }
+        if(this.wordCharacteristic(word).equals("PART")){
+            return PartOfSpeech.PARTICLE;
+        }
+        if(this.wordCharacteristic(word).equals("")){
+            return PartOfSpeech.UNKNOWN;
+        }
+
         return PartOfSpeech.UNKNOWN;
     }
 
-    public static void main(String[] args) {
+    public static void main(String [] args){
         try {
             MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
             System.out.println(mystemAnalyzer.partOfSpeech("отличный!"));
@@ -132,4 +135,3 @@ public class MystemAnalyzer implements WordAnalyzer {
         }
     }
 }
-

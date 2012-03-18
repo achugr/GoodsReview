@@ -86,6 +86,41 @@ public class ExtractThesis extends TimerTask{
         return extractedThesisList;
     }
 
+    public static ArrayList<String> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException {
+        ArrayList<String> extractedThesisList = new ArrayList<String>();
+
+        List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
+        thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
+        //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
+
+        ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
+
+        ArrayList<Token> tokensList = reviewTokens.getTokensList();
+
+        for(ThesisPattern thesisPattern : thesisPatternList){
+            ThesisPattern pattern = thesisPattern;
+
+            String token1 = null;
+            PartOfSpeech part1 = pattern.getPattern().get(0);
+            PartOfSpeech part2 = pattern.getPattern().get(1);
+            for (int i = 0; i < tokensList.size(); i++) {
+                Token currToken = tokensList.get(i);
+
+                if (currToken.getMystemPartOfSpeech().equals(part1)) {
+                    token1 = currToken.getContent();
+                } else {
+                    if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
+                        String token2 = currToken.getContent();
+                        extractedThesisList.add(token1);
+                        token1 = null;
+                    }
+                }
+            }
+        }
+
+        return extractedThesisList;
+    }
+
     /**
      * Extract thesis on all products from database
      * @throws IOException

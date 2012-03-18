@@ -8,6 +8,9 @@ package ru.goodsReview.analyzer.algorithmTesting;
  * ilya.makeev@gmail.com
  */
 
+import ru.goodsReview.analyzer.ExtractThesis;
+import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -63,13 +66,19 @@ public class ThesisExtractionTestDocument {
                             for (int i = 0; i < arr.length; i++) {
                                 String s1 = arr[i];
                                 s1 = s1.trim();
-                                s1 = splitBracket(s1);
-                                if (!thesisList.contains(s1)) {
-                                    thesisList.add(s1);
+                                if(s1.contains("[")){
+                                    s1 = splitBracket(s1);
+                                    if (!s1.equals("")&&!thesisList.contains(s1)) {
+                                        thesisList.add(s1);
+                                    }
                                 }
+
                             }
                         } else {
-                            thesisList.add(splitBracket(t));
+                            t = splitBracket(t);
+                            if(!t.equals("")){
+                                thesisList.add(t);
+                            }
                         }
                     }
 
@@ -92,6 +101,80 @@ public class ThesisExtractionTestDocument {
         return  s;
     }
 
+
+    //   build list of Products
+    static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException {
+        ArrayList<Product> ProductList = new ArrayList<Product>();
+        MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
+
+        FileInputStream fis = new FileInputStream(filePath);
+        InputStreamReader isr = new InputStreamReader(fis, encoding);
+        BufferedReader in = new BufferedReader(isr);
+
+        ArrayList<Review> reviewsList = new ArrayList<Review>();
+        ArrayList<String> thesisList = new ArrayList<String>();
+        String reviewID = "-1";
+        String productName = "-1";
+        String s = in.readLine();
+
+        while (s != null) {
+            s = s.trim();
+
+            if (s.contains("<product id=")) {
+                if (!productName.equals("-1")) {
+                    reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
+                    thesisList.clear();
+                    reviewID = "-1";
+
+                    ProductList.add(new Product(productName, (ArrayList<Review>) reviewsList.clone()));
+                    reviewsList.clear();
+                }
+                productName = s.substring(s.indexOf("name=") + 6, s.lastIndexOf("\""));
+            }
+
+            boolean reviewOpen = false;
+            if (!productName.equals("-1")) {
+                if (s.contains("<review")) {  
+                    reviewOpen = true;
+                    if (!reviewID.equals("-1")) {
+                        reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
+                        thesisList.clear();
+                    }
+                    reviewID = s.substring(s.indexOf("\"") + 1, s.lastIndexOf("\""));
+                }
+
+
+                if (reviewOpen == true) {
+                    StringBuffer sb = new StringBuffer();
+                    while (reviewOpen == true && s != null) {
+                        s = in.readLine();
+                        if (s.contains("</review>")) {
+                            reviewOpen = false;
+                            String rev =  sb.toString();
+                           // System.out.println(rev);
+                            ArrayList<String> tList = ExtractThesis.doExtraction(rev, mystemAnalyzer);
+                            for (String str : tList) {
+                                thesisList.add(str);
+                            }
+                        } else {
+                            sb.append(s);
+                        }
+
+                    }
+                }
+
+                s = in.readLine();
+            }
+        }
+
+        reviewsList.add(new Review(reviewID, thesisList));
+        ProductList.add(new Product(productName, reviewsList));
+
+        mystemAnalyzer.close();
+        return ProductList;
+    }
+
+    
     // comparison of thesis for two products lists
     static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis, String filePath) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
@@ -102,20 +185,21 @@ public class ThesisExtractionTestDocument {
                 Product algoProduct = algoProThesis.get(j);
                 
                 if(editDist(algoProduct.getName(), humProduct.getName())<2){
-                    System.out.println("--------------------new product----------------");
+                    /*
+                    System.out.println("--------new product  "+algoProduct.getName());
                     for(Review review : algoProduct.getReviews()){
-                        System.out.println(review.getReview());
+                        System.out.println("review_alg"+review.getReview());
                         for(String thesis : review.getThesis()){
                             System.out.println(thesis);
                         }
                     }
                     System.out.println("--------------------");
                     for(Review review : humProduct.getReviews()){
-                        System.out.println(review.getReview());
+                        System.out.println("review_hum"+review.getReview());
                         for(String thesis : review.getThesis()){
                             System.out.println(thesis);
                         }
-                    }
+                    }  */
                     comparator(algoProduct, humProduct, out);
                     break;
                 }
@@ -230,10 +314,37 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildProductList("analyzer/ThesisExtractionDocument.txt", "utf8");
-        ArrayList<Product> humProThesis = buildProductList("analyzer/handMade.txt", "utf8");
+        ArrayList<Product> algoProThesis = buildAlgoProductList("d://Notebooks.txt", "utf8");
+        System.out.println("ok");
+        /*
+        for (Product p:algoProThesis){
+            System.out.println("Product Name = "+p.getName());
+            for (Review r:p.getReviews()){
+                if(r.getReview()!="-1"){
+                    System.out.println("        Review = "+r.getReview());
+                    for (String t:r.getThesis()){
+                        System.out.println("            "+t);
+                    }
+                }
+            }
+        }  */
 
-        compare(algoProThesis, humProThesis, "analyzer/CompareThesis_2.txt");
+        ArrayList<Product> humProThesis = buildProductList("d://Notebooks_marked_ds.txt", "utf8");
+        System.out.println("ok");
+        /*
+        for (Product p:humProThesis){
+            System.out.println("Product Name = "+p.getName());
+            for (Review r:p.getReviews()){
+                if(r.getReview()!="-1"){
+                    System.out.println("        Review = "+r.getReview());
+                    for (String t:r.getThesis()){
+                        System.out.println("            "+t);
+                    }
+                }
+            }
+        } */
+        compare(algoProThesis, humProThesis, "d://ans.txt");
+        System.out.println("ok");
 
         System.out.println(successExtract);
         System.out.println(numAlgo);
