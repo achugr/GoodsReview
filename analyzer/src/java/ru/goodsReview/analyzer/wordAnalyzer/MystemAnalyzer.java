@@ -101,23 +101,28 @@ public class MystemAnalyzer implements WordAnalyzer{
      * @throws UnsupportedEncodingException
      */
     public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
-        switch (this.wordCharacteristic(word)) {
-            case "A":
-                return PartOfSpeech.ADJECTIVE;
-            case "S":
-                return PartOfSpeech.NOUN;
-            case "ADV":
-                return PartOfSpeech.ADVERB;
-            case "V":
-                return PartOfSpeech.VERB;
-            case "PR":
-                return PartOfSpeech.PREPOSITION;
-            case "PART":
-                return PartOfSpeech.PARTICLE;
-            case "":
-                return PartOfSpeech.UNKNOWN;
+        if(this.wordCharacteristic(word).equals("A")){
+            return PartOfSpeech.ADJECTIVE;
         }
-//        throw new UnknownPartOfSpeechException();
+        if(this.wordCharacteristic(word).equals("S")){
+            return PartOfSpeech.NOUN;
+        }
+        if(this.wordCharacteristic(word).equals("ADV")){
+            return PartOfSpeech.ADVERB;
+        }
+        if(this.wordCharacteristic(word).equals("V")){
+            return PartOfSpeech.VERB;
+        }
+        if(this.wordCharacteristic(word).equals("PR")){
+            return PartOfSpeech.PREPOSITION;
+        }
+        if(this.wordCharacteristic(word).equals("PART")){
+            return PartOfSpeech.PARTICLE;
+        }
+        if(this.wordCharacteristic(word).equals("")){
+            return PartOfSpeech.UNKNOWN;
+        }
+
         return PartOfSpeech.UNKNOWN;
     }
 
