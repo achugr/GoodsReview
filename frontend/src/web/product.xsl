@@ -33,6 +33,10 @@
                 <ul>
                     <xsl:for-each select="//thesis-for-view">
                         <li>
+                            <span style="font-size: {12*(1+number(@importance))}px">
+                                <xsl:value-of select="content" />
+                            </span>
+                            <!--<xsl:variable name=""
                             <xsl:choose>
                                 <xsl:when test="importance &gt; 0.75">
                                     <span style="font-size: 24px">
@@ -54,7 +58,7 @@
                                         <xsl:value-of select="content" />
                                     </span>
                                 </xsl:otherwise>
-                            </xsl:choose>
+                            </xsl:choose>-->
                         </li>
                     </xsl:for-each>
                 </ul>
