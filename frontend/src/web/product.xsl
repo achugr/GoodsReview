@@ -33,9 +33,18 @@
                 <ul>
                     <xsl:for-each select="//thesis-for-view">
                         <li>
-                            <span style="font-size: {12*(1+number(@importance))}px">
-                                <xsl:value-of select="content" />
-                            </span>
+                            <xsl:choose>
+                                <xsl:when test="importance &gt; 0.5">
+                                    <span style="font-size: {12*(1+number(@importance))}px; color: red">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <span style="font-size: {12*(1+number(@importance))}px; color: green">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:otherwise>
+                            </xsl:choose>
                             <!--<xsl:variable name=""
                             <xsl:choose>
                                 <xsl:when test="importance &gt; 0.75">
