@@ -50,22 +50,18 @@ public class ExtractThesis extends TimerTask{
 
     /**
      * Extract theses from review.
-     *
      * @param review Review with theses had to be extracted.
      * @return List of theses.
      */
-    public static List<Thesis> doExtraction(Review review) throws IOException {
+    public static List<Thesis> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
         String content = review.getContent();
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
         //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
-        MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
         ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
-        mystemAnalyzer.close();
         ArrayList<Token> tokensList = reviewTokens.getTokensList();
-        
         for(ThesisPattern thesisPattern : thesisPatternList){
             ThesisPattern pattern = thesisPattern;
 
@@ -94,25 +90,28 @@ public class ExtractThesis extends TimerTask{
      * Extract thesis on all products from database
      * @throws IOException
      */
-    public static void extractThesisOnAllProducts() throws IOException {
+    public static void extractThesisOnAllProducts() throws IOException, InterruptedException {
         List<Product> list = productController.getAllProducts();
+        MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
+
         for(Product product : list){
             log.info("progress..");
-            extractThesisOnProduct(product.getId());
+            extractThesisOnProduct(product.getId(), mystemAnalyzer);
         }
+        mystemAnalyzer.close();
     }
     /**
      * Extract thesis from all reviews on this product. (Run method doExtraction for all reviews on product).
      * @param productId
      * @throws IOException
      */
-    public static void extractThesisOnProduct(long productId) throws IOException {
+    public static void extractThesisOnProduct(long productId, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         List<Review> reviews = reviewController.getReviewsByProductId(productId);
         log.info("extracting thesis on " + productId);
         for(Review review : reviews){
             try {
                 System.out.println("<review id = \"" + review.getId() + "\">");
-                List<Thesis> thesises = doExtraction(review);
+                List<Thesis> thesises = doExtraction(review, mystemAnalyzer);
                 for(Thesis thesis : thesises){
                     log.info("thesis ========================= " + thesis.getContent());
                 }
@@ -123,12 +122,15 @@ public class ExtractThesis extends TimerTask{
             }
         }
     }
-
+    
     @Override
     public void run() {
+
         try {
             extractThesisOnAllProducts();
         } catch (IOException e) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 //        showAllReviews();
         log.info("extraction is complete");
