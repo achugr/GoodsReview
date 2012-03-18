@@ -106,7 +106,7 @@ public class MystemAnalyzer implements WordAnalyzer {
      * @throws UnsupportedEncodingException
      */
     public PartOfSpeech partOfSpeech(String word) throws UnsupportedEncodingException {
-//        TODO fix this with enum.
+//        TODO fix this with enum!
         if (this.wordCharacteristic(word).equals("A")) {
             return PartOfSpeech.ADJECTIVE;
         }
