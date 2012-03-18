@@ -27,37 +27,41 @@
                     <img src="images/laptop.png"/>
                 </a>
             </div>
-            <div class="span5">
+            <div class="span3">
                 <h3>Тезисы</h3>
                 <div class="thesisList">
-                    <ul>
-                        <xsl:for-each select="//thesis-for-view">
-                            <li>
-                                <xsl:choose>
-                                    <xsl:when test="number(@importance) &gt; 0.75">
-                                        <span style="font-size: 24px">
-                                            <xsl:value-of select="content" />
-                                        </span>
-                                    </xsl:when>
-                                    <xsl:when test="number(@importance) &gt; 0.5">
-                                        <span style="font-size: 20px">
-                                            <xsl:value-of select="content" />
-                                        </span>
-                                    </xsl:when>
-                                    <xsl:when test="number(@importance) &gt; 0.25">
-                                        <span style="font-size: 16px">
-                                            <xsl:value-of select="content" />
-                                        </span>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <span style="font-size: 12px">
-                                            <xsl:value-of select="content" />
-                                        </span>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </li>
-                        </xsl:for-each>
-                    </ul>
+                <ul>
+                    <xsl:for-each select="//thesis-for-view">
+                        <li>
+                            <span style="font-size: {12*(1+number(@importance))}px">
+                                <xsl:value-of select="content" />
+                            </span>
+                            <!--<xsl:variable name=""
+                            <xsl:choose>
+                                <xsl:when test="importance &gt; 0.75">
+                                    <span style="font-size: 24px">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:when>
+                                <xsl:when test="importance &gt; 0.5">
+                                    <span style="font-size: 20px">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:when>
+                                <xsl:when test="importance &gt; 0.25">
+                                    <span style="font-size: 16px">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <span style="font-size: 12px">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:otherwise>
+                            </xsl:choose>-->
+                        </li>
+                    </xsl:for-each>
+                </ul>
                 </div>
                 <!--<div class = "thesisList">
                 <ul>
@@ -69,18 +73,30 @@
                 </ul>
                 </div>-->
             </div>
+            <div class="span5">
+                <h3>Похожие товары</h3>
+                <ul>
+                    <li>
+                        <a href="#">lenovo thinkpad x201</a>
+                    </li>
+                    <li>
+                        <a href="#">lenovo thinkpad x220</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <h3>Лучшие комментарии</h3>
         <xsl:for-each select="//review-for-view">
             <div class="comment">
                 <div class="text">
-                    <xsl:value-of select="content"/>
-                    <a>
-                        <xsl:attribute name="href">review.xml?id=<xsl:value-of select="@id"/>
-                        </xsl:attribute>
-                    </a>
+                <xsl:value-of select="content"/>
+                <a>
+                    <xsl:attribute name="href">review.xml?id=<xsl:value-of select="@id"/>
+                    </xsl:attribute>
+                </a>
                 </div>
             </div>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
+
