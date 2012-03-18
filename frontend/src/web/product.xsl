@@ -28,70 +28,36 @@
                 </a>
             </div>
             <div class="span3">
-                <h3>Тезисы</h3>
+                <h3>Положительные тезисы</h3>
                 <div class="thesisList">
                 <ul>
                     <xsl:for-each select="//thesis-for-view">
                         <li>
-                            <xsl:choose>
-                                <xsl:when test="importance &gt; 0.5">
-                                    <span style="font-size: {12*(1+number(@importance))}px; color: red">
-                                        <xsl:value-of select="content" />
-                                    </span>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <span style="font-size: {12*(1+number(@importance))}px; color: green">
-                                        <xsl:value-of select="content" />
-                                    </span>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            <!--<xsl:variable name=""
-                            <xsl:choose>
-                                <xsl:when test="importance &gt; 0.75">
-                                    <span style="font-size: 24px">
-                                        <xsl:value-of select="content" />
-                                    </span>
-                                </xsl:when>
-                                <xsl:when test="importance &gt; 0.5">
-                                    <span style="font-size: 20px">
-                                        <xsl:value-of select="content" />
-                                    </span>
-                                </xsl:when>
-                                <xsl:when test="importance &gt; 0.25">
-                                    <span style="font-size: 16px">
-                                        <xsl:value-of select="content" />
-                                    </span>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <span style="font-size: 12px">
-                                        <xsl:value-of select="content" />
-                                    </span>
-                                </xsl:otherwise>
-                            </xsl:choose>-->
+                            <xsl:if test="@importance &gt; 0.5">
+                                <span style="font-size: {12*(1+number(@importance))}px; color: green">
+                                    <xsl:value-of select="content" />
+                                </span>
+                            </xsl:if>
                         </li>
                     </xsl:for-each>
                 </ul>
                 </div>
-                <!--<div class = "thesisList">
-                <ul>
-                    <xsl:for-each select="//thesis-for-view">
-                        <li>
-
-                        </li>
-                    </xsl:for-each>
-                </ul>
-                </div>-->
-            </div>
-            <div class="span5">
-                <h3>Похожие товары</h3>
-                <ul>
-                    <li>
-                        <a href="#">lenovo thinkpad x201</a>
-                    </li>
-                    <li>
-                        <a href="#">lenovo thinkpad x220</a>
-                    </li>
-                </ul>
+             </div>
+            <div class="span3">
+                <h3>Отрицательные тезисы</h3>
+                <div class="thesisList">
+                    <ul>
+                        <xsl:for-each select="//thesis-for-view">
+                            <li>
+                                <xsl:if test="@importance &lt;= 0.5">
+                                    <span style="font-size: {12*(1+number(@importance))}px; color: red">
+                                        <xsl:value-of select="content" />
+                                    </span>
+                                </xsl:if>
+                            </li>
+                        </xsl:for-each>
+                    </ul>
+                </div>
             </div>
         </div>
         <h3>Лучшие комментарии</h3>
