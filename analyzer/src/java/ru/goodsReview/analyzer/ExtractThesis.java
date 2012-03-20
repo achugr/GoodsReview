@@ -95,7 +95,7 @@ public class ExtractThesis extends TimerTask{
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
-        //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
+
 
         ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
 

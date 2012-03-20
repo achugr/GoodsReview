@@ -19,8 +19,8 @@ public class ThesisExtractionTestDocument {
     private static double numAlgo = 0;
     private static double numHum = 0;
 
-    //   build list of Products
-    static ArrayList<Product> buildProductList(String filePath, String encoding) throws IOException {
+    //   build list of Products for human markup file
+    static ArrayList<Product> buildHumanProductList(String filePath, String encoding) throws IOException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
 
         FileInputStream fis = new FileInputStream(filePath);
@@ -102,7 +102,7 @@ public class ThesisExtractionTestDocument {
     }
 
 
-    //   build list of Products
+    //   build list of Products for algo markup file
     static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
         MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
@@ -150,9 +150,9 @@ public class ThesisExtractionTestDocument {
                         s = in.readLine();
                         if (s.contains("</review>")) {
                             reviewOpen = false;
-                            String rev =  sb.toString();
+                            String review =  sb.toString();
                            // System.out.println(rev);
-                            ArrayList<String> tList = ExtractThesis.doExtraction(rev, mystemAnalyzer);
+                            ArrayList<String> tList = ExtractThesis.doExtraction(review, mystemAnalyzer);
                             for (String str : tList) {
                                 thesisList.add(str);
                             }
@@ -314,8 +314,8 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildAlgoProductList("d://Notebooks.txt", "utf8");
-        System.out.println("ok");
+        ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
+
         /*
         for (Product p:algoProThesis){
             System.out.println("Product Name = "+p.getName());
@@ -329,8 +329,8 @@ public class ThesisExtractionTestDocument {
             }
         }  */
 
-        ArrayList<Product> humProThesis = buildProductList("d://Notebooks_marked_ds.txt", "utf8");
-        System.out.println("ok");
+        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
+
         /*
         for (Product p:humProThesis){
             System.out.println("Product Name = "+p.getName());
@@ -343,12 +343,12 @@ public class ThesisExtractionTestDocument {
                 }
             }
         } */
-        compare(algoProThesis, humProThesis, "d://ans.txt");
-        System.out.println("ok");
+        compare(algoProThesis, humProThesis, "result.txt");
 
-        System.out.println(successExtract);
-        System.out.println(numAlgo);
-        System.out.println(numHum);
+
+        System.out.println("successExtract = "+successExtract);
+        System.out.println("numAlgo = "+numAlgo);
+        System.out.println("numHum = "+numHum);
 
         System.out.println(successExtract/(numAlgo + numHum));
         System.out.print(successExtract/numHum);
