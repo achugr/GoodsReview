@@ -233,8 +233,14 @@ public class ThesisExtractionTestDocument {
     // comparison of thesis for two products
     static void comparator(Product algoProduct, Product humProduct, PrintWriter out) {
         out.println("<product id=\"" + algoProduct.getId() + "\">");
-        if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("null")) {
-            compareThesisLists(algoProduct.getReviews(), humProduct.getReviews(), out);
+        if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("-1")) {
+            if(algoProduct.getReviews().size()!=humProduct.getReviews().size()){
+                System.out.print("сравнение продуктов с разным числом ревью: ");
+                System.out.println("id = "+algoProduct.getId());
+            } else{
+                compareThesisLists(algoProduct.getReviews(), humProduct.getReviews(), out);
+            }
+
         }
 
         out.println("</product>");
@@ -244,7 +250,7 @@ public class ThesisExtractionTestDocument {
     static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out) {
         int editDist = 3;
 
-        for (int k = 0; k < Math.min(algoReview.size(), humReview.size()); k++) {
+        for (int k = 0; k < algoReview.size(); k++) {
             String reviewID = algoReview.get(k).getReview();
 
             if(!reviewID.equals("-1")){
