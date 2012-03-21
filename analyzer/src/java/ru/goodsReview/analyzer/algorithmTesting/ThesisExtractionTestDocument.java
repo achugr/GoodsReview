@@ -30,25 +30,26 @@ public class ThesisExtractionTestDocument {
         ArrayList<Review> reviewsList = new ArrayList<Review>();
         ArrayList<String> thesisList = new ArrayList<String>();
         String reviewID = "-1";
-        String productName = "-1";
+        String productID = "-1";
         String s = in.readLine();
 
         while (s != null) {
             s = s.trim();
 
             if (s.contains("<product id=")) {
-                if (!productName.equals("-1")) {
+                if (!productID.equals("-1")) {
                     reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                     reviewID = "-1";
 
-                    ProductList.add(new Product(productName, (ArrayList<Review>) reviewsList.clone()));
+                    ProductList.add(new Product(productID, (ArrayList<Review>) reviewsList.clone()));
                     reviewsList.clear();
                 }
-                productName = s.substring(s.indexOf("name=") + 6, s.lastIndexOf("\""));
+                String s1 = s.substring(0, s.indexOf("name="));
+                productID = s.substring(s1.indexOf("\"") + 1, s1.lastIndexOf("\""));
             }
 
-            if (!productName.equals("-1")) {
+            if (!productID.equals("-1")) {
                 if (s.contains("<review")) {
                     if (!reviewID.equals("-1")) {
                         reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
@@ -89,7 +90,7 @@ public class ThesisExtractionTestDocument {
         }
 
         reviewsList.add(new Review(reviewID, thesisList));
-        ProductList.add(new Product(productName, reviewsList));
+        ProductList.add(new Product(productID, reviewsList));
 
         return ProductList;
     }
@@ -114,26 +115,28 @@ public class ThesisExtractionTestDocument {
         ArrayList<Review> reviewsList = new ArrayList<Review>();
         ArrayList<String> thesisList = new ArrayList<String>();
         String reviewID = "-1";
-        String productName = "-1";
+        String productID = "-1";
         String s = in.readLine();
 
         while (s != null) {
             s = s.trim();
 
             if (s.contains("<product id=")) {
-                if (!productName.equals("-1")) {
+                if (!productID.equals("-1")) {
                     reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                     reviewID = "-1";
 
-                    ProductList.add(new Product(productName, (ArrayList<Review>) reviewsList.clone()));
+                    ProductList.add(new Product(productID, (ArrayList<Review>) reviewsList.clone()));
                     reviewsList.clear();
                 }
-                productName = s.substring(s.indexOf("name=") + 6, s.lastIndexOf("\""));
+                String s1 = s.substring(0, s.indexOf("name="));
+                productID = s.substring(s1.indexOf("\"") + 1, s1.lastIndexOf("\""));
+
             }
 
             boolean reviewOpen = false;
-            if (!productName.equals("-1")) {
+            if (!productID.equals("-1")) {
                 if (s.contains("<review")) {  
                     reviewOpen = true;
                     if (!reviewID.equals("-1")) {
@@ -168,7 +171,7 @@ public class ThesisExtractionTestDocument {
         }
 
         reviewsList.add(new Review(reviewID, thesisList));
-        ProductList.add(new Product(productName, reviewsList));
+        ProductList.add(new Product(productID, reviewsList));
 
         mystemAnalyzer.close();
         return ProductList;
@@ -178,13 +181,14 @@ public class ThesisExtractionTestDocument {
     // comparison of thesis for two products lists
     static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis, String filePath) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
+
         for (int i = 0; i < humProThesis.size(); i++) {
             Product humProduct = humProThesis.get(i);
 
             for (int j = 0; j < algoProThesis.size(); j++) {
                 Product algoProduct = algoProThesis.get(j);
-                
-                if(editDist(algoProduct.getName(), humProduct.getName())<2){
+
+                if(algoProduct.getId().equals(humProduct.getId())){
                     /*
                     System.out.println("--------new product  "+algoProduct.getName());
                     for(Review review : algoProduct.getReviews()){
@@ -199,20 +203,36 @@ public class ThesisExtractionTestDocument {
                         for(String thesis : review.getThesis()){
                             System.out.println(thesis);
                         }
-                    }  */
+                    }   */
                     comparator(algoProduct, humProduct, out);
                     break;
                 }
             }
 
         }
+               /*
+        if(humProThesis.size()!=algoProThesis.size()){
+            System.out.println("файлы содержат разное число продуктов");
+        }else{
+            for (int i = 0; i < humProThesis.size(); i++) {
+                Product humProduct = humProThesis.get(i);
+                Product algoProduct = algoProThesis.get(i);
+                if(editDist(algoProduct.getName(), humProduct.getName())<2){
+                    comparator(algoProduct, humProduct, out);
+                }else{
+                    System.out.print("сравнение продуктов с разными именами: ");
+                    System.out.println(algoProduct.getName()+" и "+humProduct.getName());
+                }
+            }
+        }*/
+
 
         out.flush();
     }
 
     // comparison of thesis for two products
     static void comparator(Product algoProduct, Product humProduct, PrintWriter out) {
-        out.println("<product name=\"" + algoProduct.getName() + "\">");
+        out.println("<product id=\"" + algoProduct.getId() + "\">");
         if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("null")) {
             compareThesisLists(algoProduct.getReviews(), humProduct.getReviews(), out);
         }

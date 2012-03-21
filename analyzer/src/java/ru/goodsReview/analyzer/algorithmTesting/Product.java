@@ -10,16 +10,17 @@ package ru.goodsReview.analyzer.algorithmTesting;
 import java.util.ArrayList;
 
 public class Product {
-    private String name;
+    //private String name;
+    private String id;
     private ArrayList<Review> reviews;
 
-    public Product(String name, ArrayList<Review> reviews) {
-        this.name = name;
+    public Product(String id, ArrayList<Review> reviews) {
+        this.id = id;
         this.reviews = reviews;
     }
 
-    public String getName(){
-        return name;
+    public String getId(){
+        return id;
     }
 
     public ArrayList<Review> getReviews(){
