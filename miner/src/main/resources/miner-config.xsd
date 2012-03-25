@@ -1,0 +1,10 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <xsd:complexType name="categoryConfig">
+        <xsd:sequence>
+            <xsd:element name="category" type="xsd:string"/> 
+            <xsd:element name="nameRegexp" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>
