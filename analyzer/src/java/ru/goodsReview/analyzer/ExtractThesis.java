@@ -98,6 +98,7 @@ public class ExtractThesis extends TimerTask{
 
 
         ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
+        //reviewTokens.getDic().print();
 
         ArrayList<Token> tokensList = reviewTokens.getTokensList();
 

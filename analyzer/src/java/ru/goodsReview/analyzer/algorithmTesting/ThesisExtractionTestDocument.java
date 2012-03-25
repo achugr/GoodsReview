@@ -154,7 +154,7 @@ public class ThesisExtractionTestDocument {
                         if (s.contains("</review>")) {
                             reviewOpen = false;
                             String review =  sb.toString();
-                           // System.out.println(rev);
+                          // System.out.println("#"+review);
                             ArrayList<String> tList = ExtractThesis.doExtraction(review, mystemAnalyzer);
                             for (String str : tList) {
                                 thesisList.add(str);
@@ -355,7 +355,7 @@ public class ThesisExtractionTestDocument {
             }
         }  */
 
-        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
+       ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
         /*
         for (Product p:humProThesis){
@@ -376,8 +376,9 @@ public class ThesisExtractionTestDocument {
         System.out.println("numAlgo = "+numAlgo);
         System.out.println("numHum = "+numHum);
 
-        System.out.println(successExtract/(numAlgo + numHum));
-        System.out.print(successExtract/numHum);
+      //  System.out.println(successExtract/(numAlgo + numHum));
+      //  System.out.print(successExtract/numHum);
 
+       // System.out.println(editDist("отличн","отличный"));
     }
 }
