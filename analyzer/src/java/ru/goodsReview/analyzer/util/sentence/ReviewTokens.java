@@ -39,8 +39,12 @@ public class ReviewTokens {
         StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
         while (stringTokenizer.hasMoreElements()) {
             String currToken  = stringTokenizer.nextToken();
-
             currToken = currToken.trim();
+//            TODO it's strange, but here we can get empty string
+            if(currToken.equals("")){
+                System.out.println("fail");
+                continue;
+            }
            // System.out.println(currToken);
             token = new Token(currToken);
             if (opinionDictionary.contains(currToken)) {
