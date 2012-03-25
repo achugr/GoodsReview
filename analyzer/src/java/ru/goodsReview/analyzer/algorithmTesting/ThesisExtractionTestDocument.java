@@ -19,8 +19,8 @@ public class ThesisExtractionTestDocument {
     private static double numAlgo = 0;
     private static double numHum = 0;
 
-    //   build list of Products
-    static ArrayList<Product> buildProductList(String filePath, String encoding) throws IOException {
+    //   build list of Products for human markup file
+    static ArrayList<Product> buildHumanProductList(String filePath, String encoding) throws IOException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
 
         FileInputStream fis = new FileInputStream(filePath);
@@ -30,25 +30,26 @@ public class ThesisExtractionTestDocument {
         ArrayList<Review> reviewsList = new ArrayList<Review>();
         ArrayList<String> thesisList = new ArrayList<String>();
         String reviewID = "-1";
-        String productName = "-1";
+        String productID = "-1";
         String s = in.readLine();
 
         while (s != null) {
             s = s.trim();
 
             if (s.contains("<product id=")) {
-                if (!productName.equals("-1")) {
+                if (!productID.equals("-1")) {
                     reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                     reviewID = "-1";
 
-                    ProductList.add(new Product(productName, (ArrayList<Review>) reviewsList.clone()));
+                    ProductList.add(new Product(productID, (ArrayList<Review>) reviewsList.clone()));
                     reviewsList.clear();
                 }
-                productName = s.substring(s.indexOf("name=") + 6, s.lastIndexOf("\""));
+                String s1 = s.substring(0, s.indexOf("name="));
+                productID = s.substring(s1.indexOf("\"") + 1, s1.lastIndexOf("\""));
             }
 
-            if (!productName.equals("-1")) {
+            if (!productID.equals("-1")) {
                 if (s.contains("<review")) {
                     if (!reviewID.equals("-1")) {
                         reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
@@ -89,7 +90,7 @@ public class ThesisExtractionTestDocument {
         }
 
         reviewsList.add(new Review(reviewID, thesisList));
-        ProductList.add(new Product(productName, reviewsList));
+        ProductList.add(new Product(productID, reviewsList));
 
         return ProductList;
     }
@@ -102,7 +103,7 @@ public class ThesisExtractionTestDocument {
     }
 
 
-    //   build list of Products
+    //   build list of Products for algo markup file
     static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
         MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
@@ -114,26 +115,28 @@ public class ThesisExtractionTestDocument {
         ArrayList<Review> reviewsList = new ArrayList<Review>();
         ArrayList<String> thesisList = new ArrayList<String>();
         String reviewID = "-1";
-        String productName = "-1";
+        String productID = "-1";
         String s = in.readLine();
 
         while (s != null) {
             s = s.trim();
 
             if (s.contains("<product id=")) {
-                if (!productName.equals("-1")) {
+                if (!productID.equals("-1")) {
                     reviewsList.add(new Review(reviewID, (ArrayList<String>) thesisList.clone()));
                     thesisList.clear();
                     reviewID = "-1";
 
-                    ProductList.add(new Product(productName, (ArrayList<Review>) reviewsList.clone()));
+                    ProductList.add(new Product(productID, (ArrayList<Review>) reviewsList.clone()));
                     reviewsList.clear();
                 }
-                productName = s.substring(s.indexOf("name=") + 6, s.lastIndexOf("\""));
+                String s1 = s.substring(0, s.indexOf("name="));
+                productID = s.substring(s1.indexOf("\"") + 1, s1.lastIndexOf("\""));
+
             }
 
             boolean reviewOpen = false;
-            if (!productName.equals("-1")) {
+            if (!productID.equals("-1")) {
                 if (s.contains("<review")) {  
                     reviewOpen = true;
                     if (!reviewID.equals("-1")) {
@@ -150,9 +153,9 @@ public class ThesisExtractionTestDocument {
                         s = in.readLine();
                         if (s.contains("</review>")) {
                             reviewOpen = false;
-                            String rev =  sb.toString();
+                            String review =  sb.toString();
                            // System.out.println(rev);
-                            ArrayList<String> tList = ExtractThesis.doExtraction(rev, mystemAnalyzer);
+                            ArrayList<String> tList = ExtractThesis.doExtraction(review, mystemAnalyzer);
                             for (String str : tList) {
                                 thesisList.add(str);
                             }
@@ -168,7 +171,7 @@ public class ThesisExtractionTestDocument {
         }
 
         reviewsList.add(new Review(reviewID, thesisList));
-        ProductList.add(new Product(productName, reviewsList));
+        ProductList.add(new Product(productID, reviewsList));
 
         mystemAnalyzer.close();
         return ProductList;
@@ -178,13 +181,14 @@ public class ThesisExtractionTestDocument {
     // comparison of thesis for two products lists
     static void compare(ArrayList<Product> algoProThesis, ArrayList<Product> humProThesis, String filePath) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
+
         for (int i = 0; i < humProThesis.size(); i++) {
             Product humProduct = humProThesis.get(i);
 
             for (int j = 0; j < algoProThesis.size(); j++) {
                 Product algoProduct = algoProThesis.get(j);
-                
-                if(editDist(algoProduct.getName(), humProduct.getName())<2){
+
+                if(algoProduct.getId().equals(humProduct.getId())){
                     /*
                     System.out.println("--------new product  "+algoProduct.getName());
                     for(Review review : algoProduct.getReviews()){
@@ -199,22 +203,44 @@ public class ThesisExtractionTestDocument {
                         for(String thesis : review.getThesis()){
                             System.out.println(thesis);
                         }
-                    }  */
+                    }   */
                     comparator(algoProduct, humProduct, out);
                     break;
                 }
             }
 
         }
+               /*
+        if(humProThesis.size()!=algoProThesis.size()){
+            System.out.println("файлы содержат разное число продуктов");
+        }else{
+            for (int i = 0; i < humProThesis.size(); i++) {
+                Product humProduct = humProThesis.get(i);
+                Product algoProduct = algoProThesis.get(i);
+                if(editDist(algoProduct.getName(), humProduct.getName())<2){
+                    comparator(algoProduct, humProduct, out);
+                }else{
+                    System.out.print("сравнение продуктов с разными именами: ");
+                    System.out.println(algoProduct.getName()+" и "+humProduct.getName());
+                }
+            }
+        }*/
+
 
         out.flush();
     }
 
     // comparison of thesis for two products
     static void comparator(Product algoProduct, Product humProduct, PrintWriter out) {
-        out.println("<product name=\"" + algoProduct.getName() + "\">");
-        if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("null")) {
-            compareThesisLists(algoProduct.getReviews(), humProduct.getReviews(), out);
+        out.println("<product id=\"" + algoProduct.getId() + "\">");
+        if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("-1")) {
+            if(algoProduct.getReviews().size()!=humProduct.getReviews().size()){
+                System.out.print("сравнение продуктов с разным числом ревью: ");
+                System.out.println("id = "+algoProduct.getId());
+            } else{
+                compareThesisLists(algoProduct.getReviews(), humProduct.getReviews(), out);
+            }
+
         }
 
         out.println("</product>");
@@ -224,7 +250,7 @@ public class ThesisExtractionTestDocument {
     static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out) {
         int editDist = 3;
 
-        for (int k = 0; k < Math.min(algoReview.size(), humReview.size()); k++) {
+        for (int k = 0; k < algoReview.size(); k++) {
             String reviewID = algoReview.get(k).getReview();
 
             if(!reviewID.equals("-1")){
@@ -314,8 +340,8 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildAlgoProductList("d://Notebooks.txt", "utf8");
-        System.out.println("ok");
+        ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
+
         /*
         for (Product p:algoProThesis){
             System.out.println("Product Name = "+p.getName());
@@ -329,8 +355,8 @@ public class ThesisExtractionTestDocument {
             }
         }  */
 
-        ArrayList<Product> humProThesis = buildProductList("d://Notebooks_marked_ds.txt", "utf8");
-        System.out.println("ok");
+        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
+
         /*
         for (Product p:humProThesis){
             System.out.println("Product Name = "+p.getName());
@@ -343,12 +369,12 @@ public class ThesisExtractionTestDocument {
                 }
             }
         } */
-        compare(algoProThesis, humProThesis, "d://ans.txt");
-        System.out.println("ok");
+        compare(algoProThesis, humProThesis, "result.txt");
 
-        System.out.println(successExtract);
-        System.out.println(numAlgo);
-        System.out.println(numHum);
+
+        System.out.println("successExtract = "+successExtract);
+        System.out.println("numAlgo = "+numAlgo);
+        System.out.println("numHum = "+numHum);
 
         System.out.println(successExtract/(numAlgo + numHum));
         System.out.print(successExtract/numHum);

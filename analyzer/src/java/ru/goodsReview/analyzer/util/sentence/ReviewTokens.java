@@ -39,11 +39,18 @@ public class ReviewTokens {
         StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
         while (stringTokenizer.hasMoreElements()) {
             String currToken  = stringTokenizer.nextToken();
+            currToken = currToken.trim();
             token = new Token(currToken);
             if (opinionDictionary.contains(currToken)) {
                 token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
             } else {
-                token.setMystemPartOfSpeech(mystemAnalyzer.partOfSpeech(currToken));
+                PartOfSpeech  partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
+                if(!partOfSpeech.equals(PartOfSpeech.ADJECTIVE)){
+                   token.setMystemPartOfSpeech(partOfSpeech);
+                }else{
+                    token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+                }
+
             }
             tokensList.add(token);
         }

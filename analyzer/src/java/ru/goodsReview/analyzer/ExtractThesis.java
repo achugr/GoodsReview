@@ -95,7 +95,7 @@ public class ExtractThesis extends TimerTask{
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
-        //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
+
 
         ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
 
@@ -114,7 +114,7 @@ public class ExtractThesis extends TimerTask{
                     token1 = currToken.getContent();
                 } else {
                     if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
-                        String token2 = currToken.getContent();
+                      //  String token2 = currToken.getContent();
                         extractedThesisList.add(token1);
                         token1 = null;
                     }
