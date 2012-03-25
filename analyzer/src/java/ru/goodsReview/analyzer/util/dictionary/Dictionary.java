@@ -31,6 +31,7 @@ public class Dictionary {
                     next = next.substring(1);
                 }
                 words.add(next);
+                words.add("не"+next);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

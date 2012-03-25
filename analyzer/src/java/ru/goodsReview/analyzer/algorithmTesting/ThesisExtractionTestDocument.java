@@ -262,10 +262,10 @@ public class ThesisExtractionTestDocument {
                 numAlgo += algoThesis.size();
                 numHum += humThesis.size();
 
-                for (int i = 0; i < algoThesis.size(); i++) {
-                    String s1 = algoThesis.get(i).trim();
-                    for (int j = 0; j < humThesis.size(); j++) {
-                        String s2 = humThesis.get(j).trim();
+                for (int i = 0; i < humThesis.size(); i++) {
+                    String s1 = humThesis.get(i).trim();
+                    for (int j = 0; j < algoThesis.size(); j++) {
+                        String s2 = algoThesis.get(j).trim();
                         if (editDist(s1, s2) < editDist) {
                             out.println("      <OK>" + s1 + "</OK>");
                             successExtract++;
@@ -274,6 +274,7 @@ public class ThesisExtractionTestDocument {
                     }
                 }
 
+
                 for (int i = 0; i < algoThesis.size(); i++) {
                     boolean t = false;
                     String s1 = algoThesis.get(i).trim();
@@ -281,6 +282,7 @@ public class ThesisExtractionTestDocument {
                         String s2 = humThesis.get(j).trim();
                         if (editDist(s1, s2) < editDist) {
                             t = true;
+                            break;
                         }
                     }
                     if (t == false) {
@@ -295,6 +297,7 @@ public class ThesisExtractionTestDocument {
                         String s2 = algoThesis.get(j).trim();
                         if (editDist(s1, s2) < editDist) {
                             t = true;
+                            break;
                         }
                     }
                     if (t == false) {
@@ -376,9 +379,9 @@ public class ThesisExtractionTestDocument {
         System.out.println("numAlgo = "+numAlgo);
         System.out.println("numHum = "+numHum);
 
-      //  System.out.println(successExtract/(numAlgo + numHum));
-      //  System.out.print(successExtract/numHum);
+       System.out.println(successExtract/(numAlgo));
+       System.out.print(successExtract/numHum);
 
-       // System.out.println(editDist("отличн","отличный"));
+
     }
 }
