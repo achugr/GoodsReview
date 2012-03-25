@@ -27,7 +27,7 @@ public class ExtractThesisTest {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @org.junit.Test
+    /*@org.junit.Test
     public void thesisExtractionTest() throws IOException {
         {
             long  time = System.currentTimeMillis();
@@ -46,5 +46,5 @@ public class ExtractThesisTest {
             assertEquals("картинка четкая", list.get(1).getContent());
             assertEquals("звук громкий", list.get(2).getContent());
         }
-    }
+    }*/
 }

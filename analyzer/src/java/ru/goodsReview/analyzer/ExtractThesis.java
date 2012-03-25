@@ -86,7 +86,7 @@ public class ExtractThesis extends TimerTask{
         return extractedThesisList;
     }
 
-    public static ArrayList<String> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException {
+    public static ArrayList<String> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         ArrayList<String> extractedThesisList = new ArrayList<String>();
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();

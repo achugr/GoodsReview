@@ -103,7 +103,7 @@ public class ThesisExtractionTestDocument {
 
 
     //   build list of Products
-    static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException {
+    static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException, InterruptedException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
         MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
 
@@ -314,7 +314,12 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Product> algoProThesis = buildAlgoProductList("d://Notebooks.txt", "utf8");
+        ArrayList<Product> algoProThesis = null;
+        try {
+            algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
         System.out.println("ok");
         /*
         for (Product p:algoProThesis){
@@ -329,7 +334,7 @@ public class ThesisExtractionTestDocument {
             }
         }  */
 
-        ArrayList<Product> humProThesis = buildProductList("d://Notebooks_marked_ds.txt", "utf8");
+        ArrayList<Product> humProThesis = buildProductList("Notebooks_marked_ds.txt", "utf8");
         System.out.println("ok");
         /*
         for (Product p:humProThesis){
