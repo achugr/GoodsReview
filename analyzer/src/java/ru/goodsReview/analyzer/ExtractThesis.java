@@ -129,8 +129,8 @@ public class ExtractThesis extends TimerTask{
                 token1 = currToken.getContent();
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
-                    //  String token2 = currToken.getContent();
-                    extractedThesisList.add(token1);
+                    String token2 = currToken.getContent();
+                    extractedThesisList.add(token1+"##"+token2);
                     token1 = null;
                 }
             }
@@ -148,8 +148,8 @@ public class ExtractThesis extends TimerTask{
                 token1 = currToken.getContent();
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
-                    //  String token2 = currToken.getContent();
-                    extractedThesisList.add(token1);
+                    String token2 = currToken.getContent();
+                    extractedThesisList.add(token1+"##"+token2);
                     token1 = null;
                 }
             }
