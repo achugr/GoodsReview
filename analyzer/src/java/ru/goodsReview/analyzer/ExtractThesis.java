@@ -57,6 +57,23 @@ public class ExtractThesis extends TimerTask{
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
         String content = review.getContent();
 
+        ArrayList<String> listThesis = doExtraction(content, mystemAnalyzer);
+
+        for (String str:listThesis){
+            int div = str.indexOf("##");
+            String token1 = str.substring(0, div).trim();
+            String token2 = str.substring(div + 2).trim();
+            extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
+        }
+
+        return extractedThesisList;
+    }
+
+    /*
+    public static List<Thesis> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
+        List<Thesis> extractedThesisList = new ArrayList<Thesis>();
+        String content = review.getContent();
+
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
         //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
@@ -84,15 +101,15 @@ public class ExtractThesis extends TimerTask{
         }
 
         return extractedThesisList;
-    }
+    }  */
+
+
 
     public static ArrayList<String> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         ArrayList<String> extractedThesisList = new ArrayList<String>();
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
-        thesisPatternList.add(new ThesisPattern(PartOfSpeech.ADJECTIVE, PartOfSpeech.NOUN));
-
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.ADJECTIVE, PartOfSpeech.NOUN));
 
         ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
