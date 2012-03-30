@@ -31,7 +31,7 @@ public class Dictionary {
                     next = next.substring(1);
                 }
                 words.add(next);
-                words.add("не"+next);
+               // words.add("не"+next);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -54,11 +54,15 @@ public class Dictionary {
        // return words.contains(word);
         for(String str: words){
             str = str.trim();
-            int edist = ThesisExtractionTestDocument.editDist(word, str);
-            if(edist<3){
+          //  int edist = ThesisExtractionTestDocument.editDist(word, str);
+           // if(edist<3){
                // System.out.println("editDist("+word+","+str+") = "+edist);
+            //    return  true;
+           // }
+            if(word.contains(str)){
                 return  true;
             }
+
         }
         
         return false;
