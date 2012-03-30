@@ -9,6 +9,7 @@ package ru.goodsReview.analyzer.wordAnalyzer;
 
 import org.apache.log4j.Logger;
 import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
+import ru.goodsReview.core.utils.OSValidator;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -29,8 +30,24 @@ public class MystemAnalyzer implements WordAnalyzer{
     private PrintStream ps;
 
     public MystemAnalyzer() {
+        String executor="";
+        String key="";
+
+        if(OSValidator.isUnix()){
+            executor = "/bin/bash";
+            key = "-c";
+        }
+        if(OSValidator.isWindows()){
+            executor = "cmd";
+            key = "/c";
+        }
+//        TODO i don't have mac :'-(
+        if(OSValidator.isMac()){
+            executor = "?";
+            key = "?";
+        }
         try {
-            analyzer = Runtime.getRuntime().exec("mystem -nig -e " + CHARSET);
+            analyzer = Runtime.getRuntime().exec(new String[]{executor, key, "mystem -nig -e " + CHARSET});
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if mystem is installed", e);
 //            throw new IOException();
@@ -70,7 +87,7 @@ public class MystemAnalyzer implements WordAnalyzer{
             }
         }
 
-//        TODO fix this (split by !, but отличный! - returns ""
+//      TODO fix this (split by !, but отличный! - returns ""
         if (!b) {
             return "";
         }
@@ -123,14 +140,13 @@ public class MystemAnalyzer implements WordAnalyzer{
         if(this.wordCharacteristic(word).equals("")){
             return PartOfSpeech.UNKNOWN;
         }
-
         return PartOfSpeech.UNKNOWN;
     }
 
     public static void main(String [] args){
         try {
             MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
-            System.out.println(mystemAnalyzer.partOfSpeech("отличный!"));
+            System.out.println(mystemAnalyzer.partOfSpeech("стол"));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
