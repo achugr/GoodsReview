@@ -13,6 +13,7 @@ import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class ThesisExtractionTestDocument {
     private static double successExtract = 0;
@@ -60,6 +61,7 @@ public class ThesisExtractionTestDocument {
 
                 if (s.contains("##")) {
                     String t = s.substring(0, s.indexOf("##")).trim();
+                    String sentence = s.substring(s.indexOf("##")).trim();
 
                     if (!t.equals("")) {
                         if (t.contains(",")) {
@@ -70,7 +72,7 @@ public class ThesisExtractionTestDocument {
                                 if(s1.contains("[")){
                                     s1 = splitBracket(s1);
                                     if (!s1.equals("")&&!thesisList.contains(s1)) {
-                                        thesisList.add(s1);
+                                        thesisList.add(s1+sentence);
                                     }
                                 }
 
@@ -78,7 +80,7 @@ public class ThesisExtractionTestDocument {
                         } else {
                             t = splitBracket(t);
                             if(!t.equals("")){
-                                thesisList.add(t);
+                                thesisList.add(t+sentence);
                             }
                         }
                     }
@@ -154,7 +156,7 @@ public class ThesisExtractionTestDocument {
                         if (s.contains("</review>")) {
                             reviewOpen = false;
                             String review =  sb.toString();
-                          // System.out.println("#"+review);
+                          // System.out.println("##"+review);
                             ArrayList<String> tList = ExtractThesis.doExtraction(review, mystemAnalyzer);
                             for (String str : tList) {
                                 thesisList.add(str);
@@ -263,13 +265,25 @@ public class ThesisExtractionTestDocument {
                 numHum += humThesis.size();
 
                 for (int i = 0; i < humThesis.size(); i++) {
-                    String s1 = humThesis.get(i).trim();
+                    String str1 = humThesis.get(i);
+                    int div1 = str1.indexOf("##");
+                    String hThesis = str1.substring(0, div1).trim();
+                    String sentence = str1.substring(div1 + 2);
+                    // System.out.println("   "+hThesis+" "+sentence);
                     for (int j = 0; j < algoThesis.size(); j++) {
-                        String s2 = algoThesis.get(j).trim();
-                        if (editDist(s1, s2) < editDist) {
-                            out.println("      <OK>" + s1 + "</OK>");
-                            successExtract++;
-                            break;
+                        String str2 = algoThesis.get(j);
+                        int div2 = str2.indexOf("##");
+                        String alThesis = str2.substring(0, div2).trim();
+                        String opinion = str2.substring(div2 + 2);
+                        // System.out.println(alThesis+" "+opinion);
+
+                        if (editDist(hThesis, alThesis) < editDist) {
+                            if (contains(sentence, alThesis) && contains(sentence, opinion)) {
+                                out.println("      <OK>" + hThesis + "</OK>");
+                               // System.out.println(alThesis+" "+opinion+" ## "+sentence);
+                                successExtract++;
+                                break;
+                            }
                         }
                     }
                 }
@@ -277,36 +291,66 @@ public class ThesisExtractionTestDocument {
 
                 for (int i = 0; i < algoThesis.size(); i++) {
                     boolean t = false;
-                    String s1 = algoThesis.get(i).trim();
+                    String str2 = algoThesis.get(i);
+                    int div2 = str2.indexOf("##");
+                    String alThesis = str2.substring(0, div2).trim();
+                    String opinion = str2.substring(div2 + 2);
                     for (int j = 0; j < humThesis.size(); j++) {
-                        String s2 = humThesis.get(j).trim();
-                        if (editDist(s1, s2) < editDist) {
-                            t = true;
-                            break;
+                        String str1 = humThesis.get(j);
+                        int div1 = str1.indexOf("##");
+                        String hThesis = str1.substring(0, div1).trim();
+                        String sentence = str1.substring(div1 + 2);
+                        if (editDist(hThesis, alThesis) < editDist) {
+                            if (contains(sentence, alThesis) && contains(sentence, opinion)) {
+                                t = true;
+                                break;
+                            }
                         }
                     }
                     if (t == false) {
-                        out.println("      <algo>" + s1 + "</algo>");
+                        out.println("      <algo>" + alThesis + "</algo>");
                     }
                 }
 
                 for (int i = 0; i < humThesis.size(); i++) {
                     boolean t = false;
-                    String s1 = humThesis.get(i).trim();
+                    String str1 = humThesis.get(i);
+                    int div1 = str1.indexOf("##");
+                    String hThesis = str1.substring(0, div1).trim();
+                    String sentence = str1.substring(div1 + 2);
+                    
                     for (int j = 0; j < algoThesis.size(); j++) {
-                        String s2 = algoThesis.get(j).trim();
-                        if (editDist(s1, s2) < editDist) {
-                            t = true;
-                            break;
+                        String str2 = algoThesis.get(j);
+                        int div2 = str2.indexOf("##");
+                        String alThesis = str2.substring(0, div2).trim();
+                        String opinion = str2.substring(div2 + 2);                       
+
+                        if (editDist(hThesis, alThesis) < editDist) {
+                            if (contains(sentence, alThesis) && contains(sentence, opinion)) {
+                                t = true;
+                                break;
+                            }
                         }
                     }
                     if (t == false) {
-                        out.println("      <hum>" + s1 + "</hum>");
+                        out.println("      <hum>" + hThesis + "</hum>");
                     }
                 }
                 //out.println("   </review>");
             }
         }
+    }
+    
+    static boolean contains(String sentence, String s){
+        String [] a = sentence.split(" ");
+        for (String str:a){
+            str = str.trim();
+            if(editDist(str, s)<3){
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     public static int editDist(String s1, String s2) {
@@ -347,41 +391,43 @@ public class ThesisExtractionTestDocument {
 
         /*
         for (Product p:algoProThesis){
-            System.out.println("Product Name = "+p.getName());
+            System.out.println("Product_Id = "+p.getId());
             for (Review r:p.getReviews()){
                 if(r.getReview()!="-1"){
-                    System.out.println("        Review = "+r.getReview());
+                    System.out.println("        Review_Id = "+r.getReview());
                     for (String t:r.getThesis()){
                         System.out.println("            "+t);
                     }
                 }
             }
-        }  */
+
+        }*/
 
        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
         /*
         for (Product p:humProThesis){
-            System.out.println("Product Name = "+p.getName());
+            System.out.println("Product_Id = "+p.getId());
             for (Review r:p.getReviews()){
                 if(r.getReview()!="-1"){
-                    System.out.println("        Review = "+r.getReview());
+                    System.out.println("        Review_Id= "+r.getReview());
                     for (String t:r.getThesis()){
                         System.out.println("            "+t);
                     }
                 }
             }
-        } */
-        compare(algoProThesis, humProThesis, "result.txt");
+        }*/
+     compare(algoProThesis, humProThesis, "result.txt");
 
 
         System.out.println("successExtract = "+successExtract);
         System.out.println("numAlgo = "+numAlgo);
         System.out.println("numHum = "+numHum);
 
-       System.out.println(successExtract/(numAlgo));
+       System.out.println(successExtract/numAlgo);
        System.out.print(successExtract/numHum);
 
 
     }
 }
+
