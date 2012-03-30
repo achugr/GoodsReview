@@ -104,7 +104,7 @@ public class ThesisExtractionTestDocument {
 
 
     //   build list of Products for algo markup file
-    static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException {
+    static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException, InterruptedException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
         MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
 
@@ -342,7 +342,7 @@ public class ThesisExtractionTestDocument {
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
         /*

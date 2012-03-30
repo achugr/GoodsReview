@@ -79,6 +79,7 @@ public class MystemAnalyzer implements WordAnalyzer{
         ps = new PrintStream(analyzer.getOutputStream(),true,CHARSET);
 
         ps.println(word);
+
         String wordCharacteristic = sc.nextLine();
 
         int pos1,pos2;
