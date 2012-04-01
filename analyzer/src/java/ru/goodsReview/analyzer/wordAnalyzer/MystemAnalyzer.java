@@ -31,23 +31,19 @@ public class MystemAnalyzer implements WordAnalyzer{
 
     public MystemAnalyzer() {
         String executor="";
-        String key="";
 
         if(OSValidator.isUnix()){
-            executor = "/bin/bash";
-            key = "-c";
+            executor = "./";
         }
         if(OSValidator.isWindows()){
-            executor = "cmd";
-            key = "/c";
+            executor = "";
         }
 //        TODO i don't have mac :'-(
         if(OSValidator.isMac()){
             executor = "?";
-            key = "?";
         }
         try {
-            analyzer = Runtime.getRuntime().exec(new String[]{executor, key, "mystem -nig -e " + CHARSET});
+            analyzer = Runtime.getRuntime().exec(executor + "mystem -nig -e " + CHARSET);
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if mystem is installed", e);
 //            throw new IOException();
