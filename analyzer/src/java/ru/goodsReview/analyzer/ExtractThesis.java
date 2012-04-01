@@ -24,6 +24,7 @@ import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
@@ -120,10 +121,10 @@ public class ExtractThesis extends TimerTask{
             ThesisPattern pattern = thesisPattern;
 
             if(pattern.getPattern().get(0).equals(PartOfSpeech.NOUN)){
-                nounAtFirstPositionExtraction(extractedThesisList,tokensList,pattern);
+                nounAtFirstPositionExtraction(extractedThesisList,tokensList,pattern,mystemAnalyzer);
             }  else{
                 if(pattern.getPattern().get(1).equals(PartOfSpeech.NOUN)){
-                    nounAtSecondPositionExtraction(extractedThesisList,tokensList,pattern);
+                    nounAtSecondPositionExtraction(extractedThesisList,tokensList,pattern,mystemAnalyzer);
                 }  else{
                     System.out.println("incorrect pattern");
                 }
@@ -134,7 +135,7 @@ public class ExtractThesis extends TimerTask{
         return extractedThesisList;
     }
 
-    static void nounAtFirstPositionExtraction(ArrayList<String> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern){
+    static void nounAtFirstPositionExtraction(ArrayList<String> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
         String token1 = null;
         PartOfSpeech noun = pattern.getPattern().get(0);
         PartOfSpeech part2 = pattern.getPattern().get(1);
@@ -151,7 +152,14 @@ public class ExtractThesis extends TimerTask{
                      n2 = i;
                     if(Math.abs(n1-n2)==1){
                         String token2 = currToken.getContent();
-                        extractedThesisList.add(token1+"##"+token2);
+                        String p1 = mystemAnalyzer.wordCharacteristicGender(token1);
+                        String p2 = mystemAnalyzer.wordCharacteristicGender(token2);
+                        if(!p1.equals("unk")&&!p2.equals("unk")){
+                            if(p1.equals(p2)){
+                                extractedThesisList.add(token1+"##"+token2);
+                            }
+                        }
+
                     }
                     token1 = null;
                 }
@@ -159,7 +167,7 @@ public class ExtractThesis extends TimerTask{
         }
     }
 
-    static void nounAtSecondPositionExtraction(ArrayList<String> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern){
+    static void nounAtSecondPositionExtraction(ArrayList<String> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
         String token1 = null;
         PartOfSpeech part2 = pattern.getPattern().get(0);
         PartOfSpeech noun = pattern.getPattern().get(1);
@@ -175,8 +183,14 @@ public class ExtractThesis extends TimerTask{
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                     n2 = i;
                     if(Math.abs(n1-n2)==1){
-                    String token2 = currToken.getContent();
-                    extractedThesisList.add(token1+"##"+token2);
+                        String token2 = currToken.getContent();
+                        String p1 = mystemAnalyzer.wordCharacteristicGender(token1);
+                        String p2 = mystemAnalyzer.wordCharacteristicGender(token2);
+                        if(!p1.equals("unk")&&!p2.equals("unk")){
+                            if(p1.equals(p2)){
+                                extractedThesisList.add(token1+"##"+token2);
+                            }
+                        }
                     }
                     token1 = null;
                 }

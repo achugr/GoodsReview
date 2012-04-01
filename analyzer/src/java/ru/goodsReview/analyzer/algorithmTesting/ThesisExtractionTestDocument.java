@@ -408,7 +408,7 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
+       ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
         /*
         for (Product p:algoProThesis){
@@ -445,8 +445,15 @@ public class ThesisExtractionTestDocument {
         System.out.println("numAlgo = "+numAlgo);
         System.out.println("numHum = "+numHum);
 
-       System.out.println(successExtract/numAlgo);
-       System.out.print(successExtract/numHum);
+        if(numAlgo!=0){
+            System.out.println(successExtract/numAlgo);
+        }
+         if(numHum!=0){
+             System.out.print(successExtract/numHum);
+         }
+
+
+
 
 
     }

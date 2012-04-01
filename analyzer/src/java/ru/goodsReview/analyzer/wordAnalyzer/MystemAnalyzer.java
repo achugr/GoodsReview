@@ -94,6 +94,51 @@ public class MystemAnalyzer implements WordAnalyzer{
         return wordCharact;
     }
 
+    public String wordCharacteristicGender(String word) throws UnsupportedEncodingException {
+        int wl = word.length(); boolean b = true;
+        for (int i = 0; i < wl; ++i) {
+            if (!isRussianLetter(word.charAt(i))) {
+                b = false;
+                break;
+            }
+        }
+
+//        TODO fix this (split by !, but отличный! - returns ""
+        if (!b) {
+            return "";
+        }
+
+        sc = new Scanner(analyzer.getInputStream(),CHARSET);
+        ps = new PrintStream(analyzer.getOutputStream(),true,CHARSET);
+
+        ps.println(word);
+        String wordCharacteristic = sc.nextLine();
+         /**/
+        if((wordCharacteristic.contains("жен")&&wordCharacteristic.contains("муж"))||
+        (wordCharacteristic.contains("жен")&&wordCharacteristic.contains("сред"))||
+                (wordCharacteristic.contains("муж")&&wordCharacteristic.contains("сред"))){
+            return "unk";
+        }  else{
+            if(wordCharacteristic.contains("жен")) {
+                return "жен";
+            }
+            if(wordCharacteristic.contains("муж")) {
+                return "муж";
+            }
+            if(wordCharacteristic.contains("сред")) {
+                return "сред";
+            }
+        }
+
+
+
+        return wordCharacteristic;
+    }
+
+    public String wordCase(String word) {
+        return null;
+    }
+
     /**
      * method for determine part of speech of word by means of Mystem
      * @param word which part of speech we want know
@@ -129,7 +174,7 @@ public class MystemAnalyzer implements WordAnalyzer{
     public static void main(String [] args){
         try {
             MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
-            System.out.println(mystemAnalyzer.partOfSpeech("отличный!"));
+            System.out.println(mystemAnalyzer.wordCharacteristicGender("камень"));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
