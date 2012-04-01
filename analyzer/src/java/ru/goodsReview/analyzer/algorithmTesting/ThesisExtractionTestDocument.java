@@ -363,7 +363,7 @@ public class ThesisExtractionTestDocument {
     }
     
     static boolean contains(String sentence, String s){
-        String [] a = sentence.split(" ");
+       /* String [] a = sentence.split(" ");
         for (String str:a){
             str = str.trim();
             if(editDist(str, s)<3){
@@ -371,7 +371,10 @@ public class ThesisExtractionTestDocument {
             }
         }
         
-        return false;
+        return false;  */
+        sentence = sentence.toLowerCase();
+        s = s.toLowerCase();
+        return sentence.contains(s);
     }
 
     public static int editDist(String s1, String s2) {
@@ -410,19 +413,19 @@ public class ThesisExtractionTestDocument {
     public static void main(String[] args) throws IOException, InterruptedException {
        ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
-        /*
+        /**/
         for (Product p:algoProThesis){
             System.out.println("Product_Id = "+p.getId());
             for (Review r:p.getReviews()){
                 if(r.getReview()!="-1"){
                     System.out.println("        Review_Id = "+r.getReview());
                     for (Thesis t:r.getThesis()){
-                        System.out.println("            "+t.getThesis()+" "+t.getSentence());
+                        System.out.println("            "+t.getThesis()+" "+t.getPart2());
                     }
                 }
             }
 
-        }*/
+        }
 
        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
