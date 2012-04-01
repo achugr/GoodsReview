@@ -33,9 +33,11 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     private static long lastAddedProductId = 0;
 
     protected ControllerFactory controllerFactory;
+    private String regExp;
 
-    public CitilinkNotebooksScraperRuntimeListener(ControllerFactory controllerFactory) {
+    public CitilinkNotebooksScraperRuntimeListener(ControllerFactory controllerFactory, String regExp) {
         this.controllerFactory = controllerFactory;
+        this.regExp = regExp;
     }
 
     public void onExecutionStart(Scraper scraper) {}
@@ -70,7 +72,7 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     private void addProduct(Scraper scraper) {
         String nameProd = scraper.getContext().get("ProductName").toString();
         CitilinkDataTransformator citilinkDataTransformator = new CitilinkDataTransformator();
-        Product product = citilinkDataTransformator.createProductModelFromSource(nameProd);
+        Product product = citilinkDataTransformator.createProductModelFromSource(nameProd, regExp);
         if (!lastAddedProductName.equals(product.getName())) {
             try {
                 lastAddedProductId = controllerFactory.getProductController().addProduct(product);
