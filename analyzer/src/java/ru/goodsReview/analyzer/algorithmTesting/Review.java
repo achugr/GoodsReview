@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Review implements Cloneable{
    private String review;
-   private ArrayList<String> thesis;
+   private ArrayList<Thesis> thesis;
 
-    public Review(String review, ArrayList<String> thesis) {
+    public Review(String review, ArrayList<Thesis> thesis) {
         this.review = review;
         this.thesis = thesis;
     }
@@ -22,7 +22,7 @@ public class Review implements Cloneable{
         return review;
     }
 
-    public ArrayList<String> getThesis(){
+    public ArrayList<Thesis> getThesis(){
         return thesis;
     }
 
@@ -31,7 +31,7 @@ public class Review implements Cloneable{
         try {
             newObject = (Review) super.clone();
             newObject.review =   this.review;
-            ArrayList<String> t = new ArrayList<String>();
+            ArrayList<Thesis> t = new ArrayList<Thesis>();
             for (int i = 0; i < this.thesis.size(); i++) {
                 t.add(this.thesis.get(i));
             }
