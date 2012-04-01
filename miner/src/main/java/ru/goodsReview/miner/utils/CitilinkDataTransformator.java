@@ -136,8 +136,8 @@ public class CitilinkDataTransformator extends DataTransformator {
      * @param sourceProductInfo source info about product
      * @return relevant product name
      */
-    public static String getProductNameFromSourceProductInfo(String sourceProductInfo) {
-        Pattern p = Pattern.compile("\"\\s(.+?),");
+    public static String getProductNameFromSourceProductInfo(String sourceProductInfo, String regExp) {
+        Pattern p = Pattern.compile(regExp);
         Matcher m = p.matcher(sourceProductInfo);
         if (m.find()) {
             return m.group(1);
@@ -151,11 +151,11 @@ public class CitilinkDataTransformator extends DataTransformator {
      * @param sourceProductInfo String source info
      * @return Product, in which fields "name" and "categoryId" are relevant
      */
-    public Product createProductModelFromSource(String sourceProductInfo) {
+    public Product createProductModelFromSource(String sourceProductInfo, String regExp) {
         String productName;
         long categoryId;
         categoryId = getGategoryFromSourceProductInfo(sourceProductInfo);
-        productName = getProductNameFromSourceProductInfo(sourceProductInfo);
+        productName = getProductNameFromSourceProductInfo(sourceProductInfo, regExp);
         Product product = new Product(categoryId, productName, "no description", 1);
         return product;
     }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<categoryConfig>
+    <category>audio_and_digits/tv/</category>
+    <nameRegexp>(LED-телевизор|Телевизор\\sLED|Телевизор\\sЖК)\\s([A-Za-z]*?)\\s?(\\d+\\.?\\d+?\")?\\s([^А-Яа-яёЁ]+?)(\\,|[А-Яа-яёЁ])</nameRegexp>
+</categoryConfig>
