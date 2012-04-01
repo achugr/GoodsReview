@@ -446,10 +446,10 @@ public class ThesisExtractionTestDocument {
         System.out.println("numHum = "+numHum);
 
         if(numAlgo!=0){
-            System.out.println(successExtract/numAlgo);
+            System.out.println("precision = "+successExtract/numAlgo);
         }
          if(numHum!=0){
-             System.out.print(successExtract/numHum);
+             System.out.print("recall= "+successExtract/numHum);
          }
 
 

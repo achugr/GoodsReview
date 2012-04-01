@@ -151,15 +151,27 @@ public class ExtractThesis extends TimerTask{
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                      n2 = i;
                     if(Math.abs(n1-n2)==1){
-                        String token2 = currToken.getContent();
-                        String p1 = mystemAnalyzer.wordCharacteristicGender(token1);
-                        String p2 = mystemAnalyzer.wordCharacteristicGender(token2);
-                        if(!p1.equals("unk")&&!p2.equals("unk")){
-                            if(p1.equals(p2)){
-                                extractedThesisList.add(token1+"##"+token2);
-                            }
-                        }
+                        String[] a1 = mystemAnalyzer.wordCharacteristic1(token1);
 
+                        String token2 = currToken.getContent();
+                        String[] a2 = mystemAnalyzer.wordCharacteristic1(token2);
+
+                        String p1 = a1[0] ;
+                        String p2 = a2[0];
+                        String num1  =  a1[1];
+                        String num2  =  a2[1];
+                        String case1  =  a1[2];
+                        String case2  =  a2[2];
+                        boolean con1 =  check(p1,p2);
+                        boolean con2 =  check(num1,num2);
+                        boolean con3 =  check(case1,case2);
+                        boolean sep1 = (con1&&con2)||
+                                (con1&&con3)||
+                                (con3&&con2) ;
+                        boolean sep2 = con1&&con2&&con3;
+                        if(sep2) {
+                            extractedThesisList.add(token1+"##"+token2);
+                        }
                     }
                     token1 = null;
                 }
@@ -183,13 +195,26 @@ public class ExtractThesis extends TimerTask{
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                     n2 = i;
                     if(Math.abs(n1-n2)==1){
+                        String[] a1 = mystemAnalyzer.wordCharacteristic1(token1);
+
                         String token2 = currToken.getContent();
-                        String p1 = mystemAnalyzer.wordCharacteristicGender(token1);
-                        String p2 = mystemAnalyzer.wordCharacteristicGender(token2);
-                        if(!p1.equals("unk")&&!p2.equals("unk")){
-                            if(p1.equals(p2)){
-                                extractedThesisList.add(token1+"##"+token2);
-                            }
+                        String[] a2 = mystemAnalyzer.wordCharacteristic1(token2);
+
+                        String p1 = a1[0] ;
+                        String p2 = a2[0];
+                        String num1  =  a1[1];
+                        String num2  =  a2[1];
+                        String case1  =  a1[2];
+                        String case2  =  a2[2];
+                        boolean con1 =  check(p1,p2);
+                        boolean con2 =  check(num1,num2);
+                        boolean con3 =  check(case1,case2);
+                        boolean sep1 = (con1&&con2)||
+                                (con1&&con3)||
+                                (con3&&con2) ;
+                        boolean sep2 = con1&&con2&&con3;
+                        if(sep2) {
+                            extractedThesisList.add(token1+"##"+token2);
                         }
                     }
                     token1 = null;
@@ -197,6 +222,13 @@ public class ExtractThesis extends TimerTask{
             }
         }
     }
+
+    static boolean check(String s1, String s2){
+        if(!s1.equals("unk")&&!s2.equals("unk")){
+            return s1.equals(s2);
+        }
+        return false;
+   }
 
     /**
      * Extract thesis on all products from database

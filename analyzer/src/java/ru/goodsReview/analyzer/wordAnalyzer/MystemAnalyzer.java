@@ -94,7 +94,7 @@ public class MystemAnalyzer implements WordAnalyzer{
         return wordCharact;
     }
 
-    public String wordCharacteristicGender(String word) throws UnsupportedEncodingException {
+    public String[] wordCharacteristic1(String word) throws UnsupportedEncodingException {
         int wl = word.length(); boolean b = true;
         for (int i = 0; i < wl; ++i) {
             if (!isRussianLetter(word.charAt(i))) {
@@ -102,10 +102,10 @@ public class MystemAnalyzer implements WordAnalyzer{
                 break;
             }
         }
-
+        String [] a = {"unk","unk","unk"};
 //        TODO fix this (split by !, but отличный! - returns ""
         if (!b) {
-            return "";
+            return a;
         }
 
         sc = new Scanner(analyzer.getInputStream(),CHARSET);
@@ -113,26 +113,66 @@ public class MystemAnalyzer implements WordAnalyzer{
 
         ps.println(word);
         String wordCharacteristic = sc.nextLine();
+
          /**/
-        if((wordCharacteristic.contains("жен")&&wordCharacteristic.contains("муж"))||
+        if(!((wordCharacteristic.contains("жен")&&wordCharacteristic.contains("муж"))||
         (wordCharacteristic.contains("жен")&&wordCharacteristic.contains("сред"))||
-                (wordCharacteristic.contains("муж")&&wordCharacteristic.contains("сред"))){
-            return "unk";
-        }  else{
+                (wordCharacteristic.contains("муж")&&wordCharacteristic.contains("сред")))){            
+        
             if(wordCharacteristic.contains("жен")) {
-                return "жен";
+                a[0] =  "жен";
             }
             if(wordCharacteristic.contains("муж")) {
-                return "муж";
+                a[0] = "муж";
             }
             if(wordCharacteristic.contains("сред")) {
-                return "сред";
+                a[0] = "сред";
+            }
+        }
+
+        if(!((wordCharacteristic.contains("ед")&&wordCharacteristic.contains("мн")))){
+            if(wordCharacteristic.contains("ед")) {
+                a[1] =  "ед";
+            }
+            if(wordCharacteristic.contains("мн")) {
+                a[1] = "мн";
+            }
+        }
+
+        String[] cases = {"им", 
+                        "род",	
+                        "дат",	
+                        "вин",	
+                        "твор",
+                        "пр",	
+                        "парт",	
+                        "местн",	
+                        "зват"
+                       };
+        
+        boolean t1 = false;
+        for (int i = 0;i<cases.length;i++){
+            for (int j = 0;j<i;j++){
+                     if(wordCharacteristic.contains(cases[i])&&wordCharacteristic.contains(cases[j])){
+                         if(i!=3&&j!=0){
+                             t1 = true;
+                             break;
+                         }
+                 }
+            } 
+        }
+
+        if(!t1){
+            for (int i = 0;i<cases.length;i++){
+                if(wordCharacteristic.contains(cases[i])) {
+                    a[2] = cases[i];
+                    break;
+                }
             }
         }
 
 
-
-        return wordCharacteristic;
+        return a;
     }
 
     public String wordCase(String word) {
@@ -174,7 +214,7 @@ public class MystemAnalyzer implements WordAnalyzer{
     public static void main(String [] args){
         try {
             MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
-            System.out.println(mystemAnalyzer.wordCharacteristicGender("камень"));
+            System.out.println(mystemAnalyzer.wordCharacteristic1("камень")[2]);
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
