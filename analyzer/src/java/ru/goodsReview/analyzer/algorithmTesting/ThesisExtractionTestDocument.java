@@ -195,7 +195,7 @@ public class ThesisExtractionTestDocument {
                                 thesisList.add(new Thesis(token1, token2));
                             }
                         } else {
-                            sb.append(s);
+                            sb.append(" "+s);
                         }
 
                     }
@@ -299,11 +299,11 @@ public class ThesisExtractionTestDocument {
 
                 for (int i = 0; i < humThesis.size(); i++) {
                     String hThesis = humThesis.get(i).getThesis();
-                    String sentence = humThesis.get(i).getSentence();
+                    String sentence = humThesis.get(i).getPart2();
                     // System.out.println("   "+hThesis+" "+sentence);
                     for (int j = 0; j < algoThesis.size(); j++) {
                         String alThesis = algoThesis.get(j).getThesis();
-                        String opinion = algoThesis.get(j).getSentence();
+                        String opinion = algoThesis.get(j).getPart2();
                         // System.out.println(alThesis+" "+opinion);
 
                         if (editDist(hThesis, alThesis) < editDist) {
@@ -321,10 +321,10 @@ public class ThesisExtractionTestDocument {
                 for (int i = 0; i < algoThesis.size(); i++) {
                     boolean t = false;
                     String alThesis = algoThesis.get(i).getThesis();
-                    String opinion = algoThesis.get(i).getSentence();
+                    String opinion = algoThesis.get(i).getPart2();
                     for (int j = 0; j < humThesis.size(); j++) {
                         String hThesis = humThesis.get(j).getThesis();
-                        String sentence = humThesis.get(j).getSentence();
+                        String sentence = humThesis.get(j).getPart2();
                         if (editDist(hThesis, alThesis) < editDist) {
                             if (contains(sentence, alThesis) && contains(sentence, opinion)) {
                                 t = true;
@@ -340,11 +340,11 @@ public class ThesisExtractionTestDocument {
                 for (int i = 0; i < humThesis.size(); i++) {
                     boolean t = false;
                     String hThesis = humThesis.get(i).getThesis();
-                    String sentence = humThesis.get(i).getSentence();
+                    String sentence = humThesis.get(i).getPart2();
                     
                     for (int j = 0; j < algoThesis.size(); j++) {
                         String alThesis = algoThesis.get(j).getThesis();
-                        String opinion = algoThesis.get(j).getSentence();
+                        String opinion = algoThesis.get(j).getPart2();
 
                         if (editDist(hThesis, alThesis) < editDist) {
                             if (contains(sentence, alThesis) && contains(sentence, opinion)) {
@@ -416,8 +416,8 @@ public class ThesisExtractionTestDocument {
             for (Review r:p.getReviews()){
                 if(r.getReview()!="-1"){
                     System.out.println("        Review_Id = "+r.getReview());
-                    for (String t:r.getThesis()){
-                        System.out.println("            "+t);
+                    for (Thesis t:r.getThesis()){
+                        System.out.println("            "+t.getThesis()+" "+t.getSentence());
                     }
                 }
             }
@@ -432,8 +432,8 @@ public class ThesisExtractionTestDocument {
             for (Review r:p.getReviews()){
                 if(r.getReview()!="-1"){
                     System.out.println("        Review_Id= "+r.getReview());
-                    for (String t:r.getThesis()){
-                        System.out.println("            "+t);
+                    for (Thesis t:r.getThesis()){
+                        System.out.println("            "+t.getThesis());
                     }
                 }
             }

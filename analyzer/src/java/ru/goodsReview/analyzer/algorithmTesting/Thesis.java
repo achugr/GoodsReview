@@ -11,15 +11,15 @@ package ru.goodsReview.analyzer.algorithmTesting;
  */
 public class Thesis implements Cloneable{
     private String thesis;
-    private String sentence;
+    private String part2;
 
-    public Thesis(String thesis, String sentence) {
-        this.sentence = sentence;
+    public Thesis(String thesis, String part2) {
+        this.part2 = part2;
         this.thesis = thesis;
     }
 
     public Thesis(String thesis) {
-        this.sentence = null;
+        this.part2 = null;
         this.thesis = thesis;
     }
 
@@ -27,8 +27,8 @@ public class Thesis implements Cloneable{
         return thesis;
     }
 
-    public String getSentence(){
-        return sentence;
+    public String getPart2(){
+        return part2;
     }
 
     public Object clone() {
@@ -36,7 +36,7 @@ public class Thesis implements Cloneable{
         try {
             newObject = (Thesis) super.clone();
             newObject.thesis =   this.thesis;
-            newObject.sentence =   this.sentence;
+            newObject.part2 =   this.part2;
 
         } catch (CloneNotSupportedException e) {
             // TODO Auto-generated catch block
