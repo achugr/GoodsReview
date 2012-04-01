@@ -40,7 +40,8 @@ public class ReviewTokens {
         while (stringTokenizer.hasMoreElements()) {
             String currToken  = stringTokenizer.nextToken();
             currToken = currToken.trim();
-//            TODO it's strange, but here we can get empty stringg
+            currToken = currToken.toLowerCase();
+//            TODO it's strange, but here we can get empty string
             if(currToken.equals("")){
                 System.out.println("fail");
                 continue;
