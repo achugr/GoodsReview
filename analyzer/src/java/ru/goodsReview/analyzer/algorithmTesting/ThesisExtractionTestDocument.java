@@ -413,7 +413,7 @@ public class ThesisExtractionTestDocument {
     public static void main(String[] args) throws IOException, InterruptedException {
        ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
-        /**/
+        /*
         for (Product p:algoProThesis){
             System.out.println("Product_Id = "+p.getId());
             for (Review r:p.getReviews()){
@@ -425,7 +425,7 @@ public class ThesisExtractionTestDocument {
                 }
             }
 
-        }
+        }*/
 
        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
