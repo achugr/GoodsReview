@@ -35,7 +35,8 @@ public class DictionaryGenerator extends TimerTask {
         printWriter = new PrintWriter(new File(pureDictionaryFileName));
     }
 
-    DictionaryGenerator(){}
+    DictionaryGenerator() {
+    }
 
     public void generateOpinionWordDictionary() {
         PorterStemmer porterStemmer = new PorterStemmer();
@@ -45,8 +46,8 @@ public class DictionaryGenerator extends TimerTask {
             word = porterStemmer.stem(scanner.next().toLowerCase());
             hs.add(word);
         }
-        Object [] objects = hs.toArray();
-        for(Object obj : objects){
+        Object[] objects = hs.toArray();
+        for (Object obj : objects) {
             printWriter.println(obj.toString());
         }
         printWriter.close();
@@ -54,10 +55,11 @@ public class DictionaryGenerator extends TimerTask {
 
     /**
      * Checks if letter belongs to russian alphabet.
+     *
      * @param letter The letter itself.
      * @return True if letter is russian, false — otherwise.
      */
-    private static boolean isRussianLetter (char letter) {
+    private static boolean isRussianLetter(char letter) {
         if ((letter >= 0x0410) && (letter <= 0x044F)) {
             return true;
         } else {
@@ -65,30 +67,44 @@ public class DictionaryGenerator extends TimerTask {
         }
     }
 
-    private static boolean hasWordBadSymbols(String word){
-        char [] wordCharacters = word.toCharArray();
-        for(int i=0; i<wordCharacters.length; i++){
-            if(!isRussianLetter(wordCharacters[i])){
+    /**
+     * checks if word has bad symbols
+     *
+     * @param word word to check
+     * @return false - if word contains bad symbols
+     */
+    private static boolean hasWordBadSymbols(String word) {
+        char[] wordCharacters = word.toCharArray();
+        for (int i = 0; i < wordCharacters.length; i++) {
+            if (!isRussianLetter(wordCharacters[i])) {
                 return false;
             }
         }
         return true;
     }
 
+    /**
+     * create frequency dictionary from normalized words
+     *
+     * @throws FileNotFoundException
+     */
     private static void frequencyDictionaryFromNormalized() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("normalized_words.txt"));
         HashMap<String, Integer> frequencyDictionary = new HashMap<>();
-        String token = "";
+        String token;
         while (scanner.hasNext()) {
             token = scanner.next();
             if (!token.equals("")) {
-                if(hasWordBadSymbols(token)){
+                if (hasWordBadSymbols(token)) {
+//                    add word to dictionary
                     FrequencyDictionary.addWord(frequencyDictionary, token);
                 }
             }
         }
+//        sort hash map
         frequencyDictionary = (HashMap<String, Integer>) HashMapUtil.sortByValue(frequencyDictionary);
 
+//        write it to file
         PrintWriter printWriter = new PrintWriter(new File("dictionaryFromNormalized.txt"));
         for (String str : frequencyDictionary.keySet()) {
             printWriter.println(str + " " + frequencyDictionary.get(str));
@@ -97,29 +113,39 @@ public class DictionaryGenerator extends TimerTask {
 
     }
 
+    /**
+     * extracts words from xml dataset
+     *
+     * @throws XPathExpressionException
+     * @throws FileNotFoundException
+     */
     private static void extractWordsFromDataset() throws XPathExpressionException, FileNotFoundException {
         XPath xPath = XPathFactory.newInstance().newXPath();
         File file = new File("cameras.xml");
-        {
-            XPathExpression xPathExpression = xPath.compile("//value[@columnNumber>'4']/text()");
-            InputSource inputSource = new InputSource(new FileReader(file));
-            Object object = xPathExpression.evaluate(inputSource, XPathConstants.NODESET);
-            NodeList nodeList = (NodeList) object;
-            HashSet<String> hashSet = new HashSet<>();
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                StringTokenizer stringTokenizer = new StringTokenizer(nodeList.item(i).getNodeValue(), " .,-—:;!()+\'\"\\«»");
-                while (stringTokenizer.hasMoreTokens()) {
-                    String token = stringTokenizer.nextToken();
-                    hashSet.add(token);
-                }
+//            xPath expression for extract comment
+        XPathExpression xPathExpression = xPath.compile("//value[@columnNumber>'4']/text()");
+//        read file in input source
+        InputSource inputSource = new InputSource(new FileReader(file));
+//        evaluate xPathExpresion
+        Object object = xPathExpression.evaluate(inputSource, XPathConstants.NODESET);
+        NodeList nodeList = (NodeList) object;
+        HashSet<String> hashSet = new HashSet<>();
+//        go on all result object by this xPath
+        for (int i = 0; i < nodeList.getLength(); i++) {
+//            extract tokens from result
+            StringTokenizer stringTokenizer = new StringTokenizer(nodeList.item(i).getNodeValue(), " .,-—:;!()+\'\"\\«»");
+//            add every token to hash set
+            while (stringTokenizer.hasMoreTokens()) {
+                hashSet.add(stringTokenizer.nextToken());
             }
-            PrintWriter printWriter = new PrintWriter(new File("source_dictionary.txt"));
-            for(String str : hashSet){
-                printWriter.println(str);
-            }
-
-            printWriter.close();
         }
+//        print hash set to file
+        PrintWriter printWriter = new PrintWriter(new File("source_dictionary.txt"));
+        for (String str : hashSet) {
+            printWriter.println(str);
+        }
+        printWriter.close();
+
     }
 
     public static void main(String[] args) {
@@ -132,7 +158,7 @@ public class DictionaryGenerator extends TimerTask {
     }
 
     @Override
-    public void run(){
+    public void run() {
         DictionaryGenerator opinionWordDictionary = null;
         try {
             opinionWordDictionary = new DictionaryGenerator("dirty_opinion_words.txt", "pure_opinion_words.txt");
