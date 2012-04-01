@@ -138,15 +138,21 @@ public class ExtractThesis extends TimerTask{
         String token1 = null;
         PartOfSpeech noun = pattern.getPattern().get(0);
         PartOfSpeech part2 = pattern.getPattern().get(1);
+        int n1 = 0;
+        int n2 = 0;
         for (int i = 0; i < tokensList.size(); i++) {
             Token currToken = tokensList.get(i);
 
             if (currToken.getMystemPartOfSpeech().equals(noun)) {
                 token1 = currToken.getContent();
+                 n1 = i;
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
-                    String token2 = currToken.getContent();
-                    extractedThesisList.add(token1+"##"+token2);
+                     n2 = i;
+                    if(Math.abs(n1-n2)==1){
+                        String token2 = currToken.getContent();
+                        extractedThesisList.add(token1+"##"+token2);
+                    }
                     token1 = null;
                 }
             }
@@ -157,15 +163,21 @@ public class ExtractThesis extends TimerTask{
         String token1 = null;
         PartOfSpeech part2 = pattern.getPattern().get(0);
         PartOfSpeech noun = pattern.getPattern().get(1);
+        int n1 = 0;
+        int n2 = 0;
         for (int i = tokensList.size()-1; i >= 0 ; i--) {
             Token currToken = tokensList.get(i);
 
             if (currToken.getMystemPartOfSpeech().equals(noun)) {
                 token1 = currToken.getContent();
+                n1 = i;
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
+                    n2 = i;
+                    if(Math.abs(n1-n2)==1){
                     String token2 = currToken.getContent();
                     extractedThesisList.add(token1+"##"+token2);
+                    }
                     token1 = null;
                 }
             }
