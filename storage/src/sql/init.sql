@@ -9,6 +9,7 @@ Database: MySQL 5.5
 DROP DATABASE IF EXISTS goodsreview_permanent;
 
 CREATE DATABASE goodsreview_permanent CHARACTER SET utf8 COLLATE utf8_bin;
+
 use goodsreview_permanent;
 
 -- Create tables section -------------------------------------------------
@@ -20,8 +21,7 @@ CREATE TABLE product
   id Int NOT NULL AUTO_INCREMENT,
   category_id Int NOT NULL,
   name Varchar(100) NOT NULL,
-  popularity Int UNSIGNED
-  COMMENT 'Сколько раз смотрели товар',
+  popularity Int UNSIGNED,
   description Text,
   PRIMARY KEY (id)
 )

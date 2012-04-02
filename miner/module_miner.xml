@@ -108,7 +108,7 @@
     </javac2>
     
     <copy todir="${miner.output.dir}">
-      <fileset dir="${module.miner.basedir}/src/java">
+      <fileset dir="/src/main/java">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
