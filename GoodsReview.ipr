@@ -116,7 +116,6 @@
       <list>
         <option value="D:/Studing/GoodsReview/helloworld-1.12/pom.xml" />
         <option value="$PROJECT_DIR$/helloworld-1.12/pom.xml" />
-        <option value="$PROJECT_DIR$/miner/pom.xml" />
       </list>
     </option>
   </component>
@@ -257,11 +256,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoodsReview.iml" filepath="$PROJECT_DIR$/GoodsReview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/miner/GoodsReview_API.iml" filepath="$PROJECT_DIR$/miner/GoodsReview_API.iml" />
       <module fileurl="file://$PROJECT_DIR$/analyzer/analyzer.iml" filepath="$PROJECT_DIR$/analyzer/analyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/src/core.iml" filepath="$PROJECT_DIR$/core/src/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/indexer/indexer.iml" filepath="$PROJECT_DIR$/indexer/indexer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/miner/miner.iml" filepath="$PROJECT_DIR$/miner/miner.iml" />
       <module fileurl="file://$PROJECT_DIR$/searcher/searcher.iml" filepath="$PROJECT_DIR$/searcher/searcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/storage/storage.iml" filepath="$PROJECT_DIR$/storage/storage.iml" />
     </modules>
