@@ -8,14 +8,17 @@ import ru.common.FileUtil;
 import ru.common.Serializer;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.exception.DeleteException;
-import ru.goodsReview.miner.beans.CategoryConfig;
+import ru.goodsReview.miner.CategoryConfig;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.xpath.XPathExpression;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -81,11 +84,9 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
             log.error("Error while creating the Unmarshaller");
         }
         try{
-        FileReader xmlConfigFile = new FileReader(pathToConfigXml);
-            categoryConfig = (CategoryConfig) unmarshaller.unmarshal(xmlConfigFile);
-        }catch (FileNotFoundException e){
-            log.error("Incorrect path to configuration xml file");
-        } catch (JAXBException e) {
+        StreamSource xmlConfigFile = new StreamSource(pathToConfigXml);
+            categoryConfig = (CategoryConfig)(( JAXBElement ) unmarshaller.unmarshal(xmlConfigFile, CategoryConfig.class)).getValue();
+        }catch (JAXBException e) {
             log.error("Error in unmarshal method");
         }
 
