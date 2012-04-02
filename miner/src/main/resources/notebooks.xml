@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<categoryConfig>
-    <category>computers_and_notebooks/notebooks/</category>
-    <nameRegexp>\"\\s(.+?),</nameRegexp>
-</categoryConfig>

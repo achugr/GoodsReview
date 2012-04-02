@@ -1,7 +1,5 @@
 package ru.goodsReview.miner;
 
-import ru.goodsReview.miner.beans.CategoryConfig;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
