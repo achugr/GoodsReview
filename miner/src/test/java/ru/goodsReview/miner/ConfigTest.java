@@ -1,14 +1,15 @@
 package ru.goodsReview.miner;
 
-import com.sun.jmx.remote.internal.Unmarshal;
-import com.sun.xml.internal.bind.v2.runtime.MarshallerImpl;
-import generated.CategoryConfig;
+import ru.goodsReview.miner.beans.CategoryConfig;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Artemij Chugreev
@@ -28,7 +29,7 @@ public class ConfigTest {
             CategoryConfig categoryConfig = new CategoryConfig();
             categoryConfig.setCategory("notebook");
             categoryConfig.setNameRegexp(".*");
-            OutputStream outputStream = new FileOutputStream("miner/src/main/resources/test.xml");
+            OutputStream outputStream = new FileOutputStream("miner/src/main/resources/notebooks.xml");
             m.marshal(categoryConfig, outputStream);
             outputStream.close();
         }
@@ -37,7 +38,7 @@ public class ConfigTest {
             JAXBContext jc = JAXBContext.newInstance(CategoryConfig.class);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
             CategoryConfig categoryConfig;
-            categoryConfig = (CategoryConfig) unmarshaller.unmarshal(new File("miner/src/main/resources/test.xml"));
+            categoryConfig = (CategoryConfig) unmarshaller.unmarshal(new File("miner/src/main/resources/notebooks.xml"));
             System.out.println(categoryConfig.getCategory() + " " + categoryConfig.getNameRegexp());
         }
     }

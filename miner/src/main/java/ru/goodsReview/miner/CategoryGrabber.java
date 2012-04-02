@@ -7,7 +7,6 @@ import ru.goodsReview.core.exception.DeleteException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.util.TimerTask;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +15,7 @@ import java.util.TimerTask;
  * Time: 23:45
  * To change this template use File | Settings | File Templates.
  */
-public abstract class CategoryGrabber extends TimerTask{
+public abstract class CategoryGrabber implements Runnable {
     private static final Logger log = Logger.getLogger(CategoryGrabber.class);
 
     protected abstract void init();

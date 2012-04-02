@@ -15,14 +15,14 @@ public class GrabberCitilink extends WebHarvestGrabber{
     private static final Logger log = Logger.getLogger(GrabberCitilink.class);
     private List<CitilinkCategoryGrabber> citilinkCategoryGrabbers = new ArrayList<CitilinkCategoryGrabber>();
 
-    public void init() {
+    public void addCategories() {
         citilinkCategoryGrabbers.add(
-                new CitilinkCategoryGrabber(getPath(),"/miner/src/main/resources/notebooks.xml",
+                new CitilinkCategoryGrabber(getPath(),"./miner/src/main/resources/notebooks.xml",
                         getGrabberConfig(),getDownloadConfig(),controllerFactory )
         );
 
         citilinkCategoryGrabbers.add(
-                new CitilinkCategoryGrabber(getPath(),"/miner/src/main/resources/tvs.xml",
+                new CitilinkCategoryGrabber(getPath(),"./miner/src/main/resources/tvs.xml",
                         getGrabberConfig(),getDownloadConfig(),controllerFactory )
         );
     }
@@ -31,8 +31,11 @@ public class GrabberCitilink extends WebHarvestGrabber{
     public void run() {
         try {
             log.info("Run started");
+            addCategories();
             for(CitilinkCategoryGrabber ccg : citilinkCategoryGrabbers){
-                    ccg.run();
+                Thread thread = new Thread(ccg);
+                thread.start();
+                thread.join();
             }
             log.info("Run successful");
         } catch (Exception e) {
