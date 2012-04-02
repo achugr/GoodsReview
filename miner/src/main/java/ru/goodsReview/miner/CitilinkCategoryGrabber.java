@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -67,13 +68,27 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
 
     private CategoryConfig getCategoryConfig(String pathToConfigXml) {
         CategoryConfig categoryConfig = null;
+        JAXBContext jc = null;
         try{
-            JAXBContext jc = JAXBContext.newInstance(CategoryConfig.class);
-            Unmarshaller unmarshaller = jc.createUnmarshaller();
-            categoryConfig = (CategoryConfig) unmarshaller.unmarshal(new File(pathToConfigXml));
+             jc = JAXBContext.newInstance(CategoryConfig.class);
         }catch(JAXBException e){
-            log.error("Incorrect path to configuration xml file");
+            log.error("Error in JAXBContent");
         }
+        Unmarshaller unmarshaller = null;
+        try {
+            unmarshaller = jc.createUnmarshaller();
+        } catch (JAXBException e) {
+            log.error("Error while creating the Unmarshaller");
+        }
+        try{
+        FileReader xmlConfigFile = new FileReader(pathToConfigXml);
+            categoryConfig = (CategoryConfig) unmarshaller.unmarshal(xmlConfigFile);
+        }catch (FileNotFoundException e){
+            log.error("Incorrect path to configuration xml file");
+        } catch (JAXBException e) {
+            log.error("Error in unmarshal method");
+        }
+
         return categoryConfig;
     }
 

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.controller.ThesisController;
 import ru.goodsReview.core.model.Thesis;
-import ru.goodsReview.core.utils.HashMap;
+import ru.goodsReview.core.utils.HashMapUtil;
 
 import java.io.*;
 import java.net.URL;
@@ -78,7 +78,7 @@ public class YaSearcher extends TimerTask {
 
 
     private static void thesisStatistic(java.util.HashMap thesisPopularity, String fileName){
-        java.util.HashMap sortedThesisPopularity = HashMap.sort(thesisPopularity);
+        java.util.HashMap sortedThesisPopularity = HashMapUtil.sort(thesisPopularity);
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(fileName);

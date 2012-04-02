@@ -1,11 +1,9 @@
 package ru.goodsReview.miner;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-
-import javax.sql.DataSource;
-
 import ru.goodsReview.miner.utils.ReviewFileWriter;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
