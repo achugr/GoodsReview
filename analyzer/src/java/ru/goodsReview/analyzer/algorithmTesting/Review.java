@@ -9,7 +9,7 @@ package ru.goodsReview.analyzer.algorithmTesting;
  */
 import java.util.ArrayList;
 
-public class Review implements Cloneable{
+public class Review{
    private String review;
    private ArrayList<Thesis> thesis;
 
@@ -26,6 +26,7 @@ public class Review implements Cloneable{
         return thesis;
     }
 
+    /*
     public Object clone() {
         Review newObject = null;
         try {
@@ -38,11 +39,10 @@ public class Review implements Cloneable{
             newObject.thesis =   t;
 
         } catch (CloneNotSupportedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return newObject;
-    }
+    }   */
 
 }

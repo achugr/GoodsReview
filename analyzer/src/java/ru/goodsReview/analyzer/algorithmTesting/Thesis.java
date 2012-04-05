@@ -9,7 +9,7 @@ package ru.goodsReview.analyzer.algorithmTesting;
  * Ilya Makeev
  * ilya.makeev@gmail.com
  */
-public class Thesis implements Cloneable{
+public class Thesis{
     private String thesis;
     private String part2;
 
@@ -31,6 +31,7 @@ public class Thesis implements Cloneable{
         return part2;
     }
 
+     /*
     public Object clone() {
         Thesis newObject = null;
         try {
@@ -39,11 +40,11 @@ public class Thesis implements Cloneable{
             newObject.part2 =   this.part2;
 
         } catch (CloneNotSupportedException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
 
         return newObject;
-    }
+    }  */
 
 }

@@ -13,7 +13,6 @@ import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 public class ThesisExtractionTestDocument {
     private static double successExtract = 0;
@@ -42,12 +41,14 @@ public class ThesisExtractionTestDocument {
 
             if (s.contains("<product id=")) {
                 if (!productID.equals("-1")) {
-                    reviewsList.add(new Review(reviewID, (ArrayList<Thesis>) thesisList.clone()));
-                    thesisList.clear();
+                    Review newReview = new Review(reviewID, thesisList);
+                    reviewsList.add(newReview);
+                    thesisList = new ArrayList<Thesis>();
                     reviewID = "-1";
 
-                    ProductList.add(new Product(productID, (ArrayList<Review>) reviewsList.clone()));
-                    reviewsList.clear();
+                    Product newProduct = new Product(productID, reviewsList);
+                    ProductList.add(newProduct);
+                    reviewsList = new ArrayList<Review>();
                 }
                 String s1 = s.substring(0, s.indexOf("name="));
                 productID = s.substring(s1.indexOf("\"") + 1, s1.lastIndexOf("\""));
@@ -57,8 +58,9 @@ public class ThesisExtractionTestDocument {
                 if (s.contains("<review")) {
                     reviewOpen = true;
                     if (!reviewID.equals("-1")) {
-                        reviewsList.add(new Review(reviewID, (ArrayList<Thesis>) thesisList.clone()));
-                        thesisList.clear();
+                        Review newReview = new Review(reviewID, thesisList);
+                        reviewsList.add(newReview);
+                        thesisList = new ArrayList<Thesis>();
                     }
                     reviewID = s.substring(s.indexOf("\"") + 1, s.lastIndexOf("\""));
                 }
@@ -66,7 +68,7 @@ public class ThesisExtractionTestDocument {
                 if (s.contains("</review>")) {
                     reviewOpen = false;
                     if(sentenceBuff.length()!=0){
-                        fillThesisList(sentenceBuff.toString(), thesisList);
+                        addToThesisList(sentenceBuff.toString(), thesisList);
                         sentenceBuff.delete(0, sentenceBuff.length());
                     }
                 }
@@ -78,7 +80,7 @@ public class ThesisExtractionTestDocument {
                             sentenceBuff.append(s.trim());
                         } else {
                             String sentBuff = sentenceBuff.toString();
-                            fillThesisList(sentBuff, thesisList);
+                            addToThesisList(sentBuff, thesisList);
 
                             sentenceBuff.delete(0, sentenceBuff.length());
                             sentenceBuff.append(s.trim());
@@ -100,7 +102,7 @@ public class ThesisExtractionTestDocument {
         return ProductList;
     }
     
-    static void fillThesisList (String s, ArrayList<Thesis> thesisList){
+    static void addToThesisList(String s, ArrayList<Thesis> thesisList){
         String t = s.substring(0, s.indexOf("##")).trim();
         String sentence = s.substring(s.indexOf("##")+2).trim();
 
@@ -155,12 +157,14 @@ public class ThesisExtractionTestDocument {
 
             if (s.contains("<product id=")) {
                 if (!productID.equals("-1")) {
-                    reviewsList.add(new Review(reviewID, (ArrayList<Thesis>) thesisList.clone()));
-                    thesisList.clear();
+                    Review newReview = new Review(reviewID, thesisList);
+                    reviewsList.add(newReview);
+                    thesisList = new ArrayList<Thesis>();
                     reviewID = "-1";
 
-                    ProductList.add(new Product(productID, (ArrayList<Review>) reviewsList.clone()));
-                    reviewsList.clear();
+                    Product newProduct = new Product(productID, reviewsList);
+                    ProductList.add(newProduct);
+                    reviewsList = new ArrayList<Review>();
                 }
                 String s1 = s.substring(0, s.indexOf("name="));
                 productID = s.substring(s1.indexOf("\"") + 1, s1.lastIndexOf("\""));
@@ -172,8 +176,9 @@ public class ThesisExtractionTestDocument {
                 if (s.contains("<review")) {  
                     reviewOpen = true;
                     if (!reviewID.equals("-1")) {
-                        reviewsList.add(new Review(reviewID, (ArrayList<Thesis>) thesisList.clone()));
-                        thesisList.clear();
+                        Review newReview = new Review(reviewID, thesisList);
+                        reviewsList.add(newReview);
+                        thesisList = new ArrayList<Thesis>();
                     }
                     reviewID = s.substring(s.indexOf("\"") + 1, s.lastIndexOf("\""));
                 }
@@ -298,17 +303,17 @@ public class ThesisExtractionTestDocument {
                 numHum += humThesis.size();
 
                 for (int i = 0; i < humThesis.size(); i++) {
-                    String hThesis = humThesis.get(i).getThesis();
+                    String humFeature = humThesis.get(i).getThesis();
                     String sentence = humThesis.get(i).getPart2();
                     // System.out.println("   "+hThesis+" "+sentence);
                     for (int j = 0; j < algoThesis.size(); j++) {
-                        String alThesis = algoThesis.get(j).getThesis();
+                        String algoFeature = algoThesis.get(j).getThesis();
                         String opinion = algoThesis.get(j).getPart2();
                         // System.out.println(alThesis+" "+opinion);
 
-                        if (editDist(hThesis, alThesis) < editDist) {
-                            if (contains(sentence, alThesis) && contains(sentence, opinion)) {
-                                out.println("      <OK>" + hThesis + "</OK>");
+                        if (editDist(humFeature, algoFeature) < editDist) {
+                            if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
+                                out.println("      <OK>" + humFeature + "</OK>");
                                // System.out.println(alThesis+" "+opinion+" ## "+sentence);
                                 successExtract++;
                                 break;
@@ -320,41 +325,41 @@ public class ThesisExtractionTestDocument {
 
                 for (int i = 0; i < algoThesis.size(); i++) {
                     boolean t = false;
-                    String alThesis = algoThesis.get(i).getThesis();
+                    String algoFeature = algoThesis.get(i).getThesis();
                     String opinion = algoThesis.get(i).getPart2();
                     for (int j = 0; j < humThesis.size(); j++) {
-                        String hThesis = humThesis.get(j).getThesis();
+                        String humFeature = humThesis.get(j).getThesis();
                         String sentence = humThesis.get(j).getPart2();
-                        if (editDist(hThesis, alThesis) < editDist) {
-                            if (contains(sentence, alThesis) && contains(sentence, opinion)) {
+                        if (editDist(humFeature, algoFeature) < editDist) {
+                            if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
                             }
                         }
                     }
                     if (t == false) {
-                        out.println("      <algo>" + alThesis + "</algo>");
+                        out.println("      <algo>" + algoFeature + "</algo>");
                     }
                 }
 
                 for (int i = 0; i < humThesis.size(); i++) {
                     boolean t = false;
-                    String hThesis = humThesis.get(i).getThesis();
+                    String humFeature = humThesis.get(i).getThesis();
                     String sentence = humThesis.get(i).getPart2();
                     
                     for (int j = 0; j < algoThesis.size(); j++) {
-                        String alThesis = algoThesis.get(j).getThesis();
+                        String algoFeature = algoThesis.get(j).getThesis();
                         String opinion = algoThesis.get(j).getPart2();
 
-                        if (editDist(hThesis, alThesis) < editDist) {
-                            if (contains(sentence, alThesis) && contains(sentence, opinion)) {
+                        if (editDist(humFeature, algoFeature) < editDist) {
+                            if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
                             }
                         }
                     }
                     if (t == false) {
-                        out.println("      <hum>" + hThesis + "</hum>");
+                        out.println("      <hum>" + humFeature + "</hum>");
                     }
                 }
                 //out.println("   </review>");
@@ -444,21 +449,16 @@ public class ThesisExtractionTestDocument {
      compare(algoProThesis, humProThesis, "result.txt");
 
 
-        System.out.println("successExtract = "+successExtract);
-        System.out.println("numAlgo = "+numAlgo);
-        System.out.println("numHum = "+numHum);
+        System.out.println("successExtract = " + successExtract);
+        System.out.println("numAlgo = " + numAlgo);
+        System.out.println("numHum = " + numHum);
 
-        if(numAlgo!=0){
-            System.out.println("precision = "+successExtract/numAlgo);
+        if (numAlgo != 0) {
+            System.out.println("precision = " + successExtract / numAlgo);
         }
-         if(numHum!=0){
-             System.out.print("recall= "+successExtract/numHum);
-         }
-
-
-
-
-
+        if (numHum != 0) {
+            System.out.print("recall = " + successExtract / numHum);
+        }
     }
 }
 
