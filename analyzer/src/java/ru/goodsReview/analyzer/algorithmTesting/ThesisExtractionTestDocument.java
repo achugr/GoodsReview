@@ -115,7 +115,7 @@ public class ThesisExtractionTestDocument {
                     if(s1.contains("[")){
                         s1 = splitBracket(s1);
                         if (!s1.equals("")&&!thesisList.contains(s1)) {
-                            thesisList.add(new Thesis(s1, sentence));
+                            thesisList.add(new Thesis(s1.trim(), sentence));
                         }
                     }
 
@@ -123,7 +123,7 @@ public class ThesisExtractionTestDocument {
             } else {
                 t = splitBracket(t);
                 if(!t.equals("")){
-                    thesisList.add(new Thesis(t, sentence));
+                    thesisList.add(new Thesis(t.trim(), sentence));
                 }
             }
         }
