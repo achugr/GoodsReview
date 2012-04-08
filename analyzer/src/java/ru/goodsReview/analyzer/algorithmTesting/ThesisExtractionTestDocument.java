@@ -338,7 +338,7 @@ public class ThesisExtractionTestDocument {
                         }
                     }
                     if (t == false) {
-                        out.println("      <algo>" + algoFeature + "</algo>");
+                        out.println("      <algo>" + algoFeature + " "+opinion+"</algo>");
                     }
                 }
 
@@ -379,6 +379,7 @@ public class ThesisExtractionTestDocument {
         return false;  */
         sentence = sentence.toLowerCase();
         s = s.toLowerCase();
+
         return sentence.contains(s);
     }
 
@@ -418,7 +419,7 @@ public class ThesisExtractionTestDocument {
     public static void main(String[] args) throws IOException, InterruptedException {
        ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
-        /**/
+        /*
         for (Product p:algoProThesis){
             System.out.println("Product_Id = "+p.getId());
             for (Review r:p.getReviews()){
@@ -430,7 +431,7 @@ public class ThesisExtractionTestDocument {
                 }
             }
 
-        }
+        }*/
 
        ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
