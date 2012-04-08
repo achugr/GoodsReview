@@ -9,6 +9,7 @@ package ru.goodsReview.analyzer.wordAnalyzer;
 
 import org.apache.log4j.Logger;
 import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
+import ru.goodsReview.core.utils.OSValidator;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -30,7 +31,11 @@ public class MystemAnalyzer implements WordAnalyzer{
 
     public MystemAnalyzer() {
         try {
-            analyzer = Runtime.getRuntime().exec("./mystem -nig -e " + CHARSET);
+            String command="";
+            if(OSValidator.isUnix()){
+                command = "./";
+            }
+            analyzer = Runtime.getRuntime().exec(command + "mystem -nig -e " + CHARSET);
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if mystem is installed", e);
 //            throw new IOException();
