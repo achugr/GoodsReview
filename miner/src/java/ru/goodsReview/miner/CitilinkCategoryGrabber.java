@@ -106,11 +106,11 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
     public void updateList() {
         try {
             log.info("Update list started");
-            File linksFile = new File(latterLinksPath);
-            linksFile.createNewFile();
+            //File linksFile = new File(latterLinksPath);
+            //linksFile.createNewFile();
 
             ScraperConfiguration config = new ScraperConfiguration(downloadConfig);
-            Scraper scraper = new Scraper(config, "");
+            Scraper scraper = new Scraper(config, "./");
 
             scraper.addVariableToContext("category", categoryConfig.getCategory());
             scraper.addVariableToContext("file", latterLinksPath);
@@ -124,7 +124,7 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         }
     }
 
-    //TODO: use RandomAcessFile and update lines with old product, but new reviews
+    //TODO: use RandomAccessFile and update lines with old product, but new reviews
     public void downloadPages() {
         try {
             log.info("Adding download pages started");
@@ -185,8 +185,8 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
     public void grabPages() throws FileNotFoundException {
         log.info("Grabbing started");
         ScraperConfiguration config = new ScraperConfiguration(grabberConfig);
-        Scraper scraper = new Scraper(config, "");
-        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(controllerFactory, categoryConfig.getNameRegexp()));
+        Scraper scraper = new Scraper(config, "./");
+        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(controllerFactory, categoryConfig.getRegExp()));
         scraper.addVariableToContext("path", pagesPath);
         scraper.addVariableToContext("numberOfFirstReview", 0);
 

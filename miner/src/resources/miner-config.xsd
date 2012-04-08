@@ -2,9 +2,19 @@
     
     <xsd:complexType name="categoryConfig">
         <xsd:sequence>
-            <xsd:element name="category" type="xsd:string"/> 
-            <xsd:element name="nameRegexp" type="xsd:string"/>
+            <xsd:element name="category" type="xsd:string"/>
+            <xsd:element name="regExp">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="expression" type="xsd:string"/>
+                        <xsd:element name="groups" type="groupList"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
+    <xsd:simpleType name="groupList">
+        <xsd:list itemType="xsd:int"></xsd:list>
+    </xsd:simpleType>
 </xsd:schema>
