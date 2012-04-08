@@ -117,7 +117,14 @@
         <option value="D:/Studing/GoodsReview/helloworld-1.12/pom.xml" />
         <option value="$PROJECT_DIR$/helloworld-1.12/pom.xml" />
         <option value="$PROJECT_DIR$/miner/pom.xml" />
+        <option value="$PROJECT_DIR$/miner/pom.xml" />
+        <option value="$PROJECT_DIR$/miner/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/miner/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="Palette2">

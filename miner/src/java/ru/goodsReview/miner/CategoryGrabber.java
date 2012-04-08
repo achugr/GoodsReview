@@ -1,27 +1,22 @@
-/*
- *  Date: 11/11/11
- *   Time: 15:01
- *   Author:
- *      Artemij Chugreev
- *      artemij.chugreev@gmail.com
- */
-
 package ru.goodsReview.miner;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
 import org.xml.sax.SAXException;
 import ru.goodsReview.core.exception.DeleteException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import java.io.*;
+import java.io.IOException;
 
-public abstract class WebHarvestGrabber extends Grabber {
-    private static final Logger log = Logger.getLogger(WebHarvestGrabber.class);
-    private String downloadConfig;
-    private String grabberConfig;
-    private String path;
+/**
+ * Created by IntelliJ IDEA.
+ * User: timur
+ * Date: 01.04.12
+ * Time: 23:45
+ * To change this template use File | Settings | File Templates.
+ */
+public abstract class CategoryGrabber implements Runnable {
+    private static final Logger log = Logger.getLogger(CategoryGrabber.class);
 
     protected abstract void init();
 
@@ -36,34 +31,6 @@ public abstract class WebHarvestGrabber extends Grabber {
     protected abstract void cleanFolders() throws DeleteException;
 
     protected abstract void createFolders() throws IOException;
-
-    @Required
-    public void setDownloadConfig(String downloadConfig) {
-        this.downloadConfig = downloadConfig;
-    }
-
-    @Required
-    public void setGrabberConfig(String grabberConfig) {
-        this.grabberConfig = grabberConfig;
-    }
-
-    @Required
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    protected String getDownloadConfig() {
-        return downloadConfig;
-    }
-
-    protected String getGrabberConfig() {
-        return grabberConfig;
-    }
-
-    protected String getPath() {
-        return path;
-    }
-
 
     /**
      * Download new pages. This method need ethernet connection. DDos sites.
@@ -82,10 +49,9 @@ public abstract class WebHarvestGrabber extends Grabber {
     public void grabber() throws IOException {
         grabPages();
     }
-
-    @Override
-    public void run() {
-        try {
+    
+    public void run(){
+        try{
             log.info("Run started");
             init();
             downloader();
@@ -94,7 +60,6 @@ public abstract class WebHarvestGrabber extends Grabber {
             thread.start();
             thread.join();
             grabber();
-
             log.info("Run successful");
         } catch (Exception e) {
             log.error("Cannot process run", e);

@@ -54,23 +54,23 @@ public class ExtractThesis extends TimerTask{
      * @param review Review with theses had to be extracted.
      * @return List of theses.
      */
-    public static List<Thesis> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
-        List<Thesis> extractedThesisList = new ArrayList<Thesis>();
-        String content = review.getContent();
+//    public static List<Thesis> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
+//        List<Thesis> extractedThesisList = new ArrayList<Thesis>();
+//        String content = review.getContent();
+//
+//        ArrayList<String> listThesis = doExtraction(content, mystemAnalyzer);
+//
+//        for (String str:listThesis){
+//            int div = str.indexOf("##");
+//            String token1 = str.substring(0, div).trim();
+//            String token2 = str.substring(div + 2).trim();
+//            extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
+//        }
+//
+//        return extractedThesisList;
+//    }
 
-        ArrayList<String> listThesis = doExtraction(content, mystemAnalyzer);
 
-        for (String str:listThesis){
-            int div = str.indexOf("##");
-            String token1 = str.substring(0, div).trim();
-            String token2 = str.substring(div + 2).trim();
-            extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
-        }
-
-        return extractedThesisList;
-    }
-
-    /*
     public static List<Thesis> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
         String content = review.getContent();
@@ -102,7 +102,7 @@ public class ExtractThesis extends TimerTask{
         }
 
         return extractedThesisList;
-    }  */
+    }
 
 
 

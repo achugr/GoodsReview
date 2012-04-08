@@ -7,17 +7,26 @@ package ru.goodsReview.analyzer.util;
  *      artemij.chugreev@gmail.com
  */
 
-import java.util.HashMap;
-import java.util.StringTokenizer;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import ru.goodsReview.core.utils.HashMapUtil;
+
+import javax.xml.xpath.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.*;
 
 public class FrequencyDictionary {
 
     /**
      * add word to frequency dictionary
+     *
      * @param dictionary
      * @param word
      */
-    public static void addWord(final HashMap<String, Integer> dictionary, final String word) {
+    public static void addWord(final Map<String, Integer> dictionary, final String word) {
         if (dictionary.containsKey(word)) {
             Integer val = dictionary.get(word);
             val++;
@@ -29,6 +38,7 @@ public class FrequencyDictionary {
 
     /**
      * crate frequency dictionary from string argument
+     *
      * @param str
      * @return
      */

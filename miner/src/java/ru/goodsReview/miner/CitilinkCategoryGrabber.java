@@ -1,9 +1,3 @@
-/*
-    Date: 10/26/11
-    Time: 06:19
-    Author: Alexander Marchuk
-            aamarchuk@gmail.com
-*/
 package ru.goodsReview.miner;
 
 import org.apache.log4j.Logger;
@@ -12,57 +6,111 @@ import org.webharvest.runtime.Scraper;
 import org.xml.sax.SAXException;
 import ru.common.FileUtil;
 import ru.common.Serializer;
+import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.exception.DeleteException;
+import ru.goodsReview.miner.CategoryConfig;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import java.io.*;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.xpath.XPathExpression;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
-public class GrabberCitilink extends WebHarvestGrabber {
-    private static final Logger log = Logger.getLogger(GrabberCitilink.class);
+/**
+ * Created by IntelliJ IDEA.
+ * User: timur
+ * Date: 01.04.12
+ * Time: 21:28
+ * To change this template use File | Settings | File Templates.
+ */
+public class CitilinkCategoryGrabber extends CategoryGrabber{
+    private static final Logger log = Logger.getLogger(CitilinkCategoryGrabber.class);
     private static final String site = "http://www.citilink.ru";
     private static final String encoding = "windows-1251";
-    private static final String notebooksPath = "notebooks/";
-    private static final String compactphotoPath = "compactphoto/";
-    private static final String tvPath = "tv/";
 
+    private String path;
+    private CategoryConfig categoryConfig;
+    private String downloadConfig;
+    private String grabberConfig;
+    protected ControllerFactory controllerFactory;
+    
     private String pagesPath;
     private String descriptionPath;
     private String listPath;
+    
     private String allLinksPath;
     private String newLinksPath;
-
     private String latterLinksPath;
 
-    public void init() {
-        pagesPath = getPath() + "reviews/" + tvPath;
-        descriptionPath = getPath() + "descriptions/" + tvPath;
-        listPath = getPath() + "list/";
+    public CitilinkCategoryGrabber(String path, String pathToXml, String downloadConfig, String grabberConfig, ControllerFactory controllerFactory ){
+        this.path = path;
+        categoryConfig = getCategoryConfig(pathToXml);
+        this.downloadConfig = downloadConfig;
+        this.grabberConfig = grabberConfig;
+        this.controllerFactory = controllerFactory;
+    }
+    
+    @Override
+    protected void init() {
+        pagesPath = path + categoryConfig.getCategory() + "reviews/";
+        descriptionPath = path + categoryConfig.getCategory() + "descriptions/";
+        listPath = path + categoryConfig.getCategory() + "list/";
         allLinksPath = listPath + "allLinks.xml";
         newLinksPath = listPath + "newLinks.xml";
         latterLinksPath = listPath + "latterLinks.xml";
     }
 
-    protected void cleanFolders() throws DeleteException {
+    private CategoryConfig getCategoryConfig(String pathToConfigXml) {
+        CategoryConfig categoryConfig = null;
+        JAXBContext jc = null;
+        try{
+             jc = JAXBContext.newInstance(CategoryConfig.class);
+        }catch(JAXBException e){
+            log.error("Error in JAXBContent");
+        }
+        Unmarshaller unmarshaller = null;
+        try {
+            unmarshaller = jc.createUnmarshaller();
+        } catch (JAXBException e) {
+            log.error("Error while creating the Unmarshaller");
+        }
+        try{
+        StreamSource xmlConfigFile = new StreamSource(pathToConfigXml);
+            categoryConfig = (CategoryConfig)(( JAXBElement ) unmarshaller.unmarshal(xmlConfigFile, CategoryConfig.class)).getValue();
+        }catch (JAXBException e) {
+            log.error("Error in unmarshal method");
+        }
+
+        return categoryConfig;
+    }
+
+    public void cleanFolders() throws DeleteException {
         FileUtil.cleanFolder(new File(pagesPath));
         FileUtil.cleanFolder(new File(descriptionPath));
     }
 
-    protected void createFolders() throws IOException {
+    public void createFolders() throws IOException {
         new File(pagesPath).mkdirs();
         new File(descriptionPath).mkdirs();
         new File(listPath).mkdirs();
     }
 
-    @Override
     public void updateList() {
         try {
             log.info("Update list started");
-            ScraperConfiguration config = new ScraperConfiguration(getDownloadConfig());
+            ScraperConfiguration config = new ScraperConfiguration(downloadConfig);
             Scraper scraper = new Scraper(config, "");
-            scraper.addVariableToContext("path", getPath());
+
+            scraper.addVariableToContext("category", categoryConfig.getCategory());
             scraper.addVariableToContext("filePath", latterLinksPath);
             scraper.setDebug(true);
             scraper.execute();
@@ -72,7 +120,6 @@ public class GrabberCitilink extends WebHarvestGrabber {
         }
     }
 
-    @Override
     //TODO: use RandomAcessFile and update lines with old product, but new reviews
     public void downloadPages() {
         try {
@@ -104,7 +151,6 @@ public class GrabberCitilink extends WebHarvestGrabber {
         }
     }
 
-    @Override
     //TODO:: not add, if review number changes, only update
     public void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException {
         log.info("Find pages started");
@@ -132,14 +178,14 @@ public class GrabberCitilink extends WebHarvestGrabber {
         log.info("Find pages successful");
     }
 
-    @Override
     public void grabPages() throws FileNotFoundException {
         log.info("Grabbing started");
-        ScraperConfiguration config = new ScraperConfiguration(getGrabberConfig());
+        ScraperConfiguration config = new ScraperConfiguration(grabberConfig);
         Scraper scraper = new Scraper(config, "");
-        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(controllerFactory));
+        scraper.addRuntimeListener(new CitilinkNotebooksScraperRuntimeListener(controllerFactory, categoryConfig.getNameRegexp()));
         scraper.addVariableToContext("path", pagesPath);
         scraper.addVariableToContext("numberOfFirstReview", 0);
+
         scraper.setDebug(true);
         scraper.execute();
         log.info("Grabbing ended successful");

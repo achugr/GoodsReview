@@ -10,7 +10,6 @@ package ru.goodsReview.analyzer.algorithmTesting;
 import java.util.ArrayList;
 
 public class Product {
-    //private String name;
     private String id;
     private ArrayList<Review> reviews;
 

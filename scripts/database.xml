@@ -7,7 +7,6 @@
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
     <!--Factory-->
-    <!--<bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory"/>    -->
 
     <bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory">
         <property name="categoryController" ref="categoryDbController"/>
@@ -19,6 +18,7 @@
     </bean>
 
     <!--Database-->
+
     <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" lazy-init="false">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
