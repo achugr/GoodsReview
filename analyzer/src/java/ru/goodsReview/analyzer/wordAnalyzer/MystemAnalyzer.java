@@ -180,9 +180,6 @@ public class MystemAnalyzer implements WordAnalyzer{
         return a;
     }
 
-    public String wordCase(String word) {
-        return null;
-    }
 
     /**
      * method for determine part of speech of word by means of Mystem
