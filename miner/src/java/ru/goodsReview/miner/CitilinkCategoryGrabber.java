@@ -8,7 +8,6 @@ import ru.common.FileUtil;
 import ru.common.Serializer;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.exception.DeleteException;
-import ru.goodsReview.miner.CategoryConfig;
 import ru.goodsReview.miner.listener.CitilinkNotebooksScraperRuntimeListener;
 
 import javax.xml.bind.JAXBContext;
@@ -18,10 +17,8 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.xpath.XPathExpression;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -38,6 +35,7 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
     private static final String encoding = "windows-1251";
 
     private String path;
+    private String workingDir;
     private CategoryConfig categoryConfig;
     private String downloadConfig;
     private String grabberConfig;
@@ -61,9 +59,10 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
     
     @Override
     protected void init() {
-        pagesPath = path + categoryConfig.getCategory() + "reviews/";
-        descriptionPath = path + categoryConfig.getCategory() + "descriptions/";
-        listPath = path + categoryConfig.getCategory() + "list/";
+        workingDir = path + categoryConfig.getCategory();
+        pagesPath =  workingDir + "reviews/";
+        descriptionPath = workingDir + "descriptions/";
+        listPath = workingDir + "list/";
         allLinksPath = listPath + "allLinks.xml";
         newLinksPath = listPath + "newLinks.xml";
         latterLinksPath = listPath + "latterLinks.xml";
@@ -107,16 +106,21 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
     public void updateList() {
         try {
             log.info("Update list started");
+            File linksFile = new File(latterLinksPath);
+            linksFile.createNewFile();
+
             ScraperConfiguration config = new ScraperConfiguration(downloadConfig);
             Scraper scraper = new Scraper(config, "");
 
             scraper.addVariableToContext("category", categoryConfig.getCategory());
-            scraper.addVariableToContext("filePath", latterLinksPath);
+            scraper.addVariableToContext("file", latterLinksPath);
             scraper.setDebug(true);
             scraper.execute();
             log.info("Update list successful");
-        } catch (Exception e) {
-            log.error("Cannot process update list", e);
+        } catch (FileNotFoundException e) {
+            log.error("Cannot process update list: downloadConfig.xml doesn't exit", e);
+        } catch (IOException e) {
+            log.error("Cannot process update list: can't create latterLinks.xml", e);
         }
     }
 
