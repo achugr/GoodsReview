@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<categoryConfig>
+    <category>audio_and_digits/tv/</category>
+    <regExp>
+        <expression>(Плазменный\sтелевизор|LED-телевизор|Телевизор\sLED|Телевизор\sЖК)\s([A-Za-z]*?)\s?(\d+\.?\d+?")?\s([^А-Яа-яёЁ]+?)(\,|[А-Яа-яёЁ])</expression>
+        <groups>2 4</groups>
+    </regExp>
+</categoryConfig>

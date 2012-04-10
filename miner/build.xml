@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GoodsReview" default="all" basedir=".">
+
+    <!--внешние зависимости-->
+    <path id="libs">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <fileset dir="${dist.dir}" includes="**/*.jar"/>
+    </path>
+
+    <property name="src.miner.dir" location="${project.dir}/miner/src/java/"/>
+    <pathconvert pathsep=" " property="libs_manifest" refid="libs"/>
+    <!--classpath для jar-архива-->
+
+    <target name="all">
+
+        <!--class-файлы создаются в папку build/classes-->
+        <javac srcdir="${src.miner.dir}"
+               destdir="${build.dir}/classes"
+               debug="true"
+               deprecation="true"
+               optimize="false"
+               includeAntRuntime="false">
+            <classpath refid="libs"/>
+        </javac>
+
+        <!--собирается архив с классом, у которого есть метод main в папку dist-->
+        <jar destfile="${dist.dir}/miner.jar" basedir="${classes.dir}"
+             includes="ru/goodsReview/miner/**/*.* net/sf/xfresh/**/*.*">
+            <manifest>
+                <attribute name="Built-By" value="core: build.xml"/>
+                <!--<attribute name="Main-Class" value="Test"/>-->   <!--это класс который запускается при запуске джарника-->
+            </manifest>
+        </jar>
+
+        <echo>miner building complete</echo>
+    </target>
+
+</project>
+
