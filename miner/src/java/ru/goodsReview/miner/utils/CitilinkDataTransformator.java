@@ -2,7 +2,9 @@ package ru.goodsReview.miner.utils;
 
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.miner.CategoryConfig;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -136,11 +138,19 @@ public class CitilinkDataTransformator extends DataTransformator {
      * @param sourceProductInfo source info about product
      * @return relevant product name
      */
-    public static String getProductNameFromSourceProductInfo(String sourceProductInfo, String regExp) {
-        Pattern p = Pattern.compile(regExp);
+    public static String getProductNameFromSourceProductInfo(String sourceProductInfo, CategoryConfig.RegExp regExp) {
+        Pattern p = Pattern.compile(regExp.getExpression());
         Matcher m = p.matcher(sourceProductInfo);
         if (m.find()) {
-            return m.group(1);
+            List<Integer> groupList = regExp.getGroups();
+            StringBuilder name = new StringBuilder();
+            for(int i = 0; i < groupList.size(); i++){
+                name.append(m.group(groupList.get(i)));
+                if(i < groupList.size()-1){
+                    name.append(" ");
+                }
+            }
+            return name.toString().trim();
         }
         return sourceProductInfo;
     }
@@ -151,7 +161,7 @@ public class CitilinkDataTransformator extends DataTransformator {
      * @param sourceProductInfo String source info
      * @return Product, in which fields "name" and "categoryId" are relevant
      */
-    public Product createProductModelFromSource(String sourceProductInfo, String regExp) {
+    public Product createProductModelFromSource(String sourceProductInfo, CategoryConfig.RegExp regExp) {
         String productName;
         long categoryId;
         categoryId = getGategoryFromSourceProductInfo(sourceProductInfo);

@@ -16,6 +16,7 @@ import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
+import ru.goodsReview.miner.CategoryConfig;
 import ru.goodsReview.miner.utils.CitilinkDataTransformator;
 
 import java.util.ArrayList;
@@ -33,9 +34,9 @@ public class CitilinkNotebooksScraperRuntimeListener implements ScraperRuntimeLi
     private static long lastAddedProductId = 0;
 
     protected ControllerFactory controllerFactory;
-    private String regExp;
+    private CategoryConfig.RegExp regExp;
 
-    public CitilinkNotebooksScraperRuntimeListener(ControllerFactory controllerFactory, String regExp) {
+    public CitilinkNotebooksScraperRuntimeListener(ControllerFactory controllerFactory, CategoryConfig.RegExp regExp) {
         this.controllerFactory = controllerFactory;
         this.regExp = regExp;
     }
