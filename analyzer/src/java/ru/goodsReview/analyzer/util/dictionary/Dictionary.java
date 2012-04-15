@@ -59,7 +59,7 @@ public class Dictionary {
                // System.out.println("editDist("+word+","+str+") = "+edist);
             //    return  true;
            // }
-            if(word.contains(str)){
+            if(word.equals(str)){
                 return  true;
             }
 
