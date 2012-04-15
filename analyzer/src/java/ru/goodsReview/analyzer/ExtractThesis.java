@@ -22,6 +22,7 @@ import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
+import java.lang.String;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
