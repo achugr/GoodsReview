@@ -13,4 +13,4 @@ word = word.decode("utf-8").upper()
 
 info = morph.normalize(word)
 
-print info.pop()
+print info.pop().encode("utf-8")
