@@ -28,7 +28,7 @@ public class PyMorphyAnalyzer {
             if (OSValidator.isUnix()) {
                 command = "./";
             }
-            analyzer = Runtime.getRuntime().exec(command + "C:\\Python27\\python pyMorphy.py");
+            analyzer = Runtime.getRuntime().exec(command + "C:\\Python27\\python analyzeOneWord.py");
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if you have python and pyMorphy", e);
 //            throw new IOException();
@@ -112,12 +112,13 @@ public class PyMorphyAnalyzer {
 
         try {
             long start = System.currentTimeMillis();
-            for(int i=0; i<100; i++) {
+//            for(int i=0; i<100; i++) {
                 PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
                 System.out.println(pyMorphyAnalyzer.normalizeWord("бутявкам"));
-            }
+//            }
             long stop = System.currentTimeMillis();
             System.out.println("time in millis: " + (stop-start));
+            System.out.println(Integer.MAX_VALUE);
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (InterruptedException e) {
