@@ -28,7 +28,7 @@ public class PyMorphyAnalyzer {
             if (OSValidator.isUnix()) {
                 command = "./";
             }
-            analyzer = Runtime.getRuntime().exec(command + "C:\\Python27\\python pyMorphy.py");
+            analyzer = Runtime.getRuntime().exec(command + "C:\\Python27\\python analyzeOneWord.py");
         } catch (IOException e) {
             log.error("Caution! Analyzer wasn't created. Check if you have python and pyMorphy", e);
 //            throw new IOException();
@@ -55,7 +55,7 @@ public class PyMorphyAnalyzer {
         }
     }
 
-    private static boolean isRussianWord(String word) {
+    public static boolean isRussianWord(String word) {
         char[] wordChars = word.toCharArray();
         for (int i = 0, j = wordChars.length; i < j; i++) {
             if (!isRussianLetter(wordChars[i])) {
@@ -68,10 +68,10 @@ public class PyMorphyAnalyzer {
     public String normalizeWord(String word) throws IOException, InterruptedException {
         sc = new Scanner(analyzer.getInputStream(), CHARSET);
         ps = new PrintStream(analyzer.getOutputStream(), true, CHARSET);
-        if (!isRussianWord(word)) {
-            throw new IllegalArgumentException("Word must contain only russian letters");
-        }
-        ps.println(word);
+        //   if (!isRussianWord(word)) {
+        //      throw new IllegalArgumentException("Word must contain only russian letters");
+        //  }
+        //  ps.println(word);
 
 //        String normalizedWord = sc.nextLine();
 //        System.out.println(normalizedWord);
@@ -108,20 +108,29 @@ public class PyMorphyAnalyzer {
         return "";
     }
 
-    public static void main(String[] args) {
 
+
+    public static void main(String[] args) throws IOException {
+      //  System.out.println(getNormalizedWord("утята"));
+        PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
         try {
-            long start = System.currentTimeMillis();
-            for(int i=0; i<100; i++) {
-                PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
-                System.out.println(pyMorphyAnalyzer.normalizeWord("бутявкам"));
-            }
-            long stop = System.currentTimeMillis();
-            System.out.println("time in millis: " + (stop-start));
-        } catch (IOException e) {
+
+            //  long start = System.currentTimeMillis();
+
+            //  String priwet = new String(s);
+            //  byte[] utf8Bytes = priwet.getBytes("UTF8");
+            System.out.println(pyMorphyAnalyzer.normalizeWord("утята"));
+
+
+            //long stop = System.currentTimeMillis();
+            // System.out.println("time in millis: " + (stop-start));
+        } catch (IOException e) { System.out.println(1);
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) { System.out.println(1);
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            pyMorphyAnalyzer.close();
         }
+
     }
 }

@@ -418,7 +418,7 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println(PyMorphyAnalyzer.getNormalizedWord("кот"));
+       // System.out.println(PyMorphyAnalyzer.getNormalizedWord("кот"));
 
       ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 

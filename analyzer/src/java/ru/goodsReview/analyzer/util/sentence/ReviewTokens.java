@@ -7,6 +7,7 @@ package ru.goodsReview.analyzer.util.sentence;
  *      artemij.chugreev@gmail.com
  */
 
+
 import ru.goodsReview.analyzer.util.dictionary.Dictionary;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
@@ -54,7 +55,7 @@ public class ReviewTokens {
             if (PyMorphyAnalyzer.isRussianWord(currToken)) {
                 PartOfSpeech partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
                 if(partOfSpeech.equals(PartOfSpeech.ADJECTIVE)) {
-                    String normToken = PyMorphyAnalyzer.getNormalizedWord(currToken);
+                    String normToken = null;
                     if(opinionDictionary.contains(normToken)) {
                         token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
                         System.out.println(currToken+" "+normToken);
