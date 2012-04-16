@@ -6,7 +6,7 @@ build
 data
 miner/web
 *.txt
-*.xml
+/*.xml
 docs/*.html
 docs/ru
 docs/resources
