@@ -71,7 +71,7 @@ public class PyMorphyAnalyzer {
      //   if (!isRussianWord(word)) {
       //      throw new IllegalArgumentException("Word must contain only russian letters");
       //  }
-      //  ps.println(word);
+        ps.println(word);
 
 //        String normalizedWord = sc.nextLine();
 //        System.out.println(normalizedWord);
@@ -79,7 +79,6 @@ public class PyMorphyAnalyzer {
         BufferedReader stdInput = new BufferedReader(new
 
                 InputStreamReader(analyzer.getInputStream()));
-
 
 
         BufferedReader stdError = new BufferedReader(new
@@ -120,9 +119,7 @@ public class PyMorphyAnalyzer {
 
             //long stop = System.currentTimeMillis();
             // System.out.println("time in millis: " + (stop-start));
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
             pyMorphyAnalyzer.close();
