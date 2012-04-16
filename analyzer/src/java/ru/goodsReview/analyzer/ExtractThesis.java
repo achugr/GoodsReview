@@ -9,6 +9,7 @@ package ru.goodsReview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
+import ru.goodsReview.analyzer.algorithmTesting.Phrase;
 import ru.goodsReview.analyzer.util.ThesisPattern;
 import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
 import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
@@ -59,12 +60,11 @@ public class ExtractThesis extends TimerTask{
         List<Thesis> extractedThesisList = new ArrayList<Thesis>();
         String content = review.getContent();
 
-        ArrayList<String> listThesis = doExtraction(content, mystemAnalyzer);
+        ArrayList<Phrase> listThesis = doExtraction(content, mystemAnalyzer);
 
-        for (String str:listThesis){
-            int div = str.indexOf("##");
-            String token1 = str.substring(0, div).trim();
-            String token2 = str.substring(div + 2).trim();
+        for (Phrase phrase:listThesis){
+            String token1 =  phrase.getFeature();
+            String token2 =  phrase.getOpinionWorld();
             extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
         }
 
@@ -72,8 +72,8 @@ public class ExtractThesis extends TimerTask{
     }
 
 
-//    public static List<Thesis> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
-//        List<Thesis> extractedThesisList = new ArrayList<Thesis>();
+//    public static List<Phrase> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
+//        List<Phrase> extractedThesisList = new ArrayList<Phrase>();
 //        String content = review.getContent();
 //
 //        List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
@@ -95,7 +95,7 @@ public class ExtractThesis extends TimerTask{
 //                } else {
 //                    if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
 //                        String token2 = currToken.getContent();
-//                        extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
+//                        extractedThesisList.add(new Phrase(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
 //                        token1 = null;
 //                    }
 //                }
@@ -107,8 +107,8 @@ public class ExtractThesis extends TimerTask{
 
 
 
-    public static ArrayList<String> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
-        ArrayList<String> extractedThesisList = new ArrayList<String>();
+    public static ArrayList<Phrase> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
+        ArrayList<Phrase> extractedThesisList = new ArrayList<Phrase>();
 
         List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
@@ -136,7 +136,7 @@ public class ExtractThesis extends TimerTask{
         return extractedThesisList;
     }
 
-    static void nounAtFirstPositionExtraction(ArrayList<String> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
+    static void nounAtFirstPositionExtraction(ArrayList<Phrase> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
         String token1 = null;
         PartOfSpeech noun = pattern.getPattern().get(0);
         PartOfSpeech part2 = pattern.getPattern().get(1);
@@ -166,12 +166,12 @@ public class ExtractThesis extends TimerTask{
                         boolean con1 =  check(p1,p2);
                         boolean con2 =  check(num1,num2);
                         boolean con3 =  check(case1,case2);
-                        boolean sep1 = (con1&&con2)||
-                                (con1&&con3)||
-                                (con3&&con2) ;
+//                        boolean sep1 = (con1&&con2)||
+//                                (con1&&con3)||
+//                                (con3&&con2) ;
                         boolean sep2 = con1&&con2&&con3;
                         if(sep2) {
-                            extractedThesisList.add(token1+"##"+token2);
+                            extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
                     token1 = null;
@@ -180,7 +180,7 @@ public class ExtractThesis extends TimerTask{
         }
     }
 
-    static void nounAtSecondPositionExtraction(ArrayList<String> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
+    static void nounAtSecondPositionExtraction(ArrayList<Phrase> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
         String token1 = null;
         PartOfSpeech part2 = pattern.getPattern().get(0);
         PartOfSpeech noun = pattern.getPattern().get(1);
@@ -210,12 +210,12 @@ public class ExtractThesis extends TimerTask{
                         boolean con1 =  check(p1,p2);
                         boolean con2 =  check(num1,num2);
                         boolean con3 =  check(case1,case2);
-                        boolean sep1 = (con1&&con2)||
-                                (con1&&con3)||
-                                (con3&&con2) ;
+//                        boolean sep1 = (con1&&con2)||
+//                                (con1&&con3)||
+//                                (con3&&con2) ;
                         boolean sep2 = con1&&con2&&con3;
                         if(sep2) {
-                            extractedThesisList.add(token1+"##"+token2);
+                            extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
                     token1 = null;

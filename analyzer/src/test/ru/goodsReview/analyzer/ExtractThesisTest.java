@@ -33,7 +33,7 @@ public class ExtractThesisTest {
             long  time = System.currentTimeMillis();
             Review review = new Review(2, "ноутбук очень мощный, ну просто отличная клавиатура", "anonim", time, "", 1, null, 1.0, 1.0, 1,1);
             ExtractThesis extractThesis = new ExtractThesis();
-            List<Thesis> list =  extractThesis.doExtraction(review);
+            List<Phrase> list =  extractThesis.doExtraction(review);
             assertEquals("ноутбук мощный", list.get(0).getContent());
             assertEquals("клавиатура отличная", list.get(1).getContent());
         }
@@ -41,7 +41,7 @@ public class ExtractThesisTest {
             long  time = System.currentTimeMillis();
             Review review = new Review(2, "+отличный дизайн+четкая картинка+громкий и отличный звук", "anonim", time, "", 1, null, 1.0, 1.0, 1,1);
             ExtractThesis extractThesis = new ExtractThesis();
-            List<Thesis> list =  extractThesis.doExtraction(review);
+            List<Phrase> list =  extractThesis.doExtraction(review);
             assertEquals("дизайн отличный", list.get(0).getContent());
             assertEquals("картинка четкая", list.get(1).getContent());
             assertEquals("звук громкий", list.get(2).getContent());

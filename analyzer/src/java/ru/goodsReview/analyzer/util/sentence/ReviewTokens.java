@@ -26,10 +26,6 @@ public class ReviewTokens {
 
     private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt");
 
-//    private static MystemAnalyzer mystemAnalyzer =  new MystemAnalyzer();
-
-
-
     /**
      * create new ReviewTokens from review
      *
@@ -55,24 +51,23 @@ public class ReviewTokens {
             if (PyMorphyAnalyzer.isRussianWord(currToken)) {
                 PartOfSpeech partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
                 if(partOfSpeech.equals(PartOfSpeech.ADJECTIVE)) {
-                    String normToken = null;
+                    String normToken = PyMorphyAnalyzer.getNormalizedWord(currToken).toLowerCase();
+                   // System.out.println(normToken);
                     if(opinionDictionary.contains(normToken)) {
                         token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
-                        System.out.println(currToken+" "+normToken);
                     }else{
                         token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
                     }
                 } else{
                     token.setMystemPartOfSpeech(partOfSpeech);
                 }
-
             } else{
                 token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
             }
 
             tokensList.add(token);
           }
-//        mystemAnalyzer.close();
+
     }
 
     public ArrayList<Token>  getTokensList(){

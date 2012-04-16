@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Review{
    private String review;
-   private ArrayList<Thesis> thesis;
+   private ArrayList<Phrase> thesis;
 
-    public Review(String review, ArrayList<Thesis> thesis) {
+    public Review(String review, ArrayList<Phrase> thesis) {
         this.review = review;
         this.thesis = thesis;
     }
@@ -22,27 +22,8 @@ public class Review{
         return review;
     }
 
-    public ArrayList<Thesis> getThesis(){
+    public ArrayList<Phrase> getFeatures(){
         return thesis;
     }
-
-    /*
-    public Object clone() {
-        Review newObject = null;
-        try {
-            newObject = (Review) super.clone();
-            newObject.review =   this.review;
-            ArrayList<Thesis> t = new ArrayList<Thesis>();
-            for (int i = 0; i < this.thesis.size(); i++) {
-                t.add(this.thesis.get(i));
-            }
-            newObject.thesis =   t;
-
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-
-        return newObject;
-    }   */
 
 }

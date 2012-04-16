@@ -310,7 +310,7 @@ public class AnalyzeThesis extends TimerTask {
     public void run() {
         ProductController productDbController = controllerFactory.getProductController();
         List<Product> productList = productDbController.getAllProducts();
-        log.info("Thesis Analyzer begins work");
+        log.info("Phrase Analyzer begins work");
         for (Product product : productList) {
             log.info("Extracting thesis on " + product.getName());
             try {
@@ -319,7 +319,7 @@ public class AnalyzeThesis extends TimerTask {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
         }
-        log.info("Thesis Analyzer successful completed");
+        log.info("Phrase Analyzer successful completed");
     }
 
 }

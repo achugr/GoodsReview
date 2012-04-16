@@ -7,12 +7,8 @@ package ru.goodsReview.analyzer.util.dictionary;
  *      artemij.chugreev@gmail.com
  */
 
-import ru.goodsReview.analyzer.algorithmTesting.ThesisExtractionTestDocument;
-
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class Dictionary {
     private HashSet<String> words;
@@ -20,20 +16,28 @@ public class Dictionary {
     public Dictionary(HashSet<String> words) {
         this.words = words;
     }
-    
+
     public Dictionary(String dictionaryFileName){
         this.words = new HashSet<String>();
+
         try {
-            Scanner scanner = new Scanner(new File(dictionaryFileName));
-            while (scanner.hasNext()){
-                String next = scanner.next();
-                if(next.charAt(0)=='﻿') {
-                    next = next.substring(1);
+            FileInputStream fis1 = new FileInputStream(dictionaryFileName);
+            InputStreamReader isr1 = new InputStreamReader(fis1, "windows-1251");
+            BufferedReader in = new BufferedReader(isr1);
+
+            String s = in.readLine();
+            while (s!=null){
+                if(s.charAt(0)=='﻿') {
+                    s = s.substring(1);
                 }
-                words.add(next);
-               // words.add("не"+next);
+                words.add(s);
+                s = in.readLine();
             }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
@@ -51,24 +55,10 @@ public class Dictionary {
      * @return true if word is here. false — otherwise
      */
     public boolean contains(String word){
-       // return words.contains(word);
-        for(String str: words){
-            str = str.trim();
-          //  int edist = ThesisExtractionTestDocument.editDist(word, str);
-           // if(edist<3){
-               // System.out.println("editDist("+word+","+str+") = "+edist);
-            //    return  true;
-           // }
-            if(word.equals(str)){
-                return  true;
-            }
-
-        }
-        
-        return false;
+        return words.contains(word);
     }
 
-    public static void main(String [] args){
+    public static void main(String [] args) throws FileNotFoundException {
         Dictionary dictionary = new Dictionary("pure_opinion_words.txt");
         dictionary.print();
     }

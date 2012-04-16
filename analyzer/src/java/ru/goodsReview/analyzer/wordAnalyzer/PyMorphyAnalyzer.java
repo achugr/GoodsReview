@@ -71,30 +71,28 @@ public class PyMorphyAnalyzer {
         //   if (!isRussianWord(word)) {
         //      throw new IllegalArgumentException("Word must contain only russian letters");
         //  }
-        //  ps.println(word);
+        ps.println(word);
 
 //        String normalizedWord = sc.nextLine();
 //        System.out.println(normalizedWord);
-        String s;
-        BufferedReader stdInput = new BufferedReader(new
+        
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(analyzer.getInputStream()));
 
-                InputStreamReader(analyzer.getInputStream()));
-
-
-
-        BufferedReader stdError = new BufferedReader(new
-
-                InputStreamReader(analyzer.getErrorStream()));
+        BufferedReader stdError = new BufferedReader(new InputStreamReader(analyzer.getErrorStream()));
 
 
 
         // read the output
-
-        while ((s = stdInput.readLine()) != null) {
-
-            System.out.println(s);
-
-        }
+//        String s;
+//        while ((s = stdInput.readLine()) != null) {
+//
+//           System.out.println(s);
+//
+//       }
+        String s =  stdInput.readLine();
+          if(s!=null){
+              return s;
+          }
 
 
 
@@ -102,35 +100,35 @@ public class PyMorphyAnalyzer {
 
         while ((s = stdError.readLine()) != null) {
 
-            System.out.println(s);
+          //  System.out.println(s);
 
         }
         return "";
     }
 
-
-
-    public static void main(String[] args) throws IOException {
-      //  System.out.println(getNormalizedWord("утята"));
+    public static String getNormalizedWord(String s) throws IOException {
+        String res = "null";
         PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
         try {
-
             //  long start = System.currentTimeMillis();
 
             //  String priwet = new String(s);
             //  byte[] utf8Bytes = priwet.getBytes("UTF8");
-            System.out.println(pyMorphyAnalyzer.normalizeWord("утята"));
-
+            res = pyMorphyAnalyzer.normalizeWord(s);
 
             //long stop = System.currentTimeMillis();
             // System.out.println("time in millis: " + (stop-start));
-        } catch (IOException e) { System.out.println(1);
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (InterruptedException e) { System.out.println(1);
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
             pyMorphyAnalyzer.close();
         }
+
+        return res;
+    }
+
+    public static void main(String[] args) throws IOException {
+        System.out.println(getNormalizedWord("утята"));
 
     }
 }
