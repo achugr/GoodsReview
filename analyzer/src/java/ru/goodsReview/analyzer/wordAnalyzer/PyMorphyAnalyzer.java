@@ -55,7 +55,7 @@ public class PyMorphyAnalyzer {
         }
     }
 
-    private static boolean isRussianWord(String word) {
+    public static boolean isRussianWord(String word) {
         char[] wordChars = word.toCharArray();
         for (int i = 0, j = wordChars.length; i < j; i++) {
             if (!isRussianLetter(wordChars[i])) {
@@ -68,10 +68,10 @@ public class PyMorphyAnalyzer {
     public String normalizeWord(String word) throws IOException, InterruptedException {
         sc = new Scanner(analyzer.getInputStream(), CHARSET);
         ps = new PrintStream(analyzer.getOutputStream(), true, CHARSET);
-        if (!isRussianWord(word)) {
-            throw new IllegalArgumentException("Word must contain only russian letters");
-        }
-        ps.println(word);
+     //   if (!isRussianWord(word)) {
+      //      throw new IllegalArgumentException("Word must contain only russian letters");
+      //  }
+      //  ps.println(word);
 
 //        String normalizedWord = sc.nextLine();
 //        System.out.println(normalizedWord);
@@ -108,21 +108,31 @@ public class PyMorphyAnalyzer {
         return "";
     }
 
-    public static void main(String[] args) {
-
+    public static String getNormalizedWord(String s) throws IOException {
+        String res = "null";
+        PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
         try {
-            long start = System.currentTimeMillis();
-//            for(int i=0; i<100; i++) {
-                PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
-                System.out.println(pyMorphyAnalyzer.normalizeWord("бутявкам"));
-//            }
-            long stop = System.currentTimeMillis();
-            System.out.println("time in millis: " + (stop-start));
-            System.out.println(Integer.MAX_VALUE);
+            //  long start = System.currentTimeMillis();
+
+            //  String priwet = new String(s);
+            //  byte[] utf8Bytes = priwet.getBytes("UTF8");
+            res = pyMorphyAnalyzer.normalizeWord(s);
+
+            //long stop = System.currentTimeMillis();
+            // System.out.println("time in millis: " + (stop-start));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (InterruptedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            pyMorphyAnalyzer.close();
         }
+
+        return res;
+    }
+
+    public static void main(String[] args) throws IOException {
+       System.out.println(getNormalizedWord("утята"));
+
     }
 }

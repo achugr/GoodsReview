@@ -10,6 +10,7 @@ package ru.goodsReview.analyzer.algorithmTesting;
 
 import ru.goodsReview.analyzer.ExtractThesis;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
+import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -417,7 +418,9 @@ public class ThesisExtractionTestDocument {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-       ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
+        System.out.println(PyMorphyAnalyzer.getNormalizedWord("кот"));
+
+      ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
         /*
         for (Product p:algoProThesis){
@@ -447,7 +450,7 @@ public class ThesisExtractionTestDocument {
                 }
             }
         }*/
-     compare(algoProThesis, humProThesis, "result.txt");
+    // compare(algoProThesis, humProThesis, "result.txt");
 
 
         System.out.println("successExtract = " + successExtract);
@@ -460,6 +463,8 @@ public class ThesisExtractionTestDocument {
         if (numHum != 0) {
             System.out.print("recall = " + successExtract / numHum);
         }
+
+
     }
 }
 

@@ -9,6 +9,7 @@ package ru.goodsReview.analyzer.util.sentence;
 
 import ru.goodsReview.analyzer.util.dictionary.Dictionary;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
+import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,26 +42,35 @@ public class ReviewTokens {
             String currToken  = stringTokenizer.nextToken();
             currToken = currToken.trim();
             currToken = currToken.toLowerCase();
+
 //            TODO it's strange, but here we can get empty string
             if(currToken.equals("")){
                 System.out.println("fail");
                 continue;
             }
-           // System.out.println(currToken);
+
             token = new Token(currToken);
-            if (opinionDictionary.contains(currToken)) {
-                token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
-            } else {
-                PartOfSpeech  partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
-                if(!partOfSpeech.equals(PartOfSpeech.ADJECTIVE)){
-                   token.setMystemPartOfSpeech(partOfSpeech);
-                }else{
-                    token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+
+            if (PyMorphyAnalyzer.isRussianWord(currToken)) {
+                PartOfSpeech partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
+                if(partOfSpeech.equals(PartOfSpeech.ADJECTIVE)) {
+                    String normToken = PyMorphyAnalyzer.getNormalizedWord(currToken);
+                    if(opinionDictionary.contains(normToken)) {
+                        token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
+                        System.out.println(currToken+" "+normToken);
+                    }else{
+                        token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+                    }
+                } else{
+                    token.setMystemPartOfSpeech(partOfSpeech);
                 }
 
+            } else{
+                token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
             }
+
             tokensList.add(token);
-        }
+          }
 //        mystemAnalyzer.close();
     }
 
