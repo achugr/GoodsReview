@@ -112,9 +112,9 @@ public class PyMorphyAnalyzer {
 
         try {
             long start = System.currentTimeMillis();
-            for(int i=0; i<100; i++) {
+            for(int i=0; i<1; i++) {
                 PyMorphyAnalyzer pyMorphyAnalyzer = new PyMorphyAnalyzer();
-                System.out.println(pyMorphyAnalyzer.normalizeWord("бутявкам"));
+                System.out.println(pyMorphyAnalyzer.normalizeWord("утята"));
             }
             long stop = System.currentTimeMillis();
             System.out.println("time in millis: " + (stop-start));
