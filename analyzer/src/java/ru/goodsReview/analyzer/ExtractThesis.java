@@ -23,12 +23,15 @@ import ru.goodsReview.core.db.exception.StorageException;
 import ru.goodsReview.core.model.Product;
 import ru.goodsReview.core.model.Review;
 import ru.goodsReview.core.model.Thesis;
+
+import java.io.PrintWriter;
 import java.lang.String;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.TimerTask;
 
 public class ExtractThesis extends TimerTask{
@@ -107,6 +110,7 @@ public class ExtractThesis extends TimerTask{
 
 
 
+
     public static ArrayList<Phrase> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         ArrayList<Phrase> extractedThesisList = new ArrayList<Phrase>();
 
@@ -114,27 +118,34 @@ public class ExtractThesis extends TimerTask{
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
         thesisPatternList.add(new ThesisPattern(PartOfSpeech.ADJECTIVE, PartOfSpeech.NOUN));
 
-        ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
+        StringTokenizer stringTokenizer = new StringTokenizer(content, ".,-—:;!()+\'\"\\«»");
 
-        ArrayList<Token> tokensList = reviewTokens.getTokensList();
+        while (stringTokenizer.hasMoreElements()) {
+            String str  = stringTokenizer.nextToken();
 
-        for(ThesisPattern thesisPattern : thesisPatternList){
-            ThesisPattern pattern = thesisPattern;
+            ReviewTokens reviewTokens = new ReviewTokens(str, mystemAnalyzer);
+            ArrayList<Token> tokensList = reviewTokens.getTokensList();
 
-            if(pattern.getPattern().get(0).equals(PartOfSpeech.NOUN)){
-                nounAtFirstPositionExtraction(extractedThesisList,tokensList,pattern,mystemAnalyzer);
-            }  else{
-                if(pattern.getPattern().get(1).equals(PartOfSpeech.NOUN)){
-                    nounAtSecondPositionExtraction(extractedThesisList,tokensList,pattern,mystemAnalyzer);
+            for(ThesisPattern thesisPattern : thesisPatternList){
+                ThesisPattern pattern = thesisPattern;
+
+                if(pattern.getPattern().get(0).equals(PartOfSpeech.NOUN)){
+                    nounAtFirstPositionExtraction(extractedThesisList,tokensList,pattern,mystemAnalyzer);
                 }  else{
-                    System.out.println("incorrect pattern");
+                    if(pattern.getPattern().get(1).equals(PartOfSpeech.NOUN)){
+                        nounAtSecondPositionExtraction(extractedThesisList,tokensList,pattern,mystemAnalyzer);
+                    }  else{
+                        System.out.println("incorrect pattern");
+                    }
                 }
-            }
 
+            }
         }
+
 
         return extractedThesisList;
     }
+
 
     static void nounAtFirstPositionExtraction(ArrayList<Phrase> extractedThesisList, ArrayList<Token> tokensList, ThesisPattern pattern, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
         String token1 = null;

@@ -1,28 +1,35 @@
 package ru.goodsReview.analyzer.util.dictionary;
-/*
- *  Date: 08.02.12
- *   Time: 18:02
- *   Author: 
- *      Artemij Chugreev 
- *      artemij.chugreev@gmail.com
+
+/**
+ * Date: 17.04.12
+ * Time: 16:16
+ * Author:
+ * Ilya Makeev
+ * ilya.makeev@gmail.com
  */
 
 import java.io.*;
-import java.util.HashSet;
+import java.util.HashMap;
 
-public class Dictionary {
-    private HashSet<String> words;
 
-    public Dictionary(HashSet<String> words) {
+
+public class PyMorphyDictionary {
+    private HashMap words;
+
+    public PyMorphyDictionary(HashMap words) {
         this.words = words;
     }
 
-    public Dictionary(String dictionaryFileName){
-        this.words = new HashSet<String>();
+    public HashMap getDictionary() {
+        return words;
+    }
+
+    public PyMorphyDictionary(String dictionaryFileName){
+        this.words = new HashMap();
 
         try {
             FileInputStream fis1 = new FileInputStream(dictionaryFileName);
-            InputStreamReader isr1 = new InputStreamReader(fis1, "windows-1251");
+            InputStreamReader isr1 = new InputStreamReader(fis1, "utf-8");
             BufferedReader in = new BufferedReader(isr1);
 
             String s = in.readLine();
@@ -32,7 +39,13 @@ public class Dictionary {
                     if(s.charAt(0)=='﻿') {
                         s = s.substring(1);
                     }
-                    words.add(s);
+                    if(s.contains(" ")){
+                        int ind = s.indexOf(" ");
+                        String key = s.substring(0,ind);
+                        if(!words.containsKey(key)){
+                            words.put(key,s.substring(ind+1));
+                        }
+                    }                      
                 }
                 s = in.readLine();
             }
@@ -46,8 +59,8 @@ public class Dictionary {
     }
 
     public void print(){
-        for(String word : words){
-            System.out.println(word);
+        for(Object word : words.keySet()){
+            System.out.println(word+" "+words.get(word));
         }
     }
 
@@ -58,11 +71,12 @@ public class Dictionary {
      * @return true if word is here. false — otherwise
      */
     public boolean contains(String word){
-        return words.contains(word);
+        return words.containsKey(word);
     }
 
     public static void main(String [] args) throws FileNotFoundException {
-        Dictionary dictionary = new Dictionary("pure_opinion_words.txt");
+        PyMorphyDictionary dictionary = new PyMorphyDictionary("norm_dictionary.txt");
         dictionary.print();
     }
 }
+

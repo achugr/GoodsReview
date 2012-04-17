@@ -153,6 +153,8 @@ public class ThesisExtractionTestDocument {
         String productID = "-1";
         String s = in.readLine();
 
+        //PrintWriter out123 = new PrintWriter(new BufferedWriter(new FileWriter("norm_dictionary.txt")));
+
         while (s != null) {
             s = s.trim();
 
@@ -212,7 +214,7 @@ public class ThesisExtractionTestDocument {
 
         reviewsList.add(new Review(reviewID, thesisList));
         ProductList.add(new Product(productID, reviewsList));
-
+       // out123.flush();
         mystemAnalyzer.close();
         return ProductList;
     }
@@ -426,7 +428,7 @@ public class ThesisExtractionTestDocument {
 
         }
         */
-       ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
+      ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
         /*
         for (Product p:humProThesis){

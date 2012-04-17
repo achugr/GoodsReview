@@ -9,6 +9,7 @@ package ru.goodsReview.analyzer.util.sentence;
 
 
 import ru.goodsReview.analyzer.util.dictionary.Dictionary;
+import ru.goodsReview.analyzer.util.dictionary.PyMorphyDictionary;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
 
@@ -26,6 +27,8 @@ public class ReviewTokens {
 
     private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt");
 
+    private static PyMorphyDictionary normDictionary = new PyMorphyDictionary("norm_dictionary.txt");
+
     /**
      * create new ReviewTokens from review
      *
@@ -34,7 +37,8 @@ public class ReviewTokens {
     public ReviewTokens(String review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         Token token;
         tokensList = new ArrayList<Token>();
-        StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
+       // StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
+        StringTokenizer stringTokenizer = new StringTokenizer(review, " ");
         while (stringTokenizer.hasMoreElements()) {
             String currToken  = stringTokenizer.nextToken();
             currToken = currToken.trim();
@@ -51,10 +55,13 @@ public class ReviewTokens {
             if (PyMorphyAnalyzer.isRussianWord(currToken)) {
                 PartOfSpeech partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
                 if(partOfSpeech.equals(PartOfSpeech.ADJECTIVE)) {
-                    String normToken = PyMorphyAnalyzer.getNormalizedWord(currToken).toLowerCase();
-                   // System.out.println(normToken);
-                    if(opinionDictionary.contains(normToken)) {
-                        token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
+                    if(normDictionary.getDictionary().containsKey(currToken)){
+                        String normToken = (String)normDictionary.getDictionary().get(currToken);
+                        if(opinionDictionary.contains(normToken)) {
+                            token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
+                        }else{
+                            token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+                        }
                     }else{
                         token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
                     }
