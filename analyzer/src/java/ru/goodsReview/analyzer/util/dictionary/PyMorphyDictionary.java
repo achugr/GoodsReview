@@ -56,6 +56,10 @@ public class PyMorphyDictionary {
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+
+        if(this.words.isEmpty()){
+            System.out.println("PyMorphyDictionary dictionary is empty");
+        }
     }
 
     public void print(){

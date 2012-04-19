@@ -55,7 +55,7 @@ public class ReviewTokens {
             if (PyMorphyAnalyzer.isRussianWord(currToken)) {
                 PartOfSpeech partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
                 if(partOfSpeech.equals(PartOfSpeech.ADJECTIVE)) {
-                    if(normDictionary.getDictionary().containsKey(currToken)){
+                    if(normDictionary.contains(currToken)){
                         String normToken = (String)normDictionary.getDictionary().get(currToken);
                         if(opinionDictionary.contains(normToken)) {
                             token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
