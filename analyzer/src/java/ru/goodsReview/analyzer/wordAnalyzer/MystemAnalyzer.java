@@ -86,6 +86,7 @@ public class MystemAnalyzer implements WordAnalyzer{
         ps.println(word);
         String wordCharacteristic = sc.nextLine();
 
+
         int pos1,pos2;
 
         pos2 = (pos1 = (wordCharacteristic.indexOf('=') + 1));
@@ -180,6 +181,30 @@ public class MystemAnalyzer implements WordAnalyzer{
         return a;
     }
 
+    public String normalizer(String word) throws UnsupportedEncodingException {
+        int wl = word.length(); boolean b = true;
+        for (int i = 0; i < wl; ++i) {
+            if (!isRussianLetter(word.charAt(i))) {
+                b = false;
+                break;
+            }
+        }
+
+//        TODO fix this (split by !, but отличный! - returns ""
+        if (!b) {
+            return "";
+        }
+
+        sc = new Scanner(analyzer.getInputStream(),CHARSET);
+        ps = new PrintStream(analyzer.getOutputStream(),true,CHARSET);
+
+        ps.println(word);
+        String wordCharacteristic = sc.nextLine();
+        String norm = wordCharacteristic.substring(wordCharacteristic.indexOf("{")+1,wordCharacteristic.indexOf("="));
+
+        return norm;
+    }
+
 
     /**
      * method for determine part of speech of word by means of Mystem
@@ -216,7 +241,7 @@ public class MystemAnalyzer implements WordAnalyzer{
     public static void main(String [] args){
         try {
             MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
-            System.out.println(mystemAnalyzer.wordCharacteristic1("камень")[2]);
+            System.out.println(mystemAnalyzer.normalizer("телефоном"));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

@@ -194,11 +194,14 @@ public class ThesisExtractionTestDocument {
                         if (s.contains("</review>")) {
                             reviewOpen = false;
                             String review =  sb.toString();
-                          // System.out.println("##"+review);
+
                             ArrayList<Phrase> tList = ExtractThesis.doExtraction(review, mystemAnalyzer);
+
                             for ( Phrase  phrase : tList) {
                                 String token1 =  phrase.getFeature();
                                 String token2 =  phrase.getOpinionWorld();
+                              //  System.out.println(review);
+                              //System.out.println(token1);
                                 thesisList.add(new Phrase(token1, token2));
                             }
                         } else {
@@ -340,7 +343,8 @@ public class ThesisExtractionTestDocument {
                         }
                     }
                     if (t == false) {
-                        out.println("      <algo>" + algoFeature + " "+opinion+"</algo>");
+                        out.println("      <algo>" + algoFeature +"</algo>");
+                       //System.out.println("      "+algoFeature + " "+opinion);
                     }
                 }
 
@@ -426,8 +430,8 @@ public class ThesisExtractionTestDocument {
                 }
             }
 
-        }
-        */
+        }*/
+
       ArrayList<Product> humProThesis = buildHumanProductList("Notebooks_marked_ds.txt", "utf8");
 
         /*

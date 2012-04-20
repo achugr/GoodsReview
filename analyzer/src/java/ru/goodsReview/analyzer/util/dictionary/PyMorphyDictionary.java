@@ -24,12 +24,12 @@ public class PyMorphyDictionary {
         return words;
     }
 
-    public PyMorphyDictionary(String dictionaryFileName){
+    public PyMorphyDictionary(String dictionaryFileName, String encoding){
         this.words = new HashMap();
 
         try {
             FileInputStream fis1 = new FileInputStream(dictionaryFileName);
-            InputStreamReader isr1 = new InputStreamReader(fis1, "utf-8");
+            InputStreamReader isr1 = new InputStreamReader(fis1, encoding);
             BufferedReader in = new BufferedReader(isr1);
 
             String s = in.readLine();
@@ -79,7 +79,7 @@ public class PyMorphyDictionary {
     }
 
     public static void main(String [] args) throws FileNotFoundException {
-        PyMorphyDictionary dictionary = new PyMorphyDictionary("norm_dictionary.txt");
+        PyMorphyDictionary dictionary = new PyMorphyDictionary("norm_dictionary.txt","utf-8");
         dictionary.print();
     }
 }

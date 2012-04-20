@@ -25,9 +25,11 @@ public class ReviewTokens {
     //    "pointer" for traverse next/previous by currentPosition
     private int traversePosition = currentPosition;
 
-    private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt");
+    private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt","utf-8");
 
-    private static PyMorphyDictionary normDictionary = new PyMorphyDictionary("norm_dictionary.txt");
+    private static Dictionary featureDictionary = new Dictionary("feat_dic.txt", "windows-1251");
+
+   // private static PyMorphyDictionary normDictionary = new PyMorphyDictionary("norm_dictionary.txt");
 
     /**
      * create new ReviewTokens from review
@@ -55,18 +57,31 @@ public class ReviewTokens {
             if (PyMorphyAnalyzer.isRussianWord(currToken)) {
                 PartOfSpeech partOfSpeech = mystemAnalyzer.partOfSpeech(currToken);
                 if(partOfSpeech.equals(PartOfSpeech.ADJECTIVE)) {
-                    if(normDictionary.contains(currToken)){
-                        String normToken = (String)normDictionary.getDictionary().get(currToken);
+//                    if(normDictionary.contains(currToken)){
+                      //  String normToken = (String)normDictionary.getDictionary().get(currToken);
+                     //   System.out.println(currToken+" "+mystemAnalyzer.normalizer(currToken));
+                        String normToken = mystemAnalyzer.normalizer(currToken);
+
                         if(opinionDictionary.contains(normToken)) {
                             token.setMystemPartOfSpeech(PartOfSpeech.ADJECTIVE);
                         }else{
                             token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
                         }
-                    }else{
-                        token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
-                    }
+//                    }else{
+//                        token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+//                    }
                 } else{
-                    token.setMystemPartOfSpeech(partOfSpeech);
+                    if(partOfSpeech.equals(PartOfSpeech.NOUN)) {
+                        String normToken = mystemAnalyzer.normalizer(currToken);
+                        if(featureDictionary.contains(normToken)) {
+                           // System.out.println(normToken);
+                            token.setMystemPartOfSpeech(PartOfSpeech.NOUN);
+                        }else{
+                            token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
+                        }
+                    } else{
+                        token.setMystemPartOfSpeech(partOfSpeech);
+                    }
                 }
             } else{
                 token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);

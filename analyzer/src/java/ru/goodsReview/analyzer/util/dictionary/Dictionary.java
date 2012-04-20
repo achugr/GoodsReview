@@ -17,12 +17,12 @@ public class Dictionary {
         this.words = words;
     }
 
-    public Dictionary(String dictionaryFileName){
+    public Dictionary(String dictionaryFileName, String encoding){
         this.words = new HashSet<String>();
 
         try {
             FileInputStream fis1 = new FileInputStream(dictionaryFileName);
-            InputStreamReader isr1 = new InputStreamReader(fis1, "windows-1251");
+            InputStreamReader isr1 = new InputStreamReader(fis1, encoding);
             BufferedReader in = new BufferedReader(isr1);
 
             String s = in.readLine();
@@ -62,7 +62,7 @@ public class Dictionary {
     }
 
     public static void main(String [] args) throws FileNotFoundException {
-        Dictionary dictionary = new Dictionary("pure_opinion_words.txt");
+        Dictionary dictionary = new Dictionary("feat_dic.txt","windows-1251");
         dictionary.print();
     }
 }
