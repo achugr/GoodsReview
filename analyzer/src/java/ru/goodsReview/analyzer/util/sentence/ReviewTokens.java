@@ -9,7 +9,6 @@ package ru.goodsReview.analyzer.util.sentence;
 
 
 import ru.goodsReview.analyzer.util.dictionary.Dictionary;
-import ru.goodsReview.analyzer.util.dictionary.PyMorphyDictionary;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
 
@@ -74,6 +73,7 @@ public class ReviewTokens {
                     if(partOfSpeech.equals(PartOfSpeech.NOUN)) {
                         String normToken = mystemAnalyzer.normalizer(currToken);
                         if(featureDictionary.contains(normToken)) {
+                        // if(true) {
                            // System.out.println(normToken);
                             token.setMystemPartOfSpeech(PartOfSpeech.NOUN);
                         }else{

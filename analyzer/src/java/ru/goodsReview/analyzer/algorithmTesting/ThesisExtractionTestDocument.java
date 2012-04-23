@@ -115,16 +115,26 @@ public class ThesisExtractionTestDocument {
                     s1 = s1.trim();
                     if(s1.contains("[")){
                         s1 = splitBracket(s1);
-                        if (!s1.equals("")&&!thesisList.contains(s1)) {
-                            thesisList.add(new Phrase(s1.trim(), sentence));
+                        if (!s1.equals("")) {
+                            boolean flag = false;
+                            for(Phrase pr:thesisList){
+                                if(pr.getFeature().equals(s1)){
+                                   flag = true;
+                                    break;
+                                }
+                            }
+                            if(!flag){
+                                 thesisList.add(new Phrase(s1.trim().toLowerCase(), sentence));
+                            }
                         }
                     }
 
                 }
             } else {
                 t = splitBracket(t);
-                if(!t.equals("")){
-                    thesisList.add(new Phrase(t.trim(), sentence));
+                t = t.trim();
+                if(!t.equals("") && t.charAt(0) != '{'){
+                    thesisList.add(new Phrase(t.trim().toLowerCase(), sentence));
                 }
             }
         }
@@ -316,9 +326,9 @@ public class ThesisExtractionTestDocument {
                         String opinion = algoThesis.get(j).getOpinionWorld();
                         // System.out.println(alThesis+" "+opinion);
 
-                        if (editDist(humFeature, algoFeature) < editDist) {
+                        if (humFeature.contains(algoFeature)) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
-                                out.println("      <OK>" + humFeature + "</OK>");
+                                out.println("      <OK>" + humFeature +" "+ opinion+"</OK>");
                                // System.out.println(alThesis+" "+opinion+" ## "+sentence);
                                 successExtract++;
                                 break;
@@ -335,7 +345,7 @@ public class ThesisExtractionTestDocument {
                     for (int j = 0; j < humThesis.size(); j++) {
                         String humFeature = humThesis.get(j).getFeature();
                         String sentence = humThesis.get(j).getOpinionWorld();
-                        if (editDist(humFeature, algoFeature) < editDist) {
+                        if (humFeature.contains(algoFeature)) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
@@ -343,8 +353,8 @@ public class ThesisExtractionTestDocument {
                         }
                     }
                     if (t == false) {
-                        out.println("      <algo>" + algoFeature +"</algo>");
-                       //System.out.println("      "+algoFeature + " "+opinion);
+                        out.println("      <algo>" + algoFeature +" "+opinion+"</algo>");
+                       System.out.println("      "+algoFeature + " "+opinion);
                     }
                 }
 
@@ -357,7 +367,7 @@ public class ThesisExtractionTestDocument {
                         String algoFeature = algoThesis.get(j).getFeature();
                         String opinion = algoThesis.get(j).getOpinionWorld();
 
-                        if (editDist(humFeature, algoFeature) < editDist) {
+                        if (humFeature.contains(algoFeature)) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;

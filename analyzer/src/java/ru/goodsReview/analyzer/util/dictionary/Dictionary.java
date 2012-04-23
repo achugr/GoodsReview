@@ -58,6 +58,12 @@ public class Dictionary {
      * @return true if word is here. false — otherwise
      */
     public boolean contains(String word){
+       /* for(String s: words){
+            if(s.contains(word)){
+                return true;
+            }
+        }
+            return false;*/
         return words.contains(word);
     }
 
