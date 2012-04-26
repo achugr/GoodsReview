@@ -64,7 +64,7 @@ public class ExtractThesis extends TimerTask{
 
         for (Phrase phrase:listThesis){
             String token1 =  phrase.getFeature();
-            String token2 =  phrase.getOpinionWorld();
+            String token2 =  phrase.getOpinion();
             extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
         }
 

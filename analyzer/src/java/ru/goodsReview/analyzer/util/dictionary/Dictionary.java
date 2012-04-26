@@ -17,6 +17,10 @@ public class Dictionary {
         this.words = words;
     }
 
+    public HashSet<String> getDictionary(){
+          return this.words;
+    }
+
     public Dictionary(String dictionaryFileName, String encoding){
         this.words = new HashSet<String>();
 

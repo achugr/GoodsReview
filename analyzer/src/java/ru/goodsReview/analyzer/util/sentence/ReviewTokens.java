@@ -100,4 +100,8 @@ public class ReviewTokens {
         return opinionDictionary;
     }
 
+    public Dictionary  getFeatureDic(){
+        return featureDictionary;
+    }
+
 }

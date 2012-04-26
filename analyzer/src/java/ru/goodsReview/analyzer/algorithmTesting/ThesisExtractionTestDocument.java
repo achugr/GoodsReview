@@ -9,16 +9,20 @@ package ru.goodsReview.analyzer.algorithmTesting;
  */
 
 import ru.goodsReview.analyzer.ExtractThesis;
+import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 
 public class ThesisExtractionTestDocument {
     private static double successExtract = 0;
     private static double numAlgo = 0;
     private static double numHum = 0;
+    private static HashMap<String, int[]> dictionaryScores = new HashMap<String, int[]>();
 
     //   build list of Products for human markup file
     static ArrayList<Product> buildHumanProductList(String filePath, String encoding) throws IOException {
@@ -163,8 +167,6 @@ public class ThesisExtractionTestDocument {
         String productID = "-1";
         String s = in.readLine();
 
-        //PrintWriter out123 = new PrintWriter(new BufferedWriter(new FileWriter("norm_dictionary.txt")));
-
         while (s != null) {
             s = s.trim();
 
@@ -209,7 +211,7 @@ public class ThesisExtractionTestDocument {
 
                             for ( Phrase  phrase : tList) {
                                 String token1 =  phrase.getFeature();
-                                String token2 =  phrase.getOpinionWorld();
+                                String token2 =  phrase.getOpinion();
                               //  System.out.println(review);
                               //System.out.println(token1);
                                 thesisList.add(new Phrase(token1, token2));
@@ -227,7 +229,7 @@ public class ThesisExtractionTestDocument {
 
         reviewsList.add(new Review(reviewID, thesisList));
         ProductList.add(new Product(productID, reviewsList));
-       // out123.flush();
+
         mystemAnalyzer.close();
         return ProductList;
     }
@@ -319,18 +321,19 @@ public class ThesisExtractionTestDocument {
 
                 for (int i = 0; i < humThesis.size(); i++) {
                     String humFeature = humThesis.get(i).getFeature();
-                    String sentence = humThesis.get(i).getOpinionWorld();
+                    String sentence = humThesis.get(i).getOpinion();
                     // System.out.println("   "+hThesis+" "+sentence);
                     for (int j = 0; j < algoThesis.size(); j++) {
                         String algoFeature = algoThesis.get(j).getFeature();
-                        String opinion = algoThesis.get(j).getOpinionWorld();
+                        String opinion = algoThesis.get(j).getOpinion();
                         // System.out.println(alThesis+" "+opinion);
 
-                        if (humFeature.contains(algoFeature)) {
+                        if (contains(humFeature, algoFeature)) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 out.println("      <OK>" + humFeature +" "+ opinion+"</OK>");
                                // System.out.println(alThesis+" "+opinion+" ## "+sentence);
                                 successExtract++;
+                                add(dictionaryScores,algoFeature,true);
                                 break;
                             }
                         }
@@ -341,11 +344,11 @@ public class ThesisExtractionTestDocument {
                 for (int i = 0; i < algoThesis.size(); i++) {
                     boolean t = false;
                     String algoFeature = algoThesis.get(i).getFeature();
-                    String opinion = algoThesis.get(i).getOpinionWorld();
+                    String opinion = algoThesis.get(i).getOpinion();
                     for (int j = 0; j < humThesis.size(); j++) {
                         String humFeature = humThesis.get(j).getFeature();
-                        String sentence = humThesis.get(j).getOpinionWorld();
-                        if (humFeature.contains(algoFeature)) {
+                        String sentence = humThesis.get(j).getOpinion();
+                        if (contains(humFeature, algoFeature)) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
@@ -354,6 +357,7 @@ public class ThesisExtractionTestDocument {
                     }
                     if (t == false) {
                         out.println("      <algo>" + algoFeature +" "+opinion+"</algo>");
+                        add(dictionaryScores,algoFeature,false);
                        System.out.println("      "+algoFeature + " "+opinion);
                     }
                 }
@@ -361,13 +365,13 @@ public class ThesisExtractionTestDocument {
                 for (int i = 0; i < humThesis.size(); i++) {
                     boolean t = false;
                     String humFeature = humThesis.get(i).getFeature();
-                    String sentence = humThesis.get(i).getOpinionWorld();
+                    String sentence = humThesis.get(i).getOpinion();
                     
                     for (int j = 0; j < algoThesis.size(); j++) {
                         String algoFeature = algoThesis.get(j).getFeature();
-                        String opinion = algoThesis.get(j).getOpinionWorld();
+                        String opinion = algoThesis.get(j).getOpinion();
 
-                        if (humFeature.contains(algoFeature)) {
+                        if (contains(humFeature, algoFeature)) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
@@ -382,50 +386,37 @@ public class ThesisExtractionTestDocument {
             }
         }
     }
-    
-    static boolean contains(String sentence, String s){
+
+    static boolean contains(String sentence, String s) {
         sentence = sentence.toLowerCase();
         s = s.toLowerCase();
-
         return sentence.contains(s);
     }
 
-    public static int editDist(String s1, String s2) {
-        int m = s1.length();
-        int n = s2.length();
-        int[] D1;
-        int[] D2 = new int[n + 1];
-        s1 = s1.toLowerCase();
-        s2 = s2.toLowerCase();
-        for (int i = 0; i <= n; i++) {
-            D2[i] = i;
-        }
-        for (int i = 1; i <= m; i++) {
-            D1 = D2;
-            D2 = new int[n + 1];
-            for (int j = 0; j <= n; j++) {
-                if (j == 0) {
-                    D2[j] = i;
-                } else {
-                    int cost = (s1.charAt(i - 1) != s2.charAt(j - 1)) ? 1 : 0;
-                    if (D2[j - 1] < D1[j] && D2[j - 1] < D1[j - 1] + cost) {
-                        D2[j] = D2[j - 1] + 1;
-                    } else if (D1[j] < D1[j - 1] + cost) {
-                        D2[j] = D1[j] + 1;
-                    } else {
-                        D2[j] = D1[j - 1] + cost;
-                    }
-                }
+    static void add(HashMap<String, int[]> map, String s, boolean t) {
+        if (map.containsKey(s)) {
+            if (t) {
+                map.get(s)[0]++;
+            } else {
+                map.get(s)[1]++;
+            }
+        } else {
+            if (t) {
+                map.put(s, new int[]{1, 0});
+            } else {
+                map.put(s, new int[]{0, 1});
             }
         }
-        return D2[n];
+    }
+
+    static void printDictionary() {
+       for (String key:dictionaryScores.keySet()){
+           System.out.println(key+" "+dictionaryScores.get(key)[0]+" -"+dictionaryScores.get(key)[1]);
+       }
     }
 
 
-
     public static void main(String[] args) throws IOException, InterruptedException {
-
-
       ArrayList<Product> algoProThesis = buildAlgoProductList("Notebooks.txt", "utf8");
 
         /*
@@ -435,7 +426,7 @@ public class ThesisExtractionTestDocument {
                 if(r.getReview()!="-1"){
                     System.out.println("        Review_Id = "+r.getReview());
                     for (Phrase t:r.getFeatures()){
-                        System.out.println("            "+t.getFeature()+" "+t.getOpinionWorld());
+                        System.out.println("            "+t.getFeature()+" "+t.getOpinion());
                     }
                 }
             }
@@ -467,9 +458,10 @@ public class ThesisExtractionTestDocument {
             System.out.println("precision = " + successExtract / numAlgo);
         }
         if (numHum != 0) {
-            System.out.print("recall = " + successExtract / numHum);
+            System.out.println("recall = " + successExtract / numHum);
         }
 
+      //  printDictionary();
 
     }
 }

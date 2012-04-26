@@ -12,15 +12,15 @@ package ru.goodsReview.analyzer.algorithmTesting;
 
 public class Phrase {
     private String feature;
-    private String opinionWorld;
+    private String opinion;
 
-    public Phrase(String feature, String opinionWorld) {
-        this.opinionWorld = opinionWorld;
+    public Phrase(String feature, String opinion) {
+        this.opinion = opinion;
         this.feature = feature;
     }
 
     public Phrase(String feature) {
-        this.opinionWorld = null;
+        this.opinion = null;
         this.feature = feature;
     }
 
@@ -28,8 +28,8 @@ public class Phrase {
         return feature;
     }
 
-    public String getOpinionWorld(){
-        return opinionWorld;
+    public String getOpinion(){
+        return opinion;
     }
 
 }
