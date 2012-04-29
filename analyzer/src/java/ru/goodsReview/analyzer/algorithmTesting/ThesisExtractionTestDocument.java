@@ -214,6 +214,9 @@ public class ThesisExtractionTestDocument {
                                 String token2 =  phrase.getOpinion();
                               //  System.out.println(review);
                               //System.out.println(token1);
+                               // if(token2.contains(" ")){
+                              //      System.out.println(token2);
+                              //  }
                                 thesisList.add(new Phrase(token1, token2));
                             }
                         } else {
@@ -333,7 +336,7 @@ public class ThesisExtractionTestDocument {
                                 out.println("      <OK>" + humFeature +" "+ opinion+"</OK>");
                                // System.out.println(alThesis+" "+opinion+" ## "+sentence);
                                 successExtract++;
-                                add(dictionaryScores,algoFeature,true);
+                                add(dictionaryScores,opinion,true);
                                 break;
                             }
                         }
@@ -357,8 +360,8 @@ public class ThesisExtractionTestDocument {
                     }
                     if (t == false) {
                         out.println("      <algo>" + algoFeature +" "+opinion+"</algo>");
-                        add(dictionaryScores,algoFeature,false);
-                       System.out.println("      "+algoFeature + " "+opinion);
+                        add(dictionaryScores,opinion,false);
+                      // System.out.println("      "+algoFeature + " "+opinion);
                     }
                 }
 
@@ -411,7 +414,7 @@ public class ThesisExtractionTestDocument {
 
     static void printDictionary() {
        for (String key:dictionaryScores.keySet()){
-           System.out.println(key+" "+dictionaryScores.get(key)[0]+" -"+dictionaryScores.get(key)[1]);
+           System.out.println(key+" +"+dictionaryScores.get(key)[0]+" -"+dictionaryScores.get(key)[1]);
        }
     }
 
@@ -461,7 +464,7 @@ public class ThesisExtractionTestDocument {
             System.out.println("recall = " + successExtract / numHum);
         }
 
-      //  printDictionary();
+       // printDictionary();
 
     }
 }

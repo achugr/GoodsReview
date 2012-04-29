@@ -38,6 +38,8 @@ public class ExtractThesis extends TimerTask{
     private static ThesisController thesisController;
     private static ReviewController reviewController;
 
+    static String[] dict = {"более", "достаточно", "очень", "не", "слишком", "довольно"};
+
     @Required
     public void setControllerFactory(ControllerFactory controllerFactory1){
         this.controllerFactory = controllerFactory1;
@@ -70,43 +72,6 @@ public class ExtractThesis extends TimerTask{
 
         return extractedThesisList;
     }
-
-
-//    public static List<Phrase> doExtraction(Review review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
-//        List<Phrase> extractedThesisList = new ArrayList<Phrase>();
-//        String content = review.getContent();
-//
-//        List<ThesisPattern> thesisPatternList = new ArrayList<ThesisPattern>();
-//        thesisPatternList.add(new ThesisPattern(PartOfSpeech.NOUN, PartOfSpeech.ADJECTIVE));
-//        //thesisPatternList.add(new ThesisPattern(PartOfSpeech.VERB, PartOfSpeech.ADVERB));
-//        ReviewTokens reviewTokens = new ReviewTokens(content, mystemAnalyzer);
-//        ArrayList<Token> tokensList = reviewTokens.getTokensList();
-//        for(ThesisPattern thesisPattern : thesisPatternList){
-//            ThesisPattern pattern = thesisPattern;
-//
-//            String token1 = null;
-//            PartOfSpeech part1 = pattern.getPattern().get(0);
-//            PartOfSpeech part2 = pattern.getPattern().get(1);
-//            for (int i = 0; i < tokensList.size(); i++) {
-//                Token currToken = tokensList.get(i);
-//
-//                if (currToken.getMystemPartOfSpeech().equals(part1)) {
-//                    token1 = currToken.getContent();
-//                } else {
-//                    if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
-//                        String token2 = currToken.getContent();
-//                        extractedThesisList.add(new Phrase(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
-//                        token1 = null;
-//                    }
-//                }
-//            }
-//        }
-//
-//        return extractedThesisList;
-//    }
-
-
-
 
     public static ArrayList<Phrase> doExtraction(String content, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
         ArrayList<Phrase> extractedThesisList = new ArrayList<Phrase>();
@@ -159,29 +124,21 @@ public class ExtractThesis extends TimerTask{
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                      n2 = i;
-                    if(Math.abs(n1-n2)==1){
-                        String[] a1 = mystemAnalyzer.wordCharacteristic1(token1);
-
+                    
+                    boolean patternCondition = (Math.abs(n1-n2)==2)&&(dictContains(tokensList.get(n1+1).getContent()));
+                    if(Math.abs(n1-n2)==1||patternCondition){
                         String token2 = currToken.getContent();
-                        String[] a2 = mystemAnalyzer.wordCharacteristic1(token2);
 
-                        String p1 = a1[0] ;
-                        String p2 = a2[0];
-                        String num1  =  a1[1];
-                        String num2  =  a2[1];
-                        String case1  =  a1[2];
-                        String case2  =  a2[2];
-                        boolean con1 =  check(p1,p2);
-                        boolean con2 =  check(num1,num2);
-                        boolean con3 =  check(case1,case2);
-//                        boolean sep1 = (con1&&con2)||
-//                                (con1&&con3)||
-//                                (con3&&con2) ;
-                        boolean sep2 = con1&&con2&&con3;
-                        if(sep2) {
+                        if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
+
+                           if(patternCondition){
+                            //   System.out.println(token1+" "+tokensList.get(n1+1).getContent()+" "+token2);
+                               token2= tokensList.get(n1+1).getContent()+" "+token2;
+                          }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
+
                     token1 = null;
                 }
             }
@@ -203,26 +160,20 @@ public class ExtractThesis extends TimerTask{
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                     n2 = i;
-                    if(Math.abs(n1-n2)==1){
-                        String[] a1 = mystemAnalyzer.wordCharacteristic1(token1);
+                    boolean patternCondition = false;
+                    if(n2!=0){
+                        patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n2-1).getContent()));
+                    }
+
+                    if(Math.abs(n1-n2)==1||patternCondition){
 
                         String token2 = currToken.getContent();
-                        String[] a2 = mystemAnalyzer.wordCharacteristic1(token2);
 
-                        String p1 = a1[0] ;
-                        String p2 = a2[0];
-                        String num1  =  a1[1];
-                        String num2  =  a2[1];
-                        String case1  =  a1[2];
-                        String case2  =  a2[2];
-                        boolean con1 =  check(p1,p2);
-                        boolean con2 =  check(num1,num2);
-                        boolean con3 =  check(case1,case2);
-//                        boolean sep1 = (con1&&con2)||
-//                                (con1&&con3)||
-//                                (con3&&con2) ;
-                        boolean sep2 = con1&&con2&&con3;
-                        if(sep2) {
+                        if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
+                            if(patternCondition){
+                              //  System.out.println(tokensList.get(n2-1).getContent()+" "+token2+" "+token1);
+                                token2 = tokensList.get(n2-1).getContent()+" "+token2;
+                            }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
@@ -232,12 +183,38 @@ public class ExtractThesis extends TimerTask{
         }
     }
 
-    static boolean check(String s1, String s2){
-        if(!s1.equals("unk")&&!s2.equals("unk")){
+    static boolean checkWordsCorrespondence(String token1, String token2, MystemAnalyzer mystemAnalyzer) throws UnsupportedEncodingException {
+        String[] a1 = mystemAnalyzer.wordCharacteristic1(token1);
+        String[] a2 = mystemAnalyzer.wordCharacteristic1(token2);
+        String p1 = a1[0];
+        String p2 = a2[0];
+        String num1 = a1[1];
+        String num2 = a2[1];
+        String case1 = a1[2];
+        String case2 = a2[2];
+        boolean con1 = check(p1, p2);
+        boolean con2 = check(num1, num2);
+        boolean con3 = check(case1, case2);
+
+        boolean sep = con1 && con2 && con3;
+        return sep;
+    }
+
+    static boolean check(String s1, String s2) {
+        if (!s1.equals("unk") && !s2.equals("unk")) {
             return s1.equals(s2);
         }
         return false;
-   }
+    }
+
+    static boolean dictContains(String s) {
+        for (String str:dict){
+            if(s.equals(str)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Extract thesis on all products from database
