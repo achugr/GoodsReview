@@ -161,7 +161,7 @@ public class DictionaryGenerator extends TimerTask {
     public void run() {
         DictionaryGenerator opinionWordDictionary = null;
         try {
-            opinionWordDictionary = new DictionaryGenerator("dirty_opinion_words.txt", "pure_opinion_words.txt");
+            opinionWordDictionary = new DictionaryGenerator("dirty_opinion_words.txt", "adjective_opinion_words.txt");
         } catch (FileNotFoundException e) {
             log.error("something wrong with generate opinion word dictionary, probably file with dirty opinion words not exist", e);
             e.printStackTrace();

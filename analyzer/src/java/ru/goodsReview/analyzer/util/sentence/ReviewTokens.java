@@ -24,7 +24,7 @@ public class ReviewTokens {
     //    "pointer" for traverse next/previous by currentPosition
     private int traversePosition = currentPosition;
 
-    private static Dictionary opinionDictionary = new Dictionary("pure_opinion_words.txt","utf-8");
+    private static Dictionary opinionDictionary = new Dictionary("adjective_opinion_words.txt","utf-8");
 
     private static Dictionary featureDictionary = new Dictionary("feat_dic.txt", "windows-1251");
 
