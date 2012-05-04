@@ -196,7 +196,8 @@ public class ExtractThesis extends TimerTask{
         boolean con2 = check(num1, num2);
         boolean con3 = check(case1, case2);
 
-        boolean sep = con1 && con2 && con3;
+        //boolean sep = con1 && con2 && con3;
+        boolean sep = (con1 && con2) || (con1 && con3);// || (con2 && con3);
         return sep;
     }
 

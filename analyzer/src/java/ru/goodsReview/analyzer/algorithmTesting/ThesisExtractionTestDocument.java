@@ -9,13 +9,11 @@ package ru.goodsReview.analyzer.algorithmTesting;
  */
 
 import ru.goodsReview.analyzer.ExtractThesis;
-import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 
 public class ThesisExtractionTestDocument {
@@ -464,7 +462,7 @@ public class ThesisExtractionTestDocument {
             System.out.println("recall = " + successExtract / numHum);
         }
 
-       // printDictionary();
+        printDictionary();
 
     }
 }
