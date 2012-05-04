@@ -289,7 +289,7 @@ public class ThesisExtractionTestDocument {
     }
 
     // comparison of thesis for two products
-    static void comparator(Product algoProduct, Product humProduct, PrintWriter out) {
+    static void comparator(Product algoProduct, Product humProduct, PrintWriter out) throws UnsupportedEncodingException {
         out.println("<product id=\"" + algoProduct.getId() + "\">");
         if (algoProduct.getReviews().size() > 0 && !algoProduct.getReviews().get(0).getReview().equals("-1")) {
             if(algoProduct.getReviews().size()!=humProduct.getReviews().size()){
@@ -305,8 +305,9 @@ public class ThesisExtractionTestDocument {
     }
 
     // comparison of thesis for two Review lists
-    static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out) {
+    static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out) throws UnsupportedEncodingException {
         int editDist = 3;
+        MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
 
         for (int k = 0; k < algoReview.size(); k++) {
             String reviewID = algoReview.get(k).getReview();
@@ -334,7 +335,7 @@ public class ThesisExtractionTestDocument {
                                 out.println("      <OK>" + humFeature +" "+ opinion+"</OK>");
                                // System.out.println(alThesis+" "+opinion+" ## "+sentence);
                                 successExtract++;
-                                add(dictionaryScores,opinion,true);
+                                add(dictionaryScores,mystemAnalyzer.normalizer(opinion),true);
                                 break;
                             }
                         }
@@ -358,7 +359,7 @@ public class ThesisExtractionTestDocument {
                     }
                     if (t == false) {
                         out.println("      <algo>" + algoFeature +" "+opinion+"</algo>");
-                        add(dictionaryScores,opinion,false);
+                        add(dictionaryScores,mystemAnalyzer.normalizer(opinion),false);
                       // System.out.println("      "+algoFeature + " "+opinion);
                     }
                 }
@@ -386,6 +387,7 @@ public class ThesisExtractionTestDocument {
                 //out.println("   </review>");
             }
         }
+        mystemAnalyzer.close();
     }
 
     static boolean contains(String sentence, String s) {
