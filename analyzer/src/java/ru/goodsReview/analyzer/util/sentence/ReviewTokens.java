@@ -72,13 +72,13 @@ public class ReviewTokens {
                 } else{
                     if(partOfSpeech.equals(PartOfSpeech.NOUN)) {
                         String normToken = mystemAnalyzer.normalizer(currToken);
-                       // if(featureDictionary.contains(normToken)) {
+                       if(featureDictionary.contains(normToken)) {
                         // if(true) {
                            // System.out.println(normToken);
                             token.setMystemPartOfSpeech(PartOfSpeech.NOUN);
-                        /*}else{
+                        }else{
                             token.setMystemPartOfSpeech(PartOfSpeech.UNKNOWN);
-                        }*/
+                        }
                     } else{
                         token.setMystemPartOfSpeech(partOfSpeech);
                     }

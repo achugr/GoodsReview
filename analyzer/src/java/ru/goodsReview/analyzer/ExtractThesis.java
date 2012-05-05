@@ -133,7 +133,7 @@ public class ExtractThesis extends TimerTask{
 
                            if(patternCondition){
                             //   System.out.println(token1+" "+tokensList.get(n1+1).getContent()+" "+token2);
-                               token2= tokensList.get(n1+1).getContent()+" "+token2;
+                            //   token2= tokensList.get(n1+1).getContent()+" "+token2;
                           }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
@@ -172,7 +172,7 @@ public class ExtractThesis extends TimerTask{
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
                             if(patternCondition){
                               //  System.out.println(tokensList.get(n2-1).getContent()+" "+token2+" "+token1);
-                                token2 = tokensList.get(n2-1).getContent()+" "+token2;
+                              //  token2 = tokensList.get(n2-1).getContent()+" "+token2;
                             }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
@@ -196,8 +196,8 @@ public class ExtractThesis extends TimerTask{
         boolean con2 = check(num1, num2);
         boolean con3 = check(case1, case2);
 
-        //boolean sep = con1 && con2 && con3;
-        boolean sep = (con1 && con2) || (con1 && con3);// || (con2 && con3);
+        boolean sep = con1 && con2 && con3;
+
         return sep;
     }
 
