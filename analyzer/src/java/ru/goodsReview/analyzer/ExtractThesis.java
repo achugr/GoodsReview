@@ -126,15 +126,16 @@ public class ExtractThesis extends TimerTask{
                      n2 = i;
                     
                     boolean patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n1+1).getContent()));
-                    if(Math.abs(n1-n2)==1||patternCondition){
+                    if(Math.abs(n1-n2)<=2||patternCondition){
                         String token2 = currToken.getContent();
 
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
 
                            if(patternCondition){
-                            //   System.out.println(token1+" "+tokensList.get(n1+1).getContent()+" "+token2);
+
                             //   token2= tokensList.get(n1+1).getContent()+" "+token2;
                           }
+                             //System.out.println(" "+token2+" "+token1+" "+Math.abs(n1-n2));
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
@@ -165,15 +166,16 @@ public class ExtractThesis extends TimerTask{
                         patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n2-1).getContent()));
                     }
 
-                    if(Math.abs(n1-n2)==1||patternCondition){
+                    if(Math.abs(n1-n2)<=2||patternCondition){
 
                         String token2 = currToken.getContent();
 
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
                             if(patternCondition){
-                              //  System.out.println(tokensList.get(n2-1).getContent()+" "+token2+" "+token1);
+                               // System.out.println(" "+token2+" "+token1+Math.abs(n1-n2));
                               //  token2 = tokensList.get(n2-1).getContent()+" "+token2;
                             }
+                            //System.out.println(" "+token2+" "+token1+" "+Math.abs(n1-n2));
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }

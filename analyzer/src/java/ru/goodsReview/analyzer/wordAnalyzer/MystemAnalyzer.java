@@ -201,7 +201,7 @@ public class MystemAnalyzer implements WordAnalyzer{
         ps.println(word);
         String wordCharacteristic = sc.nextLine();
         String norm = wordCharacteristic.substring(wordCharacteristic.indexOf("{")+1,wordCharacteristic.indexOf("="));
-
+        //System.out.println(word + " --> " + norm);
         return norm;
     }
 
