@@ -115,7 +115,7 @@ public class ThesisExtractionTestDocument {
                 for (int i = 0; i < arr.length; i++) {
                     String s1 = arr[i];
                     s1 = s1.trim();
-                    if(s1.contains("[")){
+                    if(s1.contains("[")&&!s1.contains("|u")){
                         s1 = splitBracket(s1);
                         if (!s1.equals("")) {
                             boolean flag = false;
@@ -133,11 +133,12 @@ public class ThesisExtractionTestDocument {
 
                 }
             } else {
+                if(t.contains("|u")){
                 t = splitBracket(t);
                 t = t.trim();
                 if(!t.equals("") && t.charAt(0) != '{'){
                     thesisList.add(new Phrase(t.trim().toLowerCase(), sentence));
-                }
+                } }
             }
         }
     }
@@ -360,7 +361,7 @@ public class ThesisExtractionTestDocument {
                     if (t == false) {
                         out.println("      <algo>" + algoFeature +" "+opinion+"</algo>");
                         add(dictionaryScores,mystemAnalyzer.normalizer(opinion),false);
-                      // System.out.println("      "+algoFeature + " "+opinion);
+                       System.out.println("      "+algoFeature + " "+opinion);
                     }
                 }
 
@@ -465,7 +466,7 @@ public class ThesisExtractionTestDocument {
             System.out.println("recall = " + successExtract / numHum);
         }
 
-        printDictionary();
+        //printDictionary();
 
     }
 }
