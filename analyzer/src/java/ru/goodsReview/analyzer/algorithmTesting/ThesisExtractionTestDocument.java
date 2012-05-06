@@ -338,6 +338,7 @@ public class ThesisExtractionTestDocument {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 out.println("      <OK>" + humFeature + " " + opinion + "</OK>");
                                 // System.out.println(alThesis+" "+opinion+" ## "+sentence);
+                                successExtract++;
                                 add(dictionaryScores, mystemAnalyzer.normalizer(opinion), true);
                                 break;
                             }
