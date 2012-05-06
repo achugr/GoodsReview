@@ -125,7 +125,7 @@ public class ExtractThesis extends TimerTask{
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                      n2 = i;
                     
-                    boolean patternCondition = (Math.abs(n1-n2)==2)&&(dictContains(tokensList.get(n1+1).getContent()));
+                    boolean patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n1+1).getContent()));
                     if(Math.abs(n1-n2)==1||patternCondition){
                         String token2 = currToken.getContent();
 
@@ -192,12 +192,12 @@ public class ExtractThesis extends TimerTask{
         String num2 = a2[1];
         String case1 = a1[2];
         String case2 = a2[2];
-        boolean con1 = check(p1, p2);
-        boolean con2 = check(num1, num2);
-        boolean con3 = check(case1, case2);
+        boolean con1 = check(p1, p2);       // Род
+        boolean con2 = check(num1, num2);   // Число
+        boolean con3 = check(case1, case2); // Падеж
 
-        boolean sep = con1 && con2 && con3;
-
+        //boolean sep = con1 && con2 && con3;
+        boolean sep = (con1 && con2) || (con1 && con3);
         return sep;
     }
 

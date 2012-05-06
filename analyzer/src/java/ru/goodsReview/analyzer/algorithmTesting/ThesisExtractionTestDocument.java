@@ -414,7 +414,8 @@ public class ThesisExtractionTestDocument {
 
    static void printDictionary() {
        for (String key:dictionaryScores.keySet()){
-           System.out.println(key+" +"+dictionaryScores.get(key)[0]+" -"+dictionaryScores.get(key)[1]);
+           System.out.println(key+" +"+dictionaryScores.get(key)[0]+" -"+dictionaryScores.get(key)[1]+ " "+
+                     dictionaryScores.get(key)[1]*1.0/(dictionaryScores.get(key)[0]+dictionaryScores.get(key)[1]));
        }
     }
 
@@ -464,7 +465,7 @@ public class ThesisExtractionTestDocument {
             System.out.println("recall = " + successExtract / numHum);
         }
 
-       // printDictionary();
+        printDictionary();
 
     }
 }

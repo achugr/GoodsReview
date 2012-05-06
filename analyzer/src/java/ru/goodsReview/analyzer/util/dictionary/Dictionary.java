@@ -17,11 +17,11 @@ public class Dictionary {
         this.words = words;
     }
 
-    public HashSet<String> getDictionary(){
-          return this.words;
+    public HashSet<String> getDictionary() {
+        return this.words;
     }
 
-    public Dictionary(String dictionaryFileName, String encoding){
+    public Dictionary(String dictionaryFileName, String encoding) {
         this.words = new HashSet<String>();
 
         try {
@@ -30,13 +30,17 @@ public class Dictionary {
             BufferedReader in = new BufferedReader(isr1);
 
             String s = in.readLine();
-            while (s!=null){
-                s= s.trim();
-                if(s.length()!=0){
-                    if(s.charAt(0)=='﻿') {
+            while (s != null) {
+                s = s.trim();
+                if (s.length() != 0) {
+                    /*if(s.charAt(0)=='﻿') {
                         s = s.substring(1);
+                    }*/
+                    if (s.indexOf(" ") != -1) {
+                        words.add(s.substring(0, s.indexOf(" ")));
+                    } else {
+                        words.add(s);
                     }
-                    words.add(s);
                 }
                 s = in.readLine();
             }
@@ -49,8 +53,8 @@ public class Dictionary {
         }
     }
 
-    public void print(){
-        for(String word : words){
+    public void print() {
+        for (String word : words) {
             System.out.println(word);
         }
     }
@@ -61,18 +65,18 @@ public class Dictionary {
      * @param word
      * @return true if word is here. false — otherwise
      */
-    public boolean contains(String word){
-       /* for(String s: words){
-            if(s.contains(word)){
-                return true;
-            }
-        }
-            return false;*/
+    public boolean contains(String word) {
+        /* for(String s: words){
+       if(s.contains(word)){
+           return true;
+       }
+   }
+       return false;*/
         return words.contains(word);
     }
 
-    public static void main(String [] args) throws FileNotFoundException {
-        Dictionary dictionary = new Dictionary("feat_dic.txt","windows-1251");
+    public static void main(String[] args) throws FileNotFoundException {
+        Dictionary dictionary = new Dictionary("feat_dic.txt", "windows-1251");
         dictionary.print();
     }
 }
