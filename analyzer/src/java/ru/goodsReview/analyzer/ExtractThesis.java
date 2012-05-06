@@ -125,16 +125,16 @@ public class ExtractThesis extends TimerTask{
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                      n2 = i;
                     
-                    boolean patternCondition = (Math.abs(n1-n2)==2)&&(dictContains(tokensList.get(n1+1).getContent()));
-                    if(Math.abs(n1-n2)==1||patternCondition){
+                   // boolean patternCondition = (Math.abs(n1-n2)==2)&&(dictContains(tokensList.get(n1+1).getContent()));
+                    if(Math.abs(n1-n2)==1){
                         String token2 = currToken.getContent();
 
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
 
-                           if(patternCondition){
+                           //if(patternCondition){
                             //   System.out.println(token1+" "+tokensList.get(n1+1).getContent()+" "+token2);
                             //   token2= tokensList.get(n1+1).getContent()+" "+token2;
-                          }
+                         // }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
@@ -160,20 +160,20 @@ public class ExtractThesis extends TimerTask{
             } else {
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                     n2 = i;
-                    boolean patternCondition = false;
-                    if(n2!=0){
-                        patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n2-1).getContent()));
-                    }
+//                    boolean patternCondition = false;
+//                    if(n2!=0){
+//                        patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n2-1).getContent()));
+//                    }
 
-                    if(Math.abs(n1-n2)==1||patternCondition){
+                    if(Math.abs(n1-n2)==1){
 
                         String token2 = currToken.getContent();
 
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
-                            if(patternCondition){
+                           // if(patternCondition){
                               //  System.out.println(tokensList.get(n2-1).getContent()+" "+token2+" "+token1);
                               //  token2 = tokensList.get(n2-1).getContent()+" "+token2;
-                            }
+                           // }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }

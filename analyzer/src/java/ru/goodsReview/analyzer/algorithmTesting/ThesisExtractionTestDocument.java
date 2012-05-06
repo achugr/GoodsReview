@@ -21,6 +21,7 @@ public class ThesisExtractionTestDocument {
     private static double numAlgo = 0;
     private static double numHum = 0;
     private static HashMap<String, int[]> dictionaryScores = new HashMap<String, int[]>();
+    static MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
 
     //   build list of Products for human markup file
     static ArrayList<Product> buildHumanProductList(String filePath, String encoding) throws IOException {
@@ -115,7 +116,7 @@ public class ThesisExtractionTestDocument {
                 for (int i = 0; i < arr.length; i++) {
                     String s1 = arr[i];
                     s1 = s1.trim();
-                    if(s1.contains("[")){
+                    if(s1.contains("[")&&!s1.contains("u")){
                         s1 = splitBracket(s1);
                         if (!s1.equals("")) {
                             boolean flag = false;
@@ -133,11 +134,12 @@ public class ThesisExtractionTestDocument {
 
                 }
             } else {
+                if(!t.contains("u")) {
                 t = splitBracket(t);
                 t = t.trim();
                 if(!t.equals("") && t.charAt(0) != '{'){
                     thesisList.add(new Phrase(t.trim().toLowerCase(), sentence));
-                }
+                }  }
             }
         }
     }
@@ -153,7 +155,6 @@ public class ThesisExtractionTestDocument {
     //   build list of Products for algo markup file
     static ArrayList<Product> buildAlgoProductList(String filePath, String encoding) throws IOException, InterruptedException {
         ArrayList<Product> ProductList = new ArrayList<Product>();
-        MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
 
         FileInputStream fis = new FileInputStream(filePath);
         InputStreamReader isr = new InputStreamReader(fis, encoding);
@@ -207,15 +208,11 @@ public class ThesisExtractionTestDocument {
 
                             ArrayList<Phrase> tList = ExtractThesis.doExtraction(review, mystemAnalyzer);
 
-                            for ( Phrase  phrase : tList) {
-                                String token1 =  phrase.getFeature();
-                                String token2 =  phrase.getOpinion();
-                              //  System.out.println(review);
-                              //System.out.println(token1);
-                               // if(token2.contains(" ")){
-                              //      System.out.println(token2);
-                              //  }
+                            for (Phrase phrase : tList) {
+                                String token1 = phrase.getFeature();
+                                String token2 = phrase.getOpinion();
                                 thesisList.add(new Phrase(token1, token2));
+
                             }
                         } else {
                             sb.append(" "+s);
@@ -306,7 +303,7 @@ public class ThesisExtractionTestDocument {
 
     // comparison of thesis for two Review lists
     static void compareThesisLists(ArrayList<Review> algoReview, ArrayList<Review> humReview, PrintWriter out) throws UnsupportedEncodingException {
-        int editDist = 3;
+
         MystemAnalyzer mystemAnalyzer = new MystemAnalyzer();
 
         for (int k = 0; k < algoReview.size(); k++) {
@@ -330,9 +327,9 @@ public class ThesisExtractionTestDocument {
                         String opinion = algoThesis.get(j).getOpinion();
                         // System.out.println(alThesis+" "+opinion);
 
-                        if (contains(humFeature, algoFeature)) {
+                        if (contains(humFeature, mystemAnalyzer.normalizer(algoFeature))) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
-                                out.println("      <OK>" + humFeature +" "+ opinion+"</OK>");
+                                out.println("      <OK>" + humFeature + "</OK>");
                                // System.out.println(alThesis+" "+opinion+" ## "+sentence);
                                 successExtract++;
                                 add(dictionaryScores,mystemAnalyzer.normalizer(opinion),true);
@@ -350,7 +347,7 @@ public class ThesisExtractionTestDocument {
                     for (int j = 0; j < humThesis.size(); j++) {
                         String humFeature = humThesis.get(j).getFeature();
                         String sentence = humThesis.get(j).getOpinion();
-                        if (contains(humFeature, algoFeature)) {
+                        if (contains(humFeature, mystemAnalyzer.normalizer(algoFeature))) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
@@ -358,7 +355,7 @@ public class ThesisExtractionTestDocument {
                         }
                     }
                     if (t == false) {
-                        out.println("      <algo>" + algoFeature +" "+opinion+"</algo>");
+                        out.println("      <algo>" + algoFeature +"</algo>");
                         add(dictionaryScores,mystemAnalyzer.normalizer(opinion),false);
                       // System.out.println("      "+algoFeature + " "+opinion);
                     }
@@ -373,7 +370,7 @@ public class ThesisExtractionTestDocument {
                         String algoFeature = algoThesis.get(j).getFeature();
                         String opinion = algoThesis.get(j).getOpinion();
 
-                        if (contains(humFeature, algoFeature)) {
+                        if (contains(humFeature, mystemAnalyzer.normalizer(algoFeature))) {
                             if (contains(sentence, algoFeature) && contains(sentence, opinion)) {
                                 t = true;
                                 break;
