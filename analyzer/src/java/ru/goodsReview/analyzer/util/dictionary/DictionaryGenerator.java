@@ -129,7 +129,7 @@ public class DictionaryGenerator extends TimerTask {
 //        evaluate xPathExpresion
         Object object = xPathExpression.evaluate(inputSource, XPathConstants.NODESET);
         NodeList nodeList = (NodeList) object;
-        HashSet<String> hashSet = new HashSet<>();
+        HashSet<String> hashSet = new HashSet<String>();
 //        go on all result object by this xPath
         for (int i = 0; i < nodeList.getLength(); i++) {
 //            extract tokens from result
