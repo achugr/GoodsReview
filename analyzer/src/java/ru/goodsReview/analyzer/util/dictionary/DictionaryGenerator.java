@@ -90,7 +90,7 @@ public class DictionaryGenerator extends TimerTask {
      */
     private static void frequencyDictionaryFromNormalized() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("normalized_words.txt"));
-        HashMap<String, Integer> frequencyDictionary = new HashMap<>();
+        HashMap<String, Integer> frequencyDictionary = new HashMap<String,Integer>();
         String token;
         while (scanner.hasNext()) {
             token = scanner.next();

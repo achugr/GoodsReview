@@ -118,8 +118,10 @@ public class PyMorphyAnalyzer {
 
             //long stop = System.currentTimeMillis();
             // System.out.println("time in millis: " + (stop-start));
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             pyMorphyAnalyzer.close();
         }
