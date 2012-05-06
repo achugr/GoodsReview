@@ -127,15 +127,14 @@ public class ExtractThesis extends TimerTask{
                     
                     boolean patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n1+1).getContent()));
                     if(Math.abs(n1-n2)<=2||patternCondition){
+
                         String token2 = currToken.getContent();
 
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
 
-                           if(patternCondition){
-
+                            //   System.out.println(token1+" "+tokensList.get(n1+1).getContent()+" "+token2);
                             //   token2= tokensList.get(n1+1).getContent()+" "+token2;
-                          }
-                             //System.out.println(" "+token2+" "+token1+" "+Math.abs(n1-n2));
+                         // }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
@@ -162,20 +161,19 @@ public class ExtractThesis extends TimerTask{
                 if (token1 != null && currToken.getMystemPartOfSpeech().equals(part2)) {
                     n2 = i;
                     boolean patternCondition = false;
-                    if(n2!=0){
-                        patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n2-1).getContent()));
-                    }
+//                    if(n2!=0){
+//                        patternCondition = (Math.abs(n1-n2)==1)&&(dictContains(tokensList.get(n2-1).getContent()));
+//                    }
 
                     if(Math.abs(n1-n2)<=2||patternCondition){
 
                         String token2 = currToken.getContent();
 
                         if(checkWordsCorrespondence(token1, token2, mystemAnalyzer)) {
-                            if(patternCondition){
-                               // System.out.println(" "+token2+" "+token1+Math.abs(n1-n2));
+                           // if(patternCondition){
+                              //  System.out.println(tokensList.get(n2-1).getContent()+" "+token2+" "+token1);
                               //  token2 = tokensList.get(n2-1).getContent()+" "+token2;
-                            }
-                            //System.out.println(" "+token2+" "+token1+" "+Math.abs(n1-n2));
+                           // }
                             extractedThesisList.add(new Phrase(token1,token2));
                         }
                     }
