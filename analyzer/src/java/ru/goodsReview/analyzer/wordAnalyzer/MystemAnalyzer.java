@@ -32,7 +32,7 @@ public class MystemAnalyzer implements WordAnalyzer{
     public MystemAnalyzer() {
         try {
             String command="";
-            if(OSValidator.isUnix()){
+            if(OSValidator.isUnix() || OSValidator.isMac()){
                 command = "./";
             }
             analyzer = Runtime.getRuntime().exec(command + "mystem -nig -e " + CHARSET);

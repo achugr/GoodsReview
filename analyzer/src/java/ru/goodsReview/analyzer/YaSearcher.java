@@ -31,7 +31,7 @@ public class YaSearcher extends TimerTask {
     private static final String userSettingsFileName = "ya_searcher_key.txt";
     private static String PASSWORD;
     private static String USER;
-    private static final Pattern pagesCountPattern = Pattern.compile("<found priority=\"all\">(\\d+)</found>");
+    private static final Pattern pagesCountPattern = Pattern.compile(".*<found priority=\"all\">(\\d+)</found>.*");
 
     public YaSearcher() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(userSettingsFileName));
@@ -74,8 +74,6 @@ public class YaSearcher extends TimerTask {
         final URL url = new URL(address.toString());
         return url.openStream();
     }
-
-
 
     private static void thesisStatistic(java.util.HashMap thesisPopularity, String fileName){
         java.util.HashMap sortedThesisPopularity = HashMapUtil.sort(thesisPopularity);
@@ -138,6 +136,51 @@ public class YaSearcher extends TimerTask {
             }
         }
         thesisStatistic(thesisPopularity, "thesis_stat.txt");
+    }
+
+    public String sendRequest(String query) {
+        LineNumberReader lineReader = null;
+        int page = 0;
+        String response = "error";
+        final YaSearcher searcher;
+        try {
+            searcher = new YaSearcher();
+
+            lineReader = new LineNumberReader(
+                    new InputStreamReader(searcher.retrieveResponseViaGetRequest(query.toString(), page)));
+
+            String line = lineReader.readLine();
+
+            while (line != null) {
+                Matcher matcher = pagesCountPattern.matcher(line);
+                if (matcher.matches()) {
+                    response = matcher.group(1);
+                }
+                line = lineReader.readLine();
+            }
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IOException e) {
+
+        } finally {
+            if (lineReader != null) {
+                try {
+                    lineReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+        }
+        return response;
+    }
+
+    public static void main(String[] args) {
+        try {
+            YaSearcher yaSearcher = new YaSearcher();
+            System.out.println(yaSearcher.sendRequest("!ноутбук /2 !ужасный"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }
 
