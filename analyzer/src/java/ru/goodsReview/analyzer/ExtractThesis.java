@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import ru.goodsReview.analyzer.algorithmTesting.Phrase;
 import ru.goodsReview.analyzer.util.ThesisPattern;
+import ru.goodsReview.analyzer.util.dictionary.MapDictionary;
 import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
 import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
 import ru.goodsReview.analyzer.util.sentence.Token;
@@ -39,6 +40,7 @@ public class ExtractThesis extends TimerTask{
     private static ReviewController reviewController;
 
     static String[] dict = {"более", "достаточно", "очень", "не", "слишком", "довольно"};
+    private static MapDictionary opinionDictionary = new MapDictionary("adjective_opinion_words.txt", "utf-8");
 
     @Required
     public void setControllerFactory(ControllerFactory controllerFactory1){
@@ -67,7 +69,12 @@ public class ExtractThesis extends TimerTask{
         for (Phrase phrase:listThesis){
             String token1 =  phrase.getFeature();
             String token2 =  phrase.getOpinion();
-            extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, 0.0, 0.0));
+            String normToken = mystemAnalyzer.normalizer(phrase.getOpinion());
+            Double positivity = 0.0;
+            if(opinionDictionary.getDictionary().containsKey(normToken)){
+                positivity = opinionDictionary.getDictionary().get(normToken);
+            }
+            extractedThesisList.add(new Thesis(review.getId(), 1, token1 + " " + token2, 0, positivity, 0.0));
         }
 
         return extractedThesisList;
@@ -85,7 +92,8 @@ public class ExtractThesis extends TimerTask{
         while (stringTokenizer.hasMoreElements()) {
             String str  = stringTokenizer.nextToken();
 
-            ReviewTokens reviewTokens = new ReviewTokens(str, mystemAnalyzer);
+            ReviewTokens reviewTokens = new ReviewTokens(str, mystemAnalyzer,opinionDictionary);
+
             ArrayList<Token> tokensList = reviewTokens.getTokensList();
 
             for(ThesisPattern thesisPattern : thesisPatternList){
