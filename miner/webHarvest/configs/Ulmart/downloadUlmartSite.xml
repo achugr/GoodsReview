@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <var-def name="ProdOnPageInfo">
+        <xpath expression="//table[@class='good_list_header_text' and position()=1]/tbody/tr/td[@align='right']/select/option[@selected]/text()">
+            <html-to-xml>
+                <!--Specify link here-->
+                <http url="http://www.ulmart.ru/${category}"/>
+            </html-to-xml>
+        </xpath>
+    </var-def>
+
+    <var-def name="ProductsNumber">
+        <xpath expression="//table[@class='good_list_header_text' and position()=1]/tbody/tr/td[@class='listed_from_to']/span[2]/text()">
+            <html-to-xml>
+                <!--Specify link here-->
+                <http url="http://www.ulmart.ru/${category}"/>
+            </html-to-xml>
+        </xpath>
+    </var-def>
+
+    <var-def name="MaxPage">
+        <script return="lastPageNum"><![CDATA[
+            prodOnPageStr = ProdOnPageInfo.toString().split(" на стр.");
+            prodOnPageNum = Integer.parseInt(prodOnPageStr[0]);
+            lastPageNum = (ProductsNumber.toInt() / prodOnPageNum) + 1;
+        ]]></script>
+    </var-def>
+
+    <file action="write" path="${file}">
+        <template>
+            &lt;objects&gt;${sys.cr}${sys.lf}
+        </template>
+    </file>
+
+    <while condition="${MaxPage.toInt() + 1 > i.toInt()}" index="i">
+        <empty>
+            <var-def name="items">
+                <xpath expression='//table[@class = "catalogItem"]'>
+                    <html-to-xml>
+                        <!--Specify link here-->
+                        <http url="http://www.ulmart.ru/${category}/?scroll_page=${i.toInt()}"/>
+                    </html-to-xml>
+                </xpath>
+            </var-def>
+
+            <loop item="item" index="j">
+                <list>
+                    <var name="items"/>
+                </list>
+                <body>
+                    <empty>
+                        <var-def name="url">
+                            <xpath expression='//td[@class="ciTopTitle" or @class="ciTopTitle2"]/table/tbody/tr/td/a/@href'>
+                                <var name="item"/>
+                            </xpath>
+                        </var-def>
+
+                        <var-def name="numOfRevInfo">
+                            <xpath expression='//td[@class="ciDescr"]/div[3]/a/text()'>
+                                <var name="item"/>
+                            </xpath>
+                        </var-def>
+
+                        <var-def name="numberOfReviews">
+                            <script return="numOfReviews"><![CDATA[
+                                infoString = numOfRevInfo.toString();
+                                if(infoString.equals("напишите первым")){
+                                    numOfReviews = 0;
+                                }else{
+                                    numOfReviews = Integer.parseInt(infoString.split("отзывов ")[1]);
+                                }
+                            ]]></script>
+                        </var-def>
+
+                        <file action="append" path="${file}">
+                            <!--Template:
+                            <object value="number_Of_Reviews">URL</object>
+                            -->
+                            <template>
+                                &lt;object value=&quot;${numberOfReviews}&quot;&gt;${url}&lt;/object&gt;
+                                ${sys.cr}${sys.lf}
+                            </template>
+                        </file>
+                    </empty>
+                </body>
+            </loop>
+        </empty>
+    </while>
+
+    <file action="append" path="${file}">
+        <template>
+            &lt;/objects&gt;${sys.cr}${sys.lf}
+        </template>
+    </file>
+</config>

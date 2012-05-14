@@ -11,6 +11,7 @@
     <bean id="grabberCitilink" class="ru.goodsReview.miner.GrabberCitilink">
         <property name="grabberConfig" value="miner/webHarvest/configs/Citilink/CitilinkReviewsConfig.xml"/>
         <property name="downloadConfig" value="miner/webHarvest/configs/Citilink/downloadCitilinkSite.xml"/>
+        <property name="pathNameParseConf" value="miner/nameParserConfigs/Citilink/"/>
         <property name="path" value="data/miner/Citilink/"/>
     </bean>
 
@@ -20,10 +21,24 @@
         <property name="timerTask" ref="grabberCitilink"/>
     </bean>
 
+    <bean id="grabberUlmart" class="ru.goodsReview.miner.GrabberUlmart">
+        <property name="grabberConfig" value="miner/webHarvest/configs/Ulmart/UlmartReviewsConfig.xml"/>
+        <property name="downloadConfig" value="miner/webHarvest/configs/Ulmart/downloadUlmartSite.xml"/>
+        <property name="pathNameParseConf" value="miner/nameParserConfigs/Ulmart/"/>
+        <property name="path" value="data/miner/Ulmart/"/>
+    </bean>
+
+    <bean id="grabberUlmartTask" class="org.springframework.scheduling.timer.ScheduledTimerTask" lazy-init="false">
+        <property name="delay" value="0"/>
+        <property name="period" value="36000000"/>
+        <property name="timerTask" ref="grabberUlmart"/>
+    </bean>
+
     <bean class="org.springframework.scheduling.timer.TimerFactoryBean">
         <property name="scheduledTimerTasks">
             <list>
                 <ref local="grabberCitilinkTask"/>
+                <ref local="grabberUlmartTask"/>
             </list>
         </property>
     </bean>

@@ -8,7 +8,7 @@ import ru.common.FileUtil;
 import ru.common.Serializer;
 import ru.goodsReview.core.db.ControllerFactory;
 import ru.goodsReview.core.exception.DeleteException;
-import ru.goodsReview.miner.listener.CitilinkScraperRuntimeListener;
+import ru.goodsReview.miner.listener.UlmartScraperRuntimeListener;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -25,14 +25,12 @@ import java.util.*;
 /**
  * Created by IntelliJ IDEA.
  * User: timur
- * Date: 01.04.12
- * Time: 21:28
- * To change this template use File | Settings | File Templates.
  */
-public class CitilinkCategoryGrabber extends CategoryGrabber{
-    private static final Logger log = Logger.getLogger(CitilinkCategoryGrabber.class);
-    private static final String site = "http://www.citilink.ru";
-    private static final String encoding = "windows-1251";
+
+public class UlmartCategoryGrabber extends CategoryGrabber {
+    private static final Logger log = Logger.getLogger(UlmartCategoryGrabber.class);
+    private static final String site = "http://www.ulmart.ru";
+    private static final String encoding = "UTF-8";
 
     private String path;
     private String workingDir;
@@ -40,23 +38,23 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
     private String downloadConfig;
     private String grabberConfig;
     protected ControllerFactory controllerFactory;
-    
+
     private String pagesPath;
     private String descriptionPath;
     private String listPath;
-    
+
     private String allLinksPath;
     private String newLinksPath;
     private String latterLinksPath;
 
-    public CitilinkCategoryGrabber(String path, String pathToXml, String downloadConfig, String grabberConfig, ControllerFactory controllerFactory ){
+    public UlmartCategoryGrabber(String path, String pathToXml, String downloadConfig, String grabberConfig, ControllerFactory controllerFactory ){
         this.path = path;
         categoryConfig = getCategoryConfig(pathToXml);
         this.downloadConfig = downloadConfig;
         this.grabberConfig = grabberConfig;
         this.controllerFactory = controllerFactory;
     }
-    
+
     @Override
     protected void init() {
         workingDir = path + categoryConfig.getCategory();
@@ -72,7 +70,7 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         CategoryConfig categoryConfig = null;
         JAXBContext jc = null;
         try{
-             jc = JAXBContext.newInstance(CategoryConfig.class);
+            jc = JAXBContext.newInstance(CategoryConfig.class);
         }catch(JAXBException e){
             log.error("Error in JAXBContent");
         }
@@ -84,7 +82,7 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         }
         try{
             StreamSource xmlConfigFile = new StreamSource(pathToConfigXml);
-            categoryConfig = (CategoryConfig)(( JAXBElement ) unmarshaller.unmarshal(xmlConfigFile, CategoryConfig.class)).getValue();
+            categoryConfig = (CategoryConfig)((JAXBElement) unmarshaller.unmarshal(xmlConfigFile, CategoryConfig.class)).getValue();
         }catch (JAXBException e) {
             log.error("Error in unmarshal method");
         }
@@ -92,20 +90,25 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         return categoryConfig;
     }
 
-    public void cleanFolders() throws DeleteException {
+    @Override
+    protected void cleanFolders() throws DeleteException {
         FileUtil.cleanFolder(new File(pagesPath));
         FileUtil.cleanFolder(new File(descriptionPath));
     }
 
-    public void createFolders() throws IOException {
+    @Override
+    protected void createFolders() throws IOException {
         new File(pagesPath).mkdirs();
         new File(descriptionPath).mkdirs();
         new File(listPath).mkdirs();
     }
 
-    public void updateList() {
+    @Override
+    protected void updateList() {
         try {
             log.info("Update list started");
+            //File linksFile = new File(latterLinksPath);
+            //linksFile.createNewFile();
 
             ScraperConfiguration config = new ScraperConfiguration(downloadConfig);
             Scraper scraper = new Scraper(config, "./");
@@ -122,8 +125,8 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         }
     }
 
-    //TODO:: not add, if review number changes, only update
-    public void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException {
+    @Override
+    protected void findPages() throws IOException, ParserConfigurationException, SAXException, TransformerException {
         log.info("Find pages started");
 
         //what links we visited before and count of reviews
@@ -149,8 +152,8 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         log.info("Find pages successful");
     }
 
-    //TODO: use RandomAccessFile and update lines with old product, but new reviews
-    public void downloadPages() {
+    @Override
+    protected void downloadPages() {
         try {
             log.info("Adding download pages started");
 
@@ -167,8 +170,7 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
             Iterator<String> iterator = newLinksMap.keySet().iterator();
             while (iterator.hasNext()) {
                 String productUrl = iterator.next();
-                Integer reviewNumber = newLinksMap.get(productUrl);
-                String url = site + productUrl + "?opinion";
+                String url = site + productUrl + "?tab=estimate&p=1";
                 linksToDownload.add(url);
             }
             allLinksMap.putAll(newLinksMap);
@@ -180,11 +182,12 @@ public class CitilinkCategoryGrabber extends CategoryGrabber{
         }
     }
 
-    public void grabPages() throws FileNotFoundException {
+    @Override
+    protected void grabPages() throws IOException {
         log.info("Grabbing started");
         ScraperConfiguration config = new ScraperConfiguration(grabberConfig);
         Scraper scraper = new Scraper(config, "./");
-        scraper.addRuntimeListener(new CitilinkScraperRuntimeListener(controllerFactory, categoryConfig.getRegExp()));
+        scraper.addRuntimeListener(new UlmartScraperRuntimeListener(controllerFactory, categoryConfig.getRegExp()));
         scraper.addVariableToContext("path", pagesPath);
         scraper.addVariableToContext("numberOfFirstReview", 0);
 

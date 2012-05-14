@@ -20,9 +20,15 @@ public abstract class DataTransformator {
     }
 
     protected static String clearBadSymbols(@NotNull String s){
+
         //it is not simple space symbols
         s = s.replaceAll("['\\u00A0''\\u2007''\\u202F']", " ");
-        s = s.replaceAll("['\u0097']", "-");
+
+        s = s.replaceAll("['\\u0097']", "-");
+
+        //replace breakline symbols
+        s = s.replaceAll("\n+"," ");
+
         return s;
     }
 }

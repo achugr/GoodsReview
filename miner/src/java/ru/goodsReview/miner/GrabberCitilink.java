@@ -17,12 +17,12 @@ public class GrabberCitilink extends WebHarvestGrabber{
 
     public void addCategories() {
         citilinkCategoryGrabbers.add(
-                new CitilinkCategoryGrabber(getPath(),"./miner/src/resources/notebooks.xml",
+                new CitilinkCategoryGrabber(getPath(), getPathNameParseConf()+"notebooks.xml",
                         getDownloadConfig(), getGrabberConfig(), controllerFactory )
         );
 
         citilinkCategoryGrabbers.add(
-                new CitilinkCategoryGrabber(getPath(),"./miner/src/resources/tvs.xml",
+                new CitilinkCategoryGrabber(getPath(), getPathNameParseConf()+"tvs.xml",
                         getDownloadConfig(), getGrabberConfig(), controllerFactory )
         );
     }

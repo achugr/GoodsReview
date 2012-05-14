@@ -16,6 +16,7 @@ public abstract class WebHarvestGrabber extends Grabber {
     private String downloadConfig;
     private String grabberConfig;
     private String path;
+    private String pathNameParseConf;
 
     @Required
     public void setDownloadConfig(String downloadConfig) {
@@ -32,15 +33,27 @@ public abstract class WebHarvestGrabber extends Grabber {
         this.path = path;
     }
 
+    @Required
     protected String getDownloadConfig() {
         return downloadConfig;
     }
 
+    @Required
     protected String getGrabberConfig() {
         return grabberConfig;
     }
 
+    @Required
     protected String getPath() {
         return path;
+    }
+
+
+    public String getPathNameParseConf() {
+        return pathNameParseConf;
+    }
+
+    public void setPathNameParseConf(String pathNameParseConf) {
+        this.pathNameParseConf = pathNameParseConf;
     }
 }

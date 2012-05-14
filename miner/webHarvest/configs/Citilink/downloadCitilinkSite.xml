@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-
-    <!--
-    <var-def name="startURL">http://www.citilink.ru/catalog/</var-def>
-    -->
-
-    <!--<var-def name="category1">computers_and_notebooks/</var-def>
-    <var-def name="subcategory11">notebooks/</var-def>
-
-    <var-def name="category2">photo_and_video/</var-def>
-    <var-def name="subcategory21">compactphoto/</var-def>
-
-    <var-def name="category3">audio_and_digits/</var-def>
-    <var-def name="subcategory31">tv/</var-def>
--->
-
-    <!--
-    <xpath expression="//div[@class='layout container']/div[@class='row-catalog']/div[@class='column-left']/div[@class='content']/ul/li/a/@href">
-        <html-to-xml>
-            <http url = "${startURL}"/>
-        </html-to-xml>
-    </xpath>
-    -->
-
-    <!--
-    WARNING: Choose one of three links (Link1, Link2, Link3) and specify it
-    in two different places in the code (see below)
-    -->
-
-
-
     <var-def name="MaxPage">
         <xpath expression="//div[@class='cat_nav top']/div[@class='b']/a[last()]/text()">
             <html-to-xml>
@@ -100,79 +70,4 @@
             &lt;/objects&gt;${sys.cr}${sys.lf}
         </template>
     </file>
-
-
-    <!--
-    <var-def name="MaxPage">
-        <xpath expression="//div[@class='cat_nav top']/div[@class='b']/a[last()]/text()">
-            <html-to-xml>
-                <http url="${startURL}${Link3}"/>
-            </html-to-xml>
-        </xpath>
-    </var-def>
-
-
-    <file action="write" path="${filePath}">
-        <template>
-            &lt;objects&gt;${sys.cr}${sys.lf}
-        </template>
-    </file>
-
-
-    <while condition="${MaxPage.toInt() + 1 > i.toInt()}" index="i">
-        <empty>
-            <var-def name="items">
-                <xpath expression='//table[@class = "item"]'>
-                    <html-to-xml>
-                        &lt;!&ndash;Specify link here&ndash;&gt;
-                        <http url="${startURL}/${Link3}?p=${i.toInt()}"/>
-                    </html-to-xml>
-                </xpath>
-            </var-def>
-
-
-            <loop item="item" index="j">
-                <list>
-                    <var name="items"/>
-                </list>
-                <body>
-                    <empty>
-                        <var-def name="url">
-                            <xpath expression='/table/tbody/tr/td/b/a/@href'>
-                                <var name="item"/>
-                            </xpath>
-                        </var-def>
-                        <var-def name="numberOfReviews">
-                            <xpath expression='//div[@class = "stars"]/sup/text()'>
-                                <var name="item"/>
-                            </xpath>
-                        </var-def>
-
-                        <case>
-                            <if condition="${numberOfReviews.toString().isEmpty()}">
-                                <var-def name="numberOfReviews">
-                                    0
-                                </var-def>
-                            </if>
-                        </case>
-                        <file action="append" path="${filePath}">
-                            &lt;!&ndash;<object value="3">abcd</object>&ndash;&gt;
-                            <template>
-                                &lt;object value=&quot;${numberOfReviews}&quot;&gt;${url}&lt;/object&gt;
-                                ${sys.cr}${sys.lf}
-                            </template>
-                        </file>
-                    </empty>
-                </body>
-            </loop>
-        </empty>
-    </while>
-
-    <file action="append" path="${filePath}">
-        <template>
-            &lt;/objects&gt;${sys.cr}${sys.lf}
-        </template>
-    </file>
-    -->
-
 </config>

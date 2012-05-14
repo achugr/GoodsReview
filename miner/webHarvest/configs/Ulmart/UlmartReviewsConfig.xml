@@ -1,0 +1,56 @@
+<config>
+    <!--<var-def name="path">data/miner/UlmartPages/</var-def>
+
+        @numberOfFirstReview - number of first review in this product, must be downloaded-->
+
+    <var-def name="files">
+        <file action="list" path="${path}" listdirs="no" listfilter="*.html"/>
+    </var-def>
+
+    <loop item="file" index="i">
+        <list>
+            <var name="files"/>
+        </list>
+        <body>
+            <empty>
+                <var-def name="content">
+                    <html-to-xml>
+                        <file action="read" path="${file}"/>
+                    </html-to-xml>
+                </var-def>
+
+                <var-def name="ProductName">
+                    <xpath expression='//td[@class="idTitle"]/h1/text()'>
+                        <var name="content"/>
+                    </xpath>
+                </var-def>
+
+                <!--<var-def name="Price">
+                    <xpath expression='//td[@valign="top"]/div[@class="crPrices"]/table/tbody/tr/td[@class="craField1"]/span/span/text()'>
+                        <var name="content"/>
+                    </xpath>
+                </var-def>-->
+
+                <loop item="review" index="j">
+                    <list>
+                        <xpath expression='//table[@class="itemEstimates"]/tbody/tr[@class and position() mod 2 = 1 and position()>=(${numberOfFirstReview})]'>
+                            <var name="content"/>
+                        </xpath>
+                    </list>
+
+                    <body>
+                        <empty>
+                            <var-def name="OpinionText">
+                                <xpath expression="//td[@class='ieComment']/text()">
+                                    <var name="review"/>
+                                </xpath>
+                            </var-def>
+
+                            <var-def name="isAddToDB">0</var-def>
+                        </empty>
+                    </body>
+                </loop>
+            </empty>
+        </body>
+    </loop>
+</config>
