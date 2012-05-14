@@ -9,6 +9,7 @@ package ru.goodsReview.analyzer.util.sentence;
 
 
 import ru.goodsReview.analyzer.util.dictionary.Dictionary;
+import ru.goodsReview.analyzer.util.dictionary.MapDictionary;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
 
@@ -24,7 +25,7 @@ public class ReviewTokens {
     //    "pointer" for traverse next/previous by currentPosition
     private int traversePosition = currentPosition;
 
-    private static Dictionary opinionDictionary = new Dictionary("adjective_opinion_words.txt", "utf-8");
+
 
     private static Dictionary featureDictionary = new Dictionary("feat_dic.txt", "windows-1251");
 
@@ -35,7 +36,7 @@ public class ReviewTokens {
      *
      * @param review source String
      */
-    public ReviewTokens(String review, MystemAnalyzer mystemAnalyzer) throws IOException, InterruptedException {
+    public ReviewTokens(String review, MystemAnalyzer mystemAnalyzer, MapDictionary opinionDictionary) throws IOException, InterruptedException {
         Token token;
         tokensList = new ArrayList<Token>();
         // StringTokenizer stringTokenizer = new StringTokenizer(review, " .,-—:;!()+\'\"\\«»");
@@ -95,9 +96,9 @@ public class ReviewTokens {
         return tokensList;
     }
 
-    public Dictionary getDic() {
-        return opinionDictionary;
-    }
+//    public MapDictionary getDic() {
+//        return opinionDictionary;
+//    }
 
     public Dictionary getFeatureDic() {
         return featureDictionary;

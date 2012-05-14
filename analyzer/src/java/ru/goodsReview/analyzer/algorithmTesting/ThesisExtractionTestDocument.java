@@ -9,6 +9,8 @@ package ru.goodsReview.analyzer.algorithmTesting;
  */
 
 import ru.goodsReview.analyzer.ExtractThesis;
+import ru.goodsReview.analyzer.util.dictionary.MapDictionary;
+import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
@@ -212,6 +214,7 @@ public class ThesisExtractionTestDocument {
                             for (Phrase phrase : tList) {
                                 String token1 = phrase.getFeature();
                                 String token2 = phrase.getOpinion();
+
                                 //  System.out.println(review);
                                 //System.out.println(token1);
                                 // if(token2.contains(" ")){

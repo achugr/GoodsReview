@@ -14,6 +14,7 @@ public class Phrase {
     private String feature;
     private String opinion;
 
+
     public Phrase(String feature, String opinion) {
         this.opinion = opinion;
         this.feature = feature;
