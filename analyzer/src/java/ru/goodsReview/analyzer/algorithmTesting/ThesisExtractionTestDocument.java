@@ -9,8 +9,6 @@ package ru.goodsReview.analyzer.algorithmTesting;
  */
 
 import ru.goodsReview.analyzer.ExtractThesis;
-import ru.goodsReview.analyzer.util.dictionary.MapDictionary;
-import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
 import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
@@ -470,6 +468,9 @@ public class ThesisExtractionTestDocument {
         }
         if (numHum != 0) {
             System.out.println("recall = " + successExtract / numHum);
+        }
+        if (numHum + numAlgo != 0) {
+            System.out.println("F-measure = " + 2*successExtract / numAlgo * successExtract / numHum / (successExtract / numHum + successExtract / numAlgo));
         }
 
         //printDictionary();
