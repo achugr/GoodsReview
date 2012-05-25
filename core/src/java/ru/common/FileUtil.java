@@ -9,7 +9,7 @@ package ru.common;
  */
 
 import org.apache.log4j.Logger;
-import ru.goodsReview.core.exception.DeleteException;
+import ru.goodsreview.core.exception.DeleteException;
 import java.io.File;
 
 public class FileUtil {

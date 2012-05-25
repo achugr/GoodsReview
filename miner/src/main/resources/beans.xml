@@ -8,7 +8,7 @@
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
     <!--Grabbers-->
-    <bean id="grabberCitilink" class="ru.goodsReview.miner.GrabberCitilink">
+    <bean id="grabberCitilink" class="ru.goodsreview.miner.obsolete.GrabberCitilink">
         <property name="grabberConfig" value="miner/webHarvest/configs/Citilink/CitilinkReviewsConfig.xml"/>
         <property name="downloadConfig" value="miner/webHarvest/configs/Citilink/downloadCitilinkSite.xml"/>
         <property name="pathNameParseConf" value="miner/nameParserConfigs/Citilink/"/>
@@ -21,7 +21,7 @@
         <property name="timerTask" ref="grabberCitilink"/>
     </bean>
 
-    <bean id="grabberUlmart" class="ru.goodsReview.miner.GrabberUlmart">
+    <bean id="grabberUlmart" class="ru.goodsreview.miner.obsolete.GrabberUlmart">
         <property name="grabberConfig" value="miner/webHarvest/configs/Ulmart/UlmartReviewsConfig.xml"/>
         <property name="downloadConfig" value="miner/webHarvest/configs/Ulmart/downloadUlmartSite.xml"/>
         <property name="pathNameParseConf" value="miner/nameParserConfigs/Ulmart/"/>

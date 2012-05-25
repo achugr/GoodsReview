@@ -19,26 +19,26 @@
     </bean>
 
     <!--Controllers-->
-    <bean id="categoryController" class="ru.goodsReview.storage.controller.CategoryDbController">
+    <bean id="categoryController" class="ru.goodsreview.storage.controller.CategoryDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="productController" class="ru.goodsReview.storage.controller.ProductDbController">
+    <bean id="productController" class="ru.goodsreview.storage.controller.ProductDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="reviewController" class="ru.goodsReview.storage.controller.ReviewDbController">
+    <bean id="reviewController" class="ru.goodsreview.storage.controller.ReviewDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="sourceController" class="ru.goodsReview.storage.controller.SourceDbController">
+    <bean id="sourceController" class="ru.goodsreview.storage.controller.SourceDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="thesisController" class="ru.goodsReview.storage.controller.ThesisDbController">
+    <bean id="thesisController" class="ru.goodsreview.storage.controller.ThesisDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="thesisUniqueController" class="ru.goodsReview.storage.controller.ThesisUniqueDbController">
+    <bean id="thesisUniqueController" class="ru.goodsreview.storage.controller.ThesisUniqueDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
 
-    <bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory"/>
+    <bean id="controllerFactory" class="ru.goodsreview.core.db.ControllerFactory"/>
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
@@ -72,28 +72,28 @@
     <bean id="singleYaletProcessor" class="net.sf.xfresh.core.impl.DefaultSingleYaletProcessor"/>
 
     <!--SimpleSearcher-->
-    <bean id="searcher" class="ru.goodsReview.searcher.SimpleSearcher" init-method="getReadyForSearch">
+    <bean id="searcher" class="ru.goodsreview.searcher.SimpleSearcher" init-method="getReadyForSearch">
         <property name="directoryDB" value="data/index/products"/>
     </bean>
     <!--Managers-->
-    <bean id="searchManager" class="ru.goodsReview.frontend.service.SearchManager"/>
-    <bean id="thesisManager" class="ru.goodsReview.frontend.service.ThesisManager"/>
-    <bean id="productManager" class="ru.goodsReview.frontend.service.ProductManager">
+    <bean id="searchManager" class="ru.goodsreview.frontend.service.SearchManager"/>
+    <bean id="thesisManager" class="ru.goodsreview.frontend.service.ThesisManager"/>
+    <bean id="productManager" class="ru.goodsreview.frontend.service.ProductManager">
         <property name="popularCount">
             <value>5</value>
         </property>
     </bean>
-    <bean id="reviewManager" class="ru.goodsReview.frontend.service.ReviewManager">
+    <bean id="reviewManager" class="ru.goodsreview.frontend.service.ReviewManager">
         <property name="popularCount">
             <value>10</value>
         </property>
     </bean>
     <!--Yalets-->
-    <bean id="reviewYalet" class="ru.goodsReview.frontend.yalet.ReviewYalet"/>
-    <bean id="popularProductsYalet" class="ru.goodsReview.frontend.yalet.PopularProductsYalet"/>
-    <bean id="productYalet" class="ru.goodsReview.frontend.yalet.ProductYalet"/>
-    <bean id="searchProductYalet" class="ru.goodsReview.frontend.yalet.SearchProductYalet"/>
-    <bean id="similarProductYalet" class="ru.goodsReview.frontend.yalet.SimilarProductYalet"/>
-    <bean id="thesisYalet" class="ru.goodsReview.frontend.yalet.ThesisYalet"/>
-    <bean id="mostCommentsProductYalet" class="ru.goodsReview.frontend.yalet.MostCommentsProductYalet"/>
+    <bean id="reviewYalet" class="ru.goodsreview.frontend.yalet.ReviewYalet"/>
+    <bean id="popularProductsYalet" class="ru.goodsreview.frontend.yalet.PopularProductsYalet"/>
+    <bean id="productYalet" class="ru.goodsreview.frontend.yalet.ProductYalet"/>
+    <bean id="searchProductYalet" class="ru.goodsreview.frontend.yalet.SearchProductYalet"/>
+    <bean id="similarProductYalet" class="ru.goodsreview.frontend.yalet.SimilarProductYalet"/>
+    <bean id="thesisYalet" class="ru.goodsreview.frontend.yalet.ThesisYalet"/>
+    <bean id="mostCommentsProductYalet" class="ru.goodsreview.frontend.yalet.MostCommentsProductYalet"/>
 </beans>

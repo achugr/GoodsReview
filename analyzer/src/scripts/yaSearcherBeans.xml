@@ -7,7 +7,7 @@
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
-    <bean id="yaSearcher" class="ru.goodsReview.analyzer.YaSearcher"/>
+    <bean id="yaSearcher" class="ru.goodsreview.analyzer.YaSearcher"/>
 
     <bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask" lazy-init="false">
         <property name="delay" value="1000"/>

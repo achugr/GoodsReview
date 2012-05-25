@@ -15,7 +15,7 @@
         </layout>
     </appender>
 
-    <logger name="ru.goodsReview" additivity="false">
+    <logger name="ru.goodsreview" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="file"/>
         <appender-ref ref="console"/>

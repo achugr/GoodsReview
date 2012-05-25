@@ -8,7 +8,7 @@
 
     <!--Factory-->
 
-    <bean id="controllerFactory" class="ru.goodsReview.core.db.ControllerFactory">
+    <bean id="controllerFactory" class="ru.goodsreview.core.db.ControllerFactory">
         <property name="categoryController" ref="categoryDbController"/>
         <property name="productController" ref="productDbController"/>
         <property name="reviewController" ref="reviewDbController"/>
@@ -33,22 +33,22 @@
     </bean>
 
     <!--Controllers-->
-    <bean id="categoryDbController" class="ru.goodsReview.storage.controller.CategoryDbController">
+    <bean id="categoryDbController" class="ru.goodsreview.storage.controller.CategoryDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="productDbController" class="ru.goodsReview.storage.controller.ProductDbController">
+    <bean id="productDbController" class="ru.goodsreview.storage.controller.ProductDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="reviewDbController" class="ru.goodsReview.storage.controller.ReviewDbController">
+    <bean id="reviewDbController" class="ru.goodsreview.storage.controller.ReviewDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="sourceDbController" class="ru.goodsReview.storage.controller.SourceDbController">
+    <bean id="sourceDbController" class="ru.goodsreview.storage.controller.SourceDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="thesisDbController" class="ru.goodsReview.storage.controller.ThesisDbController">
+    <bean id="thesisDbController" class="ru.goodsreview.storage.controller.ThesisDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
-    <bean id="thesisUniqueDbController" class="ru.goodsReview.storage.controller.ThesisUniqueDbController">
+    <bean id="thesisUniqueDbController" class="ru.goodsreview.storage.controller.ThesisUniqueDbController">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>
 

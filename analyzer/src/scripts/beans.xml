@@ -7,7 +7,7 @@
     <!--Spring helpers-->
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
-    <bean id="extractThesis" class="ru.goodsReview.analyzer.ExtractThesis"/>
+    <bean id="extractThesis" class="ru.goodsreview.analyzer.ExtractThesis"/>
 
     <bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask" lazy-init="false">
         <property name="delay" value="1000"/>
