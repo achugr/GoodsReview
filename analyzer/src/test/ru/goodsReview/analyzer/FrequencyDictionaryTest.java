@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 /*
  *  Date: 16.11.11
  *   Time: 12:26
@@ -8,7 +8,7 @@ package ru.goodsReview.analyzer;
  */
 
 import org.junit.Assert;
-import ru.goodsReview.analyzer.util.FrequencyDictionary;
+import ru.goodsreview.analyzer.util.FrequencyDictionary;
 
 import java.util.ArrayList;
 import java.util.HashMap;

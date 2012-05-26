@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 /*
  *  Date: 18.02.12
  *   Time: 16:04
@@ -9,21 +9,21 @@ package ru.goodsReview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.analyzer.algorithmTesting.Phrase;
-import ru.goodsReview.analyzer.util.ThesisPattern;
-import ru.goodsReview.analyzer.util.dictionary.MapDictionary;
-import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
-import ru.goodsReview.analyzer.util.sentence.ReviewTokens;
-import ru.goodsReview.analyzer.util.sentence.Token;
-import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.db.controller.ProductController;
-import ru.goodsReview.core.db.controller.ReviewController;
-import ru.goodsReview.core.db.controller.ThesisController;
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
+import ru.goodsreview.analyzer.algorithmTesting.Phrase;
+import ru.goodsreview.analyzer.util.ThesisPattern;
+import ru.goodsreview.analyzer.util.dictionary.MapDictionary;
+import ru.goodsreview.analyzer.util.sentence.PartOfSpeech;
+import ru.goodsreview.analyzer.util.sentence.ReviewTokens;
+import ru.goodsreview.analyzer.util.sentence.Token;
+import ru.goodsreview.analyzer.wordAnalyzer.MystemAnalyzer;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.db.controller.ProductController;
+import ru.goodsreview.core.db.controller.ReviewController;
+import ru.goodsreview.core.db.controller.ThesisController;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.core.model.Review;
+import ru.goodsreview.core.model.Thesis;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

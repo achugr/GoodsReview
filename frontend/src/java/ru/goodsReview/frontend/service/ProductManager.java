@@ -1,13 +1,13 @@
-package ru.goodsReview.frontend.service;
+package ru.goodsreview.frontend.service;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.jetbrains.annotations.*;
 
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.frontend.mapper.ProductMapper;
-import ru.goodsReview.frontend.model.DetailedProductForView;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.frontend.mapper.ProductMapper;
+import ru.goodsreview.frontend.model.DetailedProductForView;
 import java.util.ArrayList;
 import java.util.List;
 /*

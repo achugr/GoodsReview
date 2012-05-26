@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.wordAnalyzer;
+package ru.goodsreview.analyzer.wordAnalyzer;
 
 /*
     Date: 26.11.11
@@ -8,7 +8,7 @@ package ru.goodsReview.analyzer.wordAnalyzer;
         SkudarnovYI@gmail.com
 */
 
-import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
+import ru.goodsreview.analyzer.util.sentence.PartOfSpeech;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

@@ -5,7 +5,7 @@
 * Artemij Chugreev 
 * artemij.chugreev@gmail.com
 */
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 
 import java.util.Comparator;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package ru.goodsReview.searcher.mapper;
+package ru.goodsreview.searcher.mapper;
 
 /*
  *  Date: 13.11.11
@@ -10,7 +10,7 @@ package ru.goodsReview.searcher.mapper;
 
 import org.apache.lucene.document.Document;
 import org.jetbrains.annotations.NotNull;
-import ru.goodsReview.core.model.Product;
+import ru.goodsreview.core.model.Product;
 
 public class ProductMapper {
     /**

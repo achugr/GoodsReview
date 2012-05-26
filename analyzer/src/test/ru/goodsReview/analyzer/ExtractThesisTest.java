@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 /*
  *  Date: 04.12.11
  *   Time: 13:27
@@ -9,8 +9,6 @@ package ru.goodsReview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
 
 import java.io.IOException;
 import java.util.List;

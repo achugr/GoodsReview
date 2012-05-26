@@ -1,8 +1,8 @@
-package ru.goodsReview.frontend.model;
+package ru.goodsreview.frontend.model;
 
 import org.jetbrains.annotations.NotNull;
-import ru.goodsReview.core.model.Category;
-import ru.goodsReview.core.model.Product;
+import ru.goodsreview.core.model.Category;
+import ru.goodsreview.core.model.Product;
 
 import java.util.List;
 

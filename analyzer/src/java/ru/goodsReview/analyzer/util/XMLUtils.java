@@ -1,13 +1,13 @@
-package ru.goodsReview.analyzer.util;
+package ru.goodsreview.analyzer.util;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
-import ru.goodsReview.storage.controller.ReviewDbController;
-import ru.goodsReview.storage.controller.ThesisDbController;
+import ru.goodsreview.core.model.Review;
+import ru.goodsreview.core.model.Thesis;
+import ru.goodsreview.storage.controller.ReviewDbController;
+import ru.goodsreview.storage.controller.ThesisDbController;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

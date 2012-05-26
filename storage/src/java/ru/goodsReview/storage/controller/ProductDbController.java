@@ -1,13 +1,13 @@
-package ru.goodsReview.storage.controller;
+package ru.goodsreview.storage.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.db.controller.ProductController;
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.storage.mapper.ProductMapper;
+import ru.goodsreview.core.db.controller.ProductController;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.storage.mapper.ProductMapper;
 
 import java.sql.Types;
 import java.util.ArrayList;

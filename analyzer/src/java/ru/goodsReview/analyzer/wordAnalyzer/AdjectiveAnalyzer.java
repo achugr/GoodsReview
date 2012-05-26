@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.wordAnalyzer;
+package ru.goodsreview.analyzer.wordAnalyzer;
 
 import java.util.Set;
 

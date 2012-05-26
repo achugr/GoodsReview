@@ -6,14 +6,14 @@
  *   sergey.serebryakoff@gmail.com
  */
 
-package ru.goodsReview.storage.controller;
+package ru.goodsreview.storage.controller;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.dao.DataAccessException;
 import org.apache.log4j.Logger;
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.storage.mapper.QueryUniqueMapper;
-import ru.goodsReview.core.model.QueryUnique;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.storage.mapper.QueryUniqueMapper;
+import ru.goodsreview.core.model.QueryUnique;
 
 import java.sql.Types;
 import java.util.List;

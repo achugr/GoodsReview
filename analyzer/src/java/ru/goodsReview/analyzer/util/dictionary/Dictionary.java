@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util.dictionary;
+package ru.goodsreview.analyzer.util.dictionary;
 /*
  *  Date: 08.02.12
  *   Time: 18:02

@@ -1,13 +1,13 @@
-package ru.goodsReview.frontend.mapper;
+package ru.goodsreview.frontend.mapper;
 
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.model.Category;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
-import ru.goodsReview.frontend.model.DetailedProductForView;
-import ru.goodsReview.frontend.model.ReviewForView;
-import ru.goodsReview.frontend.model.ThesisForView;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.model.Category;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.core.model.Review;
+import ru.goodsreview.core.model.Thesis;
+import ru.goodsreview.frontend.model.DetailedProductForView;
+import ru.goodsreview.frontend.model.ReviewForView;
+import ru.goodsreview.frontend.model.ThesisForView;
 
 import java.util.ArrayList;
 import java.util.List;

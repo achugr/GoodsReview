@@ -5,22 +5,22 @@
 * Artemij Chugreev
 * artemij.chugreev@gmail.com
 */
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.analyzer.util.FrequencyAnalyzer;
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.db.controller.ProductController;
-import ru.goodsReview.core.db.controller.ReviewController;
-import ru.goodsReview.core.db.controller.ThesisController;
-import ru.goodsReview.core.db.controller.ThesisUniqueController;
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
-import ru.goodsReview.core.model.ThesisUnique;
+import ru.goodsreview.analyzer.util.FrequencyAnalyzer;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.db.controller.ProductController;
+import ru.goodsreview.core.db.controller.ReviewController;
+import ru.goodsreview.core.db.controller.ThesisController;
+import ru.goodsreview.core.db.controller.ThesisUniqueController;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.core.model.Review;
+import ru.goodsreview.core.model.Thesis;
+import ru.goodsreview.core.model.ThesisUnique;
 
 import java.sql.Timestamp;
 import java.util.*;

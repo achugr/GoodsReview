@@ -1,9 +1,9 @@
-package ru.goodsReview.frontend.yalet;
+package ru.goodsreview.frontend.yalet;
 
 import net.sf.xfresh.core.InternalRequest;
 import net.sf.xfresh.core.InternalResponse;
 import net.sf.xfresh.core.Yalet;
-import ru.goodsReview.core.model.Product;
+import ru.goodsreview.core.model.Product;
 
 
 /*

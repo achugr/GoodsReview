@@ -1,4 +1,4 @@
-package ru.goodsReview.core.utils;
+package ru.goodsreview.core.utils;
 /*
  *  Date: 23.02.12
  *   Time: 16:27

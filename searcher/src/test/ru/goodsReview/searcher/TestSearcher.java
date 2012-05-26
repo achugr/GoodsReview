@@ -1,7 +1,7 @@
-package ru.goodsReview.searcher;
+package ru.goodsreview.searcher;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import ru.goodsReview.core.model.Product;
+import ru.goodsreview.core.model.Product;
 
 import java.util.List;
 

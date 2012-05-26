@@ -6,7 +6,7 @@
         artemij.chugreev@gmail.com
 */
 
-package ru.goodsReview.core.starter;
+package ru.goodsreview.core.starter;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.support.FileSystemXmlApplicationContext;

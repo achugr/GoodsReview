@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util.dictionary;
+package ru.goodsreview.analyzer.util.dictionary;
 
 /*
     Date: 01.02.12
@@ -11,9 +11,9 @@ package ru.goodsReview.analyzer.util.dictionary;
 import org.apache.log4j.Logger;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import ru.goodsReview.analyzer.util.FrequencyDictionary;
-import ru.goodsReview.analyzer.wordAnalyzer.PorterStemmer;
-import ru.goodsReview.core.utils.HashMapUtil;
+import ru.goodsreview.analyzer.util.FrequencyDictionary;
+import ru.goodsreview.analyzer.wordAnalyzer.PorterStemmer;
+import ru.goodsreview.core.utils.HashMapUtil;
 
 import javax.xml.xpath.*;
 import java.io.File;

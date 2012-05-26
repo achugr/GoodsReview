@@ -1,4 +1,4 @@
-package ru.goodsReview.searcher;
+package ru.goodsreview.searcher;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
@@ -14,8 +14,8 @@ import org.apache.lucene.util.Version;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.searcher.mapper.ProductMapper;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.searcher.mapper.ProductMapper;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package ru.goodsReview.core.model;
+package ru.goodsreview.core.model;
 /*
  *  Date: 06.11.11
  *   Time: 23:50

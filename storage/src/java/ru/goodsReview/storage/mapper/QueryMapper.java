@@ -6,9 +6,9 @@
  *   sergey.serebryakoff@gmail.com
  */
 
-package ru.goodsReview.storage.mapper;
+package ru.goodsreview.storage.mapper;
 
-import ru.goodsReview.core.model.Query;
+import ru.goodsreview.core.model.Query;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

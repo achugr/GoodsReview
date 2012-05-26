@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util;
+package ru.goodsreview.analyzer.util;
 /*
  *  Date: 12.02.12
  *   Time: 15:36
@@ -7,8 +7,7 @@ package ru.goodsReview.analyzer.util;
  *      artemij.chugreev@gmail.com
  */
 
-import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
-import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
+import ru.goodsreview.analyzer.util.sentence.PartOfSpeech;
 
 import java.io.IOException;
 import java.util.ArrayList;

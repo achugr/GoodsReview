@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.wordAnalyzer;
+package ru.goodsreview.analyzer.wordAnalyzer;
 /*
  *  Date: 12.02.12
  *   Time: 20:51
@@ -8,8 +8,8 @@ package ru.goodsReview.analyzer.wordAnalyzer;
  */
 
 import org.apache.log4j.Logger;
-import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
-import ru.goodsReview.core.utils.OSValidator;
+import ru.goodsreview.analyzer.util.sentence.PartOfSpeech;
+import ru.goodsreview.core.utils.OSValidator;
 
 import java.io.IOException;
 import java.io.PrintStream;

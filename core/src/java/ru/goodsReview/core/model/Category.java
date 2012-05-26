@@ -6,7 +6,7 @@
  *   sergey.serebryakoff@gmail.com
  */
 
-package ru.goodsReview.core.model;
+package ru.goodsreview.core.model;
 
 public class Category {
     private long id;

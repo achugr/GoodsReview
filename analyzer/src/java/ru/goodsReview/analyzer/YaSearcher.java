@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 
 /**
  * Date: 16.02.12
@@ -9,10 +9,10 @@ package ru.goodsReview.analyzer;
  */
 
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.db.controller.ThesisController;
-import ru.goodsReview.core.model.Thesis;
-import ru.goodsReview.core.utils.HashMapUtil;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.db.controller.ThesisController;
+import ru.goodsreview.core.model.Thesis;
+import ru.goodsreview.core.utils.HashMapUtil;
 
 import java.io.*;
 import java.net.URL;

@@ -1,13 +1,12 @@
-package ru.goodsReview.frontend.service;
+package ru.goodsreview.frontend.service;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.frontend.model.DetailedProductForView;
-import ru.goodsReview.frontend.mapper.ProductMapper;
-import ru.goodsReview.searcher.Searcher;
-import ru.goodsReview.searcher.SimpleSearcher;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.frontend.model.DetailedProductForView;
+import ru.goodsreview.frontend.mapper.ProductMapper;
+import ru.goodsreview.searcher.Searcher;
 
 import java.util.ArrayList;
 import java.util.List;

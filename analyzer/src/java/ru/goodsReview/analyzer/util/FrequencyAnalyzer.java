@@ -1,6 +1,6 @@
-package ru.goodsReview.analyzer.util;
+package ru.goodsreview.analyzer.util;
 
-import ru.goodsReview.core.model.Review;
+import ru.goodsreview.core.model.Review;
 
 import java.util.*;
 

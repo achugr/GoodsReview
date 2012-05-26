@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.wordAnalyzer;
+package ru.goodsreview.analyzer.wordAnalyzer;
 
 /*
  *  Date: 01.02.12

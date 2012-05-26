@@ -1,7 +1,7 @@
-package ru.goodsReview.analyzer.wordAnalyzer;
+package ru.goodsreview.analyzer.wordAnalyzer;
 
 import org.apache.log4j.Logger;
-import ru.goodsReview.core.utils.OSValidator;
+import ru.goodsreview.core.utils.OSValidator;
 
 import java.io.*;
 import java.util.Scanner;

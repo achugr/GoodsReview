@@ -1,4 +1,4 @@
-package ru.goodsReview.core.db;
+package ru.goodsreview.core.db;
 
 /*
  *  Date: 13.11.11
@@ -9,7 +9,7 @@ package ru.goodsReview.core.db;
  */
 
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.core.db.controller.*;
+import ru.goodsreview.core.db.controller.*;
 
 public class ControllerFactory {
     private CategoryController categoryController;

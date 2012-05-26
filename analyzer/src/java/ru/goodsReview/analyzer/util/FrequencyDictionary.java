@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util;
+package ru.goodsreview.analyzer.util;
 /*
  *  Date: 16.11.11
  *   Time: 11:14
@@ -7,11 +7,6 @@ package ru.goodsReview.analyzer.util;
  *      artemij.chugreev@gmail.com
  */
 
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import ru.goodsReview.core.utils.HashMapUtil;
-
-import javax.xml.xpath.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

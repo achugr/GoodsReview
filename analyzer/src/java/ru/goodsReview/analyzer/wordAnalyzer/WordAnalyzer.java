@@ -1,6 +1,6 @@
-package ru.goodsReview.analyzer.wordAnalyzer;
+package ru.goodsreview.analyzer.wordAnalyzer;
 
-import ru.goodsReview.analyzer.util.sentence.PartOfSpeech;
+import ru.goodsreview.analyzer.util.sentence.PartOfSpeech;
 
 import java.io.UnsupportedEncodingException;
 

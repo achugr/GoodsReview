@@ -1,4 +1,4 @@
-package ru.goodsReview.core.model;
+package ru.goodsreview.core.model;
 
 /**
  * User: Artemij

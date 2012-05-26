@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util.dictionary;
+package ru.goodsreview.analyzer.util.dictionary;
 
 /**
  * Date: 17.04.12

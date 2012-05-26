@@ -1,4 +1,4 @@
-package ru.goodsReview.storage.mapper;
+package ru.goodsreview.storage.mapper;
 /*
  *  Date: 07.11.11
  *   Time: 00:29
@@ -8,7 +8,7 @@ package ru.goodsReview.storage.mapper;
  */
 
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import ru.goodsReview.core.model.ThesisUnique;
+import ru.goodsreview.core.model.ThesisUnique;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.algorithmTesting;
+package ru.goodsreview.analyzer.algorithmTesting;
 
 /**
  * Date: 05.02.12
@@ -8,8 +8,8 @@ package ru.goodsReview.analyzer.algorithmTesting;
  * ilya.makeev@gmail.com
  */
 
-import ru.goodsReview.analyzer.ExtractThesis;
-import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
+import ru.goodsreview.analyzer.ExtractThesis;
+import ru.goodsreview.analyzer.wordAnalyzer.MystemAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;

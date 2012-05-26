@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.algorithmTesting;
+package ru.goodsreview.analyzer.algorithmTesting;
 /*
  *  Date: 24.12.11
  *   Time: 01:46
@@ -9,14 +9,14 @@ package ru.goodsReview.analyzer.algorithmTesting;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.analyzer.AnalyzeThesis;
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.db.controller.ProductController;
-import ru.goodsReview.core.db.controller.ReviewController;
-import ru.goodsReview.core.db.controller.ThesisController;
-import ru.goodsReview.core.model.Product;
-import ru.goodsReview.core.model.Review;
-import ru.goodsReview.core.model.Thesis;
+import ru.goodsreview.analyzer.AnalyzeThesis;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.db.controller.ProductController;
+import ru.goodsreview.core.db.controller.ReviewController;
+import ru.goodsreview.core.db.controller.ThesisController;
+import ru.goodsreview.core.model.Product;
+import ru.goodsreview.core.model.Review;
+import ru.goodsreview.core.model.Thesis;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

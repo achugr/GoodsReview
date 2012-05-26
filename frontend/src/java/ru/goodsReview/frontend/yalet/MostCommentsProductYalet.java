@@ -1,4 +1,4 @@
-package ru.goodsReview.frontend.yalet;
+package ru.goodsreview.frontend.yalet;
 /*
  *  Date: 30.01.12
  *   Time: 00:24
@@ -14,8 +14,8 @@ import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.frontend.model.DetailedProductForView;
-import ru.goodsReview.frontend.service.ProductManager;
+import ru.goodsreview.frontend.model.DetailedProductForView;
+import ru.goodsreview.frontend.service.ProductManager;
 
 import java.util.List;
 

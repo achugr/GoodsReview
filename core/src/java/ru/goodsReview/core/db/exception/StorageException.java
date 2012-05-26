@@ -6,7 +6,7 @@
  *   sergey.serebryakoff@gmail.com
  */
 
-package ru.goodsReview.core.db.exception;
+package ru.goodsreview.core.db.exception;
 
 /**
  * User: Sergey Serebryakov

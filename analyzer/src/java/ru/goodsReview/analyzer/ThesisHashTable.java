@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer;
+package ru.goodsreview.analyzer;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package ru.goodsReview.indexer;
+package ru.goodsreview.indexer;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
@@ -11,8 +11,8 @@ import org.apache.lucene.util.Version;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.db.ControllerFactory;
-import ru.goodsReview.core.model.*;
+import ru.goodsreview.core.db.ControllerFactory;
+import ru.goodsreview.core.model.*;
 
 import java.io.File;
 import java.io.IOException;

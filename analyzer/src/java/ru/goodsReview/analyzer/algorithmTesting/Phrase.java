@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.algorithmTesting;
+package ru.goodsreview.analyzer.algorithmTesting;
 
 
 

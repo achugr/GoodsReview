@@ -1,4 +1,4 @@
-package ru.goodsReview.core.exception;
+package ru.goodsreview.core.exception;
 
 /*
  *  Date: 17.11.11

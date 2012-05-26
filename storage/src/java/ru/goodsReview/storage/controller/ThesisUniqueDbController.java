@@ -1,4 +1,4 @@
-package ru.goodsReview.storage.controller;
+package ru.goodsreview.storage.controller;
 /*
  *  Date: 07.11.11
  *   Time: 00:44
@@ -10,10 +10,10 @@ package ru.goodsReview.storage.controller;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.goodsReview.core.db.controller.ThesisUniqueController;
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.ThesisUnique;
-import ru.goodsReview.storage.mapper.ThesisUniqueMapper;
+import ru.goodsreview.core.db.controller.ThesisUniqueController;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.core.model.ThesisUnique;
+import ru.goodsreview.storage.mapper.ThesisUniqueMapper;
 
 import java.sql.Types;
 import java.util.ArrayList;

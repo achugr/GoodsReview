@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util.dictionary;
+package ru.goodsreview.analyzer.util.dictionary;
 
 import java.io.*;
 import java.util.HashMap;

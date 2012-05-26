@@ -1,4 +1,4 @@
-package ru.goodsReview.analyzer.util.sentence;
+package ru.goodsreview.analyzer.util.sentence;
 /*
  *  Date: 11.02.12
  *   Time: 17:22
@@ -8,10 +8,10 @@ package ru.goodsReview.analyzer.util.sentence;
  */
 
 
-import ru.goodsReview.analyzer.util.dictionary.Dictionary;
-import ru.goodsReview.analyzer.util.dictionary.MapDictionary;
-import ru.goodsReview.analyzer.wordAnalyzer.MystemAnalyzer;
-import ru.goodsReview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
+import ru.goodsreview.analyzer.util.dictionary.Dictionary;
+import ru.goodsreview.analyzer.util.dictionary.MapDictionary;
+import ru.goodsreview.analyzer.wordAnalyzer.MystemAnalyzer;
+import ru.goodsreview.analyzer.wordAnalyzer.PyMorphyAnalyzer;
 
 import java.io.IOException;
 import java.util.ArrayList;

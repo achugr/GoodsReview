@@ -1,4 +1,4 @@
-package ru.goodsReview.core.utils;
+package ru.goodsreview.core.utils;
 
 /*
     Date: 28.11.11
@@ -8,7 +8,7 @@ package ru.goodsReview.core.utils;
         SkudarnovYI@gmail.com
 */
 
-import ru.goodsReview.core.model.Product;
+import ru.goodsreview.core.model.Product;
 
 import java.util.Arrays;
 import java.util.List;

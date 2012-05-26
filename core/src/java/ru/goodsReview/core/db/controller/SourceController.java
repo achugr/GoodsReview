@@ -1,4 +1,4 @@
-package ru.goodsReview.core.db.controller;
+package ru.goodsreview.core.db.controller;
 
 /*
  *  Date: 13.11.11
@@ -8,8 +8,8 @@ package ru.goodsReview.core.db.controller;
  *     vans239@gmail.com
  */
 
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.Source;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.core.model.Source;
 
 public interface SourceController {
     public long addSource(Source source) throws StorageException;

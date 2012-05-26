@@ -1,7 +1,7 @@
-package ru.goodsReview.core.db.controller;
+package ru.goodsreview.core.db.controller;
 
-import ru.goodsReview.core.db.exception.StorageException;
-import ru.goodsReview.core.model.Category;
+import ru.goodsreview.core.db.exception.StorageException;
+import ru.goodsreview.core.model.Category;
 
 import java.util.List;
 

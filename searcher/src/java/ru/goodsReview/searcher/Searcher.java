@@ -1,4 +1,4 @@
-package ru.goodsReview.searcher;
+package ru.goodsreview.searcher;
 /*
  *  Date: 22.11.11
  *  Time: 08:41
@@ -9,7 +9,7 @@ package ru.goodsReview.searcher;
 
 import org.apache.lucene.queryParser.ParseException;
 import org.jetbrains.annotations.NotNull;
-import ru.goodsReview.core.model.Product;
+import ru.goodsreview.core.model.Product;
 
 import java.io.IOException;
 import java.util.List;

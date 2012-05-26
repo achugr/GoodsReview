@@ -1,7 +1,7 @@
-package ru.goodsReview.frontend.model;
+package ru.goodsreview.frontend.model;
 
 import org.jetbrains.annotations.NotNull;
-import ru.goodsReview.core.model.Review;
+import ru.goodsreview.core.model.Review;
 
 import java.util.List;
 /*

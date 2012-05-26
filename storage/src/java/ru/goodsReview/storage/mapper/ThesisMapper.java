@@ -6,10 +6,10 @@
  *   sergey.serebryakoff@gmail.com
  */
 
-package ru.goodsReview.storage.mapper;
+package ru.goodsreview.storage.mapper;
 
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import ru.goodsReview.core.model.Thesis;
+import ru.goodsreview.core.model.Thesis;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

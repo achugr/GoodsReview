@@ -1,4 +1,4 @@
-package ru.goodsReview.frontend.yalet;
+package ru.goodsreview.frontend.yalet;
 
 import net.sf.xfresh.core.InternalRequest;
 import net.sf.xfresh.core.InternalResponse;
@@ -7,8 +7,8 @@ import net.sf.xfresh.core.xml.Xmler;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Required;
-import ru.goodsReview.frontend.model.ThesisForView;
-import ru.goodsReview.frontend.service.ThesisManager;
+import ru.goodsreview.frontend.model.ThesisForView;
+import ru.goodsreview.frontend.service.ThesisManager;
 
 import java.util.List;
 
