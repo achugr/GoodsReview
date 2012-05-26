@@ -21,7 +21,6 @@ findbugs_report.html
 
 # Idea system files #
 *.iws
-*.ipr
 
 # Compiled source #
 ###################
